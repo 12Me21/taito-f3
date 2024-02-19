@@ -1,0 +1,146 @@
+A01 GND
+A02 GND
+A03 GND
+A04 GND
+A05 GND
+A06 prg1.Q6
+A07 prg1.Q7
+A08 prg.A0
+A09 prg.A1
+A10 prg.A2
+A11 prg.A3
+A12 prg.A4
+A13 prg.A5
+A14 prg.A6
+A15 prg.A7
+A16 prg.A8
+A17 prg.A9
+A18 prg.A10
+A19 prg.A11
+A20 prg.A12
+A21 prg.A13 
+A22 prg.A14
+A23 prg.A15   and pal15.i0
+A24 prg.A16   and pal15.i1
+A25 pal15.i2  (probably to prg.a17)
+A26 pal15.i3  (probably to prg.a18)  to cpu.a20
+A27 pal15.i4  ("prg.a19")
+A28 GND
+A29 GND
+A30 GND
+A31 GND
+A32 GND
+
+A65 pal15.i5 ("prg.a20")  to cpu.a21
+A66 pal15.i6 ("prg.a21")  to cpu.a22
+A67 pal15.i7 ("prg.a22")  to cpu.a23
+A68 pal15.i8 ("prg.a23")  to 
+A69 pal15.i9 ("prg.a24")  ??
+A70 
+A71
+A72
+A73
+A74
+A75 pal15.io4
+A76 pal15.io3
+A77 pal15.io2
+A78 
+A79
+A80 pal15.io1
+A81
+A82
+A83
+A84
+A85
+A86
+A87
+A88
+A89
+A90 
+A91 prg1.Q0
+A92 prg1.Q1
+A93 prg1.Q2
+A94 prg1.Q3
+A95 prg1.Q4
+A96 prg1.Q5
+
+
+note, prg.a17 and .a18 go to pal15.io6 and .io7
+prg.oe goes to pal15.io5
+
+
+
+B08 prg2.q0
+B09 prg2.q1
+B10 prg2.q2
+B11 prg2.q3
+B12 prg2.q4
+B13 prg2.q5
+B14 prg2.q6
+B15 prg2.q7
+B16 prg3.q0
+B17 prg3.q1
+B18 prg3.q2
+B19 prg3.q3
+B20 prg3.q4
+B21 prg3.q5
+B22 prg3.q6
+B23 prg3.q7
+B24 prg4.q0
+B25 prg4.q1
+B26 prg4.q2
+B27 prg4.q3
+B28-32 GND
+
+x33-35 key (japan)
+x36-38 key? (america?)
+x39-41 key (europe)
+B42-47 GND
+B48 NC?
+B49-55 GND
+x56-58 key (europe)
+B59-61 key? (america?)
+x62-64 key (japan)
+
+B65 prg4.q4
+B66 prg4.q5
+B67 prg4.q6
+B68 prg4.q7
+B69 
+B70
+B71
+B72
+B73
+B74
+B75
+B76
+B77
+B78
+B79
+B80
+B81
+B82
+B83
+B84
+B85
+B86
+B87
+B88
+B89
+B90
+B91
+B92
+B93
+B94
+B95
+B96
+
+
+
+port D
+snd rom
+
+D28 (broken) pal12.io5
+
+
+

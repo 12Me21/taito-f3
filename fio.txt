@@ -1,0 +1,123 @@
+1 pwr
+2 pwr
+3 -
+4 -
+5 pwr
+6 button?
+7 button?
+8 button?
+9 button?
+10 pwr
+11 -
+12 -
+13 -
+14 -
+15 pwr
+16 -
+17 -
+18 -
+19 -
+20 1p button?
+21 1p button?
+22 1p button?
+23 1p button?
+24 2p button
+25 2p button
+26 2p button
+27 2p button
+28 -
+29 button? *maybe Z connector?
+30 -
+
+31 -
+32 button?
+33 button?
+34 in
+35 -
+36 button?
+37 button?
+38 button?
+39 -
+40 pwr
+41 3p button
+42 3p button
+43 3p button
+44 -
+45 4p button
+46 4p button
+47 4p button
+48 -
+49 3p button
+50 3p button
+51 3p button
+52 3p button
+53 4p button
+54 4p button
+55 4p button
+56 4p button
+57 -
+58 Z connector?
+59 Z connector?
+60 -
+
+61 pwr
+62 eeprom.3 (DI)
+63 eeprom.2 (CLK)
+64 eeprom.1 (CS)
+65 out
+66 out
+67 out
+68 pwr
+69 TD62064A.I1
+70 -
+71 TD62064A.?
+72 TD62064A.?
+73 pwr
+74 -
+75 pwr
+76 -
+77 -
+78 -
+79 -
+80 -
+81 test switch
+82 eeprom.4 (DO)
+83 -
+84 -
+85 -
+86 -
+87 -
+88 -
+89 button?
+90 pwr
+
+91 pwr
+92 -
+93 pwr
+94 cpu.6 (reset)
+95 cpu.22 (halt)
+96 -
+97 cpu.34 (data)
+98 cpu.33 (data)
+99 cpu.32 (data)
+100 cpu.31 (data)
+101 -
+102 cpu.30 (data)
+103 cpu.29 (data)
+104 cpu.28 (data)
+105 cpu.27 (data)
+106 GND
+107 duart.36 (ip2)
+108 GND
+109 cpu.75? (address 4)
+110 cpu.74? (address 3)
+111 cpu.73? (address 2)
+112 cpu.98 (address 1)
+113 cpu.99 (address 0)
+114 -
+115 -
+116 -
+117 -
+118 ?past roms
+119 pwr
+120 pwr

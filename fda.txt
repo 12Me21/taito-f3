@@ -1,0 +1,112 @@
+1 ?
+2 pwr?
+3 to fdp?
+4 to fdp.197
+5 to fdp.198
+6 to fdp.199
+7 to fdp.202
+8 data bus?
+9 data bus?
+10 data bus?
+11 ? 
+12 ?
+13 ?
+14 ?
+15 pwr
+16 ?
+17 data bus d23 (cpu.35)
+18 data bus?
+19 data bus?
+20 data bus?
+21 data bus?
+22 data bus?
+23 data bus?
+24 data bus?
+25 data bus?
+26 data bus??
+27 data bus??
+28 data bus??
+29 data bus??
+30 ?
+
+31 pwr
+32 pwr
+33 ?
+34 ?
+35 ?
+36 pwr
+37 ?
+38 ?
+39 ?
+40 pwr
+41 ?
+42 - pull 75
+43 - pull 75|1000
+44 ?
+45 pwr
+46 pwr
+47 ?
+48 ?
+49 pwr
+50 pwr
+
+51 ?
+52 ?
+53 colram?
+54 colram?
+55 colram?
+56 colram?
+57 colram?
+58 colram?
+59 colram?
+60 colram?
+61 colram?
+62 colram?
+63 colram?
+64 colram?
+65 ?
+66 ?
+67 colram?
+68 colram B
+69 colram B
+70 colram B
+71 colram C
+72 colram C
+73 colram C
+74 colram C
+75 colram C
+76 colram?
+77 colram?
+78 colram?
+79 ?
+80 ?
+
+81 pwr
+82 pwr
+83 ?
+84 ?
+85 colram OE
+86 colram C WE
+87 colram?
+88 colram A WE
+89 ?
+90 pwr
+91 ?
+92 shielded, from pal
+93 shielded, from flip flip (is this divided clock?)
+94 ?
+95 to fdp
+96 to fdp
+97 ?
+98 to fdp??
+99 pwr
+100 pwr
+
+
+
+vias underneath:
+group of 4 vias, probably map to pins 10-14, probably more data bus?
+
+red
+green
+blue

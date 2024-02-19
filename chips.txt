@@ -1,0 +1,784 @@
+(74x244)
+MC74F244 [N]
+https://www.digchip.com/datasheets/download_datasheet.php?id=647943&part-number=MC74F244N
+OCTAL BUFFER/LINE DRIVER WITH 3-STATE OUTPUTS
+[300 mil DIP 20]
+1 ~OE_a
+2 I_a0
+3 Y_b0
+4 I_a1
+5 Y_b1
+6 I_a2
+7 Y_b2
+8 I_a3
+9 Y_b3
+10 GND
+11 I_b3
+12 Y_a3
+13 I_b2
+14 Y_a2
+15 I_b1
+16 Y_a1
+17 I_b0
+18 Y_a0
+19 ~OE_b
+20 V_CC
+
+(74x373)
+MC74F373 [N]
+https://www.digchip.com/datasheets/download_datasheet.php?id=648013&part-number=MC74F373N
+OCTAL TRANSPARENT LATCH WITH 3-STATE OUTPUTS
+[300 mil DIP 20]
+1 ~OE
+2 O_0
+3 D_0
+4 D_1
+5 O_1
+6 O_2
+7 D_2
+8 D_3
+9 O_3
+10 GND
+11 LE
+12 O_4
+13 D_4
+14 D_5
+15 O_5
+16 O_6
+17 D_6
+18 D_7
+19 O_7
+20 V_CC
+
+(74x74)
+MC74F74 [N]
+https://www.digchip.com/datasheets/download_datasheet.php?id=648128&part-number=MC74F74N
+DUAL D-TYPE POSITIVE EDGE-TRIGGERED FLIP-FLOP
+[300 mil DIP 14]
+1 ~C_D1  clear input
+2 D_1  d input
+3 CP_1  clock input
+4 ~S_D1  preset input
+5 Q_1  q output
+6 ~Q_1 ~q output
+7 GND
+8 ~Q_2
+9 Q_2
+10 ~S_D2 preset
+11 CP_2 clock
+12 D_2 d
+13 ~C_D2 clear
+14 V_CC
+
+MB87078 [-SK]
+https://www.digchip.com/datasheets/download_datasheet.php?id=2086624&part-number=MB87078
+6-bit 4-channel Electronic Volume Controller
+[300 mil DIP 24]
+1 D0
+2 D1
+3 D2
+4 D3
+5 D4
+6 D5
+7 DG
+8 AG
+9 AI_0
+10 AO_0
+11 AI_1
+12 AO_1
+13 AI_2
+14 AO_2
+15 AI_3
+16 AO_3
+17 V_DO
+18 V_DD
+19 ~PD
+20 ~RESET
+21 DSEL
+22 ~CE
+23 ~WR
+24 ~TC
+
+MC33174 [P]
+https://www.onsemi.com/pdf/datasheet/mc33171-d.pdf
+quad op-amp (PDIP−14)
+[300 mil DIP 14]
+1 Output 1
+2 Inv. Input 1
+3 Noninv. Input 1
+4 V_CC
+5 Noninv. Input 2
+6 Inv. Input 2
+7 Output 2
+8 Output 3
+9 Inv. Input 3
+10 Noninv. Input 3
+11 V_EE
+12 Noninv. Input 4
+13 Inv. Input 4
+14 Output 4
+
+TDA1543
+http://www.lampizator.eu/lampizator/LINKS%20AND%20DOWNLOADS/DATAMINING/tda%201543.pdf
+Dual 16-bit DAC (economy version) (I^2S input format)
+[300 mil DIP 8]
+1 BCK (bit clock input)
+2 WS (word select input)
+3 DATA (data input)
+4 GND (ground)
+5 V_DD (+5 V supply voltage)
+6 AOL (left channel voltage output)
+7 V_ref (reference voltage output)
+8 AOR (right channel output)
+
+TA8221A [H]
+https://pdf1.alldatasheet.com/datasheet-pdf/download/31459/TOSHIBA/TA8221.html https://qrpparts.com/datasheet/ta8221h.pdf ?
+30W BTLx2CH AUDIO POWER AMPLIFIER
+[?HZIP17-P-2.00 - 2 rows, 2mm apart, of 9 and 8 pins spaced 4mm]
+1 ~Mute SW
+2 IN1
+3 NF1
+4 ~Stand-By SW
+5 Pre-GND
+6 NF2
+7 IN2
+8 Ripple
+9 NC
+10 Power V_CC1
+11 OUT3
+12 OUT4
+13 GND2
+14 GND1
+15 OUT1
+16 OUT2
+17 Power V_CC2
+TAB GND
+
+ES5510
+https://ccrma.stanford.edu/~dattorro/es5510searchable.pdf
+ENSONIQ Signal Processor
+[600 mil DIP 48]
+1 CLKIN
+2 VSS
+3 DWEN
+4 RAS
+5 GATE
+6 CAS
+7 I/OSEL
+8 VDD
+9 VDD
+10 VSS
+11 VSS
+12 SERI/O3
+13 SERI/O2
+14 SERI/O1
+15 SERI/O0
+16 BCLK
+17 LRCLK
+18 WCLK
+19 RAM0
+20 RAM1
+21 RAM2
+22 RAM3
+23 RAM4
+24 VSS
+25 RAM5
+26 RAM6
+27 RAM7
+28 RAM8
+29 RAM9
+30 RAM10
+31 RAM11
+32 RAM12
+33 RAM13
+34 RAM14
+35 RAM15
+36 HALT
+37 HDB7
+38 HDB6
+39 HDB5
+40 HDB4
+41 HDB3
+42 HDB2
+43 HDB1
+44 HDB0
+45 AS
+46 CS
+47 VDD
+48 R/W
+
+TD62064A [P]
+https://media.digikey.com/PDF/Data%20Sheets/Toshiba%20PDFs/TD62064AP,AF.pdf
+4ch High-Current Darlington Sink Driver
+[300 mil DIP 16]
+1 COM
+2 O1
+3 I1
+4 GND
+5 GND
+6 I2
+7 O2
+8 COM
+9 O3
+10 NC
+11 I3
+12 GND
+13 GND
+14 I4
+15 NC
+16 O4
+
+MB3771
+https://www.digchip.com/datasheets/download_datasheet.php?id=630000&part-number=MB3771
+POWER SUPPLY MONITOR
+[300 mil DIP 8]
+1 C_T
+2 V_SC
+3 OUT_C
+4 GND
+5 V_CC
+6 V_SB/~RESIN
+7 V_SA
+8 ~RESET
+
+93C46A [B 1]
+https://pdf1.alldatasheet.com/datasheet-pdf/download/196078/MICROCHIP/93C46A-E/MC.html
+1K(bit) Microwire Compatible Serial EEPROM
+[300 mil DIP 8]
+1 CS
+2 CLK
+3 DI
+4 DO
+5 V_SS
+6 NC?
+7 NC
+8 V_CC
+
+(74x08)
+MC74HC08A [N]
+https://www.farnell.com/datasheets/76582.pdf
+Quad 2−Input AND Gate CMOS
+SN74LS08 [N]
+https://www.ti.com/lit/ds/symlink/sn54ls08.pdf?ts=1706299394689
+QUADRUPLE 2-INPUT POSITIVE-AND GATES
+[300 mil DIP 14]
+1 A1
+2 B1
+3 Y1
+4 A2
+5 B2
+6 Y2
+7 GND
+8 Y3
+9 A3
+10 B3
+11 Y4
+12 A4
+13 B4
+14 V_CC
+
+TC518128A [SP L -80]
+LH5P8128 same?
+https://pdf1.alldatasheet.com/datasheet-pdf/download/1460483/TOSHIBA/TC518128AFL-80.html
+131,072 word x 8 bit CMOS pseudo static RAM
+[300 mil DIP 32]
+1 ~RFSH
+2 A16
+3 A14
+4 A12
+5 A7
+6 A6
+7 A5
+8 A4
+9 A3
+10 A2
+11 A1
+12 A0
+13 I/O1
+14 I/O2
+15 I/O3
+16 GND
+17 I/O4
+18 I/O5
+19 I/O6
+20 I/O7
+21 I/O8
+22 ~CE1
+23 A10
+24 ~OE
+25 A11
+26 A9
+27 A8
+28 A13
+29 R/W
+30 CE2
+31 A15
+32 V_DD
+
+TC51832 [SP L -85]
+https://datasheetspdf.com/pdf-down/T/C/5/TC51832P-85-Toshiba.pdf / https://www.digchip.com/datasheets/download_datasheet.php?id=1435865&part-number=TC51832SPL-85
+32768 word x 8 bit CMOS pseudo static RAM
+[300 mil DIP 28]
+1 A_14
+2 A_12
+3 A_7
+4 A_6
+5 A_5
+6 A_4
+7 A_3
+8 A_2
+9 A_1
+10 A_0
+11 I/O1
+12 I/O2
+13 I/O3
+14 GND
+15 I/O4
+16 I/O5
+17 I/O6
+18 I/O7
+19 I/O8
+20 ~CE
+21 A_10
+22 ~OE/~RFSH
+23 A_11
+24 A_9
+25 A_8
+26 A_13
+27 R/W
+28 VDD
+
+PAL 16 L 8 [B C N]
+https://pdf1.alldatasheet.com/datasheet-pdf/download/55541/AMD/PAL16L8.html https://datasheet.ciiva.com/26785/pal16l8bcn-26785700.pdf
+20-Pin TTL Programmable Array Logic
+[300 mil DIP 20]
+1 I_0
+2 I_1
+3 I_2
+4 I_3
+5 I_4
+6 I_5
+7 I_6
+8 I_7
+9 I_8
+10 GND
+11 I_9
+12 O_1
+13 I/O_2
+14 I/O_3
+15 I/O_4
+16 I/O_5
+17 I/O_6
+18 I/O_7
+19 O_8
+20 V_CC
+
+PAL CE 16 V 8 [H -15 P C /4]
+EE CMOS 20-Pin Universal Programmable Array Logic
+[300 mil DIP 20]
+1 CLK/I_0
+2 I_1
+3 I_2
+4 I_3
+5 I_4
+6 I_5
+7 I_6
+8 I_7
+9 I_8
+10 GND
+11 ~OE/I_9
+12 I/O_0
+13 I/O_1
+14 I/O_2
+15 I/O_3
+16 I/O_4
+17 I/O_5
+18 I/O_6
+19 I/O_7
+20 V_CC
+
+PAL CE 20 V 8 [H -15 P C /4]
+https://pdf1.alldatasheet.com/datasheet-pdf/view/70221/LATTICE/PALCE20V8H-15PC/4.html
+EE CMOS 24-Pin Universal Programmable Array Logic
+[300 mil DIP 28]
+1 CLK/I_0
+2 I_1
+3 I_2
+4 I_3
+5 I_4
+6 I_5
+7 I_6
+8 I_7
+9 I_8
+10 I_9
+11 I_10
+12 GND
+13 ~OE/I_11
+14 I_12
+15 I/O_0
+16 I/O_1
+17 I/O_2
+18 I/O_3
+19 I/O_4
+20 I/O_5
+21 I/O_6
+22 I/O_7
+23 I_13
+24 V_CC
+
+(and various other PAL variants)
+
+TLP521-4 https://datasheetspdf.com/pdf-file/318866/ToshibaSemiconductor/TLP521-4/1
+4 bit optocoupler
+[300 mil DIP 4] - (four of these combined into one package)
+1 anode
+2 cathode
+3 emitter
+4 collector
+
+TLP620-4 https://www.farnell.com/datasheets/58084.pdf
+4 bit optocoupler - allows any polarity of input
+[300 mil DIP 4] - (four merged into one package)
+1 anode/cathode
+2 cathode/anode
+3 emitter
+4 collector
+
+CXK5863 [P -30]
+https://www.datasheetarchive.com/pdf/download/distributors/Datasheets-111/DSAP0039343.pdf?h=2db7ed754348f0876eb06076b4e0d297%3Ac39922be0d96a6c95bcf8d%3Aa470b99a7bd0cfa48f3f2c3620da0e2e
+8192-word x 8-bit High Speed CMOS Static RAM
+[300 mil DIP 28]
+1 NC
+2 A_12
+3 A_7
+4 A_6
+5 A_5
+6 A_4
+7 A_3
+8 A_2
+9 A_1
+10 A_0
+11 IO_1
+12 IO_2
+13 IO_3
+14 GND
+15 IO_4
+16 IO_5
+17 IO_6
+18 IO_7
+19 IO_8
+20 ~CE1
+21 A_10
+22 ~OE
+23 A_11
+24 A_9
+25 A_8
+26 CE2
+27 ~WE
+28 VCC
+
+MB8421 [-90 L P]
+file:///C:/Users/twelve/Downloads/MB8421.PDF
+2K x 8 Bits CMOS Dual-Port Static Random Access Memory
+[600mil width 70mil pitch DIP 52]
+1 ~CS_L
+2 ~WE_L
+3 ~BUSY_L
+4 ~INT_L
+5 NC
+6 A10_L
+7 ~OE_L
+8 A0_L
+9 A1_L
+10 A2_L
+11 A3_L
+12 A4_L
+13 A5_L
+14 A6_L
+15 A7_L
+16 A8_L
+17 A9_L
+18 IO0_L
+19 IO1_L
+20 IO2_L
+21 IO3_L
+22 IO4_L
+23 IO5_L
+24 IO6_L
+25 IO7_L
+26 GND
+27 IO0_R
+28 IO1_R
+29 IO2_R
+30 IO3_R
+31 IO4_R
+32 IO5_R
+33 IO6_R
+34 IO7_R
+35 A9_R
+36 A8_R
+37 A7_R
+38 A6_R
+39 A5_R
+40 A4_R
+41 A3_R
+42 A2_R
+43 A1_R
+44 A0_R
+45 ~OE_R
+46 A10_R
+47 NC
+48 ~INT_R
+49 ~BUSY_R
+50 ~WE_R
+51 ~CS_R
+52 VCC
+
+MC68681 [P]
+https://pdf1.alldatasheet.com/datasheet-pdf/download/4164/MOTOROLA/MC68681.html
+Dual Asynchronous Reciever/Transmitter (DUART)
+[600 mil DIP 40]
+1 RS1
+2 IP3
+3 RS2
+4 IP1
+5 RS3
+6 RS4
+7 IP0
+8 R/~W
+9 ~DTACK
+10 RxDB
+11 TxDB
+12 OP1
+13 OP3
+14 OP5
+15 OP7
+16 D1
+17 D3
+18 D5
+19 D7
+20 GND
+21 ~IRQ
+22 D6
+23 D4
+24 D2
+25 D0
+26 OP6
+27 OP4
+28 OP2
+29 OP0
+30 TxDA
+31 RxDA
+32 X1/CLK
+33 X2
+34 ~RESET
+35 ~CS
+36 IP2
+37 ~IACK
+38 IP5
+39 IP4
+40 V_CC
+
+KXO-01 [-1]
+https://www.quartz1.com/price/techdata/KXO-01.pdf
+Clock Oscillator (TTL Compatible)
+[300 mil DIP 14*]
+1 NC
+7 Case/GND
+8 Output
+14 +5.0V D.C.
+
+ENSONIQ-5701? 
+[PQFP-100_14x20mm_P0.65mm]
+
+MC68000 [P12F]
+[900 mil DIP 64]
+1 D4
+2 D3
+3 D2
+4 D1
+5 D0
+6 ~AS
+7 ~UDS
+8 ~LDS
+9 R/~W
+10 ~DTACK
+11 ~BG
+12 ~BGACK
+13 ~BR
+14 V_CC
+15 CLK
+16 GND
+17 ~HALT
+18 ~RESET
+19 ~VMA
+20 E
+21 ~VPA
+22 ~BERR
+23 ~IPL2
+24 ~IPL1
+25 ~IPL0
+26 FC2
+27 FC1
+28 FC0
+29 A1
+30 A2
+31 A3
+32 A4
+33 A5
+34 A6
+35 A7
+36 A8
+37 A9
+38 A10
+39 A11
+40 A12
+41 A13
+42 A14
+43 A15
+44 A16
+45 A17
+46 A18
+47 A19
+48 A20
+49 V_CC
+50 A21
+51 A22
+52 A23
+53 GND
+54 D15
+55 D14
+56 D13
+57 D12
+58 D11
+59 D10
+60 D9
+61 D8
+62 D7
+63 D6
+64 D5
+
+OTISR2 https://www.dosdays.co.uk/media/ensoniq/es5505%20-%20OTIS.pdf ?
+[600 mil DIP 48]
+1 A17/D13
+2 A18/D14
+3 A19/D15
+4 BS
+5 PWZERO
+6 SER0
+7 SER1
+8 SER2
+9 SER3
+10 SERWCLK
+11 SERLR
+12 SERBCLK
+13 RLO
+14 RHI
+15 LLO
+16 LHI
+17 POT
+18 DTACK
+19 R/W
+20 MS
+21 CS
+22 RES
+23 VSS
+24 VDD
+25 A0
+26 A1
+27 A2
+28 A3
+29 IRQ
+30 E
+31 RAS
+32 AMUX
+33 CAS
+34 CLKIN
+35 A4/D0
+36 A5/D1
+37 A6/D2
+38 A7/D3
+39 A8/D4
+40 A9/D5
+41 A10/D6
+42 A11/D7
+43 A12/D8
+44 A13/D9
+45 A14/D10
+46 A15/D11
+47 A16/D12
+48 VSS
+
+MC68EC020 [FG 16]
+https://www.nxp.com/docs/en/data-sheet/MC68020UM.pdf
+[QFP 100 30x20 0.65mm pitch]
+...
+
+TC0630FDP
+(custom)
+[QFP 208 52x52 0.5mm pitch]
+...
+
+TC0640FIO
+(custom)
+[QFP 120 30x30 0.8mm pitch]
+
+TC0650FDA
+(custom)
+[QFP 100 30x20 0.65mm pitch]
+
+TC0660FCM
+(custom)
+[QFP 160 40x40 0.65mm pitch]
+...
+
+ensoniq 5701000101 ?
+???
+[QFP 100 30x20 0.65mm pitch]
+...
+
+JAMMA
+[edge-connector 3.96mm pitch]
+1,2,A,B GND
+3,4,C,D +5V
+5,E -5V *unused
+6,F +12V
+-
+8 COIN COUNTER #1
+J COIN COUNTER #2
+9 LOCKOUT COIL #1
+K LOCKOUT COIL #2
+10 SPEAKER+
+L SPEAKER-
+11,M NC
+12 V RED
+N V GREEN
+13 V BLUE
+P V SYNC
+14 V GND
+R SERVICE SWITCH
+15 TEST SWITCH
+S TILT SWITCH
+16 COIN SWITCH #1
+T COIN SWITCH #2
+17 1P START
+U 2P START
+18 1P UP
+V 2P UP
+19 1P DOWN
+W 2P DOWN
+20 1P LEFT
+X 2P LEFT
+21 1P RIGHT
+Y 2P RIGHT
+22 1P BTN1
+Z 2P BTN1
+23 1P BTN2
+a 2P BTN3
+24 1P BTN3
+b 2P BTN4
+25 1P BTN4
+c 2P BTN4
+26,d NC
+27,28,e,f GND
+
