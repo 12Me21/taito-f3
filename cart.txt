@@ -1,55 +1,67 @@
+x33-35 key (japan)
+x36-38 key? (america?)
+x39-41 key (europe)
+x42-47 GND
+x48 NC?
+x49-55 GND
+x56-58 key (europe)
+x59-61 key? (america?)
+x62-64 key (japan)
+
+
+
 A01 GND
 A02 GND
 A03 GND
 A04 GND
 A05 GND
-A06 prg1.Q6
-A07 prg1.Q7
-A08 prg.A0
-A09 prg.A1
-A10 prg.A2
-A11 prg.A3
-A12 prg.A4
-A13 prg.A5
-A14 prg.A6
-A15 prg.A7
-A16 prg.A8
-A17 prg.A9
-A18 prg.A10
-A19 prg.A11
-A20 prg.A12
-A21 prg.A13 
-A22 prg.A14
-A23 prg.A15   and pal15.i0
-A24 prg.A16   and pal15.i1
-A25 pal15.i2  (probably to prg.a17)
-A26 pal15.i3  (probably to prg.a18)  to cpu.a20
-A27 pal15.i4  ("prg.a19")
+A06 prg0.Q6 -- cpu.d6?
+A07 prg0.Q7 -- cpu.d7?
+A08 prg.A0 -- cpu.a2
+A09 prg.A1 -- cpu.a3?
+A10 prg.A2 -- cpu.a4?
+A11 prg.A3 -- cpu.a5?
+A12 prg.A4 -- cpu.a6?
+A13 prg.A5 -- cpu.a7?
+A14 prg.A6 -- cpu.a8?
+A15 prg.A7 -- cpu.a9?
+A16 prg.A8 -- cpu.a10?
+A17 prg.A9 -- cpu.a11?
+A18 prg.A10 -- cpu.a12?
+A19 prg.A11 -- cpu.a13?
+A20 prg.A12 -- cpu.a14?
+A21 prg.A13 -- cpu.a15
+A22 prg.A14 -- cpu.a16
+A23 prg.A15   and pal15.i0 -- cpu.a17?
+A24 prg.A16   and pal15.i1 -- cpu.a18
+A25 pal15.i2 -- cpu.a19?
+A26 pal15.i3 -- cpu.a20
+A27 pal15.i4 -- cpu.a21
 A28 GND
 A29 GND
 A30 GND
 A31 GND
 A32 GND
 
-A65 pal15.i5 ("prg.a20")  to cpu.a21
-A66 pal15.i6 ("prg.a21")  to cpu.a22
-A67 pal15.i7 ("prg.a22")  to cpu.a23
-A68 pal15.i8 ("prg.a23")  to 
-A69 pal15.i9 ("prg.a24")  ??
-A70 
-A71
-A72
-A73
-A74
-A75 pal15.io4
-A76 pal15.io3
-A77 pal15.io2
-A78 
-A79
-A80 pal15.io1
-A81
-A82
-A83
+A65 pal15.i5 -- cpu.a22
+A66 pal15.i6 -- cpu.a23 
+A67 pal15.i7 -- cpu.as
+A68 pal15.i8 -- cpu.ds 
+A69 pal15.i9 -- cpu.rw
+A70 ? -- cpu.dsack0
+A71   -- cpu.dsack1
+A72   -- cpu.ipl0
+A73   -- cpu.ipl1
+A74   -- cpu.ipl2
+A75 pal15.io4 -- cpu.fc0
+A76 pal15.io3 -- cpu.fc1
+A77 pal15.io2 -- cpu.fc2
+A78   -- cpu.siz0
+A79   -- cpu.siz1
+A80 pal15.io1 -- cpu.reset
+A81   -- cpu.halt
+A82   -- ? (doesnt go to cpu?)
+A83   -- 
 A84
 A85
 A86
@@ -57,12 +69,12 @@ A87
 A88
 A89
 A90 
-A91 prg1.Q0
-A92 prg1.Q1
-A93 prg1.Q2
-A94 prg1.Q3
-A95 prg1.Q4
-A96 prg1.Q5
+A91 prg0.Q0 -- cpu.d0
+A92 prg0.Q1 -- cpu.d1?
+A93 prg0.Q2 -- cpu.d2?
+A94 prg0.Q3 -- cpu.d3?
+A95 prg0.Q4 -- cpu.d4?
+A96 prg0.Q5 -- cpu.d5?
 
 
 note, prg.a17 and .a18 go to pal15.io6 and .io7
@@ -70,70 +82,61 @@ prg.oe goes to pal15.io5
 
 
 
-B08 prg2.q0
-B09 prg2.q1
-B10 prg2.q2
-B11 prg2.q3
-B12 prg2.q4
-B13 prg2.q5
-B14 prg2.q6
-B15 prg2.q7
-B16 prg3.q0
-B17 prg3.q1
-B18 prg3.q2
-B19 prg3.q3
-B20 prg3.q4
-B21 prg3.q5
-B22 prg3.q6
-B23 prg3.q7
-B24 prg4.q0
-B25 prg4.q1
-B26 prg4.q2
-B27 prg4.q3
-B28-32 GND
+B06 ?
+B07 ?
+B08 prg1.q0
+B09 prg1.q1
+B10 prg1.q2
+B11 prg1.q3
+B12 prg1.q4
+B13 prg1.q5
+B14 prg1.q6
+B15 prg1.q7
+B16 prg2.q0
+B17 prg2.q1
+B18 prg2.q2
+B19 prg2.q3
+B20 prg2.q4
+B21 prg2.q5
+B22 prg2.q6
+B23 prg2.q7
+B24 prg3.q0
+B25 prg3.q1
+B26 prg3.q2
+B27 prg3.q3
 
-x33-35 key (japan)
-x36-38 key? (america?)
-x39-41 key (europe)
-B42-47 GND
-B48 NC?
-B49-55 GND
-x56-58 key (europe)
-B59-61 key? (america?)
-x62-64 key (japan)
-
-B65 prg4.q4
-B66 prg4.q5
-B67 prg4.q6
-B68 prg4.q7
-B69 
-B70
-B71
-B72
-B73
-B74
-B75
-B76
-B77
-B78
-B79
-B80
-B81
-B82
-B83
-B84
-B85
-B86
-B87
-B88
-B89
-B90
-B91
-B92
-B93
-B94
-B95
-B96
+B65 prg3.q4
+B66 prg3.q5
+B67 prg3.q6
+B68 prg3.q7
+B69 ic35.13 pulldown
+B70 ic35.14 pulldown
+B71 ic35.17 pulldown
+B72 ic35.18 pulldown
+B73 ic34.8  pulldown
+B74 ic34.7  pulldown
+B75 ic34.4  pulldown
+B76 ic34.3  pulldown  actually these might all be pulled UP
+B77 ic34.13?
+B78 ic34.14?
+B79 ic34.17
+B80 ic34.18
+B81 ic36.8
+B82 ic36.7
+B83 ic36.4
+B84 ic36.3
+B85 ic35.8
+B86 ic35.7
+B87 ic35.4
+B88 ic35.3
+B89 pal11.i3
+B90 pal11.i4
+B91 pal11.i5
+B92 pal11.i6
+B93 pal11.i7
+B94 ?
+B95 pal11.i9 and ic36.11
+B96 pal11.i8
 
 
 
