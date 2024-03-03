@@ -1,0 +1,37 @@
+fb1
+fb2
+
+fb2.rfsh -- 5v
+fb2.a16 -- fdp.33 and fb1
+fb2.a14 -- fdp.35 and fb1 and fb1.d6
+fb2.a12 -- fdp.37 and fb1 and fb1.d4
+fb2.a7 -- fdp.44 and fb1
+fb2.a6 -- fdp.45 and fb1
+fb2.a5 -- fdp.46 and fb1
+fb2.a4 -- fdp.47 and fb1
+fb2.a3 -- fdp.48 and fb1
+fb2.a2 -- fdp.49 and fb1
+fb2.a1 -- fdp.50 and fb1
+fb2.a0 -- fdp.51 and fb1
+fb2.d0 -- fdp.51 ?
+fb2.d1 -- fdp.50
+fb2.d2 -- fdp.49
+fb2.gnd -- gnd
+
+fb2.d3 -- fdp.48
+fb2.d4 -- fdp.47
+fb2.d5 -- fdp.46
+fb2.d6 -- fdp.45
+fb2.d7 -- fdp.44
+fb2.ce1 -- fdp.32 (and fb1.ce1)
+fb2.a10 -- fdp.42 and fb1 and fb1.d0 
+fb2.oe -- fdp.123 (and fb1.oe)
+fb2.a11 -- fdp.39 (and fb1.a11) and fb1.d3
+fb2.a9 -- fdp.41 (and fb1.a9) and fb1.d1
+fb2.a8 -- fdp.40 and fb1 and fb1.d2
+fb2.a13 -- fdp.36 (and fb1.a13) fb1.d5
+fb2.rw -- fdp.31 
+fb2.ce2 -- gnd (and fb1.ce2)
+fb2.a15 -- fdp.34 and fb1 and fb1.d7
+fb2.vdd
+

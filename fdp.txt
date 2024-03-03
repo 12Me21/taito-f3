@@ -1,0 +1,26 @@
+fdp:
+30 fb1.rw
+31 fb2.rw
+32 fb2.ce1 fb1.ce1
+33 fb2.a16 fb1.a16
+34 fb2.a15 fb1.a15 fb1.d7
+35 fb2.a14 fb1.a14 fb1.d6 
+36 fb2.a13 fb1.a13 fb1.d5
+37 fb2.a12 fb1.a12 fb1.d4
+38 gnd?
+39 fb2.a11 fb1.a11 fb1.d3
+40 fb2.a8 fb1.a8 fb1.d2  # note address bits 8 and 10 are reversed
+41 fb2.a9 fb1.a9 fb1.d1
+42 fb2.a10 fb1.a10 fb1.d0
+43 5v? 
+44 fb2.a7 fb1.a7 fb2.d7
+45 fb2.a6 fb1.a6 db2.d6
+46 fb2.a5 fb1.a5 fb2.d5
+47 fb2.a4 fb1.a4 fb2.d4
+48 fb2.a3 fb1.a3 fb2.d3
+49 fb2.a2 fb1.a2 fb2.d2
+50 fb2.a1 fb1.a1 fb2.d1
+51 fb2.a0 fb1.a0 fb2.d0
+52 gnd?
+
+123 fb2.oe fb1.oe
