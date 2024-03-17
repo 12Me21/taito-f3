@@ -174,34 +174,33 @@ C32 data? -- fdp.156
 
 C50-C64 vcc
 
-C65 data? -- fdp.157 (etc.)
-C66
-C67 
-C68
-C69
-C70
-C71
-C72
-C73
-C74
-C75
-C76
-C77
-C78
-C79
-C80
-C81
-C82
-C83
-C84
-C85
-C86
-C87
-C88
-C89
-C90
-C91
-C92
+#C65 data? -- fdp.157 (etc.) - wrong, this is GND
+C65-C68 gnd
+
+C69 ic23.18 ya0 (outputs, i assume this is the 24bit graphics data bus)
+C70 ic23.16 ya1
+C71 ic23.14 ya2
+C72 ic23.12 ya3
+C73 ic22.9 yb3
+C74 ic22.7 yb2
+C75 ic22.5 yb1
+C76 ic22.3 yb0
+C77 ic22.18
+C78 ic22.16
+C79 ic22.14
+C80 ic22.12
+C81 ic27.9
+C82 ic27.7
+C83 ic27.5
+C84 ic27.3
+C85 ic27.18
+C86 ic27.16
+C87 ic27.14
+C88 ic27.12
+C89 rom14.12 a0 (and rom13)
+C90 rom14.11 a1 (and rom13)
+C91 rom14.10 a2 (and rom13)
+C92 rom14.9 a3 (and rom13)
 
 C93-C96 vcc
 
