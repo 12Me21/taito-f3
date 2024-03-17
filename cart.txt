@@ -172,6 +172,8 @@ C30 data? -- fdp.154
 C31 data? -- fdp.155
 C32 data? -- fdp.156
 
+C50-C64 vcc
+
 C65 data? -- fdp.157 (etc.)
 C66
 C67 
@@ -200,52 +202,69 @@ C89
 C90
 C91
 C92
-C93
-C94
-C95
-C96
+
+C93-C96 vcc
 
 
 
 port D
 snd rom
 
-D1 rom13.8 (and rom14)
-D2 rom13.7 (and rom14)
-D3 rom13.6 (and rom14)
-D4 rom13.5 (and rom14)
-D5 rom13.27 (and rom14)
-D6 rom13.26 (and rom14)
-D7 rom13.23 (and rom14)
-D8 rom13.25 (and rom14)
-D9 rom13.4 (and rom14)
-D10 rom13.28 (and rom14)
-D11
-D12
-D13
-D14
-D15
-D16
-D17
-D18
-D19
-D20
-D21
-D22
-D23
-D24
-D25
-D26
-D27
-D28
-D29
-D30
-D31
-D32
+D1 rom13.8 a4 (and rom14)
+D2 rom13.7 a5 (and rom14)
+D3 rom13.6 a6  (and rom14)
+D4 rom13.5 a7 (and rom14)
+D5 rom13.27 a8 (and rom14)
+D6 rom13.26 a9 (and rom14)
+D7 rom13.23 a10 (and rom14)
+D8 rom13.25 a11 (and rom14)
+D9 rom13.4 a12 (and rom14)
+D10 rom13.28 a13 (and rom14)
+D11 rom13.29 a14 (and rom14)
+D12 rom13.3 a15 (and rom14)
+D13 rom13.2 a16 (and rom14)
+D14 pal12.2
+D15 pal12.3
+D16 pal12.4
+D17 ??
+D18 pal12.6
+D19 ??
+D20 pal12.8
+D21 pal12.9
+D22 pal12.11
+D23 pal12.14
+D24 ??
+D25 ??
+D26 ??
+D27 ??
+D28 BROKEN (normally pal12.17 io5)
+D29 pal12.16
+D30 pal12.15
+D31 pal12.13
+D32 ??
 
-D28 (broken) pal12.io5
+D33-D47 vcc
+D65-D68 vcc
 
-D69 -- clock (same as A82)
+D69 nc? -- clock (same as A82)
+D70-76 nc?
+D77 rom14.13 q0
+D78 rom14.14 q1
+D79 rom14.15 q2
+D80 rom14.17 q3
+D81 rom14.18 q4
+D82 rom14.19 q5
+D83 BROKEN (rom14.20 q6)
+D84 BROKEN (rom14.21 q7)
+D85 rom13.13 q0
+D86 rom13.14 q1
+D87 rom13.15 q2
+D88 rom13.17 q3
+D89 rom13.18 q4
+D90 BROKEN (rom13.19 q5)
+D91 BROKEN (rom13.20 q6)
+D92 BROKEN (rom13.21 q7)
+D93-D96 gnd
 
 
 
