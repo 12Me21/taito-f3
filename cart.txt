@@ -10,11 +10,9 @@ x62-64 key (japan)
 
 
 
-A01 GND
-A02 GND
-A03 GND
-A04 GND
-A05 GND
+port A
+
+A01-05 GND
 A06 prg0.Q6 -- cpu.d6?
 A07 prg0.Q7 -- cpu.d7?
 A08 prg.A0 -- cpu.a2
@@ -37,11 +35,7 @@ A24 prg.A16   and pal15.i1 -- cpu.a18
 A25 pal15.i2 -- cpu.a19?
 A26 pal15.i3 -- cpu.a20
 A27 pal15.i4 -- cpu.a21
-A28 GND
-A29 GND
-A30 GND
-A31 GND
-A32 GND
+A28-32 GND
 
 A65 pal15.i5 -- cpu.a22
 A66 pal15.i6 -- cpu.a23 
@@ -60,13 +54,13 @@ A78   -- cpu.siz0
 A79   -- cpu.siz1
 A80 pal15.io1 -- cpu.reset
 A81   -- cpu.halt
-A82   -- ? (doesnt go to cpu?)
-A83   -- 
-A84
-A85
-A86
-A87
-A88
+A82   -- clock? (shielded, to ic1.10. ic1.8 (output) goes to cpu.clk, ic1.9 is clock input?)
+A83   -- cpu.br
+A84   -- cpu.bg
+A85   -- cpu.berr
+A86   -- cpu.rmc
+A87   -- cpu.avec
+A88   -- cpu.cdis
 A89
 A90 
 A91 prg0.Q0 -- cpu.d0
@@ -82,68 +76,202 @@ prg.oe goes to pal15.io5
 
 
 
+port B
+
 B06 ?
 B07 ?
-B08 prg1.q0
-B09 prg1.q1
-B10 prg1.q2
-B11 prg1.q3
-B12 prg1.q4
-B13 prg1.q5
-B14 prg1.q6
-B15 prg1.q7
-B16 prg2.q0
-B17 prg2.q1
-B18 prg2.q2
-B19 prg2.q3
-B20 prg2.q4
-B21 prg2.q5
-B22 prg2.q6
-B23 prg2.q7
-B24 prg3.q0
-B25 prg3.q1
-B26 prg3.q2
-B27 prg3.q3
+B08 prg1.q0 -- cpu.d8?
+B09 prg1.q1 -- cpu.d9?
+B10 prg1.q2 -- cpu.d10?
+B11 prg1.q3 -- cpu.d11?
+B12 prg1.q4 -- cpu.d12?
+B13 prg1.q5 -- cpu.d13?
+B14 prg1.q6 -- cpu.d14?
+B15 prg1.q7 -- cpu.d15?
+B16 prg2.q0 -- cpu.d16?
+B17 prg2.q1 -- cpu.d17?
+B18 prg2.q2 -- cpu.d18?
+B19 prg2.q3 -- cpu.d19?
+B20 prg2.q4 -- cpu.d20?
+B21 prg2.q5 -- cpu.d21?
+B22 prg2.q6 -- cpu.d22?
+B23 prg2.q7 -- cpu.d23?
+B24 prg3.q0 -- cpu.d24?
+B25 prg3.q1 -- cpu.d25?
+B26 prg3.q2 -- cpu.d26?
+B27 prg3.q3 -- cpu.d27?
 
-B65 prg3.q4
-B66 prg3.q5
-B67 prg3.q6
-B68 prg3.q7
-B69 ic35.13 pulldown
-B70 ic35.14 pulldown
-B71 ic35.17 pulldown
-B72 ic35.18 pulldown
-B73 ic34.8  pulldown
-B74 ic34.7  pulldown
-B75 ic34.4  pulldown
-B76 ic34.3  pulldown  actually these might all be pulled UP
-B77 ic34.13?
-B78 ic34.14?
-B79 ic34.17
-B80 ic34.18
-B81 ic36.8
-B82 ic36.7
-B83 ic36.4
-B84 ic36.3
-B85 ic35.8
-B86 ic35.7
-B87 ic35.4
-B88 ic35.3
+B65 prg3.q4 -- cpu.d28?
+B66 prg3.q5 -- cpu.d29?
+B67 prg3.q6 -- cpu.d30?
+B68 prg3.q7 -- cpu.d31?
+B69 ic35.d4 pulldown
+B70 ic35.d5 pulldown
+B71 ic35.d6 pulldown
+B72 ic35.d7 pulldown
+B73 ic34.d3 pulldown
+B74 ic34.d2 pulldown
+B75 ic34.d1 pulldown
+B76 ic34.d0 pulldown  actually these might all be pulled UP
+B77 ic34.d4?
+B78 ic34.d5?
+B79 ic34.d6
+B80 ic34.d7
+B81 ic36.d3
+B82 ic36.d2
+B83 ic36.d1
+B84 ic36.d0
+B85 ic35.d3
+B86 ic35.d2
+B87 ic35.d1
+B88 ic35.d0
 B89 pal11.i3
 B90 pal11.i4
 B91 pal11.i5
 B92 pal11.i6
 B93 pal11.i7
 B94 ?
-B95 pal11.i9 and ic36.11
+B95 pal11.i9 and ic36.le (i assume other latch enables too?)
 B96 pal11.i8
+
+
+
+port C
+
+
+C01 ?
+C02 ?
+C03 ?
+C04 clock? -- fdp.118
+C05 addr? -- fdp.125
+C06 addr? -- fdp.126
+C07 addr? -- fdp.127
+C08 addr? -- fdp.128
+C09 addr? -- fdp.129
+C10 addr? -- fdp.130
+C11 addr? -- fdp.131
+C12 addr? -- fdp.132
+C13 addr? -- fdp.134
+C14 addr? -- fdp.135
+C15 addr? -- fdp.136
+C16 addr? -- fdp.137
+C17 addr? -- fdp.138
+C18 addr? -- fdp.139
+C19 addr? -- fdp.140
+C20 addr? -- fdp.141
+C21 addr? -- fdp.143
+C22 addr? -- fdp.144
+C23 addr? -- fdp.145
+C24 addr? -- fdp.146
+C25 addr? -- fdp.148
+C26 addr? -- fdp.149
+C27 addr? -- fdp.150
+C28 addr? -- fdp.151
+C29 data? -- fdp.153
+C30 data? -- fdp.154
+C31 data? -- fdp.155
+C32 data? -- fdp.156
+
+C65 data? -- fdp.157 (etc.)
+C66
+C67 
+C68
+C69
+C70
+C71
+C72
+C73
+C74
+C75
+C76
+C77
+C78
+C79
+C80
+C81
+C82
+C83
+C84
+C85
+C86
+C87
+C88
+C89
+C90
+C91
+C92
+C93
+C94
+C95
+C96
 
 
 
 port D
 snd rom
 
+D1 rom13.8 (and rom14)
+D2 rom13.7 (and rom14)
+D3 rom13.6 (and rom14)
+D4 rom13.5 (and rom14)
+D5 rom13.27 (and rom14)
+D6 rom13.26 (and rom14)
+D7 rom13.23 (and rom14)
+D8 rom13.25 (and rom14)
+D9 rom13.4 (and rom14)
+D10 rom13.28 (and rom14)
+D11
+D12
+D13
+D14
+D15
+D16
+D17
+D18
+D19
+D20
+D21
+D22
+D23
+D24
+D25
+D26
+D27
+D28
+D29
+D30
+D31
+D32
+
 D28 (broken) pal12.io5
+
+D69 -- clock (same as A82)
 
 
 
+FDP - pins dotted in 5s
+
+    FDP <-> CART CONNECT C:
+    FDP118 <-> C4
+    FDP125-156 <-> C5-32
+    FDP133 - GND
+    FDP142 - GND
+    FDP147 - unknown (ground or voltage)
+    FDP152 - GND
+    C1-3 - ?
+
+~FDP157-168 -> C65+
+
+
+we have ~100 more pins
+so  what are they?
+
+need:
+20 (sample rom address)
+16 (sample rom data)
+20 (tile rom address)
+16 (tile rom data)
+20 (sprite rom address)
+16 (sprite rom data)
+16? (snd prg address)
+16? (snd prg data)

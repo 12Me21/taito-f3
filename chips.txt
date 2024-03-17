@@ -782,3 +782,39 @@ c 2P BTN4
 26,d NC
 27,28,e,f GND
 
+MC27C2001
+https://www.futurlec.com/Datasheet/Memory/27C2001.pdf
+256K x 8bit eeprom
+
+1 V_PP
+2 A16
+3 A15
+4 A12
+5 A7
+6 A6
+7 A5
+8 A4
+9 A3
+10 A2
+11 A1
+12 A0
+13 Q0
+14 Q1
+15 Q2
+16 V_SS
+17 Q3
+18 Q4
+19 Q5
+20 Q6
+21 Q7
+22 ~E
+23 A10
+24 ~G
+25 A11
+26 A9
+27 A8
+28 A13
+29 A14
+30 A17
+31 ~P
+32 V_CC
