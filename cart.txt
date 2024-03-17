@@ -139,45 +139,44 @@ B96 pal11.i8
 port C
 
 
-C01 ?
-C02 ?
-C03 ?
-C04 clock? -- fdp.118
-C05 addr? -- fdp.125
-C06 addr? -- fdp.126
-C07 addr? -- fdp.127
-C08 addr? -- fdp.128
-C09 addr? -- fdp.129
-C10 addr? -- fdp.130
-C11 addr? -- fdp.131
-C12 addr? -- fdp.132
-C13 addr? -- fdp.134
-C14 addr? -- fdp.135
-C15 addr? -- fdp.136
-C16 addr? -- fdp.137
-C17 addr? -- fdp.138
-C18 addr? -- fdp.139
-C19 addr? -- fdp.140
-C20 addr? -- fdp.141
-C21 addr? -- fdp.143
-C22 addr? -- fdp.144
-C23 addr? -- fdp.145
-C24 addr? -- fdp.146
-C25 addr? -- fdp.148
-C26 addr? -- fdp.149
-C27 addr? -- fdp.150
-C28 addr? -- fdp.151
-C29 data? -- fdp.153
-C30 data? -- fdp.154
-C31 data? -- fdp.155
-C32 data? -- fdp.156
+C01 pal9.9 (shielded)
+C02 pal9.8 (shielded)
+C03 pal9.11
+C04 nc? -- fdp.118 // clock??
+C05 ic13.8 (input) -- fdp.125 (through 74373 to rom2.30)
+C06 ic13.7 addr? -- fdp.126
+C07 ic13.4 addr? -- fdp.127
+C08 ic13.3 addr? -- fdp.128
+C09 ic13.13 addr? -- fdp.129
+C10 ic13.14 addr? -- fdp.130
+C11 ic13.17 addr? -- fdp.131
+C12 ic13.18 addr? -- fdp.132
+C13 ic16.8 addr? -- fdp.134
+C14 ic16.7 addr? -- fdp.135
+C15 ic16.4 addr? -- fdp.136
+C16 ic16.3 addr? -- fdp.137
+C17 ic16.13 addr? -- fdp.138
+C18 ic16.14 addr? -- fdp.139
+C19 ic16.17 addr? -- fdp.140
+C20 ic16.18 addr? -- fdp.141
+C21 ic15.8 addr? -- fdp.143
+C22 ic15.7 addr? -- fdp.144
+C23 ic15.4 addr? -- fdp.145
+C24 ic15.3 addr? -- fdp.146
+C25 ic15.13 addr? -- fdp.148
+C26 ic15.14 addr? -- fdp.149
+C27 ic15.17 addr? -- fdp.150
+C28 ic15.18 addr? -- fdp.151
+C29 ic23.9 data? -- fdp.153
+C30 ic23.7 data? -- fdp.154
+C31 ic23.5 data? -- fdp.155
+C32 ic23.3 data? -- fdp.156
 
 C50-C64 vcc
 
-#C65 data? -- fdp.157 (etc.) - wrong, this is GND
 C65-C68 gnd
 
-C69 ic23.18 ya0 (outputs, i assume this is the 24bit graphics data bus)
+C69 ic23.18 ya0 (outputs, i assume this is the 24bit graphics data bus) -- fdp.157
 C70 ic23.16 ya1
 C71 ic23.14 ya2
 C72 ic23.12 ya3
