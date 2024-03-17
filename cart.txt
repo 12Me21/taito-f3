@@ -226,22 +226,22 @@ D13 rom13.2 a16 (and rom14)
 D14 pal12.2
 D15 pal12.3
 D16 pal12.4
-D17 ??
+D17 BROKEN? (pal12.5)
 D18 pal12.6
-D19 ??
+D19 BROKEN? (pal12.7)
 D20 pal12.8
 D21 pal12.9
 D22 pal12.11
 D23 pal12.14
-D24 ??
-D25 ??
-D26 ??
-D27 ??
+D24 nc?
+D25 nc?
+D26 nc?
+D27 nc?
 D28 BROKEN (normally pal12.17 io5)
 D29 pal12.16
 D30 pal12.15
 D31 pal12.13
-D32 ??
+D32 nc?
 
 D33-D47 vcc
 D65-D68 vcc
@@ -261,10 +261,16 @@ D86 rom13.14 q1
 D87 rom13.15 q2
 D88 rom13.17 q3
 D89 rom13.18 q4
-D90 BROKEN (rom13.19 q5)
-D91 BROKEN (rom13.20 q6)
+D90 BROKEN? (rom13.19 q5)
+D91 BROKEN? (rom13.20 q6)
 D92 BROKEN (rom13.21 q7)
 D93-D96 gnd
+
+
+
+pal12.12 to rom14.31 (and rom13)   program??
+pal12.18 to rom14.24 (and rom13) oe
+pal12.19 to rom14.30 (and rom13) a17
 
 
 
