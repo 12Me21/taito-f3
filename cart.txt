@@ -138,39 +138,45 @@ B96 pal11.i8
 
 port C
 
+in: 3 4 7 8  13 14 17 18
+ou: 2 5 6 9  12 15 16 19
 
 C01 pal9.9 (shielded)
 C02 pal9.8 (shielded)
 C03 pal9.11
 C04 nc? -- fdp.118 // clock??
-C05 ic13.8 (input) -- fdp.125 (through 74373 to rom2.30)
-C06 ic13.7 addr? -- fdp.126
-C07 ic13.4 addr? -- fdp.127
-C08 ic13.3 addr? -- fdp.128
-C09 ic13.13 addr? -- fdp.129
-C10 ic13.14 addr? -- fdp.130
-C11 ic13.17 addr? -- fdp.131
-C12 ic13.18 addr? -- fdp.132
-C13 ic16.8 addr? -- fdp.134
-C14 ic16.7 addr? -- fdp.135
-C15 ic16.4 addr? -- fdp.136
-C16 ic16.3 addr? -- fdp.137
-C17 ic16.13 addr? -- fdp.138
-C18 ic16.14 addr? -- fdp.139
-C19 ic16.17 addr? -- fdp.140
-C20 ic16.18 addr? -- fdp.141
-C21 ic15.8 addr? -- fdp.143
-C22 ic15.7 addr? -- fdp.144
-C23 ic15.4 addr? -- fdp.145
-C24 ic15.3 addr? -- fdp.146
-C25 ic15.13 addr? -- fdp.148
-C26 ic15.14 addr? -- fdp.149
-C27 ic15.17 addr? -- fdp.150
-C28 ic15.18 addr? -- fdp.151
+C05 ic13.8 (373 to rom2.a-1 and rom1 - only 1 and 2, not the sprite roms!) -- fdp.125
+C06 ic13.7 (373 to rom2.a0 and rom1) -- fdp.126
+C07 ic13.4 (373 to rom2.a1 and rom1) -- fdp.127
+C08 ic13.3 (373 to rom2.a2 and rom1) -- fdp.128
+C09 ic13.13 (373 to rom2.a3 and rom1) -- fdp.129
+C10 ic13.14 (373 to rom2.a4 and rom1) -- fdp.130
+C11 ic13.17 (373 to rom2.a5 and rom1) -- fdp.131
+C12 ic13.18 (373 to rom2.a6 and rom1) -- fdp.132
+C13 ic16.8 (373 to rom2.a7 and rom1) -- fdp.134
+C14 ic16.7 (373 to rom2.a8 and rom1) -- fdp.135
+C15 ic16.4 (373 to rom2.a9 and rom1) -- fdp.136
+C16 ic16.3 (373 to rom2.a10 and rom1) -- fdp.137
+C17 ic16.13 (373 to rom2.a11 and rom1) -- fdp.138
+C18 ic16.14 (373 to rom2.a12 and rom1) -- fdp.139
+C19 ic16.17 (373 to rom2.a13 and rom1) -- fdp.140
+C20 ic16.18 (373 to rom2.a14 and rom1) -- fdp.141
+C21 ic15.8 (373 to rom2.a15 and rom1) -- fdp.143
+C22 ic15.7 (373 to rom2.a16 and rom1) -- fdp.144
+C23 ic15.4 (373 to rom2.a17 and rom1) -- fdp.145
+C24 ic15.3 (373 to rom2.a18 and rom1) -- fdp.146
+C25 ic15.13 (373 to rom2.a19 and rom1 and pal9.4) -- fdp.148
+C26 ic15.14 (373 to pal9.5) -- fdp.149
+C27 ic15.17 (373 to pal9.6) -- fdp.150
+C28 ic15.18 (373 to pal9.7) -- fdp.151
 C29 ic23.9 data? -- fdp.153
 C30 ic23.7 data? -- fdp.154
 C31 ic23.5 data? -- fdp.155
 C32 ic23.3 data? -- fdp.156
+
+pal9.12 nc?
+pal9.13 ic24.le and ic26 and ic31
+pal9.19 ic13.le and ic15 and ic16
 
 C50-C64 vcc
 
