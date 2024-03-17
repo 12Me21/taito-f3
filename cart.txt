@@ -222,23 +222,23 @@ D10 rom13.28 a13 (and rom14)
 D11 rom13.29 a14 (and rom14)
 D12 rom13.3 a15 (and rom14)
 D13 rom13.2 a16 (and rom14)
-D14 pal12.2
-D15 pal12.3
+D14 pal12.2 - through pal to rom13.a17
+D15 pal12.3 
 D16 pal12.4
 D17 BROKEN? (pal12.5)
 D18 pal12.6
 D19 BROKEN? (pal12.7)
-D20 pal12.8
-D21 pal12.9
-D22 pal12.11
-D23 pal12.14
+D20 pal12.8 --
+D21 pal12.9 --
+D22 pal12.11 --
+D23 pal12.14 -- audiocpu.dsack0??
 D24 nc?
 D25 nc?
 D26 nc?
 D27 nc?
-D28 BROKEN (normally pal12.17 io5)
-D29 pal12.16
-D30 pal12.15
+D28 BROKEN (normally pal12.17 io5) -- fc0??
+D29 pal12.16 -- fc1??
+D30 pal12.15 -- fc2??
 D31 pal12.13
 D32 nc?
 
@@ -267,9 +267,16 @@ D93-D96 gnd
 
 
 
-pal12.12 to rom14.31 (and rom13)   program??
+pal12.12 to rom14.31 (and rom13)   program??  this is a18 on the m27c4001
 pal12.18 to rom14.24 (and rom13) oe
 pal12.19 to rom14.30 (and rom13) a17
+
+000110 x01
+000110 x10
+000000 110
+/o18 = /i3 & /i4 & /i5 & i6 & i7 & /i8 & i16 & /i17 +
+       /i3 & /i4 & /i5 & i6 & i7 & /i8 & /i16 & i17 +
+       /i3 & /i4 & /i5 & /i6 & /i7 & /i8 & i15 & i16 & /i17
 
 
 
