@@ -145,7 +145,8 @@ C01 pal9.9 (shielded)
 C02 pal9.8 (shielded)
 C03 pal9.11
 C04 nc? -- fdp.118 // clock??
-C05 ic13.8 (373 to rom2.a-1 and rom1 - only 1 and 2, not the sprite roms!) -- fdp.125
+C05 ic13.8 and ic30.9 (373 to rom2.a-1 and rom1 - only 1 and 2, not the sprite roms!) (244 to rom8.d0) -- fdp.125
+all the rest of these also go to sprite rom data pins i presume
 C06 ic13.7 (373 to rom2.a0 and rom1) -- fdp.126
 C07 ic13.4 (373 to rom2.a1 and rom1) -- fdp.127
 C08 ic13.3 (373 to rom2.a2 and rom1) -- fdp.128
@@ -169,15 +170,12 @@ C25 ic15.13 (373 to rom2.a19 and rom1 and pal9.4) -- fdp.148
 C26 ic15.14 (373 to pal9.5) -- fdp.149
 C27 ic15.17 (373 to pal9.6) -- fdp.150
 C28 ic15.18 (373 to pal9.7) -- fdp.151
-C29 ic23.9 (244 from rom7.15 d8?) data? -- fdp.153
-C30 ic23.7 (244 from rom7.17 d9?) data? -- fdp.154
-C31 ic23.5 data? -- fdp.155
-C32 ic23.3 data? -- fdp.156
+C29 ic23.9 (244 from rom7.d8) -- fdp.153
+C30 ic23.7 (244 from rom7.d9) -- fdp.154
+C31 ic23.5 (244 from rom7.d10) -- fdp.155
+C32 ic23.3 (244 from rom7.d11) -- fdp.156
 
-in:  2  4  6  8 17 15 13 11
-ou: 18 16 14 12  3  5  7  9
-
-pal10.19 controls sprite rom byte mode
+pal10.19 controls sprite rom byte mode - sprite roms are in 16bit mode !!?
 
 pal9.5 input: address bit
 pal9.6 input: address bit
@@ -198,26 +196,29 @@ C50-C64 vcc
 
 C65-C68 gnd
 
-C69 ic23.18 ya0 (outputs, i assume this is the 24bit graphics data bus) -- fdp.157
-C70 ic23.16 ya1
-C71 ic23.14 ya2
-C72 ic23.12 ya3
-C73 ic22.9 yb3
-C74 ic22.7 yb2
-C75 ic22.5 yb1
-C76 ic22.3 yb0
-C77 ic22.18
-C78 ic22.16
-C79 ic22.14
-C80 ic22.12
-C81 ic27.9
-C82 ic27.7
-C83 ic27.5
-C84 ic27.3
-C85 ic27.18
-C86 ic27.16
-C87 ic27.14
-C88 ic27.12
+in:  2  4  6  8 17 15 13 11
+ou: 18 16 14 12  3  5  7  9
+
+C69 ic23.18 (244 from rom7.d12) -- fdp.157
+C70 ic23.16 (244 from rom7.d13)
+C71 ic23.14 (244 from rom7.d14)
+C72 ic23.12 (244 from rom7.d15)
+C73 ic22.9 (244 from rom6.d0)
+C74 ic22.7 (244 from rom6.d1)
+C75 ic22.5 (244 from rom6.d2)
+C76 ic22.3 (244 from rom6.d3)
+C77 ic22.18 (244 from rom6.d4)
+C78 ic22.16 (244 from rom6.d5)
+C79 ic22.14 (244 from rom6.d6)
+C80 ic22.12 (244 from rom6.d7)
+C81 ic27.9 (244 from rom6.d8)
+C82 ic27.7 (244 from rom6.d9)
+C83 ic27.5 (244 from rom6.d10)
+C84 ic27.3 (244 from rom6.d11)
+C85 ic27.18 (244 from rom6.d12)
+C86 ic27.16 (244 from rom6.d13)
+C87 ic27.14 (244 from rom6.d14)
+C88 ic27.12 (244 from rom6.d15)
 C89 rom14.12 a0 (and rom13)
 C90 rom14.11 a1 (and rom13)
 C91 rom14.10 a2 (and rom13)
