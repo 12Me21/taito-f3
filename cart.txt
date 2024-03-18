@@ -169,13 +169,29 @@ C25 ic15.13 (373 to rom2.a19 and rom1 and pal9.4) -- fdp.148
 C26 ic15.14 (373 to pal9.5) -- fdp.149
 C27 ic15.17 (373 to pal9.6) -- fdp.150
 C28 ic15.18 (373 to pal9.7) -- fdp.151
-C29 ic23.9 data? -- fdp.153
-C30 ic23.7 data? -- fdp.154
+C29 ic23.9 (244 from rom7.15 d8?) data? -- fdp.153
+C30 ic23.7 (244 from rom7.17 d9?) data? -- fdp.154
 C31 ic23.5 data? -- fdp.155
 C32 ic23.3 data? -- fdp.156
 
+in:  2  4  6  8 17 15 13 11
+ou: 18 16 14 12  3  5  7  9
+
+pal10.19 controls sprite rom byte mode
+
+pal9.5 input: address bit
+pal9.6 input: address bit
+pal9.7 input: address bit
+pal9.8 input: ?
+pal9.9 input: ?
+pal9.11 input: controls tile rom oe (active low)
 pal9.12 nc?
 pal9.13 ic24.le and ic26 and ic31
+pal9.14 ic22.oe and ic23 and ic25 and ic27 and ic29 and ic30 (the 244's OE_a and OE_b are connected here)
+pal9.15 oe for tile roms, group 3 (110)
+pal9.16 oe for tile roms, group 2 (010)
+pal9.17 oe for tile roms, group 1 (100)
+pal9.18 oe for tile roms, group 0 (000)
 pal9.19 ic13.le and ic15 and ic16
 
 C50-C64 vcc
