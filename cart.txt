@@ -142,6 +142,8 @@ port C
 in: 3 4 7 8  13 14 17 18
 ou: 2 5 6 9  12 15 16 19
 
+ic31.16 and rom7.a6 (373 from ic30.14)
+
 C01 pal9.9 (shielded)
 C02 pal9.8 (shielded)
 C03 pal9.11
@@ -153,7 +155,7 @@ C07 ic13.4 (373 to rom2.a1 and rom1) -- fdp.127
 C08 ic13.3 (373 to rom2.a2 and rom1) -- fdp.128
 C09 ic13.13 (373 to rom2.a3 and rom1) -- fdp.129
 C10 ic13.14 (373 to rom2.a4 and rom1) -- fdp.130
-C11 ic13.17 (373 to rom2.a5 and rom1) -- fdp.131
+C11 ic13.17 and ic31.17 (373 to rom2.a5 and rom1) (373 to rom7.a6 and rom8 etc) -- fdp.131
 C12 ic13.18 and ic30.12 (373 to rom2.a6 and rom1) (244 from rom8.d7 and rom2.d7) -- fdp.132
 C13 ic16.8 and ic25.9 (373 to rom2.a7 and rom1) (244 from rom8.d8 and rom1.d0) -- fdp.134
 C14 ic16.7 (373 to rom2.a8 and rom1) -- fdp.135

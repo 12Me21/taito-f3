@@ -865,3 +865,48 @@ https://www.digchip.com/datasheets/parts/datasheet/340/MR27V1602DTP-pdf.php
 40 A9
 41 A8
 42 A19
+
+HM511664
+https://archive.org/details/bitsavers_hitachidatook_75119095/page/n165/mode/2up
+65536word x 16bit dynamic ram, fast page mode
+1 V_CC
+2 IO1
+3 IO2
+4 IO3
+5 IO4
+6 IO5
+7 IO6
+8 IO7
+9 IO8
+10 NC
+11 V_CC
+12 ~UW
+13 ~LW
+14 ~RAS
+15 A0
+16 A1
+17 A2
+18 A3
+19 A4
+20 V_CC
+21 V_SS
+22 A5
+23 A6
+24 A7
+25 NC
+26 NC
+27 NC
+28 ~OE
+29 ~CAS
+30 V_SS
+31 NC
+32 IO9
+33 IO10
+34 IO11
+35 IO12
+36 IO13
+37 IO14
+38 IO15
+39 IO16
+40 V_SS
+
