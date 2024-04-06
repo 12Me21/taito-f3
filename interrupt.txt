@@ -1,0 +1,17 @@
+interrupt 5 interval: 64.14µs
+
+10123
+
+64.14 / 0x10000/10123 = 9.90736724853515625 units?
+
+30mhz clock interval: 0.0328µs
+30mhz/2 clock interval: 0.0656µs
+26mhz/2 clock interval: 0.03747µs
+
+
+
+
+0x278B: av5 every 64.14µs
+0x018B: no av5
+0x0100: no av5
+0x2700: av5 every 137.5µs
