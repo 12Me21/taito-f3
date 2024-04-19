@@ -121,3 +121,45 @@
 118 ?past roms
 119 pwr
 120 pwr
+
+
+
+0x4a0000 to 0x4a001B
+
+0: watchdog reset
+1: player 1/2 coin
+4: eeprom
+5: player 3/4 coin
+
+
+io port map from mame:
+0000xx p1 and p2 buttons 1-4 / watchdog reset
+0000xx tilt,service,start / watchdog reset
+0000xx from eeprom / watchdog reset
+0000xx from eeprom? / watchdog reset
+
+0001xx p1 and p2 joystick
+0001xx unknown
+0001xx coin_r 0?
+0001xx coin_r 0? / p1 and p2 coin counter and lockout
+
+0100xx analog_r 0?
+0100xx analog_r 0?
+0100xx unknown
+0100xx unknown
+
+0101xx analog_r 1?
+0101xx analog_r 1?
+0101xx unknown
+0101xx unknown
+
+0010xx unknown / to eeprom
+0010xx p3 and p4 buttons 1-4 (or p2 buttons 4-6)
+0010xx unknown
+0010xx unknown
+
+0011xx p3 and p4 joystick (or p1 buttons 4-6)
+0011xx unknown
+0011xx coin_r 1?
+0011xx coin_r 1? / p1 and p2 coin counter and lockout
+

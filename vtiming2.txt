@@ -1,0 +1,53 @@
+without cartridge: 
+
+hsync pulse: 32px
+between hsync: 400px
+last hsync: 32px
+last hsync to next: 184px
+hsync: 32px
+space: 200px
+hsync: 16px
+space: 200px
+hsync: 16px
+space: 200px
+hsync: 16px
+space: 200px
+hsync: 16px
+space: 200px
+hsync: 16px
+last space: 200px
+inverted space: 216px (with failed hsync at beginning 16px)
+inverted hsync: 16px
+inverted space: 200px
+inverted hsync: 16px
+inverted space: 200px
+inverted hsync: 16px
+inverted space: 200px
+inverted hsync: 16px
+inverted space: 200px
+inverted hsync: 16px
+inverted space: 200px
+space: 216px
+hsync: 16px
+space: 200px
+hsync: 16px
+space: 200px
+hsync: 16px
+space: 200px
+hsync: 16px
+space: 200px
+hsync: 16px
+space: 200px
+hsync: 16px
+space: 416px
+hsync: 16px
+normal space: 400px
+normal hsync: 32px
+
+30us ~ 200px
+
+
+
+with cartridge:
+
+total 252 'normal' (ie long gap between hblanks) scanlines

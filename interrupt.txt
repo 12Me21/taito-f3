@@ -38,3 +38,5 @@ interrupt 5 interval: 64.14µs
 
 0010 0000 1000 1011 0x208B: av5 every 1004µs
 0010 0000 0000 0000 0x2000: av5 every 1077µs
+
+perhaps: cycles = 16380 - x*8 + 32
