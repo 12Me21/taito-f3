@@ -105,34 +105,36 @@ B65 prg3.q4 -- cpu.d28?
 B66 prg3.q5 -- cpu.d29?
 B67 prg3.q6 -- cpu.d30?
 B68 prg3.q7 -- cpu.d31?
-B69 ic35.d4 pulldown
-B70 ic35.d5 pulldown
-B71 ic35.d6 pulldown
-B72 ic35.d7 pulldown
-B73 ic34.d3 pulldown
-B74 ic34.d2 pulldown
-B75 ic34.d1 pulldown
-B76 ic34.d0 pulldown  actually these might all be pulled UP
-B77 ic34.d4?
-B78 ic34.d5?
-B79 ic34.d6
-B80 ic34.d7
-B81 ic36.d3
-B82 ic36.d2
-B83 ic36.d1
-B84 ic36.d0
-B85 ic35.d3
-B86 ic35.d2
-B87 ic35.d1
-B88 ic35.d0
-B89 pal11.i3
-B90 pal11.i4
-B91 pal11.i5
-B92 pal11.i6
-B93 pal11.i7
-B94 ?
-B95 pal11.i9 and ic36.le (i assume other latch enables too?)
-B96 pal11.i8
+B69 ic35.d4 (373 to samplerom.a3) and pulldown
+B70 ic35.d5 (373 to samplerom.a4) and pulldown
+B71 ic35.d6 (373 to samplerom.a5) and pulldown
+B72 ic35.d7 (373 to samplerom.a6) and pulldown
+B73 ic34.d3 (373 to samplerom.a7) and pulldown
+B74 ic34.d2 (373 to samplerom.a8) and pulldown
+B75 ic34.d1 (373 to samplerom.a9) and pulldown
+B76 ic34.d0 (373 to samplerom.a10) and pulldown
+B77 ic34.d4 (373 to samplerom.a11) and samplerom.d0
+B78 ic34.d5 (373 to samplerom.a12) and samplerom.d1
+B79 ic34.d6 (373 to samplerom.a13) and samplerom.d2
+B80 ic34.d7 (373 to samplerom.a14) and samplerom.d3
+B81 ic36.d3 (373 to samplerom.a15) and samplerom.d4
+B82 ic36.d2 (373 to samplerom.a16) and samplerom.d5
+B83 ic36.d1 (373 to samplerom.a17) and samplerom.d6
+B84 ic36.d0 (373 to samplerom.a18) and samplerom.d7
+B85 ic35.d3 (373 to samplerom.a-1)
+B86 ic35.d2 (373 to samplerom.a0)
+B87 ic35.d1 (373 to samplerom.a1)
+B88 ic35.d0 (373 to samplerom.a2)
+B89 pal11.4  unused??
+B90 pal11.5  sample rom address high 1?
+B91 pal11.6  sample rom address high 2?
+B92 pal11.7  sample rom address high 3??
+B93 pal11.8  sample rom address high 4??
+B94 nc?
+B95 pal11.11 and ic36.le and ic35.le and ic34.le
+B96 pal11.9  sample rom address high 5??
+
+/o16 = i5 & i6 & /i7 & /i8 & /i9
 
 
 
