@@ -1,0 +1,15 @@
+interrupt 2
+happens at the beginning of vblank
+(i.e. near the end of scanline 255, after the last visible pixel)
+
+interrupt 3
+happens ~712µs (~10850 cpu cycles) after interrupt 2, in the middle of vblank
+(i.e. near the end of 'scanline' 4)
+
+interrupt 5
+configurable interval timer, controlled by a 16bit register at address 0x4C0000
+[..e. rrrr rrrr rrrr]
+e: 1 = enable
+r: rate
+this interrupt will fire every (0x4000 + rate*8 + 32) cpu cycles
+(this formula matches my hardware measurements to within ~10 cycles)
