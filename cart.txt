@@ -143,6 +143,9 @@ ic31 right data: audiocpu data
 ic30 left data: cart??, ic43, 
 ic30 right data: audiocpu data
 
+ic30.a10l,.oel,.a5l-.a9l -- ic31.oel  what?? OH this is just connected to ground ok..
+so, left address only has the first 4 bits connected
+
 
 
 port C
