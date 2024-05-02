@@ -1,0 +1,48 @@
+ic21: MC74F74 dual d-flipflop
+1 ~C_D1  clear input
+2 D_1  d input
+3 CP_1  clock input
+4 ~S_D1  preset input
+5 Q_1  q output
+6 ~Q_1 ~q output
+7 GND
+8 ~Q_2
+9 Q_2
+10 ~S_D2 preset
+11 CP_2 clock
+12 D_2 d
+13 ~C_D2 clear
+14 V_CC
+
+ic22: MC74F161 binary counter
+1 ~MR
+2 CP
+3 P_0 4 P_1 5 P_2 6 P_3
+7 CEP
+8 GND
+9 ~PE
+10 CET
+11 Q_3 12 Q_2 13 Q_1 14 Q_0
+15 TC
+16 V_CC
+
+ic30: MB8421 dual-port ram
+
+ic30.a0l -- ic22.cet,ic22.cep,ic21.out2
+ic30.a1l -- ic22.q0
+ic30.a2l -- ic22.q1
+ic30.a3l -- ic22.q2
+ic30.a4l -- ic22.q3
+
+ic22.mr -- ic21.clear1,ic21.clear2
+ic22.cp -- ic21.out1,ic21.clock2
+
+reset: 
+
+ic21.input1 -- ic21.inv1
+ic21.clock1 -- ??
+ic21.preset1 -- vcc
+ic21.input2 -- ic21.inv2
+ic21.clock2 -- ic21.out1
+ic21.preset2 -- vcc
+ic21.clear2 -- 

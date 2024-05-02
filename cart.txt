@@ -145,6 +145,23 @@ ic30 right data: audiocpu data
 
 ic30.a10l,.oel,.a5l-.a9l -- ic31.oel  what?? OH this is just connected to ground ok..
 so, left address only has the first 4 bits connected
+where the fuck does it connect to though???
+ic30.a0 -- ic22.7,10 (cet+cep) -- ic21.9
+ic30.a1 -- 14
+a2 -- 13
+a3 -- 12 
+a4 -- 11
+
+ic22 (counter)
+ic22.mr -- ic21.1,13 (master reset)
+ic22.cp -- ic21.5,11 (counter input)
+ic22.p0-p3 -- gnd
+ic22.cep -- ic30.8
+ic22.pe -- vcc
+ic22.cet -- ic30.8
+ic22.tc -- nc?
+
+count increments when ic30.8 is high, on rising edge of ic22.cp (probably a divided clock signal)
 
 
 

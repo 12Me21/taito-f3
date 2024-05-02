@@ -11,7 +11,7 @@ OCTAL BUFFER/LINE DRIVER WITH 3-STATE OUTPUTS
 6 I_a2
 7 Y_b2
 8 I_a3
-9 Y_b3
+9 Y_b32
 10 GND
 11 I_b3
 12 Y_a3
@@ -910,3 +910,59 @@ https://archive.org/details/bitsavers_hitachidatook_75119095/page/n165/mode/2up
 39 IO16
 40 V_SS
 
+MC74F161 [AN]
+https://pdf1.alldatasheet.com/datasheet-pdf/download/158643/MOTOROLA/MC74F161AN.html
+SYNCHRONOUS PRESETTABLE BINARY COUNTER
+[300 mil DIP 16]
+1 ~MR
+2 CP
+3 P_0
+4 P_1
+5 P_2
+6 P_3
+7 CEP
+8 GND
+9 ~PE
+10 CET
+11 Q_3
+12 Q_2
+13 Q_1
+14 Q_0
+15 TC
+16 V_CC
+
+IS61C64AH [-20N]
+https://pdf1.alldatasheet.com/datasheet-pdf/download/116089/ICSI/IS61C64AH.html
+8K x 8 HIGH-SPEED CMOS STATIC RAM
+1 NC
+2 A12
+3 A7
+4 A6
+5 A5
+6 A4
+7 A3
+8 A2
+9 A1
+10 A0
+11 I/O0
+12 I/O1
+13 I/O2
+14 GND
+15 I/O3
+16 I/O4
+17 I/O5
+18 I/O6
+19 I/O7
+20 ~CE1
+21 A10
+22 ~OE
+23 A11
+24 A9
+25 A8
+26 CE2
+27 ~WE
+28 VCC
+
+MC33274A [P]
+https://www.onsemi.com/pdf/datasheet/mc33272a-d.pdf
+Operational Amplifiers, Single Supply, High Slew Rate, Low Input Offset Voltage
