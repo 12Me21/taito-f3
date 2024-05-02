@@ -28,21 +28,29 @@ ic22: MC74F161 binary counter
 
 ic30: MB8421 dual-port ram
 
-ic30.a0l -- ic22.cet,ic22.cep,ic21.out2
+ic30.a0l -- ,
 ic30.a1l -- ic22.q0
 ic30.a2l -- ic22.q1
 ic30.a3l -- ic22.q2
 ic30.a4l -- ic22.q3
 
-ic22.mr -- ic21.clear1,ic21.clear2
-ic22.cp -- ic21.out1,ic21.clock2
+address0:
+ic21.out2 -> ic22.cet ic22.cep
 
 reset: 
+??? -> ic21.clear1 + ic21.clear2 + ic22.mr
 
-ic21.input1 -- ic21.inv1
-ic21.clock1 -- ??
-ic21.preset1 -- vcc
-ic21.input2 -- ic21.inv2
-ic21.clock2 -- ic21.out1
-ic21.preset2 -- vcc
-ic21.clear2 -- 
+div1:
+ic21.out1 -> ic21.clock2 + ic22.cp
+
+feedback1:
+ic21.inv1 -> ic21.input1
+
+feedback2:
+ic21.inv2 -> ic21.input2
+
+vcc:
+5v -> ic21.preset1 + ic21.preset2
+
+clockinput:
+??? -> ic21.clock1
