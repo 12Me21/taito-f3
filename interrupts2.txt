@@ -11,5 +11,21 @@ configurable interval timer, controlled by a 16bit register at address 0x4C0000
 [..e. rrrr rrrr rrrr]
 e: 1 = enable
 r: rate
-this interrupt will fire every (0x4000 + rate*8 + 32) cpu cycles
+this interrupt will fire every (0x4000 - rate*8 + 32) cpu cycles
 (this formula matches my hardware measurements to within ~10 cycles)
+
+
+
+0x4000 + rate*8 + 32 = 
+
+64.75305403582402758000449673986358 usec per line
+0.06562502255860150451926717849809261 usec per cycle
+986.7128651727497564265907217267478 cycle per line
+
+pixel time = 1 / (26.686MHz/4)
+cpu cycle time = 1 / (30.47618MHz/2)
+scanline time = pixel time * 432
+cycles per scanline = 986.713
+
+timer formula: 0x4000 - rate*8 + 32 = cycles
+hblank interrupt rate = 0x788.A9 (games use 0x78B)
