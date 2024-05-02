@@ -28,20 +28,20 @@ ic22: MC74F161 binary counter
 
 ic30: MB8421 dual-port ram
 
-ic30.a0l -- ,
-ic30.a1l -- ic22.q0
+ -- ,
+ -- 
 ic30.a2l -- ic22.q1
 ic30.a3l -- ic22.q2
 ic30.a4l -- ic22.q3
 
-address0:
-ic21.out2 -> ic22.cet ic22.cep
+vcc:
+5v -> ic21.preset1 + ic21.preset2
 
 reset: 
-??? -> ic21.clear1 + ic21.clear2 + ic22.mr
+otis.bs -> ic21.clear1 + ic21.clear2 + ic22.mr // im guessing that they set the "bank" bit on the first voice only, and then use that to reset their counter when voice 0 is read
 
-div1:
-ic21.out1 -> ic21.clock2 + ic22.cp
+clockinput:
+??? -> ic21.clock1
 
 feedback1:
 ic21.inv1 -> ic21.input1
@@ -49,8 +49,20 @@ ic21.inv1 -> ic21.input1
 feedback2:
 ic21.inv2 -> ic21.input2
 
-vcc:
-5v -> ic21.preset1 + ic21.preset2
+div1:
+ic21.out1 -> ic21.clock2 + ic22.cp
 
-clockinput:
-??? -> ic21.clock1
+div2:
+ic21.out2 -> ic22.cet + ic22.cep + ic30.a0l
+
+div3:
+ic22.q0 -> ic30.a1l
+
+div4:
+ic22.q1 -> ic30.a2l
+
+div5:
+ic22.q2 -> ic30.a3l
+
+div6:
+ic22.q3 -> ic30.a4l
