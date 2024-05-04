@@ -9,20 +9,42 @@
 		border-collapse: collapse;
 	}
 	tr>* {
-		height:32px;
+		height:40px;
 		text-align:center;
 	}
 	.gnd {
 		border-color: transparent;
+		background-color: silver;
+		color: gray;
 	}
-	th {
-		width: 32px;
-		max-width: 32px;
-		min-width: 32px;
+	.cpu {
+		background-color: pink;
+	}
+	.fdp {
+		background-color: green;
+	}
+	.otis {
+		background-color: purple;
+	}
+	.audiocpu {
+		background-color: blue;
+	}
+	.fio {
+		background-color: yellow;
+	}
+	.fcm {
+		background-color: orange;
+	}
+	th,td {
+		box-sizing:border-box;
+		width: 40px;
+		max-width: 40px;
+		min-width: 40px;
+		word-wrap: break-word;
 	}
 </style>
 
-<h3>Port A: CPU</h3>
+<h3>Port A: main CPU</h3>
 
 <table>
 	<tr>
@@ -30,7 +52,7 @@
 	</tr>
 	<tr>
 		<td colspan=5 class=gnd>gnd
-		<td colspan=22>cpu address
+		<td colspan=22 class=cpu>cpu address
 		<td colspan=5 class=gnd>vcc
 	</tr>
 	<tr>
@@ -39,44 +61,44 @@
 		<td colspan=15 class=gnd>vcc
 	</tr>
 	<tr>
-		<td colspan=2>cpu address
-		<td>as
-		<td>ds
-		<td>rw
-		<td>dsack0
-		<td>dsack1
-		<td>ipl0
-		<td>ilp1
-		<td>ipl2
-		<td>fc0
-		<td>fc1
-		<td>fc2
-		<td>siz0
-		<td>siz1
-		<td>reset
-		<td>halt
-		<td>clock?
-		<td>br
-		<td>bg
-		<td>berr
-		<td>rmc
-		<td>avec
-		<td>cdis
+		<td colspan=2 class=cpu>cpu address
+		<td class=cpu>as
+		<td class=cpu>ds
+		<td class=cpu>rw
+		<td class=cpu>dsack0
+		<td class=cpu>dsack1
+		<td class=cpu>ipl0
+		<td class=cpu>ilp1
+		<td class=cpu>ipl2
+		<td class=cpu>fc0
+		<td class=cpu>fc1
+		<td class=cpu>fc2
+		<td class=cpu>siz0
+		<td class=cpu>siz1
+		<td class=cpu>reset
+		<td class=cpu>halt
+		<td class=cpu>clock?
+		<td class=cpu>br
+		<td class=cpu>bg
+		<td class=cpu>berr
+		<td class=cpu>rmc
+		<td class=cpu>avec
+		<td class=cpu>cdis
 		<td>?
-		<td>fcm.127
-		<td colspan=6>cpu data
+		<td class=fcm>fcm.127
+		<td colspan=6 class=cpu>cpu data
 	</tr>
 </table>
 
-<h3>Port B: CPU cont., audio sample roms</h3>
+<h3>Port B: CPU cont., audio samples</h3>
 
 <table>
 	<tr>
 		<th>1<th>2<th>3<th>4<th>5<th>6<th>7<th>8<th>9<th>10<th>11<th>12<th>13<th>14<th>15<th>16<th>17<th>18<th>19<th>20<th>21<th>22<th>23<th>24<th>25<th>26<th>27<th>28<th>29<th>30<th>31<th>32
 	</tr>
 	<tr>
-		<td colspan=5>fio
-		<td colspan=22>cpu data
+		<td colspan=5 class=fio>fio
+		<td colspan=22 class=cpu>cpu data
 		<td colspan=5 class=gnd>gnd
 	</tr>
 	<tr>
@@ -85,10 +107,10 @@
 		<td colspan=16 class=gnd>gnd
 	</tr>
 	<tr>
-		<td colspan=4>cpu data
-		<td colspan=20>otis bus
-		<td colspan=4>otis bank
-		<td colspan=4>otis control
+		<td colspan=4 class=cpu>cpu data
+		<td colspan=20 class=otis>otis bus
+		<td colspan=4 class=otis>otis bank
+		<td colspan=4 class=otis>otis control
 	</tr>
 </table>
 
@@ -100,9 +122,9 @@
 	</tr>
 	<tr>
 		<td colspan=2>clock?
-		<td>fdp.207
-		<td>fdp.118
-		<td colspan=28>graphics bus
+		<td class=fdp>fdp.207
+		<td class=fdp>fdp.118
+		<td colspan=28 class=fdp>graphics bus
 	</tr>
 	<tr>
 		<td colspan=16 class=gnd>gnd
@@ -111,33 +133,33 @@
 	</tr>
 	<tr>
 		<td colspan=4 class=gnd>gnd
-		<td colspan=20>graphics bus
-		<td colspan=4>snd address
+		<td colspan=20 class=fdp>graphics bus
+		<td colspan=4 class=audiocpu>audiocpu address
 		<td colspan=4 class=gnd>vcc
 	</tr>
 </table>
 
-<h3>Port D: audio rom</h3>
+<h3>Port D: audio cpu</h3>
 
 <table>
 	<tr>
 		<th>1<th>2<th>3<th>4<th>5<th>6<th>7<th>8<th>9<th>10<th>11<th>12<th>13<th>14<th>15<th>16<th>17<th>18<th>19<th>20<th>21<th>22<th>23<th>24<th>25<th>26<th>27<th>28<th>29<th>30<th>31<th>32
 	</tr>
 	<tr>
-		<td colspan=19>snd address
-		<td>as
-		<td>lds
-		<td>uds
-		<td>rw
-		<td>dtack
-		<td>ipl0
-		<td>ipl1
-		<td>ipl2
-		<td>fc0
-		<td>fc1
-		<td>fc2
-		<td>reset
-		<td>halt
+		<td colspan=19 class=audiocpu>audiocpu address
+		<td class=audiocpu>as
+		<td class=audiocpu>lds
+		<td class=audiocpu>uds
+		<td class=audiocpu>rw
+		<td class=audiocpu>dtack
+		<td class=audiocpu>ipl0
+		<td class=audiocpu>ipl1
+		<td class=audiocpu>ipl2
+		<td class=audiocpu>fc0
+		<td class=audiocpu>fc1
+		<td class=audiocpu>fc2
+		<td class=audiocpu>reset
+		<td class=audiocpu>halt
 	</tr>
 	<tr>
 		<td colspan=15 class=gnd>vcc
@@ -146,14 +168,14 @@
 	</tr>
 	<tr>
 		<td colspan=4 class=gnd>vcc
-		<td>clk
-		<td>bgack
-		<td>bg
-		<td>mode
-		<td>berr
+		<td class=audiocpu>clk
+		<td class=audiocpu>bgack
+		<td class=audiocpu>bg
+		<td class=audiocpu>mode
+		<td class=audiocpu>berr
 		<td colspan=2>??
-		<td>avec
-		<td colspan=16>audiocpu data
+		<td class=audiocpu>avec
+		<td colspan=16 class=audiocpu>audiocpu data
 		<td colspan=4 class=gnd>gnd
 	</tr>
 </table>
