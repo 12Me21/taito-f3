@@ -1,0 +1,228 @@
+A06 cpu.d6
+A07 cpu.d7
+A08 cpu.a2
+A09 cpu.a3
+A10 cpu.a4
+A11 cpu.a5
+A12 cpu.a6
+A13 cpu.a7
+A14 cpu.a8
+A15 cpu.a9
+A16 cpu.a10
+A17 cpu.a11
+A18 cpu.a12
+A19 cpu.a13
+A20 cpu.a14
+A21 cpu.a15
+A22 cpu.a16
+A23 cpu.a17
+A24 cpu.a18
+A25 cpu.a19
+A26 cpu.a20
+A27 cpu.a21
+
+A65 cpu.a22
+A66 cpu.a23 
+A67 cpu.as
+A68 cpu.ds 
+A69 cpu.rw
+A70 cpu.dsack0
+A71 cpu.dsack1
+A72 cpu.ipl0
+A73 cpu.ipl1
+A74 cpu.ipl2
+A75 cpu.fc0
+A76 cpu.fc1
+A77 cpu.fc2
+A78 cpu.siz0
+A79 cpu.siz1
+A80 cpu.reset
+A81 cpu.halt
+A82 clock? (shielded, to ic1.10. ic1.8 (output) goes to cpu.clk, ic1.9 is clock input?)
+A83 cpu.br
+A84 cpu.bg
+A85 cpu.berr
+A86 cpu.rmc
+A87 cpu.avec
+A88 cpu.cdis
+A89 ?
+A90 ?
+A91 cpu.d0
+A92 cpu.d1
+A93 cpu.d2
+A94 cpu.d3
+A95 cpu.d4
+A96 cpu.d5
+
+
+
+B06 ?
+B07 ?
+B08 cpu.d8
+B09 cpu.d9
+B10 cpu.d10
+B11 cpu.d11
+B12 cpu.d12
+B13 cpu.d13
+B14 cpu.d14
+B15 cpu.d15
+B16 cpu.d16
+B17 cpu.d17
+B18 cpu.d18
+B19 cpu.d19
+B20 cpu.d20
+B21 cpu.d21
+B22 cpu.d22
+B23 cpu.d23
+B24 cpu.d24
+B25 cpu.d25
+B26 cpu.d26
+B27 cpu.d27
+
+B65 cpu.d28
+B66 cpu.d29
+B67 cpu.d30
+B68 cpu.d31
+B69 otis.a4d0
+B70 otis.a5d1
+B71 otis.a6d2
+B72 otis.a7d3
+B73 otis.a8d4
+B74 otis.a9d5
+B75 otis.a10d6
+B76 otis.a11d7
+B77 otis.a12d8
+B78 otis.a13d9
+B79 otis.a14d10
+B80 otis.a15d11
+B81 otis.a16d12
+B82 otis.a17d13
+B83 otis.a18d14
+B84 otis.a19d15
+B85 otis.a0
+B86 otis.a1
+B87 otis.a2
+B88 otis.a3
+B89 otis bank select 0
+B90 otis bank select 1
+B91 otis bank select 2
+B92 otis bank select 3
+B93 otis.e
+B94 otis.bs
+B95 otis.ras
+B96 otis.cas
+
+
+
+C01 pal9.9 (shielded)
+C02 pal9.8 (shielded)
+C03 pal9.11
+C04 nc? -- fdp.118 // clock??
+C05 ic13.8 and ic30.9 (373 to rom2.a-1 and rom1 - only 1 and 2, not the sprite roms!) (244 from rom8.d0 and rom2.d0) -- fdp.125
+all the rest of these also go to sprite rom data pins i presume
+C06 ic13.7 (373 to rom2.a0 and rom1) -- fdp.126
+C07 ic13.4 (373 to rom2.a1 and rom1) -- fdp.127
+C08 ic13.3 (373 to rom2.a2 and rom1) -- fdp.128
+C09 ic13.13 (373 to rom2.a3 and rom1) -- fdp.129
+C10 ic13.14 (373 to rom2.a4 and rom1) -- fdp.130
+C11 ic13.17 and ic31.17 (373 to rom2.a5 and rom1) (373 to rom7.a6 and rom8 etc) -- fdp.131
+C12 ic13.18 and ic30.12 (373 to rom2.a6 and rom1) (244 from rom8.d7 and rom2.d7) -- fdp.132
+C13 ic16.8 and ic25.9 (373 to rom2.a7 and rom1) (244 from rom8.d8 and rom1.d0) -- fdp.134
+C14 ic16.7 (373 to rom2.a8 and rom1) -- fdp.135
+C15 ic16.4 (373 to rom2.a9 and rom1) -- fdp.136
+C16 ic16.3 (373 to rom2.a10 and rom1) -- fdp.137
+C17 ic16.13 (373 to rom2.a11 and rom1) -- fdp.138
+C18 ic16.14 (373 to rom2.a12 and rom1) -- fdp.139
+C19 ic16.17 (373 to rom2.a13 and rom1) -- fdp.140
+C20 ic16.18 (373 to rom2.a14 and rom1) -- fdp.141
+C21 ic15.8 (373 to rom2.a15 and rom1) -- fdp.143
+C22 ic15.7 (373 to rom2.a16 and rom1) -- fdp.144
+C23 ic15.4 (373 to rom2.a17 and rom1) -- fdp.145
+C24 ic15.3 and ic29.3 (373 to rom2.a18 and rom1) (244 from rom7.d3 and tile_hi.d3) -- fdp.146
+C25 ic15.13 (373 to rom2.a19 and rom1 and pal9.4) -- fdp.148
+C26 ic15.14 (373 to pal9.5) -- fdp.149
+C27 ic15.17 (373 to pal9.6) -- fdp.150
+C28 ic15.18 (373 to pal9.7) -- fdp.151
+C29 ic23.9 (244 from rom7.d8) -- fdp.153
+C30 ic23.7 (244 from rom7.d9) -- fdp.154
+C31 ic23.5 (244 from rom7.d10) -- fdp.155
+C32 ic23.3 (244 from rom7.d11) -- fdp.156
+
+C69 ic23.18 (244 from rom7.d12) -- fdp.157
+C70 ic23.16 (244 from rom7.d13)
+C71 ic23.14 (244 from rom7.d14)
+C72 ic23.12 (244 from rom7.d15)
+C73 ic22.9 (244 from rom6.d0)
+C74 ic22.7 (244 from rom6.d1)
+C75 ic22.5 (244 from rom6.d2)
+C76 ic22.3 (244 from rom6.d3)
+C77 ic22.18 (244 from rom6.d4)
+C78 ic22.16 (244 from rom6.d5)
+C79 ic22.14 (244 from rom6.d6)
+C80 ic22.12 (244 from rom6.d7)
+C81 ic27.9 (244 from rom6.d8)
+C82 ic27.7 (244 from rom6.d9)
+C83 ic27.5 (244 from rom6.d10)
+C84 ic27.3 (244 from rom6.d11)
+C85 ic27.18 (244 from rom6.d12)
+C86 ic27.16 (244 from rom6.d13)
+C87 ic27.14 (244 from rom6.d14)
+C88 ic27.12 (244 from rom6.d15)
+C89 rom14.12 a0 (and rom13)
+C90 rom14.11 a1 (and rom13)
+C91 rom14.10 a2 (and rom13)
+C92 rom14.9 a3 (and rom13)
+
+
+
+D1 rom13.8 a4 (and rom14)
+D2 rom13.7 a5 (and rom14)
+D3 rom13.6 a6  (and rom14)
+D4 rom13.5 a7 (and rom14)
+D5 rom13.27 a8 (and rom14)
+D6 rom13.26 a9 (and rom14)
+D7 rom13.23 a10 (and rom14)
+D8 rom13.25 a11 (and rom14)
+D9 rom13.4 a12 (and rom14)
+D10 rom13.28 a13 (and rom14)
+D11 rom13.29 a14 (and rom14)
+D12 rom13.3 a15 (and rom14)
+D13 rom13.2 a16 (and rom14)
+D14 pal12.2 - through pal to rom13.a17
+D15 pal12.3 
+D16 pal12.4
+D17 BROKEN? (pal12.5)
+D18 pal12.6
+D19 BROKEN? (pal12.7)
+D20 pal12.8 --
+D21 pal12.9 --
+D22 pal12.11 --
+D23 pal12.14 -- audiocpu.dsack0??
+D24 nc?
+D25 nc?
+D26 nc?
+D27 nc?
+D28 BROKEN (normally pal12.17 io5) -- fc0??
+D29 pal12.16 -- fc1??
+D30 pal12.15 -- fc2??
+D31 pal12.13
+D32 nc?
+
+D69 nc? -- clock (same as A82)
+D70-76 nc?
+D77 audiocpu.d0
+D78 audiocpu.d1
+D79 audiocpu.d2
+D80 audiocpu.d3
+D81 audiocpu.d4
+D82 audiocpu.d5
+D83 audiocpu.d6
+D84 audiocpu.d7
+D85 audiocpu.d8
+D86 audiocpu.d9
+D87 audiocpu.d10
+D88 audiocpu.d11
+D89 audiocpu.d12
+D90 audiocpu.d13
+D91 audiocpu.d14
+D92 audiocpu.d15
