@@ -178,9 +178,9 @@ ou: 2 5 6 9  12 15 16 19
 
 ic31.16 and rom7.a6 (373 from ic30.14)
 
-C01 pal9.9 (shielded)
-C02 pal9.8 (shielded)
-C03 pal9.11
+C01 pal9.9 (shielded) -- ic20.7
+C02 pal9.8 (shielded) -- ic20.9
+C03 pal9.11 -- fdp.207
 C04 nc? -- fdp.118 // clock??
 C05 ic13.8 and ic30.9 (373 to rom2.a-1 and rom1 - only 1 and 2, not the sprite roms!) (244 from rom8.d0 and rom2.d0) -- fdp.125
 all the rest of these also go to sprite rom data pins i presume
@@ -237,25 +237,25 @@ in:  2  4  6  8 17 15 13 11
 ou: 18 16 14 12  3  5  7  9
 
 C69 ic23.18 (244 from rom7.d12) -- fdp.157
-C70 ic23.16 (244 from rom7.d13)
-C71 ic23.14 (244 from rom7.d14)
-C72 ic23.12 (244 from rom7.d15)
-C73 ic22.9 (244 from rom6.d0)
-C74 ic22.7 (244 from rom6.d1)
-C75 ic22.5 (244 from rom6.d2)
-C76 ic22.3 (244 from rom6.d3)
-C77 ic22.18 (244 from rom6.d4)
-C78 ic22.16 (244 from rom6.d5)
-C79 ic22.14 (244 from rom6.d6)
-C80 ic22.12 (244 from rom6.d7)
-C81 ic27.9 (244 from rom6.d8)
-C82 ic27.7 (244 from rom6.d9)
-C83 ic27.5 (244 from rom6.d10)
-C84 ic27.3 (244 from rom6.d11)
-C85 ic27.18 (244 from rom6.d12)
-C86 ic27.16 (244 from rom6.d13)
-C87 ic27.14 (244 from rom6.d14)
-C88 ic27.12 (244 from rom6.d15)
+C70 ic23.16 (244 from rom7.d13) -- fdp.158
+C71 ic23.14 (244 from rom7.d14) -- fdp.159
+C72 ic23.12 (244 from rom7.d15) -- fdp.160
+C73 ic22.9 (244 from rom6.d0) -- fdp.161
+C74 ic22.7 (244 from rom6.d1) -- fdp.162
+C75 ic22.5 (244 from rom6.d2) -- fdp.163
+C76 ic22.3 (244 from rom6.d3) -- fdp.166
+C77 ic22.18 (244 from rom6.d4) -- fdp.167
+C78 ic22.16 (244 from rom6.d5) -- fdp.168
+C79 ic22.14 (244 from rom6.d6) -- fdp.169
+C80 ic22.12 (244 from rom6.d7) -- fdp.170
+C81 ic27.9 (244 from rom6.d8) -- fdp.171
+C82 ic27.7 (244 from rom6.d9) -- fdp.172
+C83 ic27.5 (244 from rom6.d10) -- fdp.173
+C84 ic27.3 (244 from rom6.d11) -- fdp.174
+C85 ic27.18 (244 from rom6.d12) -- fdp.175
+C86 ic27.16 (244 from rom6.d13) -- fdp.176
+C87 ic27.14 (244 from rom6.d14) -- fdp.178 
+C88 ic27.12 (244 from rom6.d15) -- fdp.179
 C89 rom14.12 a0 (and rom13) -- audiocpu.a1 (note, a0 is not connected)
 C90 rom14.11 a1 (and rom13) -- audiocpu.a2
 C91 rom14.10 a2 (and rom13) -- audiocpu.a3
@@ -318,16 +318,16 @@ D79 rom14.15 q2 -- audiocpu.4 d2
 D80 rom14.17 q3 -- audiocpu.3 d3
 D81 rom14.18 q4 -- audiocpu.2 d4
 D82 rom14.19 q5 -- audiocpu.68 d5
-D83 BROKEN (rom14.20 q6)
-D84 BROKEN (rom14.21 q7)
-D85 rom13.13 q0
-D86 rom13.14 q1
-D87 rom13.15 q2
-D88 rom13.17 q3
-D89 rom13.18 q4
-D90 BROKEN? (rom13.19 q5)
-D91 BROKEN? (rom13.20 q6)
-D92 BROKEN (rom13.21 q7)
+D83 BROKEN (rom14.20 q6) -- audiocpu.67 d6
+D84 BROKEN (rom14.21 q7) -- audiocpu.66 d7
+D85 rom13.13 q0 -- audiocpu.65 d8
+D86 rom13.14 q1 -- audiocpu.64 d9
+D87 rom13.15 q2 -- audiocpu.63 d10
+D88 rom13.17 q3 -- audiocpu.62 d11
+D89 rom13.18 q4 -- audiocpu.61 d12
+D90 BROKEN? (rom13.19 q5) -- audiocpu.60 d13
+D91 BROKEN? (rom13.20 q6) -- audiocpu.59 d14
+D92 BROKEN (rom13.21 q7) -- audiocpu.58 d15
 D93-D96 gnd
 
 
