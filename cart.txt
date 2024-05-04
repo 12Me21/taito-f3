@@ -256,10 +256,10 @@ C85 ic27.18 (244 from rom6.d12)
 C86 ic27.16 (244 from rom6.d13)
 C87 ic27.14 (244 from rom6.d14)
 C88 ic27.12 (244 from rom6.d15)
-C89 rom14.12 a0 (and rom13)
-C90 rom14.11 a1 (and rom13)
-C91 rom14.10 a2 (and rom13)
-C92 rom14.9 a3 (and rom13)
+C89 rom14.12 a0 (and rom13) -- audiocpu.a1 (note, a0 is not connected)
+C90 rom14.11 a1 (and rom13) -- audiocpu.a2
+C91 rom14.10 a2 (and rom13) -- audiocpu.a3
+C92 rom14.9 a3 (and rom13) -- audiocpu.a4
 
 C93-C96 vcc
 
@@ -268,50 +268,56 @@ C93-C96 vcc
 port D
 snd rom
 
-D1 rom13.8 a4 (and rom14) -- audiocpu.37
-D2 rom13.7 a5 (and rom14) -- audiocpu.38
-D3 rom13.6 a6  (and rom14) -- audiocpu.39
-D4 rom13.5 a7 (and rom14) -- audiocpu.40
-D5 rom13.27 a8 (and rom14) -- audiocpu.41
-D6 rom13.26 a9 (and rom14) -- audiocpu.42
-D7 rom13.23 a10 (and rom14) -- audiocpu.43
-D8 rom13.25 a11 (and rom14) -- audiocpu.44
-D9 rom13.4 a12 (and rom14) -- audiocpu.45
-D10 rom13.28 a13 (and rom14) -- audiocpu.46
-D11 rom13.29 a14 (and rom14) -- audiocpu.47
-D12 rom13.3 a15 (and rom14) -- audiocpu.48
-D13 rom13.2 a16 (and rom14) -- audiocpu.49
-D14 pal12.2 - through pal to rom13.a17 -- audiocpu.50
-D15 pal12.3 -- audiocpu.51
-D16 pal12.4 -- audiocpu.52
-D17 BROKEN? (pal12.5) -- audiocpu.54
-D18 pal12.6 -- audiocpu.55
-D19 BROKEN? (pal12.7) -- audiocpu.56
-D20 pal12.8 -- audiocpu.7
-D21 pal12.9 -- audiocpu.9
-D22 pal12.11 -- audiocpu.8
-D23 pal12.14 -- audiocpu.10
-D24 nc? -- audiocpu.11
-D25 nc? -- audiocpu.27
-D26 nc? -- audiocpu.26
-D27 nc? -- audiocpu.25
-D28 BROKEN (normally pal12.17 io5) -- audiocpu.30
-D29 pal12.16 -- audiocpu.29
-D30 pal12.15 -- audiocpu.28
-D31 pal12.13 -- audiocpu.21
-D32 nc? -- audiocpu.20
+D1 rom13.8 a4 (and rom14) -- audiocpu.37 a5
+D2 rom13.7 a5 (and rom14) -- audiocpu.38 a6
+D3 rom13.6 a6  (and rom14) -- audiocpu.39 a7
+D4 rom13.5 a7 (and rom14) -- audiocpu.40 a8
+D5 rom13.27 a8 (and rom14) -- audiocpu.41 a9
+D6 rom13.26 a9 (and rom14) -- audiocpu.42 a10
+D7 rom13.23 a10 (and rom14) -- audiocpu.43 a11
+D8 rom13.25 a11 (and rom14) -- audiocpu.44 a12
+D9 rom13.4 a12 (and rom14) -- audiocpu.45 a13
+D10 rom13.28 a13 (and rom14) -- audiocpu.46 a14
+D11 rom13.29 a14 (and rom14) -- audiocpu.47 a15
+D12 rom13.3 a15 (and rom14) -- audiocpu.48 a16
+D13 rom13.2 a16 (and rom14) -- audiocpu.49 a17
+D14 pal12.2 - through pal to rom13.a17 -- audiocpu.50 a18
+D15 pal12.3 -- audiocpu.51 a19
+D16 pal12.4 -- audiocpu.52 a20
+D17 BROKEN? (pal12.5) -- audiocpu.54 a21
+D18 pal12.6 -- audiocpu.55 a22
+D19 BROKEN? (pal12.7) -- audiocpu.56 a23
+D20 pal12.8 -- audiocpu.7 as
+D21 pal12.9 -- audiocpu.9 lds
+D22 pal12.11 -- audiocpu.8 uds
+D23 pal12.14 -- audiocpu.10 rw
+D24 nc? -- audiocpu.11 dtack
+D25 nc? -- audiocpu.27 ipl0
+D26 nc? -- audiocpu.26 ipl1
+D27 nc? -- audiocpu.25 ipl2
+D28 BROKEN (normally pal12.17 io5) -- audiocpu.30 fc0
+D29 pal12.16 -- audiocpu.29 fc1
+D30 pal12.15 -- audiocpu.28 fc2
+D31 pal12.13 -- audiocpu.21 reset
+D32 nc? -- audiocpu.20 halt
 
 D33-D47 vcc
 D65-D68 vcc
 
-D69 nc? -- clock (same as A82)
-D70-76 nc?
-D77 rom14.13 q0
-D78 rom14.14 q1
-D79 rom14.15 q2
-D80 rom14.17 q3
-D81 rom14.18 q4
-D82 rom14.19 q5
+D69 nc? -- clock (same as A82) audiocpu.16 clk
+D70 nc? -- audiocpu.13 bgack
+D71 nc? -- audiocpu.12 bg
+D72 nc? -- audiocpu.19 mode
+D73 nc? -- audiocpu.24 berr
+D74 nc? -- ??
+D75 nc? -- ??
+D76 nc? -- audiocpu.23 avec
+D77 rom14.13 q0 -- audiocpu.6 d0
+D78 rom14.14 q1 -- audiocpu.5 d1
+D79 rom14.15 q2 -- audiocpu.4 d2
+D80 rom14.17 q3 -- audiocpu.3 d3
+D81 rom14.18 q4 -- audiocpu.2 d4
+D82 rom14.19 q5 -- audiocpu.68 d5
 D83 BROKEN (rom14.20 q6)
 D84 BROKEN (rom14.21 q7)
 D85 rom13.13 q0
