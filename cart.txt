@@ -13,8 +13,8 @@ x62-64 key (japan)
 port A
 
 A01-05 GND
-A06 prg0.Q6 -- XXXcpu.d6? no ??? wrong?
-A07 prg0.Q7 -- XXXcpu.d7? no ??? wrong?
+A06 prg0.Q6 -- cpu.a0
+A07 prg0.Q7 -- cpu.a1
 A08 prg.A0 -- cpu.a2
 A09 prg.A1 -- cpu.a3?
 A10 prg.A2 -- cpu.a4?
@@ -83,8 +83,8 @@ B02 ? -- fio.85
 B03 ? -- fio.84
 B04 ? -- fio.83
 B05 ? -- fio.80
-B06 ? -- cpu.60?   cpu.d6???? 
-B07 ? 
+B06 ? -- cpu.d6
+B07 ? -- cpu.d7
 B08 prg1.q0 -- cpu.d8?
 B09 prg1.q1 -- cpu.d9?
 B10 prg1.q2 -- cpu.d10?
@@ -268,38 +268,38 @@ C93-C96 vcc
 port D
 snd rom
 
-D1 rom13.8 a4 (and rom14)
-D2 rom13.7 a5 (and rom14)
-D3 rom13.6 a6  (and rom14)
-D4 rom13.5 a7 (and rom14)
-D5 rom13.27 a8 (and rom14)
-D6 rom13.26 a9 (and rom14)
-D7 rom13.23 a10 (and rom14)
-D8 rom13.25 a11 (and rom14)
-D9 rom13.4 a12 (and rom14)
-D10 rom13.28 a13 (and rom14)
-D11 rom13.29 a14 (and rom14)
-D12 rom13.3 a15 (and rom14)
-D13 rom13.2 a16 (and rom14)
-D14 pal12.2 - through pal to rom13.a17
-D15 pal12.3 
-D16 pal12.4
-D17 BROKEN? (pal12.5)
-D18 pal12.6
-D19 BROKEN? (pal12.7)
-D20 pal12.8 --
-D21 pal12.9 --
-D22 pal12.11 --
-D23 pal12.14 -- audiocpu.dsack0??
-D24 nc?
-D25 nc?
-D26 nc?
-D27 nc?
-D28 BROKEN (normally pal12.17 io5) -- fc0??
-D29 pal12.16 -- fc1??
-D30 pal12.15 -- fc2??
-D31 pal12.13
-D32 nc?
+D1 rom13.8 a4 (and rom14) -- audiocpu.37
+D2 rom13.7 a5 (and rom14) -- audiocpu.38
+D3 rom13.6 a6  (and rom14) -- audiocpu.39
+D4 rom13.5 a7 (and rom14) -- audiocpu.40
+D5 rom13.27 a8 (and rom14) -- audiocpu.41
+D6 rom13.26 a9 (and rom14) -- audiocpu.42
+D7 rom13.23 a10 (and rom14) -- audiocpu.43
+D8 rom13.25 a11 (and rom14) -- audiocpu.44
+D9 rom13.4 a12 (and rom14) -- audiocpu.45
+D10 rom13.28 a13 (and rom14) -- audiocpu.46
+D11 rom13.29 a14 (and rom14) -- audiocpu.47
+D12 rom13.3 a15 (and rom14) -- audiocpu.48
+D13 rom13.2 a16 (and rom14) -- audiocpu.49
+D14 pal12.2 - through pal to rom13.a17 -- audiocpu.50
+D15 pal12.3 -- audiocpu.51
+D16 pal12.4 -- audiocpu.52
+D17 BROKEN? (pal12.5) -- audiocpu.54
+D18 pal12.6 -- audiocpu.55
+D19 BROKEN? (pal12.7) -- audiocpu.56
+D20 pal12.8 -- audiocpu.7
+D21 pal12.9 -- audiocpu.9
+D22 pal12.11 -- audiocpu.8
+D23 pal12.14 -- audiocpu.10
+D24 nc? -- audiocpu.11
+D25 nc? -- audiocpu.27
+D26 nc? -- audiocpu.26
+D27 nc? -- audiocpu.25
+D28 BROKEN (normally pal12.17 io5) -- audiocpu.30
+D29 pal12.16 -- audiocpu.29
+D30 pal12.15 -- audiocpu.28
+D31 pal12.13 -- audiocpu.21
+D32 nc? -- audiocpu.20
 
 D33-D47 vcc
 D65-D68 vcc
