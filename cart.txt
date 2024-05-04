@@ -35,7 +35,11 @@ A24 prg.A16   and pal15.i1 -- cpu.a18
 A25 pal15.i2 -- cpu.a19?
 A26 pal15.i3 -- cpu.a20
 A27 pal15.i4 -- cpu.a21
-A28-32 GND
+A28-32 VCC
+
+A33-A48 gnd
+A49 nc?
+A50-A64 vcc
 
 A65 pal15.i5 -- cpu.a22
 A66 pal15.i6 -- cpu.a23 
@@ -61,8 +65,8 @@ A85   -- cpu.berr
 A86   -- cpu.rmc
 A87   -- cpu.avec
 A88   -- cpu.cdis
-A89
-A90 
+A89 -- ??
+A90 -- fcm.127  
 A91 prg0.Q0 -- cpu.d0
 A92 prg0.Q1 -- cpu.d1?
 A93 prg0.Q2 -- cpu.d2?
@@ -105,6 +109,11 @@ B24 prg3.q0 -- cpu.d24?
 B25 prg3.q1 -- cpu.d25?
 B26 prg3.q2 -- cpu.d26?
 B27 prg3.q3 -- cpu.d27?
+B28-B32 GND
+
+B33-B47 vcc
+B48 nc?
+B49-B64 gnd
 
 B65 prg3.q4 -- cpu.d28?
 B66 prg3.q5 -- cpu.d29?
@@ -229,6 +238,8 @@ pal9.17 oe for tile roms, group 1 (100)
 pal9.18 oe for tile roms, group 0 (000)
 pal9.19 ic13.le and ic15 and ic16
 
+C33-C48 gnd
+C49 nc?
 C50-C64 vcc
 
 C65-C68 gnd
@@ -302,6 +313,9 @@ D31 pal12.13 -- audiocpu.21 reset
 D32 nc? -- audiocpu.20 halt
 
 D33-D47 vcc
+D48 nc?
+D49-D64 gnd
+
 D65-D68 vcc
 
 D69 nc? -- clock (same as A82) audiocpu.16 clk

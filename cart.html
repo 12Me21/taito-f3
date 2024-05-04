@@ -30,12 +30,13 @@
 	</tr>
 	<tr>
 		<td colspan=5 class=gnd>gnd
-		<td colspan=2>cpu data
-		<td colspan=20>cpu address
-		<td colspan=5 class=gnd>gnd
+		<td colspan=22>cpu address
+		<td colspan=5 class=gnd>vcc
 	</tr>
 	<tr>
-		<td colspan=32>?</td>
+		<td colspan=16 class=gnd>gnd
+		<td class=gnd>nc?
+		<td colspan=15 class=gnd>vcc
 	</tr>
 	<tr>
 		<td colspan=2>cpu address
@@ -62,7 +63,7 @@
 		<td>avec
 		<td>cdis
 		<td>?
-		<td>?
+		<td>fcm.127
 		<td colspan=6>cpu data
 	</tr>
 </table>
@@ -74,18 +75,20 @@
 		<th>1<th>2<th>3<th>4<th>5<th>6<th>7<th>8<th>9<th>10<th>11<th>12<th>13<th>14<th>15<th>16<th>17<th>18<th>19<th>20<th>21<th>22<th>23<th>24<th>25<th>26<th>27<th>28<th>29<th>30<th>31<th>32
 	</tr>
 	<tr>
-		<td colspan=5 class=gnd>gnd
-		<td colspan=2>?
-		<td colspan=20>cpu data
+		<td colspan=5>fio
+		<td colspan=22>cpu data
 		<td colspan=5 class=gnd>gnd
 	</tr>
 	<tr>
-		<td colspan=32>?
+		<td colspan=15 class=gnd>vcc
+		<td class=gnd>nc
+		<td colspan=16 class=gnd>gnd
 	</tr>
 	<tr>
 		<td colspan=4>cpu data
-		<td colspan=20>sample bus
-		<td colspan=8>?
+		<td colspan=20>otis bus
+		<td colspan=4>otis bank
+		<td colspan=4>otis control
 	</tr>
 </table>
 
@@ -96,44 +99,61 @@
 		<th>1<th>2<th>3<th>4<th>5<th>6<th>7<th>8<th>9<th>10<th>11<th>12<th>13<th>14<th>15<th>16<th>17<th>18<th>19<th>20<th>21<th>22<th>23<th>24<th>25<th>26<th>27<th>28<th>29<th>30<th>31<th>32
 	</tr>
 	<tr>
-		<td colspan=3>?
-		<td>nc?
+		<td colspan=2>clock?
+		<td>fdp.207
+		<td>fdp.118
 		<td colspan=28>graphics bus
 	</tr>
 	<tr>
-		<td colspan=18>?
-		<td colspan=15>vcc
+		<td colspan=16 class=gnd>gnd
+		<td class=gnd>nc?
+		<td colspan=15 class=gnd>vcc
 	</tr>
 	<tr>
-		<td colspan=4>gnd
+		<td colspan=4 class=gnd>gnd
 		<td colspan=20>graphics bus
 		<td colspan=4>snd address
-		<td colspan=4>vcc
+		<td colspan=4 class=gnd>vcc
 	</tr>
 </table>
 
-<h3>audio rom</h3>
+<h3>Port D: audio rom</h3>
 
 <table>
 	<tr>
 		<th>1<th>2<th>3<th>4<th>5<th>6<th>7<th>8<th>9<th>10<th>11<th>12<th>13<th>14<th>15<th>16<th>17<th>18<th>19<th>20<th>21<th>22<th>23<th>24<th>25<th>26<th>27<th>28<th>29<th>30<th>31<th>32
 	</tr>
 	<tr>
-		<td colspan=20>snd address
-		<td colspan=3>?
-		<td colspan=4>nc?
-		<td colspan=4>?
-		<td>?
+		<td colspan=19>snd address
+		<td>as
+		<td>lds
+		<td>uds
+		<td>rw
+		<td>dtack
+		<td>ipl0
+		<td>ipl1
+		<td>ipl2
+		<td>fc0
+		<td>fc1
+		<td>fc2
+		<td>reset
+		<td>halt
 	</tr>
 	<tr>
-		<td colspan=15>vcc
-		<td colspan=17>?
+		<td colspan=15 class=gnd>vcc
+		<td class=gnd>nc
+		<td colspan=16 class=gnd>gnd
 	</tr>
 	<tr>
-		<td colspan=4>vcc
-		<td>clock?
-		<td colspan=7>nc?
-		<td colspan=16>snd data
-		<td colspan=4>gnd
+		<td colspan=4 class=gnd>vcc
+		<td>clk
+		<td>bgack
+		<td>bg
+		<td>mode
+		<td>berr
+		<td colspan=2>??
+		<td>avec
+		<td colspan=16>audiocpu data
+		<td colspan=4 class=gnd>gnd
 	</tr>
 </table>
