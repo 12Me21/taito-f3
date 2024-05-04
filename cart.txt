@@ -13,8 +13,8 @@ x62-64 key (japan)
 port A
 
 A01-05 GND
-A06 prg0.Q6 -- cpu.d6?
-A07 prg0.Q7 -- cpu.d7?
+A06 prg0.Q6 -- XXXcpu.d6? no ??? wrong?
+A07 prg0.Q7 -- XXXcpu.d7? no ??? wrong?
 A08 prg.A0 -- cpu.a2
 A09 prg.A1 -- cpu.a3?
 A10 prg.A2 -- cpu.a4?
