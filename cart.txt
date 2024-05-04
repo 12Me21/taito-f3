@@ -78,8 +78,13 @@ prg.oe goes to pal15.io5
 
 port B
 
-B06 ?
-B07 ?
+B01 ? -- fio.86
+B02 ? -- fio.85
+B03 ? -- fio.84
+B04 ? -- fio.83
+B05 ? -- fio.80
+B06 ? -- cpu.60?   cpu.d6???? 
+B07 ? 
 B08 prg1.q0 -- cpu.d8?
 B09 prg1.q1 -- cpu.d9?
 B10 prg1.q2 -- cpu.d10?
@@ -125,14 +130,14 @@ B85 ic35.d3 (373 to samplerom.a-1) -- otis.a0
 B86 ic35.d2 (373 to samplerom.a0) -- otis.a1?
 B87 ic35.d1 (373 to samplerom.a1) -- otis.a2?
 B88 ic35.d0 (373 to samplerom.a2) -- otis.a3?
-B89 pal11.4  unused?? -- ic30.18 - what??
-B90 pal11.5  sample rom address high 1? -- ic30.19
-B91 pal11.6  sample rom address high 2? -- ic30.20
-B92 pal11.7  sample rom address high 3?? -- ic30.21
-B93 pal11.8  sample rom address high 4?? -- otis.e
+B89 pal11.4  unused?? -- ic30.io0l (bank select bit 0)
+B90 pal11.5 -- ic30.io1l (bank select bit 1)
+B91 pal11.6 -- ic30.io2l (bank select bit 2)
+B92 pal11.7 -- ic30.io3l (bank select bit 3)
+B93 pal11.8 -- otis.e
 B94 nc? -- otis.bs
 B95 pal11.11 and ic36.le and ic35.le and ic34.le -- otis.ras
-B96 pal11.9  sample rom address high 5?? -- otis.cas
+B96 pal11.9 -- otis.cas
 
 /o16 = i5 & i6 & /i7 & /i8 & /i9
 
