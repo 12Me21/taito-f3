@@ -1,0 +1,139 @@
+<!doctype html><meta charset=utf8>
+
+<style>
+	table {
+		table-layout: fixed;
+	}
+	td {
+		border: 1px solid;
+		border-collapse: collapse;
+	}
+	tr>* {
+		height:32px;
+		text-align:center;
+	}
+	.gnd {
+		border-color: transparent;
+	}
+	th {
+		width: 32px;
+		max-width: 32px;
+		min-width: 32px;
+	}
+</style>
+
+<h3>Port A: CPU</h3>
+
+<table>
+	<tr>
+		<th>1<th>2<th>3<th>4<th>5<th>6<th>7<th>8<th>9<th>10<th>11<th>12<th>13<th>14<th>15<th>16<th>17<th>18<th>19<th>20<th>21<th>22<th>23<th>24<th>25<th>26<th>27<th>28<th>29<th>30<th>31<th>32
+	</tr>
+	<tr>
+		<td colspan=5 class=gnd>gnd
+		<td colspan=2>cpu data
+		<td colspan=20>cpu address
+		<td colspan=5 class=gnd>gnd
+	</tr>
+	<tr>
+		<td colspan=32>?</td>
+	</tr>
+	<tr>
+		<td colspan=2>cpu address
+		<td>as
+		<td>ds
+		<td>rw
+		<td>dsack0
+		<td>dsack1
+		<td>ipl0
+		<td>ilp1
+		<td>ipl2
+		<td>fc0
+		<td>fc1
+		<td>fc2
+		<td>siz0
+		<td>siz1
+		<td>reset
+		<td>halt
+		<td>clock?
+		<td>br
+		<td>bg
+		<td>berr
+		<td>rmc
+		<td>avec
+		<td>cdis
+		<td>?
+		<td>?
+		<td colspan=6>cpu data
+	</tr>
+</table>
+
+<h3>Port B: CPU cont., audio sample roms</h3>
+
+<table>
+	<tr>
+		<th>1<th>2<th>3<th>4<th>5<th>6<th>7<th>8<th>9<th>10<th>11<th>12<th>13<th>14<th>15<th>16<th>17<th>18<th>19<th>20<th>21<th>22<th>23<th>24<th>25<th>26<th>27<th>28<th>29<th>30<th>31<th>32
+	</tr>
+	<tr>
+		<td colspan=5 class=gnd>gnd
+		<td colspan=2>?
+		<td colspan=20>cpu data
+		<td colspan=5 class=gnd>gnd
+	</tr>
+	<tr>
+		<td colspan=32>?
+	</tr>
+	<tr>
+		<td colspan=4>cpu data
+		<td colspan=20>sample bus
+		<td colspan=8>?
+	</tr>
+</table>
+
+<h3>Port C: graphics</h3>
+
+<table>
+	<tr>
+		<th>1<th>2<th>3<th>4<th>5<th>6<th>7<th>8<th>9<th>10<th>11<th>12<th>13<th>14<th>15<th>16<th>17<th>18<th>19<th>20<th>21<th>22<th>23<th>24<th>25<th>26<th>27<th>28<th>29<th>30<th>31<th>32
+	</tr>
+	<tr>
+		<td colspan=3>?
+		<td>nc?
+		<td colspan=28>graphics bus
+	</tr>
+	<tr>
+		<td colspan=18>?
+		<td colspan=15>vcc
+	</tr>
+	<tr>
+		<td colspan=4>gnd
+		<td colspan=20>graphics bus
+		<td colspan=4>snd address
+		<td colspan=4>vcc
+	</tr>
+</table>
+
+<h3>audio rom</h3>
+
+<table>
+	<tr>
+		<th>1<th>2<th>3<th>4<th>5<th>6<th>7<th>8<th>9<th>10<th>11<th>12<th>13<th>14<th>15<th>16<th>17<th>18<th>19<th>20<th>21<th>22<th>23<th>24<th>25<th>26<th>27<th>28<th>29<th>30<th>31<th>32
+	</tr>
+	<tr>
+		<td colspan=20>snd address
+		<td colspan=3>?
+		<td colspan=4>nc?
+		<td colspan=4>?
+		<td>?
+	</tr>
+	<tr>
+		<td colspan=15>vcc
+		<td colspan=17>?
+	</tr>
+	<tr>
+		<td colspan=4>vcc
+		<td>clock?
+		<td colspan=7>nc?
+		<td colspan=16>snd data
+		<td colspan=4>gnd
+	</tr>
+</table>
