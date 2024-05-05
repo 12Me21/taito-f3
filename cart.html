@@ -1,67 +1,95 @@
 <!doctype html><meta charset=utf8>
 
 <style>
-	table {
+	table.port {
 		table-layout: fixed;
+		font-size: 12px;
 	}
-	td {
+	.port td {
 		border: 1px solid;
 		border-collapse: collapse;
 	}
-	tr>* {
+	.port tr>* {
 		height:40px;
 		text-align:center;
 	}
-	.gnd {
-		border-color: transparent;
-		background-color: silver;
-		color: gray;
-	}
-	.cpu {
-		background-color: pink;
-	}
-	.fdp {
-		background-color: green;
-	}
-	.otis {
-		background-color: purple;
-	}
-	.audiocpu {
-		background-color: blue;
-	}
-	.fio {
-		background-color: yellow;
-	}
-	.fcm {
-		background-color: orange;
-	}
-	th,td {
+	.port th, .port td {
 		box-sizing:border-box;
 		width: 40px;
 		max-width: 40px;
 		min-width: 40px;
 		word-wrap: break-word;
 	}
+	
+	.gnd {
+		border-color: transparent;
+		background-color: silver;
+		color: gray;
+	}
+	.cpu {
+		background-color: hsl(0, 100%, 87%);
+	}
+	.fdp {
+		background-color: hsl(120, 100%, 90%);
+	}
+	.otis {
+		background-color: hsl(200, 80%, 80%);
+	}
+	.audiocpu {
+		background-color: hsl(280, 70%, 90%);
+	}
+	.fio {
+		background-color: hsl(60, 100%, 80%);
+	}
+	.fcm {
+		background-color: hsl(40, 100%, 90%);
+	}
+	
+	.portlabel {
+		font-size: 2em;
+		border: 3px double;
+		width: 32px;
+		display: inline-block;
+		height: 32px;
+		line-height: 32px;
+		text-align: center;
+		font-family: courier;
+		font-weight: normal;
+		background: black;
+		color: white;
+	}
 </style>
 
-<h3>Port A: main CPU</h3>
-
 <table>
-	<tr>
-		<th>1<th>2<th>3<th>4<th>5<th>6<th>7<th>8<th>9<th>10<th>11<th>12<th>13<th>14<th>15<th>16<th>17<th>18<th>19<th>20<th>21<th>22<th>23<th>24<th>25<th>26<th>27<th>28<th>29<th>30<th>31<th>32
-	</tr>
+	<tr><td class=cpu>MC68EC020 (Main CPU)</tr>
+	<tr><td class=audiocpu>MC68EC000 (Audio CPU)</tr>
+	<tr><td class=otis>ES5505 OTIS (Sound)</tr>
+	<tr><td class=fdp>TC0630FDP (Graphics)</tr>
+	<tr><td class=fio>TC0640FIO</tr>
+	<tr><td class=fcm>TC0640FCM</tr>
+</table>
+
+<h3>Port <span class=portlabel>A</span>: main CPU</h3>
+
+<table class=port>
 	<tr>
 		<td colspan=5 class=gnd>gnd
-		<td colspan=22 class=cpu>cpu address
+		<td colspan=22 class=cpu>address
 		<td colspan=5 class=gnd>vcc
+	</tr>
+	<tr class=numbers>
+		<th><th>1<th>2<th>3<th>4<th>5<th>6<th>7<th>8<th>9<th>10<th>11<th>12<th>13<th>14<th>15<th>16<th>17<th>18<th>19<th>20<th>21<th>22<th>23<th>24<th>25<th>26<th>27<th>28<th>29<th>30<th>31<th>32<th>
 	</tr>
 	<tr>
 		<td colspan=16 class=gnd>gnd
 		<td class=gnd>nc?
 		<td colspan=15 class=gnd>vcc
 	</tr>
+	<tr class=numbers>
+		<th><th>1<th>2<th>3<th>4<th>5<th>6<th>7<th>8<th>9<th>10<th>11<th>12<th>13<th>14<th>15<th>16<th>17<th>18<th>19<th>20<th>21<th>22<th>23<th>24<th>25<th>26<th>27<th>28<th>29<th>30<th>31<th>32<th>
+	</tr>
 	<tr>
-		<td colspan=2 class=cpu>cpu address
+		<td colspan=2 class=cpu>address
 		<td class=cpu>as
 		<td class=cpu>ds
 		<td class=cpu>rw
@@ -84,21 +112,21 @@
 		<td class=cpu>rmc
 		<td class=cpu>avec
 		<td class=cpu>cdis
-		<td>?
+		<td class=fdp>fdp.180
 		<td class=fcm>fcm.127
-		<td colspan=6 class=cpu>cpu data
+		<td colspan=6 class=cpu>data
 	</tr>
 </table>
 
-<h3>Port B: CPU cont., audio samples</h3>
+<h3>Port <span class=portlabel>B</span>: CPU cont., audio samples</h3>
 
-<table>
+<table class=port>
 	<tr>
 		<th>1<th>2<th>3<th>4<th>5<th>6<th>7<th>8<th>9<th>10<th>11<th>12<th>13<th>14<th>15<th>16<th>17<th>18<th>19<th>20<th>21<th>22<th>23<th>24<th>25<th>26<th>27<th>28<th>29<th>30<th>31<th>32
 	</tr>
 	<tr>
 		<td colspan=5 class=fio>fio
-		<td colspan=22 class=cpu>cpu data
+		<td colspan=22 class=cpu>data
 		<td colspan=5 class=gnd>gnd
 	</tr>
 	<tr>
@@ -107,16 +135,19 @@
 		<td colspan=16 class=gnd>gnd
 	</tr>
 	<tr>
-		<td colspan=4 class=cpu>cpu data
-		<td colspan=20 class=otis>otis bus
-		<td colspan=4 class=otis>otis bank
-		<td colspan=4 class=otis>otis control
+		<td colspan=4 class=cpu>data
+		<td colspan=20 class=otis>address/data bus
+		<td colspan=4 class=otis>bank select
+		<td class=otis>e
+		<td class=otis>bs
+		<td class=otis>ras
+		<td class=otis>cas
 	</tr>
 </table>
 
-<h3>Port C: graphics</h3>
+<h3>Port <span class=portlabel>C</span>: graphics</h3>
 
-<table>
+<table class=port>
 	<tr>
 		<th>1<th>2<th>3<th>4<th>5<th>6<th>7<th>8<th>9<th>10<th>11<th>12<th>13<th>14<th>15<th>16<th>17<th>18<th>19<th>20<th>21<th>22<th>23<th>24<th>25<th>26<th>27<th>28<th>29<th>30<th>31<th>32
 	</tr>
@@ -134,19 +165,19 @@
 	<tr>
 		<td colspan=4 class=gnd>gnd
 		<td colspan=20 class=fdp>graphics bus
-		<td colspan=4 class=audiocpu>audiocpu address
+		<td colspan=4 class=audiocpu>address
 		<td colspan=4 class=gnd>vcc
 	</tr>
 </table>
 
-<h3>Port D: audio cpu</h3>
+<h3>Port <span class=portlabel>D</span>: audio cpu</h3>
 
-<table>
+<table class=port>
 	<tr>
 		<th>1<th>2<th>3<th>4<th>5<th>6<th>7<th>8<th>9<th>10<th>11<th>12<th>13<th>14<th>15<th>16<th>17<th>18<th>19<th>20<th>21<th>22<th>23<th>24<th>25<th>26<th>27<th>28<th>29<th>30<th>31<th>32
 	</tr>
 	<tr>
-		<td colspan=19 class=audiocpu>audiocpu address
+		<td colspan=19 class=audiocpu>address
 		<td class=audiocpu>as
 		<td class=audiocpu>lds
 		<td class=audiocpu>uds
@@ -175,7 +206,7 @@
 		<td class=audiocpu>berr
 		<td colspan=2>??
 		<td class=audiocpu>avec
-		<td colspan=16 class=audiocpu>audiocpu data
+		<td colspan=16 class=audiocpu>data
 		<td colspan=4 class=gnd>gnd
 	</tr>
 </table>

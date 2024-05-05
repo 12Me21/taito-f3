@@ -65,7 +65,7 @@ A85   -- cpu.berr
 A86   -- cpu.rmc
 A87   -- cpu.avec
 A88   -- cpu.cdis
-A89 -- ??
+A89 -- fdp.180 and fdp.207 ??
 A90 -- fcm.127  
 A91 prg0.Q0 -- cpu.d0
 A92 prg0.Q1 -- cpu.d1?
@@ -189,8 +189,8 @@ ic31.16 and rom7.a6 (373 from ic30.14)
 
 C01 pal9.9 (shielded) -- ic20.7
 C02 pal9.8 (shielded) -- ic20.9
-C03 pal9.11 -- fdp.207
-C04 nc? -- fdp.118 // clock??
+C03 pal9.11 -- fdp.207 and fdp.180
+C04 nc? -- fdp.118 and fcm.119 // clock??
 C05 ic13.8 and ic30.9 (373 to rom2.a-1 and rom1 - only 1 and 2, not the sprite roms!) (244 from rom8.d0 and rom2.d0) -- fdp.125
 all the rest of these also go to sprite rom data pins i presume
 C06 ic13.7 (373 to rom2.a0 and rom1) -- fdp.126

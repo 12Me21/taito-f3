@@ -1,1 +1,7 @@
+19 cpu.a0
+
+115 cpu.ipl2
+116 cpu.ipl1
+117 cpu.ipl0
+
 125 cpu.avec
