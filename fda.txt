@@ -1,36 +1,36 @@
-1 ?
-2 pwr?
-3 to fdp?
+1 nc??
+2 GND
+3 to fdp.196
 4 to fdp.197
 5 to fdp.198
 6 to fdp.199
 7 to fdp.202
-8 data bus?
-9 data bus?
-10 data bus?
-11 ? 
-12 ?
-13 ?
-14 ?
-15 pwr
-16 ?
-17 data bus d23 (cpu.35)
-18 data bus?
-19 data bus?
-20 data bus?
-21 data bus?
-22 data bus?
-23 data bus?
-24 data bus?
-25 data bus?
-26 data bus??
-27 data bus??
-28 data bus??
-29 data bus??
+8 cpu.d16
+9 cpu.d17
+10 cpu.d18
+11 cpu.d19 
+12 cpu.d20
+13 cpu.d21
+14 cpu.d22
+15 VCC
+16 GND
+17 cpu.d23
+18 cpu.d24
+19 cpu.d25
+20 cpu.d26
+21 cpu.d27
+22 cpu.d28
+23 cpu.d29
+24 cpu.d30
+25 cpu.d31
+26 fcm.99?
+27 fcm.97?
+28 fcm.98?
+29 cpu.rw
 30 ?
 
-31 pwr
-32 pwr
+31 GND
+32 PWR
 33 ?
 34 ?
 35 ?
@@ -52,7 +52,7 @@
 
 51 ?
 52 ?
-53 colram?
+53 colram38.d7
 54 colram?
 55 colram?
 56 colram?
@@ -64,8 +64,8 @@
 62 colram?
 63 colram?
 64 colram?
-65 ?
-66 ?
+65 GND
+66 VCC
 67 colram?
 68 colram B
 69 colram B
@@ -85,10 +85,10 @@
 82 pwr
 83 ?
 84 ?
-85 colram OE
-86 colram C WE
-87 colram?
-88 colram A WE
+85 colram.oe (all)
+86 colram40.we
+87 colram39.we
+88 colram38.we
 89 ?
 90 pwr
 91 ?
