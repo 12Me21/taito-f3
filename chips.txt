@@ -948,6 +948,7 @@ https://pdf1.alldatasheet.com/datasheet-pdf/download/116089/ICSI/IS61C64AH.html
 12 I/O1
 13 I/O2
 14 GND
+
 15 I/O3
 16 I/O4
 17 I/O5

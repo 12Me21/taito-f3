@@ -1,5 +1,8 @@
 <!doctype html><meta charset=utf8>
 
+<title>Taito F3 Pinouts</title>
+<link rel=icon sizes=16x16 href=fav.gif>
+
 <style>
 	o-l {
 		text-decoration: overline;
@@ -9,6 +12,7 @@
 		table-layout: fixed;
 		font-size: 12px;
 		border: 1px solid;
+		background: #FFE;
 	}
 	.port td {
 		border: 1px solid;
@@ -32,12 +36,20 @@
 	.port .narrow td {
 		
 	}
-	
-	.power {
-		border-color: transparent;
-		background-color: silver;
-		color: gray;
+	.port .gap {
+		border: none;
 	}
+	
+	.vcc {
+		/*border-color: transparent;*/
+		background-color: white;
+		color: maroon;
+	}
+	.gnd {
+		background-color: white;
+		color: green;
+	}
+	
 	.cpu {
 		background-color: hsl(0, 100%, 87%);
 	}
@@ -56,11 +68,16 @@
 	.fcm {
 		background-color: hsl(40, 100%, 90%);
 	}
+	.nc {
+		background-color: silver;
+		color: gray;
+	}
 	
 	.portlabel {
 		font-size: 2em;
 		border: 3px double;
-		width: 32px;
+		min-width: 28px;
+		padding: 0 2px;
 		display: inline-block;
 		height: 32px;
 		line-height: 32px;
@@ -88,6 +105,8 @@
 	<tr><td class=fcm>TC0640FCM</tr>
 </table>
 
+<h2>Cartridge</h2>
+
 <h3>Port <span class=portlabel>A</span>: main CPU</h3>
 
 <table class=port>
@@ -95,14 +114,14 @@
 		<th>1<th>2<th>3<th>4<th>5<th>6<th>7<th>8<th>9<th>10<th>11<th>12<th>13<th>14<th>15<th>16<th>17<th>18<th>19<th>20<th>21<th>22<th>23<th>24<th>25<th>26<th>27<th>28<th>29<th>30<th>31<th>32
 	</tr>
 	<tr>
-		<td colspan=5 class=power>GND
+		<td colspan=5 class=gnd>GND
 		<td colspan=22 class=cpu>address
-		<td colspan=5 class=power>VCC
+		<td colspan=5 class=vcc>VCC
 	</tr>
 	<tr>
-		<td colspan=16 class=power>GND
-		<td class=power>nc?
-		<td colspan=15 class=power>VCC
+		<td colspan=16 class=gnd>GND
+		<td class=nc>nc?
+		<td colspan=15 class=vcc>VCC
 	</tr>
 	<tr>
 		<td colspan=2 class=cpu>address
@@ -146,12 +165,12 @@
 	<tr>
 		<td colspan=5 class=fio>??
 		<td colspan=22 class=cpu>data
-		<td colspan=5 class=power>GND
+		<td colspan=5 class=gnd>GND
 	</tr>
 	<tr>
-		<td colspan=15 class=power>VCC
-		<td class=power>nc
-		<td colspan=16 class=power>GND
+		<td colspan=15 class=vcc>VCC
+		<td class=nc>nc
+		<td colspan=16 class=gnd>GND
 	</tr>
 	<tr>
 		<td colspan=4 class=cpu>data
@@ -180,15 +199,15 @@
 		<td colspan=28 class=fdp>graphics bus
 	</tr>
 	<tr>
-		<td colspan=16 class=power>GND
-		<td class=power>nc?
-		<td colspan=15 class=power>VCC
+		<td colspan=16 class=gnd>GND
+		<td class=nc>nc?
+		<td colspan=15 class=vcc>VCC
 	</tr>
 	<tr>
-		<td colspan=4 class=power>GND
+		<td colspan=4 class=gnd>GND
 		<td colspan=20 class=fdp>graphics bus
 		<td colspan=4 class=audiocpu>address
-		<td colspan=4 class=power>VCC
+		<td colspan=4 class=vcc>VCC
 	</tr>
 	<tr class=numbers>
 		<th>65<th>66<th>67<th>68<th>69<th>70<th>71<th>72<th>73<th>74<th>75<th>76<th>77<th>78<th>79<th>80<th>81<th>82<th>83<th>84<th>85<th>86<th>87<th>88<th>89<th>90<th>91<th>92<th>93<th>94<th>95<th>96
@@ -218,12 +237,12 @@
 		<td class=audiocpu><o-l>halt</o-l>
 	</tr>
 	<tr>
-		<td colspan=15 class=power>VCC
-		<td class=power>nc
-		<td colspan=16 class=power>GND
+		<td colspan=15 class=vcc>VCC
+		<td class=nc>nc
+		<td colspan=16 class=gnd>GND
 	</tr>
 	<tr>
-		<td colspan=4 class=power>VCC
+		<td colspan=4 class=vcc>VCC
 		<td class=audiocpu>clk
 		<td class=audiocpu><o-l>bgack</o-l>
 		<td class=audiocpu><o-l>bg</o-l>
@@ -232,9 +251,135 @@
 		<td colspan=2>??
 		<td class=audiocpu><o-l>avec</o-l>
 		<td colspan=16 class=audiocpu>data
-		<td colspan=4 class=power>GND
+		<td colspan=4 class=gnd>GND
 	</tr>
 	<tr class=numbers>
 		<th>65<th>66<th>67<th>68<th>69<th>70<th>71<th>72<th>73<th>74<th>75<th>76<th>77<th>78<th>79<th>80<th>81<th>82<th>83<th>84<th>85<th>86<th>87<th>88<th>89<th>90<th>91<th>92<th>93<th>94<th>95<th>96
+	</tr>
+</table>
+
+<h2>Other</h2>
+
+<h3>Port <span class=portlabel>F</span>: Fan Power</h3>
+
+<table class=port>
+	<tr>
+		<td class=vcc>VCC
+		<td class=nc>nc
+		<td class=gnd>GND
+	</tr>
+	<tr class=numbers>
+		<th>1<th>2<th>3
+	</tr>
+</table>
+
+<h3>Port <span class=portlabel>G</span>: JAMMA</h3>
+
+(normal jamma edge connector)
+notes:
+&minus;5v is completely unused
++12v is only used for video/audio amplifiers
+buttons 4 and 5 are connected (pins 25,26,c,d)
+
+<h3>Port <span class=portlabel>M2</span>: Monitor 2 (alternate video output)</h3>
+
+<table class=port>
+	<tr class=numbers>
+		<th>1<th>2<th>3<th>4<th>5
+	</tr>
+	<tr>
+		<td>red
+		<td>green
+		<td>blue
+		<td>sync
+		<td class=gnd>GND
+	</tr>
+</table>
+
+<h3>Port <span class=portlabel>S</span>: Stereo Audio Output</h3>
+
+<table class=port>
+	<tr class=numbers>
+		<th>1<th>2<th>3<th>4
+	</tr>
+	<tr>
+		<td>
+		<td>
+		<td>
+		<td>
+	</tr>
+</table>
+
+<h3>Port <span class=portlabel>SI</span>: Serial Interface (MC68681 DUART)</h3>
+todo check this
+<table class=port>
+	<tr class=numbers>
+		<th>1<th>2<th>3<th>4<th>6
+	</tr>
+	<tr>
+		<td class=vcc>VCC
+		<td>TxDA
+		<td>RxDA
+		<td>TxDB
+		<td>RxDB
+		<td class=gnd>GND
+	</tr>
+</table>
+
+<h3>Port <span class=portlabel>Z</span>: ???</h3>
+
+<table class=port>
+	<tr class=numbers>
+		<th>1<th>2<th>3<th>4
+	</tr>
+	<tr>
+		<td class=vcc>VCC
+		<td class=gnd>GND
+		<td>FIO ?
+		<td>FIO ?
+	</tr>
+</table>
+
+
+<h3>Port <span class=portlabel>AA</span>: Kick Harness</h3>
+
+<table class=port>
+	<tr class=numbers>
+		<th>1<th>2<th>3<th>4<th>5<th>6<th>7<th>8<th>9<th>10
+	</tr>
+	<tr>
+		<td colspan=2 class=gnd>GND
+		<td>1p kick 1
+		<td>1p kick 2
+		<td>1p kick 3
+		<td class=nc>nc?
+		<td>2p kick 1
+		<td>2p kick 2
+		<td>2p kick 3
+		<td class=nc>nc?
+	</tr>
+</table>
+&#079;
+<h3>Port <span class=portlabel>3P</span>/<span class=portlabel>4P</span>: Player 3/4 Connectors</h3>
+
+<table class=port>
+	<tr class=numbers>
+		<th>1<th>2<th>3<th>4<th>5<th>6<th>7<th>8<th>9<th>10<th>11<th>12<th>13<th>14<th>15
+	</tr>
+	<tr>
+		<td>3p<br>coin
+		<td>3p<br>start
+		<td>3p<br>left
+		<td>3p<br>right
+		<td>3p<br>up
+		<td>3p<br>down
+		<td>3p<br>btn1
+		<td>3p<br>btn2
+		<td>3p<br>btn3
+		<td class=nc>nc
+		<td>3p<br>service
+		<td>3p coin counter
+		<td>3p coin lockout
+		<td colspan=2 class=gnd>GND
 	</tr>
 </table>

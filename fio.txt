@@ -8,58 +8,58 @@ Z4 fio.59
 3 -
 4 -
 5 pwr
-6 button?
-7 button?
-8 button?
-9 button?
-10 pwr
-11 -
-12 -
-13 -
-14 -
+6 button? 11-9  j9
+7 button? 6-7  j-9
+8 button? 3-2  j8
+9 button? 14-16  j-8
+10 GND
+11 tilt
+12 service
+13 3P.11
+14 4P.11
 15 pwr
-16 -
-17 -
-18 -
-19 -
-20 1p button?
-21 1p button?
-22 1p button?
-23 1p button?
-24 2p button
-25 2p button
-26 2p button
-27 2p button
+16 1p start
+17 2p start
+18 3P.2
+19 4P.2
+20 1p up
+21 1p down
+22 1p left
+23 1p right
+24 2p up
+25 2p down
+26 2p left
+27 2p right
 28 -
-29 button? *maybe Z connector?
+29 1p button1
 30 -
 
 31 -
-32 button?
-33 button?
+32 1p button2
+33 1p button3
 34 in
 35 -
-36 button?
-37 button?
-38 button?
+36 2p button1
+37 2p button2
+38 2p button3
 39 -
 40 pwr
-41 3p button
-42 3p button
-43 3p button
+41 3P.7
+42 3P.8
+43 3P.9
 44 -
-45 4p button
-46 4p button
-47 4p button
+45 4P.7
+46 4P.8
+47 4P.9
 48 -
-49 3p button
-50 3p button
-51 3p button
-52 3p button
-53 4p button
-54 4p button
-55 4p button
-56 4p button
+49 3P.5
+50 3P.6
+51 3P.3
+52 3P.4
+53 4P.5
+54 4P.6
+55 4P.3
+56 4P.4
 57 -
 58 Z connector?
 59 Z connector?
@@ -78,11 +78,11 @@ Z4 fio.59
 71 TD62064A.?
 72 TD62064A.?
 73 pwr
-74 -
+74 4P.1
 75 pwr
-76 -
-77 -
-78 -
+76 3P.1
+77 coin 2
+78 coin 1
 79 -
 80 -
 81 test switch
@@ -91,13 +91,13 @@ Z4 fio.59
 84 -
 85 -
 86 -
-87 -
+87 test (jamma.15)
 88 -
-89 button?
+89 2p button4
 90 pwr
 
 91 pwr
-92 -
+92 1p button4
 93 pwr
 94 cpu.6 (reset)
 95 cpu.22 (halt)
