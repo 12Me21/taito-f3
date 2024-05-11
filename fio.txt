@@ -1,3 +1,8 @@
+Z1 vcc
+Z2 gnd
+Z3 fio.58
+Z4 fio.59
+
 1 pwr
 2 pwr
 3 -
@@ -161,5 +166,5 @@ io port map from mame:
 0011xx p3 and p4 joystick (or p1 buttons 4-6)
 0011xx unknown
 0011xx coin_r 1?
-0011xx coin_r 1? / p1 and p2 coin counter and lockout
+0011xx coin_r 1? / p3 and p3 coin counter and lockout
 
