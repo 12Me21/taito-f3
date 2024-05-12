@@ -11,7 +11,7 @@ OCTAL BUFFER/LINE DRIVER WITH 3-STATE OUTPUTS
 6 I_a2
 7 Y_b2
 8 I_a3
-9 Y_b32
+9 Y_b3
 10 GND
 11 I_b3
 12 Y_a3
@@ -948,7 +948,6 @@ https://pdf1.alldatasheet.com/datasheet-pdf/download/116089/ICSI/IS61C64AH.html
 12 I/O1
 13 I/O2
 14 GND
-
 15 I/O3
 16 I/O4
 17 I/O5

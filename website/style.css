@@ -22,6 +22,7 @@ table.port {
 	max-width: 40px;
 	min-width: 40px;
 	word-wrap: break-word;
+	line-height: 1;
 }
 .port .numbers th {
 	height: 1em;
@@ -65,4 +66,5 @@ table.port {
 
 body {
 	image-rendering: crisp-edges;
+	background: url("./tile1.png");
 }
