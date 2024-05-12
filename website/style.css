@@ -1,0 +1,68 @@
+o-l {
+	text-decoration: overline;
+}
+
+table.port {
+	table-layout: fixed;
+	font-size: 12px;
+	border: 1px solid;
+	background: #FFE;
+}
+.port td {
+	border: 1px solid;
+	border-collapse: collapse;
+}
+.port tr>* {
+	height:40px;
+	text-align:center;
+}
+.port th, .port td {
+	box-sizing:border-box;
+	width: 40px;
+	max-width: 40px;
+	min-width: 40px;
+	word-wrap: break-word;
+}
+.port .numbers th {
+	height: 1em;
+	font-family: courier;
+}
+.port .narrow td {
+	
+}
+.port .gap {
+	border: none;
+}
+
+.vcc {
+	/*border-color: transparent;*/
+	background-color: white;
+	color: maroon;
+}
+.gnd {
+	background-color: white;
+	color: green;
+}
+.nc {
+	background-color: silver;
+	color: gray;
+}
+
+.portlabel {
+	font-size: 2em;
+	border: 6px double;
+	min-width: 28px;
+	padding: 0 2px;
+	display: inline-block;
+	height: 32px;
+	line-height: 32px;
+	text-align: center;
+	font-family: courier;
+	font-weight: normal;
+	background: black;
+	color: white;
+}
+
+body {
+	image-rendering: crisp-edges;
+}
