@@ -1,92 +1,97 @@
+the "i#.#" markings are  trying to map this to io port addresses/bits   idk..
+
 Z1 vcc
 Z2 gnd
 Z3 fio.58
 Z4 fio.59
 
-1 pwr
-2 pwr
-3 -
-4 -
-5 pwr
-6 button? 11-9  j9
-7 button? 6-7  j-9
-8 button? 3-2  j8
-9 button? 14-16  j-8
+1 VCC
+2 GND
+3 VCC ?
+4 VCC (JP1)
+5 GND
+6 lockout 1
+7 lockout 2
+8 coin counter 1
+9 coin counter 2
 10 GND
-11 tilt
-12 service
-13 3P.11
-14 4P.11
-15 pwr
-16 1p start
-17 2p start
-18 3P.2
-19 4P.2
-20 1p up
-21 1p down
-22 1p left
-23 1p right
-24 2p up
-25 2p down
-26 2p left
-27 2p right
-28 -
-29 1p button1
-30 -
+11 tilt i0.8
+12 service jamma i0.9
+13 service 3p i0.10
+14 service 4p i0.11
+15 GND
+16 1p start i0.12
+17 2p start i0.13
+18 3p start i0.14
+19 4p start i0.15
+20 1p up i1.0
+21 1p down i1.1
+22 1p left i1.2
+23 1p right i1.3
+24 2p up i1.4
+25 2p down i1.5
+26 2p left i1.6
+27 2p right i1.7
+28 GND
+29 1p button1 i0.0
+30 VCC
 
-31 -
-32 1p button2
-33 1p button3
-34 in
-35 -
-36 2p button1
-37 2p button2
-38 2p button3
-39 -
-40 pwr
-41 3P.7
-42 3P.8
-43 3P.9
-44 -
-45 4P.7
-46 4P.8
-47 4P.9
-48 -
-49 3P.5
-50 3P.6
-51 3P.3
-52 3P.4
-53 4P.5
-54 4P.6
-55 4P.3
-56 4P.4
-57 -
-58 Z connector?
-59 Z connector?
-60 -
+31 GND
+32 1p button2 i0.1
+33 1p button3 i0.2
+34 in  i0.3?
+35 GND
+36 2p button1 i0.4
+37 2p button2 i0.5
+38 2p button3 i0.6
+39 -  i0.7?
+40 GND
+41 3p button1 i4.8
+42 3p button2 i4.9
+43 3p button3 i4.10
+44 - i4.11?
+45 4p button1 i4.12
+46 4p button2 i4.13
+47 4p button3 i4.14
+48 - i4.15?
+49 3p up i5.0
+50 3p down i5.1
+51 3p left i5.2
+52 3p right i5.3
+53 4p up i5.4
+54 4p down i5.5
+55 4p left i5.6
+56 4p right i5.7
+57 GND
+58 Z.3 i4.0?
+59 Z.4 i4.1?
+60 GND
 
-61 pwr
-62 eeprom.3 (DI)
-63 eeprom.2 (CLK)
-64 eeprom.1 (CS)
-65 out
-66 out
-67 out
-68 pwr
-69 TD62064A.I1
-70 -
-71 TD62064A.?
-72 TD62064A.?
-73 pwr
-74 4P.1
-75 pwr
-76 3P.1
-77 coin 2
-78 coin 1
-79 -
-80 -
-81 test switch
-82 eeprom.4 (DO)
+eeprom write is i4.0-7 ?
+eeprom read is i0.16-31 ?
+
+61 VCC
+62 eeprom.3 (DI) i4.2
+63 eeprom.2 (CLK) i4.3
+64 eeprom.1 (CS) i4.4
+65 out i4.5?
+66 out i4.6?
+67 out i4.7?
+68 GND
+69 lockout 3
+70 lockout 4
+71 coin counter 3
+72 coin counter 4
+73 GND
+74 coin 4 i0.23
+75 GND
+76 coin 3 i0.22
+77 coin 2 i0.21
+78 coin 1 i0.20
+79 -  i0.19?
+80 -  i0.18?
+81 test switch i0.17?
+82 eeprom.4 (DO) i0.16
 83 -
 84 -
 85 -
@@ -94,7 +99,7 @@ Z4 fio.59
 87 test (jamma.15)
 88 -
 89 2p button4
-90 pwr
+90 VCC
 
 91 pwr
 92 1p button4
