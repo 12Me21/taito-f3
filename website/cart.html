@@ -19,23 +19,15 @@
 		border-collapse: collapse;
 	}
 	.port tr>* {
-		height:60px;
-		text-align:center;
-	}
-	.small-port tr>* {
 		height:40px;
+		text-align:center;
 	}
 	.port th, .port td {
 		box-sizing:border-box;
-		width: 60px;
-		max-width: 60px;
-		min-width: 60px;
-		word-wrap: break-word;
-	}
-	.small-port th, .small-port td {
 		width: 40px;
 		max-width: 40px;
 		min-width: 40px;
+		word-wrap: break-word;
 	}
 	.port .numbers th {
 		height: 1em;
@@ -117,7 +109,7 @@
 
 <h3>Port <span class=portlabel>A</span>: main CPU</h3>
 
-<table class="port small-port">
+<table class=port>
 	<tr class=numbers>
 		<th>1<th>2<th>3<th>4<th>5<th>6<th>7<th>8<th>9<th>10<th>11<th>12<th>13<th>14<th>15<th>16<th>17<th>18<th>19<th>20<th>21<th>22<th>23<th>24<th>25<th>26<th>27<th>28<th>29<th>30<th>31<th>32
 	</tr>
@@ -166,7 +158,7 @@
 
 <h3>Port <span class=portlabel>B</span>: CPU cont., audio samples</h3>
 
-<table class="port small-port">
+<table class=port>
 	<tr class=numbers>
 		<th>1<th>2<th>3<th>4<th>5<th>6<th>7<th>8<th>9<th>10<th>11<th>12<th>13<th>14<th>15<th>16<th>17<th>18<th>19<th>20<th>21<th>22<th>23<th>24<th>25<th>26<th>27<th>28<th>29<th>30<th>31<th>32
 	</tr>
@@ -196,7 +188,7 @@
 
 <h3>Port <span class=portlabel>C</span>: graphics</h3>
 
-<table class="port small-port">
+<table class=port>
 	<tr class=numbers>
 		<th>1<th>2<th>3<th>4<th>5<th>6<th>7<th>8<th>9<th>10<th>11<th>12<th>13<th>14<th>15<th>16<th>17<th>18<th>19<th>20<th>21<th>22<th>23<th>24<th>25<th>26<th>27<th>28<th>29<th>30<th>31<th>32
 	</tr>
@@ -224,7 +216,7 @@
 
 <h3>Port <span class=portlabel>D</span>: audio cpu</h3>
 
-<table class="port small-port">
+<table class=port>
 	<tr class=numbers>
 		<th>1<th>2<th>3<th>4<th>5<th>6<th>7<th>8<th>9<th>10<th>11<th>12<th>13<th>14<th>15<th>16<th>17<th>18<th>19<th>20<th>21<th>22<th>23<th>24<th>25<th>26<th>27<th>28<th>29<th>30<th>31<th>32
 	</tr>
@@ -306,15 +298,17 @@ buttons 4 and 5 are connected (pins 25,26,c,d)
 
 <h3>Port <span class=portlabel>S</span>: Stereo Audio Output</h3>
 
+yes this is the correct order. pins 1 and 2 go to the jamma connector for mono audio
+
 <table class=port>
 	<tr class=numbers>
 		<th>1<th>2<th>3<th>4
 	</tr>
 	<tr>
-		<td>left<br>speaker +
-		<td>right<br>speaker &minus;
-		<td>left<br>speaker &minus;
-		<td>right<br>speaker +
+		<td>left<br>spk +
+		<td>right<br>spk &minus;
+		<td>left<br>spk &minus;
+		<td>right<br>spk +
 	</tr>
 </table>
 
@@ -367,7 +361,7 @@ todo check this
 		<td class=nc>nc?
 	</tr>
 </table>
-&#079;
+
 <h3>Port <span class=portlabel>3P</span>/<span class=portlabel>4P</span>: Player 3/4 Connectors</h3>
 
 <table class=port>
