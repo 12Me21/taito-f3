@@ -19,15 +19,23 @@
 		border-collapse: collapse;
 	}
 	.port tr>* {
-		height:40px;
+		height:60px;
 		text-align:center;
+	}
+	.small-port tr>* {
+		height:40px;
 	}
 	.port th, .port td {
 		box-sizing:border-box;
+		width: 60px;
+		max-width: 60px;
+		min-width: 60px;
+		word-wrap: break-word;
+	}
+	.small-port th, .small-port td {
 		width: 40px;
 		max-width: 40px;
 		min-width: 40px;
-		word-wrap: break-word;
 	}
 	.port .numbers th {
 		height: 1em;
@@ -109,7 +117,7 @@
 
 <h3>Port <span class=portlabel>A</span>: main CPU</h3>
 
-<table class=port>
+<table class="port small-port">
 	<tr class=numbers>
 		<th>1<th>2<th>3<th>4<th>5<th>6<th>7<th>8<th>9<th>10<th>11<th>12<th>13<th>14<th>15<th>16<th>17<th>18<th>19<th>20<th>21<th>22<th>23<th>24<th>25<th>26<th>27<th>28<th>29<th>30<th>31<th>32
 	</tr>
@@ -158,7 +166,7 @@
 
 <h3>Port <span class=portlabel>B</span>: CPU cont., audio samples</h3>
 
-<table class=port>
+<table class="port small-port">
 	<tr class=numbers>
 		<th>1<th>2<th>3<th>4<th>5<th>6<th>7<th>8<th>9<th>10<th>11<th>12<th>13<th>14<th>15<th>16<th>17<th>18<th>19<th>20<th>21<th>22<th>23<th>24<th>25<th>26<th>27<th>28<th>29<th>30<th>31<th>32
 	</tr>
@@ -188,7 +196,7 @@
 
 <h3>Port <span class=portlabel>C</span>: graphics</h3>
 
-<table class=port>
+<table class="port small-port">
 	<tr class=numbers>
 		<th>1<th>2<th>3<th>4<th>5<th>6<th>7<th>8<th>9<th>10<th>11<th>12<th>13<th>14<th>15<th>16<th>17<th>18<th>19<th>20<th>21<th>22<th>23<th>24<th>25<th>26<th>27<th>28<th>29<th>30<th>31<th>32
 	</tr>
@@ -216,7 +224,7 @@
 
 <h3>Port <span class=portlabel>D</span>: audio cpu</h3>
 
-<table class=port>
+<table class="port small-port">
 	<tr class=numbers>
 		<th>1<th>2<th>3<th>4<th>5<th>6<th>7<th>8<th>9<th>10<th>11<th>12<th>13<th>14<th>15<th>16<th>17<th>18<th>19<th>20<th>21<th>22<th>23<th>24<th>25<th>26<th>27<th>28<th>29<th>30<th>31<th>32
 	</tr>
@@ -303,10 +311,10 @@ buttons 4 and 5 are connected (pins 25,26,c,d)
 		<th>1<th>2<th>3<th>4
 	</tr>
 	<tr>
-		<td>
-		<td>
-		<td>
-		<td>
+		<td>left<br>speaker +
+		<td>right<br>speaker &minus;
+		<td>left<br>speaker &minus;
+		<td>right<br>speaker +
 	</tr>
 </table>
 
@@ -335,8 +343,8 @@ todo check this
 	<tr>
 		<td class=vcc>VCC
 		<td class=gnd>GND
-		<td>FIO ?
-		<td>FIO ?
+		<td>FIO<br>pin 58
+		<td>FIO<br>pin 59
 	</tr>
 </table>
 
@@ -349,13 +357,13 @@ todo check this
 	</tr>
 	<tr>
 		<td colspan=2 class=gnd>GND
-		<td>1p kick 1
-		<td>1p kick 2
-		<td>1p kick 3
+		<td>1p<br>kick 1
+		<td>1p<br>kick 2
+		<td>1p<br>kick 3
 		<td class=nc>nc?
-		<td>2p kick 1
-		<td>2p kick 2
-		<td>2p kick 3
+		<td>2p<br>kick 1
+		<td>2p<br>kick 2
+		<td>2p<br>kick 3
 		<td class=nc>nc?
 	</tr>
 </table>
@@ -367,7 +375,7 @@ todo check this
 		<th>1<th>2<th>3<th>4<th>5<th>6<th>7<th>8<th>9<th>10<th>11<th>12<th>13<th>14<th>15
 	</tr>
 	<tr>
-		<td>3p<br>coin
+		<td>coin 3
 		<td>3p<br>start
 		<td>3p<br>left
 		<td>3p<br>right
@@ -377,101 +385,11 @@ todo check this
 		<td>3p<br>btn2
 		<td>3p<br>btn3
 		<td class=nc>nc
-		<td>3p<br>service
-		<td>3p coin counter
-		<td>3p coin lockout
+		<td>service 3
+		<td>coin counter 3
+		<td>coin lockout 3
 		<td colspan=2 class=gnd>GND
 	</tr>
 </table>
 
-kick mapping:
-1p kick 1 = 3p up
-k2 = down
-k3 = left
-2p k1 = 3p btn1
-2p k2 = 3p btn2
-2p k3 = 3p btn3
-
 <hr>
-
-<h2>FIO</h2>
-
-<table class=port>
-	<tr>
-		<th>1<th>2<th>3<th>4<th>5<th>6<th>7<th>8<th>9<th>10<th>11<th>12<th>13<th>14<th>15<th>16<th>17<th>18<th>19<th>20<th>21<th>22<th>23<th>24<th>25<th>26<th>27<th>28<th>29<th>30<th>31<th>32
-	</tr>
-	<tr>
-		<td class=vcc>
-		<td class=gnd>
-		<td class=vcc>
-		<td class=vcc>
-		<td class=gnd>
-		<td>lockout 1
-		<td>lockout 2
-		<td>coin counter 1
-		<td>coin counter 2
-		<td class=gnd>
-		<td colspan=4>port 1
-		<td class=gnd>
-		<td colspan=4>port 1
-		<td colspan=8>port 4
-		<td class=gnd>
-		<td>port 0
-		<td class=vcc>
-	</tr>
-	<tr>
-		<td class=gnd>
-		<td colspan=3>port 0
-		<td class=gnd>
-		<td colspan=4>port 0
-		<td class=gnd>
-		<td colspan=8>port 17
-		<td colspan=8>port 20
-		<td class=gnd>
-		<td colspan=2>port 16
-		<td class=gnd>
-	</tr>
-	<tr>
-		<td class=vcc>
-		<td colspan=6>port 16
-		<td class=gnd>
-		<td>lockout 3
-		<td>lockout 4
-		<td>coin counter 3
-		<td>coin counter 4
-		<td class=gnd>
-		<td>port 2
-		<td class=gnd>
-		<td colspan=7>port 2
-		<td>?
-		<td>?
-		<td>?
-		<td>?
-		<td>test
-		<td>?
-		<td>2p button4
-		<td class=vcc>
-	</tr>
-	<tr>
-		<td class=power>
-		<td>2p button4
-		<td class=power>
-		<td>cpu reset
-		<td> cpu halt
-		<td> ?
-		<td colspan=4> cpu data
-		<td>?
-		<td colspan=4> cpu data
-		<td>gnd
-		<td>duart ip2
-		<td>gnd
-		<td colspan=5>cpu address
-		<td>?
-		<td>?
-		<td>?
-		<td>?
-		<td>?
-		<td class=power>
-		<td class=power>
-	</tr>
-</table>
