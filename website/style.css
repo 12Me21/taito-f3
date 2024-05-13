@@ -67,4 +67,8 @@ table.port {
 body {
 	image-rendering: crisp-edges;
 	background: url("./tile1.png");
+	font-family: georgia;
+}
+table {
+	font-family: serif;
 }

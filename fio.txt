@@ -71,31 +71,31 @@ eeprom write is i4.0-7 ?
 eeprom read is i0.16-31 ?
 
 61 VCC
-62 eeprom.3 (DI) i4.2
-63 eeprom.2 (CLK) i4.3
-64 eeprom.1 (CS) i4.4
-65 out i4.5?
-66 out i4.6?
-67 out i4.7?
+62 eeprom.3 (DI) i4.2 pulldown
+63 eeprom.2 (CLK) i4.3 pulldown
+64 eeprom.1 (CS) i4.4 pulldown
+65 out i4.5? pullup
+66 out i4.6? pullup
+67 out i4.7? pullup
 68 GND
 69 lockout 3
 70 lockout 4
 71 coin counter 3
 72 coin counter 4
 73 GND
-74 coin 4 i0.23
+74 coin 4
 75 GND
-76 coin 3 i0.22
-77 coin 2 i0.21
-78 coin 1 i0.20
-79 -  i0.19?
-80 -  i0.18?
-81 test switch i0.17?
-82 eeprom.4 (DO) i0.16
-83 -
-84 -
-85 -
-86 -
+76 coin 3
+77 coin 2
+78 coin 1
+79 -
+80 cart.B05
+81 test switch
+82 eeprom.4 (DO)
+83 cart.B04
+84 cart.B03
+85 cart.B02
+86 cart.B01
 87 test (jamma.15)
 88 -
 89 2p button4
@@ -125,16 +125,19 @@ eeprom read is i0.16-31 ?
 112 cpu.98 (address 1)
 113 cpu.99 (address 0)
 114 GND
-115 - pal1.14 ??
-116 - cpuram.rw ?? pal2.21
+115 - pal1.14 ?? (output to pal?)  mb3771.reset
+116 - cpuram.rw ?? pal2.21 
 117 - cpuram.oe ?? pal2.20
-118 FCM.106? pal2.12
+118 FCM.106
 119 GND
 120 GND
 
 
 
+pal2
 
+/o21 = /i7 & /i8 & /i9 & i10 & /i11
+/o20 = /i7 & i9
 
 
 

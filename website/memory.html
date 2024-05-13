@@ -1,0 +1,112 @@
+<!doctype html><meta charset=utf8>
+
+<title>Taito F3 Cartridge Pinouts</title>
+<link rel=icon sizes=16x16 href=fav.gif>
+<link rel=stylesheet href=style.css>
+
+<a href=home.html>Back</a>
+
+<style>
+	tr > *, table {
+		border: 1px solid;
+		border-collapse: collapse;
+	}
+	table {
+		table-layout: fixed;
+	}
+	th {
+		font-family: courier;
+	}
+	tr > * {
+		width: 64px;
+		min-width: 64px;
+		max-width: 64px;
+	}
+	.s5 {
+		background: #d9ead3;
+	}
+	.s8 {
+		background: #fff2cc;
+	}
+	.space {
+		border: none;
+	}
+	.memory-map tr:not(:first-child) {
+		height: 50px;
+	}
+	table {
+		table-layout: fixed;
+		line-height: 1;
+		background: white;
+		text-align: center;
+	}
+</style>
+
+<table class=memory-map>
+	<tr>
+		<th><th>x00000<th>x10000<th>x20000<th>x30000<th>x40000<th>x50000<th>x60000<th>x70000<th>x80000<th>x90000<th>xA0000<th>xB0000<th>xC0000<th>xD0000<th>xE0000<th>xF0000
+	</tr>
+	<tr>
+		<th>0xxxxx
+		<td colspan=16 rowspan=2>Program ROM
+	</tr>
+	<tr>
+		<th>1xxxxx
+	</tr>
+	<tr>
+		<th>2xxxxx
+	</tr>
+	<tr>
+		<th>3xxxxx
+		<td>kirameki bank switch
+	</tr>
+	<tr>
+		<th>4xxxxx
+		<td colspan=2>Work RAM
+		<td colspan=2 class=mirror>Work RAM mirror
+		<td>Palette RAM
+		<td colspan=5 class=space>
+		<td><a href=fio-memory.html>FIO registers</a>
+		<td class=space>
+		<td>timer interrupt register
+	</tr>
+	<tr>
+		<th>5xxxxx
+	</tr>
+	<tr>
+		<th>6xxxxx
+		<td colspan=4>Graphics RAM
+		<td colspan=2 class=space>
+		<td>tilemap control registers
+	</tr>
+	<tr>
+		<th>7xxxxx
+	</tr>
+	<tr>
+		<th>8xxxxx
+	</tr>
+	<tr>
+		<th>9xxxxx
+	</tr>
+	<tr>
+		<th>Axxxxx
+	</tr>
+	<tr>
+		<th>Bxxxxx
+	</tr>
+	<tr>
+		<th>Cxxxxx
+		<td>Shared RAM
+		<td colspan=7 class=space>
+		<td>sound reset register
+	</tr>
+	<tr>
+		<th>Dxxxxx
+	</tr>
+	<tr>
+		<th>Exxxxx
+	</tr>
+	<tr>
+		<th>Fxxxxx
+	</tr>
+</table>

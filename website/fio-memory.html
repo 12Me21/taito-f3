@@ -1,6 +1,6 @@
 <!doctype html><meta charset=utf8>
 
-<title>Taito FIO Memory</title>
+<title>FIO Memory</title>
 <link rel=icon sizes=16x16 href=fav.gif>
 <link rel=stylesheet href=style.css>
 
@@ -19,15 +19,14 @@
 	}
 	th {
 		font-family: courier;
-		background: silver;
+		background: #FFE;
 	}
-	tr > * {
+	.memory-map tr > * {
 		width: 64px;
 		min-width: 64px;
 		max-width: 64px;
 	}
-	td {
-		vertical-align: bottom;
+	.memory-map td {
 	}
 	.s5 {
 		background: #d9ead3;
@@ -35,48 +34,56 @@
 	.s8 {
 		background: #fff2cc;
 	}
-	tr:not(:first-child) {
+	.memory-map tr:not(:first-child) {
 		height: 50px;
 	}
 	.in {
 		background-color: hsl(120, 100%, 90%);
+		vertical-align: bottom;
 	}
 	.out {
 		background-color: hsl(0, 100%, 87%);
+		vertical-align: bottom;
 	}
 	.dial {
-		background-color: hsl(200, 80%, 80%);	
+		background-color: hsl(200, 80%, 80%);
 	}
 	pin-label {
 		display: block;
 		border: 1px solid gold;
 		background: gold;
+		font-family: monospace;
 	}
 </style>
 
-<h1>TC0640 FIO &ldquo;F3 Input/Output&rdquo;</h1>
-<img src=fio.gif>
+<h1><img src=fio.gif style=float:left;margin-right:10px> TC0640 FIO<br>&ldquo;F3 Input/Output&rdquo;</h1>
 
 <table>
+	<tr class=in><td>input bit<pin-label>FIO pin</pin-label></tr>
+	<tr class=out><td>output bit<pin-label>FIO pin</pin-label></tr>
+	<tr class=dial><td>dial register<br>(16 bit little endian)</tr>
+</table>
+<p>
+<table class=memory-map>
 	<tr>
-		<th>byte<th>bit 0<th>bit 1<th>bit 2<th>bit 3<th>bit 4<th>bit 5<th>bit 6<th>bit 7
+		<th>address<th>bit 0<th>bit 1<th>bit 2<th>bit 3<th>bit 4<th>bit 5<th>bit 6<th>bit 7
 	</tr>
 	<tr>
-		<th>0
+		<th>0x00
 		<td class=in>1p button4<pin-label>pin 92</pin-label>
 		<td class=in>2p button4<pin-label>pin 89</pin-label>
 		<td class=in>nc?<pin-label>pin 88?</pin-label>
 		<td class=in>test (jamma)<pin-label>pin 87</pin-label>
-		<td class=in>nc?<pin-label>pin 86?</pin-label>
-		<td class=in>nc?<pin-label>pin 85?</pin-label>
-		<td class=in>nc?<pin-label>pin 84?</pin-label>
-		<td class=in>nc?<pin-label>pin 83?</pin-label>
+		<td class=in>cartridge pin B1?<pin-label>pin 86?</pin-label>
+		<td class=in>cartridge pin B2?<pin-label>pin 85?</pin-label>
+		<td class=in>cartridge pin B3?<pin-label>pin 84?</pin-label>
+		<td class=in>cartridge pin B4?<pin-label>pin 83?</pin-label>
 	</tr>
 	<tr>
-		<th>1
-		<td class=in>EEPROM DO<pin-label>pin 82</pin-label>
+		<th>0x01
+		<td class=in>eeprom DO<pin-label>pin 82</pin-label>
 		<td class=in>test (board)<pin-label>pin 81</pin-label>
-		<td class=in>nc?<pin-label>pin 80?</pin-label>
+		<td class=in>cartridge pin B5?<pin-label>pin 80?</pin-label>
 		<td class=in>nc?<pin-label>pin 79?</pin-label>
 		<td class=in>1p coin<pin-label>pin 78</pin-label>
 		<td class=in>2p coin<pin-label>pin 77</pin-label>
@@ -84,7 +91,7 @@
 		<td class=in>4p coin<pin-label>pin 74</pin-label>
 	</tr>
 	<tr>
-		<th>2
+		<th>0x02
 		<td class=in>tilt<pin-label>pin 11</pin-label>
 		<td class=in>service (jamma)<pin-label>pin 12</pin-label>
 		<td class=in>service (3p)<pin-label>pin 13</pin-label>
@@ -95,7 +102,7 @@
 		<td class=in>4p start<pin-label>pin 19</pin-label>
 	</tr>
 	<tr>
-		<th>3
+		<th>0x03
 		<td class=in>1p button1<pin-label>pin 29</pin-label>
 		<td class=in>1p button2<pin-label>pin 32</pin-label>
 		<td class=in>1p button3<pin-label>pin 33</pin-label>
@@ -106,7 +113,7 @@
 		<td class=in>nc<pin-label>pin 39?</pin-label>
 	</tr>
 	<tr>
-		<th>4
+		<th>0x04
 		<td class=out>1p coin lockout<pin-label>pin 6</pin-label>
 		<td class=out>2p coin lockout<pin-label>pin 7</pin-label>
 		<td class=out>1p coin counter<pin-label>pin 8</pin-label>
@@ -114,15 +121,15 @@
 		<td colspan=4>?
 	</tr>
 	<tr>
-		<th>5
+		<th>0x05
 		<td colspan=8>?
 	</tr>
 	<tr>
-		<th>6
+		<th>0x06
 		<td colspan=8>?
 	</tr>
 	<tr>
-		<th>7
+		<th>0x07
 		<td class=in>1p stick up<pin-label>pin 20</pin-label>
 		<td class=in>1p stick down<pin-label>pin 21</pin-label>
 		<td class=in>1p stick left<pin-label>pin 22</pin-label>
@@ -133,43 +140,43 @@
 		<td class=in>2p stick right<pin-label>pin 27</pin-label>
 	</tr>
 	<tr>
-		<th>8
+		<th>0x08
 		<td colspan=8 rowspan=2 class=dial>1p up/down dial counter
 	</tr>
 	<tr>
-		<th>9
+		<th>0x09
 	</tr>
 	<tr>
-		<th>10
+		<th>0x0A
 		<td colspan=8 rowspan=2 class=dial>1p left/right dial counter
 	</tr>
 	<tr>
-		<th>11
+		<th>0x0B
 	</tr>
 	<tr>
-		<th>12
+		<th>0x0C
 		<td colspan=8 rowspan=2 class=dial>2p up/down dial counter
 	</tr>
 	<tr>
-		<th>13
+		<th>0x0D
 	</tr>
 	<tr>
-		<th>14
+		<th>0x0E
 		<td colspan=8 rowspan=2 class=dial>2p left/right dial counter
 	</tr>
 	<tr>
-		<th>15
+		<th>0x0F
 	</tr>
 	<tr>
-		<th>16
+		<th>0x10
 		<td colspan=8>???
 	</tr>
 	<tr>
-		<th>17
+		<th>0x11
 		<td colspan=8>???
 	</tr>
 	<tr>
-		<th>18
+		<th>0x12
 		<td class=in>3p button1<pin-label>pin 41</pin-label>
 		<td class=in>3p button2<pin-label>pin 42</pin-label>
 		<td class=in>3p button3<pin-label>pin 43</pin-label>
@@ -180,18 +187,18 @@
 		<td class=in>nc<pin-label>pin 48?</pin-label>
 	</tr>
 	<tr>
-		<th>19
-		<td class=out>Z.3?<pin-label>pin 58</pin-label>
-		<td class=out>Z.4?<pin-label>pin 59</pin-label>
-		<td class=out>EEPROM DI<pin-label>pin 62</pin-label>
-		<td class=out>EEPROM CLK<pin-label>pin 63</pin-label>
-		<td class=out>EEPROM CS<pin-label>pin 64</pin-label>
-		<td class=out>nc?<pin-label>pin 65</pin-label>
-		<td class=out>nc?<pin-label>pin 66</pin-label>
-		<td class=out>nc?<pin-label>pin 67</pin-label>
+		<th>0x13
+		<td class=out>Z pin 3?<pin-label>pin 58?</pin-label>
+		<td class=out>Z pin 4?<pin-label>pin 59?</pin-label>
+		<td class=out>eeprom DI<pin-label>pin 62</pin-label>
+		<td class=out>eeprom CLK<pin-label>pin 63</pin-label>
+		<td class=out>eeprom CS<pin-label>pin 64</pin-label>
+		<td class=out>nc?<pin-label>pin 65?</pin-label>
+		<td class=out>nc?<pin-label>pin 66?</pin-label>
+		<td class=out>nc?<pin-label>pin 67?</pin-label>
 	</tr>
 	<tr>
-		<th>20
+		<th>0x14
 		<td class=out>3p coin lockout<pin-label>pin 69</pin-label>
 		<td class=out>4p coin lockout<pin-label>pin 70</pin-label>
 		<td class=out>3p coin counter<pin-label>pin 71</pin-label>
@@ -199,11 +206,11 @@
 		<td colspan=4>?
 	</tr>
 	<tr>
-		<th>21
+		<th>0x15
 		<td colspan=8>?
 	</tr>
 	<tr>
-		<th>22
+		<th>0x16
 		<td>1?
 		<td>1?
 		<td>1?
@@ -214,7 +221,7 @@
 		<td>0?
 	</tr>
 	<tr>
-		<th>23
+		<th>0x17
 		<td class=in>3p stick up<pin-label>pin 49</pin-label>
 		<td class=in>3p stick down<pin-label>pin 50</pin-label>
 		<td class=in>3p stick left<pin-label>pin 51</pin-label>
@@ -225,31 +232,31 @@
 		<td class=in>4p stick right<pin-label>pin 56</pin-label>
 	</tr>
 	<tr>
-		<th>24
+		<th>0x18
 		<td colspan=8 rowspan=2 class=dial>3p up/down dial counter
 	</tr>
 	<tr>
-		<th>25
+		<th>0x19
 	</tr>
 	<tr>
-		<th>26
+		<th>0x1A
 		<td colspan=8 rowspan=2 class=dial>3p left/right dial counter
 	</tr>
 	<tr>
-		<th>27
+		<th>0x1B
 	</tr>
 	<tr>
-		<th>28
+		<th>0x1C
 		<td colspan=8 rowspan=2 class=dial>4p up/down dial counter
 	</tr>
 	<tr>
-		<th>29
+		<th>0x1D
 	</tr>
 	<tr>
-		<th>30
+		<th>0x1E
 		<td colspan=8 rowspan=2 class=dial>4p left/right dial counter
 	</tr>
 	<tr>
-		<th>31
+		<th>0x1F
 	</tr>
 </table>
