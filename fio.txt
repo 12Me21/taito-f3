@@ -101,17 +101,17 @@ eeprom read is i0.16-31 ?
 89 2p button4
 90 VCC
 
-91 pwr
+91 GND
 92 1p button4
-93 pwr
+93 GND
 94 cpu.6 (reset)
 95 cpu.22 (halt)
-96 -
+96 GND
 97 cpu.34 (data)
 98 cpu.33 (data)
 99 cpu.32 (data)
 100 cpu.31 (data)
-101 -
+101 GND
 102 cpu.30 (data)
 103 cpu.29 (data)
 104 cpu.28 (data)
@@ -124,13 +124,17 @@ eeprom read is i0.16-31 ?
 111 cpu.73? (address 2)
 112 cpu.98 (address 1)
 113 cpu.99 (address 0)
-114 -
-115 -
-116 -
-117 -
-118 ?past roms
-119 pwr
-120 pwr
+114 GND
+115 - pal1.14 ??
+116 - cpuram.rw ?? pal2.21
+117 - cpuram.oe ?? pal2.20
+118 FCM.106? pal2.12
+119 GND
+120 GND
+
+
+
+
 
 
 
