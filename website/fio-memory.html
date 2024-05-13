@@ -1,0 +1,230 @@
+<!doctype html><meta charset=utf8>
+
+<title>Taito F3 Cartridge Pinouts</title>
+<link rel=icon sizes=16x16 href=fav.gif>
+<link rel=stylesheet href=style.css>
+
+<a href=home.html>Back</a>
+
+<style>
+	tr > *, table {
+		border: 1px solid;
+		border-collapse: collapse;
+	}
+	table {
+		table-layout: fixed;
+		line-height: 1;
+		background: white;
+		text-align: center;
+	}
+	th {
+		font-family: courier;
+		background: silver;
+	}
+	tr > * {
+		width: 64px;
+		min-width: 64px;
+		max-width: 64px;
+	}
+	.s5 {
+		background: #d9ead3;
+	}
+	.s8 {
+		background: #fff2cc;
+	}
+	tr:not(:first-child) {
+		height: 40px;
+	}
+	.output {
+		background-color: hsl(120, 100%, 90%);
+	}
+</style>
+
+<table>
+	<tr>
+		<th>byte<th>bit 0<th>bit 1<th>bit 2<th>bit 3<th>bit 4<th>bit 5<th>bit 6<th>bit 7
+	</tr>
+	<tr>
+		<th>0
+		<td>1p button4
+		<td>2p button4
+		<td>1?
+		<td>test (jamma)
+		<td>1?
+		<td>1?
+		<td>1?
+		<td>1?
+	</tr>
+	<tr>
+		<th>1
+		<td>EEPROM DO
+		<td>test (board)
+		<td>1?
+		<td>1?
+		<td>1p coin
+		<td>2p coin
+		<td>3p coin
+		<td>4p coin
+	</tr>
+	<tr>
+		<th>2
+		<td>tilt
+		<td>service (jamma)
+		<td>service (3p)
+		<td>service (4p)
+		<td>1p start
+		<td>2p start
+		<td>3p start
+		<td>4p start
+	</tr>
+	<tr>
+		<th>3
+		<td>1p button1
+		<td>1p button2
+		<td>1p button3
+		<td>1?
+		<td>2p button1
+		<td>2p button2
+		<td>2p button3
+		<td>1?
+	</tr>
+	<tr>
+		<th>4
+		<td colspan=8>coin 0?
+	</tr>
+	<tr>
+		<th>5
+		<td colspan=8>coin 0?
+	</tr>
+	<tr>
+		<th>6
+		<td colspan=8>?
+	</tr>
+	<tr>
+		<th>7
+		<td>1p stick up
+		<td>1p stick down
+		<td>1p stick left
+		<td>1p stick right
+		<td>2p stick up
+		<td>2p stick down
+		<td>2p stick left
+		<td>2p stick right
+	</tr>
+	<tr>
+		<th>8
+		<td colspan=8 rowspan=2>1p up/down dial counter
+	</tr>
+	<tr>
+		<th>9
+	</tr>
+	<tr>
+		<th>10
+		<td colspan=8 rowspan=2>1p left/right dial counter
+	</tr>
+	<tr>
+		<th>11
+	</tr>
+	<tr>
+		<th>12
+		<td colspan=8 rowspan=2>2p up/down dial counter
+	</tr>
+	<tr>
+		<th>13
+	</tr>
+	<tr>
+		<th>14
+		<td colspan=8 rowspan=2>2p left/right dial counter
+	</tr>
+	<tr>
+		<th>15
+	</tr>
+	<tr>
+		<th>16
+		<td colspan=8>???
+	</tr>
+	<tr>
+		<th>17
+		<td colspan=8>???
+	</tr>
+	<tr>
+		<th>18
+		<td>3p button1
+		<td>3p button2
+		<td>3p button3
+		<td>
+		<td>4p button1
+		<td>4p button2
+		<td>4p button3
+		<td>
+	</tr>
+	<tr>
+		<th>19
+		<td>0
+		<td>0
+		<td>0
+		<td>EEPROM DI
+		<td>EEPROM CLK
+		<td>EEPROM CS
+		<td>0
+		<td>0
+	</tr>
+	<tr>
+		<th>20
+		<td colspan=8>coin r 2?
+	</tr>
+	<tr>
+		<th>21
+		<td colspan=8>coin r 2?
+	</tr>
+	<tr>
+		<th>22
+		<td>1?
+		<td>1?
+		<td>1?
+		<td>1?
+		<td>0?
+		<td>0?
+		<td>0?
+		<td>0?
+	</tr>
+	<tr>
+		<th>23
+		<td>3p stick up
+		<td>3p stick down
+		<td>3p stick left
+		<td>3p stick right
+		<td>4p stick up
+		<td>4p stick down
+		<td>4p stick left
+		<td>4p stick right
+	</tr>
+	<tr>
+		<th>24
+		<td colspan=8 rowspan=2>3p up/down dial counter
+	</tr>
+	<tr>
+		<th>25
+	</tr>
+	<tr>
+		<th>26
+		<td colspan=8 rowspan=2>3p left/right dial counter
+	</tr>
+	<tr>
+		<th>27
+	</tr>
+	<tr>
+		<th>28
+		<td colspan=8 rowspan=2>4p up/down dial counter
+	</tr>
+	<tr>
+		<th>29
+	</tr>
+	<tr>
+		<th>30
+		<td colspan=8 rowspan=2>4p left/right dial counter
+	</tr>
+	<tr>
+		<th>31
+	</tr>
+</table>
