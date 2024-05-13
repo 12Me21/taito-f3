@@ -1,0 +1,64 @@
+0 FFFE
+1 FFFF start1:EFFF start2:DFFF
+2 0000
+3 00FF 1up:00FE 
+4 FFFF p1 up/down dial
+5 1381 p1 left/right dial
+6 FFFF p2 up/down dial
+7 FFFF p2 left/right dial
+8 0000
+9 FF08
+A 0000
+B 0FFF
+C 3F00
+D FFFF
+E FEDD
+F 0350
+
+1start:
+1=EFFF
+1up:
+3=00FE
+4=0000
+1down
+3=00FD
+4=FEFF
+1left
+3=00FB
+5=1481
+1right
+3=00F7
+5=1281
+1btn1
+1=FFFE
+1btn2
+1=FFFD
+1btn3
+1=FFFB
+1btn4
+0=FEFE
+
+2start:
+1=DFFF
+2up
+3=00EF
+6=0000
+2down
+3=00DF
+6=FEFF
+2left
+3=00BF
+7=0000
+2right
+3=007F
+7=FEFF
+2btn1
+1=FFEF
+2btn2
+1=FFDF
+2btn3
+1=FFBF
+2btn4
+0=FDFE
+
+

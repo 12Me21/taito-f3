@@ -1,0 +1,113 @@
+0 FFFE 1p/2p btn4, coins
+1 FFFF starts,1p/2p buttons,services
+2 0000
+3 00FF 1p/2p joystick
+4 FFFF 1p up/down dial
+5 1381 1p left/right dial
+6 FFFF 2p up/down dial
+7 FFFF 2p left/right dial
+8 0000
+9 FF08 3p/4p buttons
+A 0000
+B 0FFF 3p/4p joystick
+C FFFF 3p up/down dial
+D FFFF 3p left/right dial
+E 5D15 4p up/down dial
+F 0300 4p left/right dial
+
+1start:
+1=EFFF
+1up:
+3=00FE
+4=0000
+1down
+3=00FD
+4=FEFF
+1left
+3=00FB
+5=1481
+1right
+3=00F7
+5=1281
+1btn1
+1=FFFE
+1btn2
+1=FFFD
+1btn3
+1=FFFB
+1btn4
+0=FEFE
+
+2start:
+1=DFFF
+2up
+3=00EF
+6=0000
+2down
+3=00DF
+6=FEFF
+2left
+3=00BF
+7=0000
+2right
+3=007F
+7=FEFF
+2btn1
+1=FFEF
+2btn2
+1=FFDF
+2btn3
+1=FFBF
+2btn4
+0=FDFE
+
+3coin
+0=FFBE
+3start
+1=BFFF
+3left
+B=0FFB
+D=0000
+3right
+B=0FF7
+D=FEFF
+3up
+B=0FFE
+C=0000
+3down
+B=0FFD
+C=FEFF
+3btn1
+9=FE08
+3btn2
+9=FD08
+3btn3
+9=FB08
+3service
+1=FBFF
+
+4coin
+0=FF7E
+4start
+1=7FFF
+4left
+B=0FBF
+F=0400
+4right
+B=0F7F
+F=0200
+4up
+B=0FEF
+E=5E15
+4down
+B=0FDF
+E=5C15
+4btn1
+9=EF08
+4btn2
+9=DF08
+4btn3
+9=BF08
+4service
+1=F7FF
+
