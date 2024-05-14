@@ -7,17 +7,17 @@
 <a href=home.html>Back</a>
 
 <style>
-	tr > *, table {
+	.memory-map tr > *, table.memory-map  {
 		border: 1px solid;
 		border-collapse: collapse;
 	}
-	table {
+	table.memory-map  {
 		table-layout: fixed;
 		line-height: 1;
 		background: white;
 		text-align: center;
 	}
-	th {
+	.memory-map th {
 		font-family: courier;
 		background: #FFE;
 	}
@@ -39,10 +39,11 @@
 	}
 	.in {
 		background-color: hsl(120, 100%, 90%);
-		vertical-align: bottom;
 	}
 	.out {
 		background-color: hsl(0, 100%, 87%);
+	}
+	.memory-map .in, .memory-map .out {
 		vertical-align: bottom;
 	}
 	.dial {
@@ -58,7 +59,8 @@
 
 <h1><img src=fio.gif style=float:left;margin-right:10px> TC0640 FIO<br>&ldquo;F3 Input/Output&rdquo;</h1>
 
-<table>
+<table class=memory-map>
+	<tr></tr>
 	<tr class=in><td>input bit<pin-label>FIO pin</pin-label></tr>
 	<tr class=out><td>output bit<pin-label>FIO pin</pin-label></tr>
 	<tr class=dial><td>dial register<br>(16 bit little endian)</tr>
@@ -259,4 +261,129 @@
 	<tr>
 		<th>0x1F
 	</tr>
+</table>
+
+<h1>Pinout</h1>
+
+<table class=pinout>
+	<tr><th>1<td colspan=2 class=vcc>VCC</tr>
+	<tr><th>2<td colspan=2 class=gnd>GND</tr>
+	<tr><th>3<td colspan=2 class=vcc>VCC</tr>
+	<tr><th>4<td colspan=2>??? VCC (JP1)</tr>
+	<tr><th>5<td colspan=2 class=gnd>GND</tr>
+	<tr><th>6<td rowspan=4>port 0x04<br>(output)<td>bit 0</tr>
+	<tr><th>7<td>bit 1</tr>
+	<tr><th>8<td>bit 2</tr>
+	<tr><th>9<td>bit 3</tr>
+	<tr><th>10<td colspan=2 class=gnd>GND</tr>
+	<tr><th>11<td rowspan=9>port 0x02<td>bit 0</tr>
+	<tr><th>12<td>bit 1</tr>
+	<tr><th>13<td>bit 2</tr>
+	<tr><th>14<td>bit 3</tr>
+	<tr><th>15<td class=gnd>GND</tr>
+	<tr><th>16<td>bit 4</tr>
+	<tr><th>17<td>bit 5</tr>
+	<tr><th>18<td>bit 6</tr>
+	<tr><th>19<td>bit 7</tr>
+	<tr><th>20<td rowspan=8>port 0x07<br>(joysticks/rotary encoders)<td>bit 0</tr>
+	<tr><th>21<td>bit 1</tr>
+	<tr><th>22<td>bit 2</tr>
+	<tr><th>23<td>bit 3</tr>
+	<tr><th>24<td>bit 4</tr>
+	<tr><th>25<td>bit 5</tr>
+	<tr><th>26<td>bit 6</tr>
+	<tr><th>27<td>bit 7</tr>
+	<tr><th>28<td colspan=2 class=gnd>GND</tr>
+	<tr><th>29<td rowspan=11>port 0x03<td>bit 0</tr>
+	<tr><th>30<td class=vcc>VCC</tr>
+	<tr><th>31<td class=gnd>GND</tr>
+	<tr><th>32<td>bit 1</tr>
+	<tr><th>33<td>bit 2</tr>
+	<tr><th>34<td>bit 3?</tr>
+	<tr><th>35<td class=gnd>GND</tr>
+	<tr><th>36<td>bit 4</tr>
+	<tr><th>37<td>bit 5</tr>
+	<tr><th>38<td>bit 6</tr>
+	<tr><th>39<td>bit 7</tr>
+	<tr><th>40<td colspan=2 class=gnd>GND</tr>
+	<tr><th>41<td rowspan=8>port 0x12<td>bit 0</tr>
+	<tr><th>42<td>bit 1</tr>
+	<tr><th>43<td>bit 2</tr>
+	<tr><th>44<td>bit 3?</tr>
+	<tr><th>45<td>bit 4</tr>
+	<tr><th>46<td>bit 5</tr>
+	<tr><th>47<td>bit 6</tr>
+	<tr><th>48<td>bit 7?</tr>
+	<tr><th>49<td rowspan=8>port 0x17<br>(joysticks/rotary encoders)<td>bit 0</tr>
+	<tr><th>50<td>bit 1</tr>
+	<tr><th>51<td>bit 2</tr>
+	<tr><th>52<td>bit 3</tr>
+	<tr><th>53<td>bit 4</tr>
+	<tr><th>54<td>bit 5</tr>
+	<tr><th>55<td>bit 6</tr>
+	<tr><th>56<td>bit 7</tr>
+	<tr><th>57<td colspan=2 class=gnd>GND</tr>
+	<tr><th>58<td rowspan=10>port 0x13<br>(output)<td>bit 0?</tr>
+	<tr><th>59<td>bit 1?</tr>
+	<tr><th>60<td class=gnd>GND</tr>
+	<tr><th>61<td class=vcc>VCC</tr>
+	<tr><th>62<td>bit 2</tr>
+	<tr><th>63<td>bit 3</tr>
+	<tr><th>64<td>bit 4</tr>
+	<tr><th>65<td>bit 5?</tr>
+	<tr><th>66<td>bit 6?</tr>
+	<tr><th>67<td>bit 7?</tr>
+	<tr><th>68<td colspan=2 class=gnd>GND</tr>
+	<tr><th>69<td rowspan=4>port 0x14<br>(output)<td>bit 0</tr>
+	<tr><th>70<td>bit 1</tr>
+	<tr><th>71<td>bit 2</tr>
+	<tr><th>72<td>bit 3</tr>
+	<tr><th>73<td colspan=2 class=gnd>GND</tr>
+	<tr><th>74<td rowspan=9>port 0x01<td>bit 7</tr>
+	<tr><th>75<td class=gnd>GND</tr>
+	<tr><th>76<td>bit 6</tr>
+	<tr><th>77<td>bit 5</tr>
+	<tr><th>78<td>bit 4</tr>
+	<tr><th>79<td>bit 3?</tr>
+	<tr><th>80<td>bit 2?</tr>
+	<tr><th>81<td>bit 1</tr>
+	<tr><th>82<td>bit 0</tr>
+	<tr><th>83<td rowspan=10>port 0x00<td>bit 7?</tr>
+	<tr><th>84<td>bit 6?</tr>
+	<tr><th>85<td>bit 5?</tr>
+	<tr><th>86<td>bit 4?</tr>
+	<tr><th>87<td>bit 3</tr>
+	<tr><th>88<td>bit 2?</tr>
+	<tr><th>89<td>bit 1?</tr>
+	<tr><th>90<td class=vcc>VCC</tr>
+	<tr><th>91<td class=gnd>GND</tr>
+	<tr><th>92<td>bit 0?</tr>
+	<tr><th>93<td colspan=2 class=gnd>GND</tr>
+	<tr><th>94<td colspan=2>cpu reset</tr>
+	<tr><th>95<td colspan=2>cpu halt</tr>
+	<tr><th>96<td colspan=2 class=gnd>GND</tr>
+	<tr><th>97<td rowspan=9>cpu data<td>bit 0</tr>
+	<tr><th>98<td>bit 1</tr>
+	<tr><th>99<td>bit 2</tr>
+	<tr><th>100<td>bit 3</tr>
+	<tr><th>101<td class=gnd>GND</tr>
+	<tr><th>102<td>bit 4</tr>
+	<tr><th>103<td>bit 5</tr>
+	<tr><th>104<td>bit 6</tr>
+	<tr><th>105<td>bit 7</tr>
+	<tr><th>106<td colspan=2 class=gnd>GND</tr>
+	<tr><th>107<td colspan=2>? duart.36 (ip2)</tr>
+	<tr><th>108<td colspan=2 class=gnd>GND</tr>
+	<tr><th>109<td rowspan=5>cpu address<td>bit 4</tr>
+	<tr><th>110<td>bit 3</tr>
+	<tr><th>111<td>bit 2</tr>
+	<tr><th>112<td>bit 1</tr>
+	<tr><th>113<td>bit 0</tr>
+	<tr><th>114<td colspan=2 class=gnd>GND</tr>
+	<tr><th>115<td colspan=2>? mb3771.reset</tr>
+	<tr><th>116<td colspan=2>cpuram.rw ?? pal2.21 </tr>
+	<tr><th>117<td colspan=2>cpuram.oe ?? pal2.20</tr>
+	<tr><th>118<td colspan=2>? FCM.106</tr>
+	<tr><th>119<td colspan=2 class=gnd>GND</tr>
+	<tr><th>120<td colspan=2 class=gnd>GND</tr>
 </table>

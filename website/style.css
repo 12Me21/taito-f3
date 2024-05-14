@@ -35,6 +35,19 @@ table.port {
 	border: none;
 }
 
+table.pinout {
+	border: 1px solid;
+	background: #FFE;
+}
+.pinout td {
+	border: 1px solid;
+	border-collapse: collapse;
+}
+
+.pinout tr>* {
+	text-align: center;
+}
+
 .vcc {
 	/*border-color: transparent;*/
 	background-color: white;
