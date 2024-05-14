@@ -1,7 +1,50 @@
 19 cpu.a0
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+97 fda.27?
+98 fda.28?
+99 fda.26?
+
+106 fio.118
+
+
+
+
+
+
+
+
 115 cpu.ipl2
 116 cpu.ipl1
 117 cpu.ipl0
 
+119 cart.C04 (clock?)
+
+
+
+
+
 125 cpu.avec
+
+127 cart.A90

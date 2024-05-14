@@ -7,7 +7,7 @@ Z4 fio.59
 
 1 VCC
 2 GND
-3 VCC ?
+3 VCC
 4 VCC (JP1)
 5 GND
 6 lockout 1
@@ -74,9 +74,9 @@ eeprom read is i0.16-31 ?
 62 eeprom.3 (DI) i4.2 pulldown
 63 eeprom.2 (CLK) i4.3 pulldown
 64 eeprom.1 (CS) i4.4 pulldown
-65 out i4.5? pullup
-66 out i4.6? pullup
-67 out i4.7? pullup
+65 out i4.5? pullup  (single board: nc)
+66 out i4.6? pullup  (single board: nc)
+67 out i4.7? pullup  (single board: nc)
 68 GND
 69 lockout 3
 70 lockout 4
@@ -89,15 +89,15 @@ eeprom read is i0.16-31 ?
 77 coin 2
 78 coin 1
 79 -
-80 cart.B05
+80 cart.B05 (single board: nc)
 81 test switch
 82 eeprom.4 (DO)
-83 cart.B04
-84 cart.B03
-85 cart.B02
-86 cart.B01
+83 cart.B04 (single board: nc)
+84 cart.B03 (single board: nc)
+85 cart.B02 (single board: nc)
+86 cart.B01 (single board: nc)
 87 test (jamma.15)
-88 -
+88 - (single board: 1p button5)
 89 2p button4
 90 VCC
 
