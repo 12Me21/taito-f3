@@ -2,6 +2,15 @@ o-l {
 	text-decoration: overline;
 }
 
+h1 div {
+	display: inline-block;
+	vertical-align: middle;
+}
+h1 img {
+	margin-right: 10px;
+	vertical-align: middle;
+}
+
 table.port {
 	table-layout: fixed;
 	font-size: 12px;
@@ -83,7 +92,7 @@ table.pinout {
 body {
 	image-rendering: crisp-edges;
 	background: url("./tile1.png");
-	font-family: georgia;
+	font-family: georgia, serif;
 }
 table {
 	font-family: serif;

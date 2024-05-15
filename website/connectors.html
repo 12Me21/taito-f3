@@ -4,13 +4,17 @@
 <link rel=icon sizes=16x16 href=fav.gif>
 <link rel=stylesheet href=style.css>
 
-<!--<body background=./tile1.png>-->
-
 <a href=home.html>Back</a>
 
-<h2>Other</h2>
+<h1>Taito F3 Connector Pinouts</h1>
 
-Note: most of these plugs are numbered "backwards" (right to left)
+<style>
+	.port .space {
+		border-color: transparent;
+	}
+</style>
+
+Note: most of these plugs are numbered "backwards" (right to left, when viewed from the jamma connector side)
 
 <h3>Port <span class=portlabel>F</span>: Fan Power</h3>
 
@@ -27,10 +31,69 @@ Note: most of these plugs are numbered "backwards" (right to left)
 
 <h3>Port <span class=portlabel>G</span>: JAMMA</h3>
 
-(normal jamma edge connector)
-notes:
-&minus;5v is completely unused
-button 4 is used (pins 25,c) but button 5 isn't
+<p><i>The F3 does not need &minus;5V</i> (the pin is completely unconnected, i have tested this)
+<p>button5 (for 1p only) was connected on the single board F3 <b>only</b>
+<p>button4 (1p and 2p) is connected, but also not used by any games afaik
+<p>note that button4 and button5 are <b>not</b> the same as kick1 and kick2</p>
+<p>there are 3 service switches (on the jamma connector, 3p connector, and 4p connector) and 2 test switches (jamma connector, and the switch on the board). these can all be read separately.
+<p>(todo: maybe make a whole section about inputs in general, eventually)
+
+<table class=port>
+	<tr class=numbers>
+		<th>1<th>2<th>3<th>4<th>5<th>6<th>7<th>8<th>9<th>10<th>11<th>12<th>13<th>14<th>15<th>16<th>17<th>18<th>19<th>20<th>21<th>22<th>23<th>24<th>25<th>26<th>27<th>28
+	</tr>
+	<tr>
+		<td colspan=2 rowspan=2 class=gnd>GND
+		<td colspan=2 rowspan=2 class=vcc>+5V (VCC)
+		<td class=nc rowspan=2>&minus;5V<br>(nc)
+		<td class=vcc rowspan=2>+12V
+		<td class=space rowspan=2>
+		<td>coin 1 counter
+		<td>coin 1 lockout
+		<td>spk +
+		<td class=nc>nc
+		<td>video red
+		<td>video blue
+		<td class=gnd>GND
+		<td>test
+		<td>coin 1
+		<td>1p<br>start
+		<td>1p<br>up
+		<td>1p<br>down
+		<td>1p<br>left
+		<td>1p<br>right
+		<td>1p btn1
+		<td>1p btn2
+		<td>1p btn3
+		<td>1p btn4
+		<td>1p btn5*
+		<td colspan=2 rowspan=2 class=gnd>GND
+	</tr>
+	<tr>
+		<td>coin 2 counter
+		<td>coin 2 lockout
+		<td>spk &minus;
+		<td class=nc>nc
+		<td>video green
+		<td>video sync
+		<td>service
+		<td>tilt
+		<td>coin 2
+		<td>2p<br>start
+		<td>2p<br>up
+		<td>2p<br>down
+		<td>2p<br>left
+		<td>2p<br>right
+		<td>2p btn1
+		<td>2p btn2
+		<td>2p btn3
+		<td>2p btn4
+		<td class=nc>nc
+	</tr>
+	<tr class=numbers>
+		<th>A<th>B<th>C<th>D<th>E<th>F<th>H<th>J<th>K<th>L<th>M<th>N<th>P<th>R<th>S<th>T<th>U<th>V<th>W<th>X<th>Y<th>Z<th>a<th>b<th>c<th>d<th>e<th>f
+	<tr>
+</table>
 
 <h3>Port <span class=portlabel>M2</span>: Monitor 2 (alternate video output)</h3>
 
@@ -39,17 +102,17 @@ button 4 is used (pins 25,c) but button 5 isn't
 		<th>1<th>2<th>3<th>4<th>5
 	</tr>
 	<tr>
-		<td>red
-		<td>green
-		<td>blue
-		<td>sync
+		<td>video red
+		<td>video green
+		<td>video blue
+		<td>video sync
 		<td class=gnd>GND
 	</tr>
 </table>
 
 <h3>Port <span class=portlabel>S</span>: Stereo Audio Output</h3>
 
-yes this is the correct order. pins 1 and 2 go to the jamma connector for mono audio
+<p>(Pins 1 and 2 also go to the jamma connector for mono audio)
 
 <table class=port>
 	<tr class=numbers>
@@ -64,6 +127,8 @@ yes this is the correct order. pins 1 and 2 go to the jamma connector for mono a
 </table>
 
 <h3>Port <span class=portlabel>SI</span>: Serial Interface (MC68681 DUART)</h3>
+
+<p>This connects directly to the DUART, which is accessible to the audio cpu. The default audio program outputs some text over TxDB.
 
 <table class=port>
 	<tr class=numbers>
@@ -81,6 +146,8 @@ yes this is the correct order. pins 1 and 2 go to the jamma connector for mono a
 
 <h3>Port <span class=portlabel>Z</span>: ???</h3>
 
+<p>These pins appear to be outputs from the <a href=fio-memory.html>FIO</a>, possibly controlled by bits 0 and 1 at address 0x4A0013
+
 <table class=port>
 	<tr class=numbers>
 		<th>1<th>2<th>3<th>4
@@ -96,7 +163,7 @@ yes this is the correct order. pins 1 and 2 go to the jamma connector for mono a
 
 <h3>Port <span class=portlabel>AA</span>: Kick Harness</h3>
 
-Note: these reuse the 3p inputs (1p kick1 = 3p joystick up, etc.)
+<p>Note: these reuse the 3p inputs (1p kick1 = 3p stick up, etc.)
 
 <table class=port>
 	<tr class=numbers>
@@ -104,14 +171,14 @@ Note: these reuse the 3p inputs (1p kick1 = 3p joystick up, etc.)
 	</tr>
 	<tr>
 		<td colspan=2 class=gnd>GND
-		<td>1p<br>kick 1
-		<td>1p<br>kick 2
-		<td>1p<br>kick 3
-		<td class=nc>nc?
-		<td>2p<br>kick 1
-		<td>2p<br>kick 2
-		<td>2p<br>kick 3
-		<td class=nc>nc?
+		<td>1p<br>kick1
+		<td>1p<br>kick2
+		<td>1p<br>kick3
+		<td class=nc>nc
+		<td>2p<br>kick1
+		<td>2p<br>kick2
+		<td>2p<br>kick3
+		<td class=nc>nc
 	</tr>
 </table>
 
@@ -132,19 +199,20 @@ Note: these reuse the 3p inputs (1p kick1 = 3p joystick up, etc.)
 		<td>3p<br>btn2
 		<td>3p<br>btn3
 		<td class=nc>nc
-		<td>service 3
-		<td>coin counter 3
-		<td>coin lockout 3
+		<td>service (3p)
+		<td>coin 3 counter
+		<td>coin 3 lockout
 		<td colspan=2 class=gnd>GND
 	</tr>
 </table>
 
 <h3>Jumper <span class=portlabel>JP3</span>: joystick input mode</h3>
-(this configures the joystick inputs to use either pull-up or pull-down resistors)
+
+<p>(this configures the joystick inputs to use either pull-up or pull-down resistors)
 
 <table class=port>
 	<tr class=numbers>
-		<th>joystick<th>2<th>sensor
+		<th>joy&shy;stick<th>2<th>sen&shy;sor
 	</tr>
 	<tr>
 		<td class=vcc>VCC
@@ -153,8 +221,10 @@ Note: these reuse the 3p inputs (1p kick1 = 3p joystick up, etc.)
 	</tr>
 </table>
 
+<!--
 <h3>Jumper JP2: ???</h3>
-(this connects FIO pin 4 to either VCC or GND)
+
+<p>(this connects FIO pin 4 to either VCC or GND)
 
 <table class=port>
 	<tr class=numbers>
@@ -168,7 +238,8 @@ Note: these reuse the 3p inputs (1p kick1 = 3p joystick up, etc.)
 </table>
 
 <h3>Jumper JP1: ???</h3>
-(this connects FDA pin 93 to one of two clock inputs)
+
+<p>(this connects FDA pin 93 to one of two clock inputs)
 
 <table class=port>
 	<tr class=numbers>
@@ -193,3 +264,4 @@ Note: these reuse the 3p inputs (1p kick1 = 3p joystick up, etc.)
 		<td class=vcc>VCC
 	</tr>
 </table>
+-->
