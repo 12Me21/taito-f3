@@ -2,6 +2,13 @@ o-l {
 	text-decoration: overline;
 }
 
+body {
+	margin-bottom: 100px;
+	image-rendering: crisp-edges;
+	background: url("./tile1.png");
+	font-family: georgia, serif;
+}
+
 h1 span {
 	display: inline-block;
 	vertical-align: middle;
@@ -9,6 +16,13 @@ h1 span {
 h1 img {
 	margin-right: 10px;
 	vertical-align: middle;
+}
+:target {
+	text-decoration: underline blue;
+}
+
+table {
+	font-family: serif;
 }
 
 table.port {
@@ -49,7 +63,6 @@ table.pinout {
 }
 .pinout td {
 	border: 1px solid;
-	border-collapse: collapse;
 }
 
 .pinout tr>* {
@@ -86,13 +99,4 @@ table.pinout {
 	font-weight: normal;
 	background: black;
 	color: white;
-}
-
-body {
-	image-rendering: crisp-edges;
-	background: url("./tile1.png");
-	font-family: georgia, serif;
-}
-table {
-	font-family: serif;
 }

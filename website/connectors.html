@@ -1,4 +1,4 @@
-<!doctype html><meta charset=utf8>
+<!doctype html><meta charset=utf-8>
 
 <title>Taito F3 Connector Pinouts</title>
 <link rel=icon sizes=16x16 href=fav.gif>
@@ -14,9 +14,9 @@
 	}
 </style>
 
-Note: most of these plugs are numbered "backwards" (right to left, when viewed from the jamma connector side)
+<p>Note: most of these plugs are numbered "backwards" (right to left, when viewed from the jamma connector side)
 
-<h3>Port <span class=portlabel>F</span>: Fan Power</h3>
+<h3 id=port-f>Port <span class=portlabel>F</span>: Fan Power</h3>
 
 <table class=port>
 	<tr>
@@ -29,7 +29,7 @@ Note: most of these plugs are numbered "backwards" (right to left, when viewed f
 	</tr>
 </table>
 
-<h3>Port <span class=portlabel>G</span>: JAMMA</h3>
+<h3 id=port-g>Port <span class=portlabel>G</span>: JAMMA</h3>
 
 <p><i>The F3 does not need &minus;5V</i> (the pin is completely unconnected, i have tested this)
 <p>button5 (for 1p only) was connected on the single board F3 <b>only</b>
@@ -95,7 +95,7 @@ Note: most of these plugs are numbered "backwards" (right to left, when viewed f
 	<tr>
 </table>
 
-<h3>Port <span class=portlabel>M2</span>: Monitor 2 (alternate video output)</h3>
+<h3 id=port-m2>Port <span class=portlabel>M2</span>: Monitor 2 (alternate video output)</h3>
 
 <table class=port>
 	<tr class=numbers>
@@ -110,7 +110,7 @@ Note: most of these plugs are numbered "backwards" (right to left, when viewed f
 	</tr>
 </table>
 
-<h3>Port <span class=portlabel>S</span>: Stereo Audio Output</h3>
+<h3 id=port-s>Port <span class=portlabel>S</span>: Stereo Audio Output</h3>
 
 <p>(Pins 1 and 2 also go to the jamma connector for mono audio)
 
@@ -126,7 +126,7 @@ Note: most of these plugs are numbered "backwards" (right to left, when viewed f
 	</tr>
 </table>
 
-<h3>Port <span class=portlabel>SI</span>: Serial Interface (MC68681 DUART)</h3>
+<h3 id=port-si>Port <span class=portlabel>SI</span>: Serial Interface (MC68681 DUART)</h3>
 
 <p>This connects directly to the DUART, which is accessible to the audio cpu. The default audio program outputs some text over TxDB.
 
@@ -144,7 +144,7 @@ Note: most of these plugs are numbered "backwards" (right to left, when viewed f
 	</tr>
 </table>
 
-<h3>Port <span class=portlabel>Z</span>: ???</h3>
+<h3 id=port-z>Port <span class=portlabel>Z</span>: ???</h3>
 
 <p>These pins appear to be outputs from the <a href=fio-memory.html>FIO</a>, possibly controlled by bits 0 and 1 at address 0x4A0013
 
@@ -161,7 +161,7 @@ Note: most of these plugs are numbered "backwards" (right to left, when viewed f
 </table>
 
 
-<h3>Port <span class=portlabel>AA</span>: Kick Harness</h3>
+<h3 id=port-aa>Port <span class=portlabel>AA</span>: Kick Harness</h3>
 
 <p>Note: these reuse the 3p inputs (1p kick1 = 3p stick up, etc.)
 
@@ -182,7 +182,7 @@ Note: most of these plugs are numbered "backwards" (right to left, when viewed f
 	</tr>
 </table>
 
-<h3>Port <span class=portlabel>3P</span>/<span class=portlabel>4P</span>: Player 3/4 Connectors</h3>
+<h3 id=port-3p>Port <span class=portlabel>3P</span>/<span class=portlabel>4P</span>: Player 3/4 Connectors</h3>
 
 <table class=port>
 	<tr class=numbers>
@@ -206,7 +206,7 @@ Note: most of these plugs are numbered "backwards" (right to left, when viewed f
 	</tr>
 </table>
 
-<h3>Jumper <span class=portlabel>JP3</span>: joystick input mode</h3>
+<h3 id=jumper-jp3>Jumper <span class=portlabel>JP3</span>: joystick input mode</h3>
 
 <p>(this configures the joystick inputs to use either pull-up or pull-down resistors)
 
@@ -265,3 +265,5 @@ Note: most of these plugs are numbered "backwards" (right to left, when viewed f
 	</tr>
 </table>
 -->
+
+<script src=link.js></script>

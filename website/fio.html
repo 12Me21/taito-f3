@@ -58,9 +58,9 @@
 	}
 </style>
 
-<h1><img width=79 height=79 src=fio.gif style=float:left><span>TC0640 FIO<br>&ldquo;F3 Input/Output&rdquo;</span></h1>
+<h1><img width=79 height=79 src=fio.gif alt><span>TC0640 FIO<br>&ldquo;F3 Input/Output&rdquo;</span></h1>
 
-<h2>Registers</h2>
+<h2 id=registers>Registers</h2>
 
 <p>(labels are based on F3 usage because that's what we've tested)
 
@@ -268,16 +268,16 @@
 	</tr>
 </table>
 
-<h2>Rotary Encoder Inputs</h2>
+<h2 id=rotary-encoder>Rotary Encoder Inputs</h2>
 
 <p>Each joystick axis (8 total, 2 per player) can also be used as input for a rotary encoder (by connecting it to the up/down or left/right joystick input pins).<br>The FIO has a 16-bit (little endian) counter for each axis, which increments/decrements by 1 on each step (i.e. a full cycle (00 01 11 10) would increment/decrement the counter by 4)
 <p>(Note: both input modes are always enabled; the game chooses whether to read the joystick bits or the dial counter registers. The F3 has a jumper switch for "joystick/sensor" mode, but this just configures pull-up/down resistors on some input lines)
 <p>afaik, F3 games have only used two dials (connected to the 1p and 2p left/right axes), but i have tested all 8 and they are real.
 	
-<h2>Watchdog</h2>
+<h2 id=watchdog>Watchdog</h2>
 <p>todo: which address do you have to write to? MAME just checks for any writes to the first 4 bytes, but this is probably wrong.
 
-<h2>Pinout</h2>
+<h2 id=pinout>Pinout</h2>
 
 <p>(I wonder if some of those extra power/ground pins can actually configure whether certain ports are inputs or outputs? but it would be very difficult to test this)
 
@@ -406,3 +406,5 @@
 	<tr><th>119<td colspan=2 class=gnd>GND</tr>
 	<tr><th>120<td colspan=2 class=gnd>GND</tr>
 </table>
+
+<script src=link.js></script>
