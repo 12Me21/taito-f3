@@ -27,10 +27,10 @@
 		background-color: white;
 	}
 	.in .pin-label {
-		background-color: lightgreen;
+		background-color: lavender;
 	}
 	.out .pin-label {
-		background-color: pink;
+		background-color: lemonchiffon;
 	}
 	.memory-map .in, .memory-map .out {
 		vertical-align: bottom;
@@ -53,8 +53,8 @@
 
 <table class=memory-map>
 	<tr></tr>
-	<tr class=in><td>input bit<div class=pin-label>FIO pin</div></tr>
-	<tr class=out><td>output bit<div class=pin-label>FIO pin</div></tr>
+	<tr><td class=in>input bit<div class=pin-label>FIO pin</div></tr>
+	<tr><td class=out>output bit<div class=pin-label>FIO pin</div></tr>
 </table>
 <p>
 <table class=memory-map>
@@ -162,11 +162,11 @@
 	</tr>
 	<tr>
 		<th>0x10
-		<td colspan=8>???
+		<td colspan=8>?
 	</tr>
 	<tr>
 		<th>0x11
-		<td colspan=8>???
+		<td colspan=8>?
 	</tr>
 	<tr>
 		<th>0x12
@@ -258,7 +258,7 @@
 
 <p>Each joystick axis (8 total, 2 per player) can also be used as input for a rotary encoder (by connecting it to the up/down or left/right joystick input pins).<br>The FIO has a 16-bit (little endian) counter for each axis, which increments/decrements by 1 on each step (i.e. a full cycle (00 01 11 10) would increment/decrement the counter by 4)
 <p>(Note: both input modes are always enabled; the game chooses whether to read the joystick bits or the dial counter registers. The F3 has a jumper switch for "joystick/sensor" mode, but this just configures pull-up/down resistors on some input lines)
-<p>afaik, F3 games have only used two dials (connected to the 1p and 2p left/right axes), but i have tested all 8 and they are real.
+<p>afaik, F3 games have only used two dials (connected to the 1p and 2p left/right axes), but i've tested all 8 and they are real.
 	
 <h2 id=watchdog>Watchdog</h2>
 <p>todo: which address do you have to write to? MAME just checks for any writes to the first 4 bytes, but this is probably wrong.
