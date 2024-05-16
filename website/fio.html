@@ -23,27 +23,24 @@
 	.memory-map tr:not(:first-child) {
 		height: 50px;
 	}
-	.in {
-		background-color: white;
-	}
-	.out {
+	.in, .out, .dial {
 		background-color: white;
 	}
 	.in .pin-label {
-		background: lightgreen;
+		background-color: lightgreen;
 	}
 	.out .pin-label {
-		background: pink;
+		background-color: pink;
 	}
 	.memory-map .in, .memory-map .out {
 		vertical-align: bottom;
 	}
 	.dial {
-		background-color: #a3d9f4;
 	}
 	.pin-label {
 		display: block;
-		border: 1px solid gold;
+		border: 1px solid black;
+		margin-top: 1px;
 		background: gold;
 		font-family: monospace, monospace;
 		font-size: 0.8em;
@@ -58,7 +55,6 @@
 	<tr></tr>
 	<tr class=in><td>input bit<div class=pin-label>FIO pin</div></tr>
 	<tr class=out><td>output bit<div class=pin-label>FIO pin</div></tr>
-	<tr class=dial><td>dial counter</tr>
 </table>
 <p>
 <table class=memory-map>
