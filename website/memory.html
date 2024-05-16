@@ -1,28 +1,21 @@
 <!doctype html><meta charset=utf-8>
 
-<title>Taito F3 Memory Map</title>
+<title>Main CPU Memory Map</title>
 <link rel=icon sizes=16x16 href=fav.gif>
 <link rel=stylesheet href=style.css>
 
 <a href=home.html>Back</a>
 
-<h1>Taito F3 Memory Map</h1>
+<h1>Main CPU Memory Map</h1>
 
 <style>
 	tr > *, table {
 		border: 1px solid;
 		border-collapse: collapse;
 	}
-	table {
-		table-layout: fixed;
-	}
-	th {
-		font-family: courier;
-	}
 	tr > * {
-		width: 64px;
-		min-width: 64px;
-		max-width: 64px;
+		width: 50px;
+		min-width: 50px;
 	}
 	.s5 {
 		background: #d9ead3;
@@ -30,40 +23,43 @@
 	.s8 {
 		background: #fff2cc;
 	}
-	.space {
-		border: none;
-	}
 	.memory-map tr:not(:first-child) {
 		height: 50px;
 	}
 	table {
 		table-layout: fixed;
 		line-height: 1;
-		background: white;
 		text-align: center;
+	}
+	.memory-map td {
+		background: white;
+	}
+	.space {
+		border: none !important;
+		background: none !important;
 	}
 </style>
 
 <table class=memory-map>
 	<tr>
-		<th><th>x00000<th>x10000<th>x20000<th>x30000<th>x40000<th>x50000<th>x60000<th>x70000<th>x80000<th>x90000<th>xA0000<th>xB0000<th>xC0000<th>xD0000<th>xE0000<th>xF0000
+		<th><th>.00000<th>.10000<th>.20000<th>.30000<th>.40000<th>.50000<th>.60000<th>.70000<th>.80000<th>.90000<th>.A0000<th>.B0000<th>.C0000<th>.D0000<th>.E0000<th>.F0000
 	</tr>
 	<tr>
-		<th>0xxxxx
+		<th>0.....
 		<td colspan=16 rowspan=2>Program ROM
 	</tr>
 	<tr>
-		<th>1xxxxx
+		<th>1.....
 	</tr>
 	<tr>
-		<th>2xxxxx
+		<th>2.....
 	</tr>
 	<tr>
-		<th>3xxxxx
+		<th>3.....
 		<td>kirameki bank switch
 	</tr>
 	<tr>
-		<th>4xxxxx
+		<th>4.....
 		<td colspan=2>Work RAM
 		<td colspan=2 class=mirror>Work RAM mirror
 		<td>Palette RAM
@@ -73,43 +69,43 @@
 		<td>timer interrupt register
 	</tr>
 	<tr>
-		<th>5xxxxx
+		<th>5.....
 	</tr>
 	<tr>
-		<th>6xxxxx
+		<th>6.....
 		<td colspan=4>Graphics RAM
 		<td colspan=2 class=space>
 		<td>tilemap control registers
 	</tr>
 	<tr>
-		<th>7xxxxx
+		<th>7.....
 	</tr>
 	<tr>
-		<th>8xxxxx
+		<th>8.....
 	</tr>
 	<tr>
-		<th>9xxxxx
+		<th>9.....
 	</tr>
 	<tr>
-		<th>Axxxxx
+		<th>A.....
 	</tr>
 	<tr>
-		<th>Bxxxxx
+		<th>B.....
 	</tr>
 	<tr>
-		<th>Cxxxxx
+		<th>C.....
 		<td>Shared RAM
 		<td colspan=7 class=space>
 		<td>sound reset register
 	</tr>
 	<tr>
-		<th>Dxxxxx
+		<th>D.....
 	</tr>
 	<tr>
-		<th>Exxxxx
+		<th>E.....
 	</tr>
 	<tr>
-		<th>Fxxxxx
+		<th>F.....
 	</tr>
 </table>
 

@@ -9,7 +9,14 @@ body {
 	font-family: georgia, serif;
 }
 
-h1 span {
+h1 {
+	background: #FFE;
+	margin: 12px -8px 21px;
+	padding: 8px 8px;
+	box-shadow: 0 0 5px black;
+	color: #E21;
+}
+h1 img + span {
 	display: inline-block;
 	vertical-align: middle;
 }
@@ -99,4 +106,22 @@ table.pinout {
 	font-weight: normal;
 	background: black;
 	color: white;
+}
+
+.memory-map  {
+	table-layout: fixed;
+	line-height: 1;
+	background: #CCC8;
+	text-align: center;
+}
+.memory-map, .memory-map tr>* {
+	border: 1px solid;
+	border-collapse: collapse;
+}
+.memory-map th {
+	font-family: monospace;
+	background: #FFE;
+	padding: 4px 1px;
+}
+.memory-map td {
 }
