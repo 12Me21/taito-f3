@@ -2,7 +2,7 @@ o-l {
 	text-decoration: overline;
 }
 
-h1 div {
+h1 span {
 	display: inline-block;
 	vertical-align: middle;
 }
@@ -19,7 +19,6 @@ table.port {
 }
 .port td {
 	border: 1px solid;
-	border-collapse: collapse;
 }
 .port tr>* {
 	height:40px;
