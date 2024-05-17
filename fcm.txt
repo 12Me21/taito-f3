@@ -84,28 +84,28 @@
 82
 83
 84 fdp.29
-85 -
-86 -
-87 -
-88 -
-89 -
+85 fdp.28
+86 fdp.26
+87 fdp.25?
+88 fdp.24?
+89 fdp.23?
 90 gnd
-91 -
-92 -
-93 -
-94 -
-95 -
-96 -
+91 fdp.22
+92 fdp.21?
+93 fdp.20?
+94 fdp.19?
+95 fdp.18?
+96 fdp.17
 97 fda.27?
 98 fda.28?
 99 fda.26?
 100 vcc
 101
-102 -
-103 -
-104 -
-105 -
-106 fio.118
+102 
+103 - ?????????????? this appears to go up past the cpu ram and to the cartridge. there is nowhere else it could go. but it doesnt connect to the cartridge port.
+104 ic16.20 (ce)
+105 cpuram.ce (chip select?)
+106 fio.118 (chip select?)
 107 cpu.dsack0
 108 cpu.dsack1
 109 -
