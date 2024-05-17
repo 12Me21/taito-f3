@@ -6,7 +6,8 @@ body {
 	margin-bottom: 100px;
 	image-rendering: crisp-edges;
 	background: url("./tile1.png");
-	font-family: georgia, serif;
+	font-family: /*georgia,*/ serif;
+	/*font-variant-numeric: oldstyle-nums;*/
 }
 
 h1 {
@@ -30,6 +31,7 @@ h1 img {
 
 table {
 	font-family: serif;
+	font-variant-numeric: lining-nums;
 }
 
 table.port {
