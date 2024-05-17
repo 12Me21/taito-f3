@@ -56,11 +56,11 @@
 55
 56 esp.13 (SERI/O2)
 57 esp.12 (SERI/O3)
-58 -
+58 dac.3 (data)
 59 gnd
 60 vcc
 61
-62 -
+62 espram.15 (a0) ? wow
 63 -
 64 -
 65 -
