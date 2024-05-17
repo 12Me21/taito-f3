@@ -156,7 +156,7 @@ TAB GND
 
 ES5510
 https://ccrma.stanford.edu/~dattorro/es5510searchable.pdf
-ENSONIQ Signal Processor
+ENSONIQ Signal Processor ESP
 [600 mil DIP 48]
 1 CLKIN
 2 VSS
