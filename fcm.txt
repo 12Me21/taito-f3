@@ -60,23 +60,23 @@
 59 gnd
 60 vcc
 61
-62 espram.15 (a0) ? wow
-63 -
-64 -
-65 -
-66 -
-67 -
-68 -
-69 -
+62 espram.15 (a0)  wow
+63 espram.32 (d9) 
+64 espram.16 (a1)
+65 espram.33 (d10)
+66 espram.17 (a2)
+67 espram.34 (d11)
+68 espram.18 (a3)
+69 espram.35 (d12)
 70 gnd
-71 -
-72 -
-73 -
-74 -
-75 -
-76 -
-77 -
-78 -
+71 espram.19 (a4)
+72 espram.36 (d13)
+73 espram.22 (a5)
+74 espram.37 (d14)
+75 espram.23 (a6)
+76 espram.38 (d15)
+77 espram.24 (a7)
+78 espram.39 (d16)
 79 -
 80 vcc
 
