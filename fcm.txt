@@ -101,10 +101,10 @@
 99 fda.26?
 100 vcc
 101
-102 
-103 - ?????????????? this appears to go up past the cpu ram and to the cartridge. there is nowhere else it could go. but it doesnt connect to the cartridge port.
+102 ic14.20 (ce)
+103 ic15.20 (ce)
 104 ic16.20 (ce)
-105 cpuram.ce (chip select?)
+105 ic17.20 (ce)
 106 fio.118 (chip select?)
 107 cpu.dsack0
 108 cpu.dsack1
@@ -162,3 +162,6 @@
 158
 159
 160 vcc
+
+
+dual port ram chip select: pal6.8
