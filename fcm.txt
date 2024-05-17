@@ -3,12 +3,12 @@
 3 cpu.d18
 4 cpu.d17
 5 cpu.d16
-6
-7
-8
-9
+6 -
+7 -
+8 -
+9 -
 10 gnd
-11 
+11 -
 12 cpu.a7
 13 cpu.a6
 14 cpu.a5
@@ -46,20 +46,20 @@
 45
 46
 47
-48
-49
+48 -
+49 -
 50 gnd
-51
+51 -
 52 esp.15 (SERI/O0)
-53 
+53 -
 54 esp.14 (SERI/O1)
-55
+55 -
 56 esp.13 (SERI/O2)
 57 esp.12 (SERI/O3)
 58 dac.3 (data)
 59 gnd
 60 vcc
-61
+61 
 62 espram.15 (a0)  wow
 63 espram.32 (d9) 
 64 espram.16 (a1)
@@ -110,11 +110,10 @@
 108 cpu.dsack1
 109 -
 110 gnd
-111
-112
-113
-114
-115
+111 -
+112 -
+113 -
+114 -
 115 cpu.ipl2
 116 cpu.ipl1
 117 cpu.ipl0
@@ -129,10 +128,10 @@
 125 cpu.avec
 126 pal2.22
 127 cart.A90
-128
+128 -
 129
 130 gnd
-131
+131 - shielded?
 132 vcc
 133 cpu.reset
 134 cpu.siz0
