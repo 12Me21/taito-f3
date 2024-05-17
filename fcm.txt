@@ -77,13 +77,13 @@
 76 espram.38 (d15)
 77 espram.24 (a7)
 78 espram.39 (d16)
-79 -
+79 esp.5 (gate)
 80 vcc
 
 81 gnd
 82
 83
-84 -
+84 fdp.29
 85 -
 86 -
 87 -
