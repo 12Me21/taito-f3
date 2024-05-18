@@ -1,5 +1,7 @@
 // browsers should just do this by default..
-for (var e of document.querySelectorAll('h1,h2,h3,h4,h5,h6')) {
+var h = document.querySelectorAll('h1,h2,h3,h4,h5,h6')
+for (var i=0; i<h.length; i++) {
+	var e = h[i]
 	if (e.id) {
 		var link = document.createElement('a')
 		link.href = "#"+e.id
