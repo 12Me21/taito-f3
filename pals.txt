@@ -1,3 +1,86 @@
+pal3,pal4,pal5 are used for audio cpu address mapping
+we don't have dumps of 4 or 5
+
+pal3:
+1
+2
+3 (pullup)
+4 (pullup)
+5
+6
+7 audiocpu.rw
+8 audiocpu.lds
+9 audiocpu.uds
+10 audiocpu.as
+11 audiocpu.fc0
+12 GND
+13 audiocpu.fc1
+14 audiocpu.fc2
+15 (pullup)
+16 audiocpu.dtack
+17
+18
+19
+20
+21
+22
+23
+24 VCC
+
+pal4:
+1 
+2 acpu.a18
+3 acpu.a19
+4 acpu.a20
+5 acpu.a21
+6 acpu.a22
+7 acpu.a23
+8 audiocpu.lds
+9 audiocpu.uds
+10 audiocpu.as
+11
+12 GND
+13
+14
+15
+16 audiocpu.dtack
+17
+18
+19
+20
+21
+22
+23
+24 VCC
+
+pal5:
+1
+2 acpu.a18
+3 acpu.a19
+4 acpu.a20
+5 acpu.a21
+6 acpu.a22
+7 acpu.a23
+8 acpu.lds
+9 acpu.uds
+10 acpu.as
+11 acpu.fc0
+12 GND
+13 acpu.fc1
+14 acpu.fc2
+15
+16
+17 audiocpu.dtack
+18
+19
+20
+21
+22
+23
+24 VCC
+
+
+
 1
 2 pal4/pal5
 3 pal4/pal5
