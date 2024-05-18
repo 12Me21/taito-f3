@@ -5,7 +5,7 @@ for (var i=0; i<h.length; i++) {
 	if (e.id) {
 		var link = document.createElement('a')
 		link.href = "#"+e.id
-		link.setAttribute('style', "text-decoration:unset;color:unset;")
+		link.setAttribute('style', "text-decoration:none;color:inherit;")
 		link.appendChild(e.parentNode.replaceChild(link, e))
 	}
 }
