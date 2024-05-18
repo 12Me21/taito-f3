@@ -46,14 +46,14 @@
 45
 46
 47
-48 -
-49 -
+48 otis.e (yes, same as 122)
+49 otis.12 (serbclk)
 50 gnd
-51 -
+51 otis.7 (ser1) - note otis pin 6 does not connect to fcm i think
 52 esp.15 (SERI/O0)
-53 -
+53 otis.8 (ser2)
 54 esp.14 (SERI/O1)
-55 -
+55 otis.9 (ser3)
 56 esp.13 (SERI/O2)
 57 esp.12 (SERI/O3)
 58 dac.3 (data)
