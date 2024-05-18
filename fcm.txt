@@ -179,7 +179,7 @@ pal1, pal2 (pins 1-13 are shared)
 11 11
 12 gnd
 13 12
-14 ,
+14 pal5.23, pal6.12
 15 ,
 16 ,
 17 ,
