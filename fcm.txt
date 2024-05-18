@@ -3,12 +3,12 @@
 3 cpu.d18
 4 cpu.d17
 5 cpu.d16
-6 pal1.2 and pal2.2
-7 pal1.1 and pal2.1
-8 pal1.23 and pal2.23
-9 -
+6 cpu.93 (a19)
+7 cpu.92 (a18)
+8 cpu.91 (a17)
+9 cpu.88 (a16)
 10 gnd
-11 -
+11 cpu.87 (a15)
 12 cpu.a7
 13 cpu.a6
 14 cpu.a5
@@ -188,5 +188,5 @@ pal1, pal2 (pins 1-13 are shared)
 20 ,
 21 ,
 22 ,
-23 ,
+23 cpu.91
 24 vcc
