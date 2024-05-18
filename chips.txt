@@ -712,7 +712,57 @@ OTISR2 https://www.dosdays.co.uk/media/ensoniq/es5505%20-%20OTIS.pdf ?
 MC68EC020 [FG 16]
 https://www.nxp.com/docs/en/data-sheet/MC68020UM.pdf
 [QFP 100 30x20 0.65mm pitch]
-...
+1 ~BR
+2 ~BG
+3 GND
+4 GND
+5 CLK
+6 ~RESET
+7 V_CC
+8 V_CC
+9 ~RMC
+10 FC0
+11 FC1
+12 FC2
+13 SIZ0
+14 SIZ1
+15 ~CDIS
+16 ~AVEC
+17 ~DSACK0
+18 ~DSACK1
+19 ~BERR
+20 GND
+21 GND
+22 ~HALT
+23 ~AS
+24 ~DS
+25 R/~W
+26 GND
+27 D31
+28 D30
+29 D29
+30 D28
+
+81 a9
+82 a10
+83 a11
+84 a12
+85 a13
+86 a14
+87 a15
+88 a16
+89 gnd
+90 vcc
+91 a17
+92 a18
+93 a19
+94 a20
+95 a21
+96 a22
+97 a23
+98 a1
+99 a0
+100 gnd
 
 TC0630FDP
 (custom)
