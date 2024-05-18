@@ -1,0 +1,55 @@
+1
+2 pal4/pal5
+3 pal4/pal5
+4 pal4/pal5
+5 pal4/pal5
+6 pal4/pal5
+7 pal4/pal5
+8 pal3/pal4/pal5
+9 pal3/pal4/pal5
+10 pal3/pal4/pal5
+11 pal3/    /pal5
+
+13 pal3/ pal5
+
+14 
+
+pal3/pal4 .16 = pal5.17
+
+pal3.15 = pullup
+
+pal3/5:
+11 shared
+
+pal4/5:
+2-10 shared
+
+pal4:
+4 audiocpu.a20
+
+pal5:
+4 audiocpu.a20
+
+
+
+audiocpu:
+a23 pal4.7 and pal5.7
+a22 pal4.6 and pal5.6
+a21 pal4.5 and pal5.5
+a20 pal4.4 and pal5.4
+a19 pal4.3 and pal5.3
+a18 pal4.2 and pal5.2
+a17  (end)
+
+as all.10
+lds all.8
+uds all.9
+rw pal3.7
+dtack pal3.16
+fc0 pal3.11 and pal5.11
+fc1 pal3.13 and pal5.13
+fc2 pal3.14 and pal5.14
+
+pal3:
+3 pullup
+4 pullup

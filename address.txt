@@ -1,0 +1,30 @@
+0 = must be 0
+1 = must be 1
+. = definitely doesnt matter
+x = actually sent to chip address pins
+C = used for determining which chips in a group are written to
+? = unknown (could be 0 or . depending on how specific the mapping is)
+
+work ram (400000-43FFFF)
+0100 00.x xxxx xxxx xxxx xxCC
+
+palette ram (440000-44FFFF)
+0100 01?? xxxx xxxx xxxx xxCC
+
+FIO (4A0000-4A001F)
+0100 101? ???? ???? ??.x xxxx
+
+timer register (4C0000-idk)
+0100 11?? ???? ???? ???? ????
+
+FDP ram (600000-63FFFF)
+0110 00xx xxxx xxxx xxxx xxxx
+
+FDP registers (660000-idk)
+0110 011? ???? ???? ???x xxxx
+
+shared ram (C00000-idk)
+1100 0??? ???? ?xxx xxxx xxxx
+
+sound reset register (C80000-idk)
+1100 1??? ???? ???? ???? ????

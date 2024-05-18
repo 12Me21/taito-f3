@@ -165,7 +165,7 @@
 
 dual port ram chip select: pal6.8
 
-pal1, pal2 (pins 1-13 are shared)
+pal1, pal2 (pins 1-13 and 23 are shared)
 1 cpu.a18
 2 cpu.a19
 3 cpu.a20
@@ -179,14 +179,28 @@ pal1, pal2 (pins 1-13 are shared)
 11 cpu.fc1
 12 gnd
 13 cpu.fc2
-14 pal5.23, pal6.12
-15 ,
-16 ,
-17 ,
-18 ,
-19 ,
-20 ,
-21 ,
-22 ,
+...
 23 cpu.a17
 24 vcc
+
+pal1:
+14 pal5.23 and mb3771.reset? and fio.115?
+15  (passthrough i3)
+16  (passthrough i2)
+17  (unused in pal, perhaps nc)
+18 ???
+19 fcm.143
+20 fcm.142
+21 fdp.1
+22 fcm.141
+
+pal2:
+14 pal6.12
+15 something with pal6?? briefly showed a connection but cant find now
+16 
+17 
+18 
+19 
+20 cpuram.oe?
+21 cpuram.rw?
+22 fcm.126
