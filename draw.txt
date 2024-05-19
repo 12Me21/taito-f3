@@ -1,0 +1,67 @@
+ic1	.	MC74HC08AN	4,22 7x4	(AND gates)
+ic2	pal1	PALCE20V8Q	4,28 12x4	
+ic3	pal2	PALCE20V8Q	4,34 12x4
+ic4	fcm	TC0660FCM	5,45 13x13	
+ic5	.	(fpm ram)	5,68 10x5
+ic6	.	(fpm ram)	5,77 10x5
+ic7	.	(fpm ram)	5,86 10x5
+ic8	.	(fpm ram)	5,95 10x5
+ic9	.	SN74LS08N	9,103 7x4
+ic10	cpu	MC68EC020FG16	16,16 9x7
+ic11	.	LH5P8128-80	17,63 16x7	(graphics ram 1)
+ic12	.	LH5P8128-80	17,70 16x7	(graphics ram 2)
+ic13	fdp	TC0630FDP	20,85 13x13
+ic14	.	TC51832ASPL-85	32,10 14x4	(cpu ram 1)
+ic15	.	TC51832ASPL-85	32,16 14x4	(cpu ram 2)
+ic16	.	TC51832ASPL-85	32,22 14x4	(cpu ram 3)
+ic17	.	TC51832ASPL-85	32,28 14x4	(cpu ram 4)
+ic18	.	MC74F163AN	32,34 8x4	(binary counter)
+ic19	.	MC74F74N	32,40 7x4	(d flip flops)
+ic20	.	MC74F244N	32,47 10x4	(buffer)
+ic21	.	MC74F74N	32,53 7x4	(d flip flops)
+ic22	.	MC74F161AN	32,57 8x4	(binary counter)
+ic23	pal3	PALCE20V8Q	37,88 12x4	
+ic24	pal4	PALCE20V8Q	37,94 12x4
+ic25	pal5	PALCE20V8Q	37,99 12x4
+ic26	otis	OTISR2	51,15 24x7
+ic27	.	5701	54,27 9x7
+ic28	duart	MC68681P	45,40 20x7
+ic29	pal6	PALCE16V8Q-15	49,54 10x4
+ic30	.	MB8421-90LP	45,61 18x7	(dual port ram)
+ic31	.	MB8421-90LP	45,70 18x7	(dual port ram)
+ic32	acpu	MC68EC000FN16	52,86 11x11
+ic33	pal7	PALCE16V8Q-15	53,102 10x4
+ic34	.	TD62064AP	80,10 8x4	(high current driver)
+ic35	.	MB3771	76x17 4x4	(power supply monitor)
+ic36	.	93C46CB1	81,17 4x4	(serial eeprom)
+ic37	fio	TC0640FIO	71,27 13x13
+ic38	.	IS61C64AH-20N	70,45 14x4	(palette ram 1)
+ic39	.	IS61C64AH-20N	70,50 14x4	(palette ram 2)
+ic40	.	IS61C64AH-20N	70,55 14x4	(palette ram 3)
+ic41	fda	TC0650FDA	74,63 9x7
+ic42	esp	ESPR6	69,75	24x7
+ic43	pal8	PALCE16V8Q-15	69,88 10x4
+ic44	.	TC51832ASPL-85	69,95 14x4	(acpu ram 1)
+ic45	.	TC51832ASPL-85	69,102 14x4	(acpu ram 2)
+ic46	.	TLP521-4	88,16 4x8	(optocouplers)
+ic47	.	TLP521-4	88,25 4x8	(optocouplers)
+ic48	.	TLP521-4	88,34 4x8	(optocouplers)
+ic49	.	TLP521-4	88,43 4x8	(optocouplers)
+ic50	.	TLP521-4	88,52 4x8	(optocouplers)
+ic51	espram	(fpm ram)	82,84 10x5
+ic52	dac	TDA1543	84,95 4x4
+ic53	.	MC33274AP	90,94 7x4	(amplifiers)
+ic54	.	MB87078-SK	85,102 12x4	(volume control)
+ic55	.	TLP620-4	96,7 4x8	(optocouplers)
+ic56	.	TLP620-4	96,16 4x8	(optocouplers)
+ic57	.	TLP521-4	96,25 4x8	(optocouplers)
+ic58	.	TLP521-4	96,34 4x8	(optocouplers)
+ic59	.	TLP620-4	96,43 4x8	(optocouplers)
+ic60	.	TLP620-4	96,52 4x8	(optocouplers)
+ic61	.	TD62064AP	94,61 8x4	(high current driver)
+ic62	?	?	?
+ic63	.	TA8221AH	107,95 2x14	(audio power amplifier)
+ic64	.	MC74F74N	18,28 7x4	(d flip flops)
+ic65	.	SN74F04N	18,34 7x4	(inverters)
+
+cut -f1,4 <draw.txt | sed 's/^/<area href=#/' | sed 's/	/ shape=rect coords=/' | sed 's/$/>/'
