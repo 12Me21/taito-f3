@@ -1,0 +1,3 @@
+16mhz osc output: x3.8 ic20.2 
+16mhz buffered: ic20.18 5701.10
+26mhz osc output: 
