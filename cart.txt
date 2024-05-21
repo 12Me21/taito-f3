@@ -187,8 +187,8 @@ ou: 2 5 6 9  12 15 16 19
 
 ic31.16 and rom7.a6 (373 from ic30.14)
 
-C01 pal9.9 (shielded) -- ic20.7 from 13 ic19.3
-C02 pal9.8 (shielded) -- ic20.9 from 11 ic19.5
+C01 pal9.9 (shielded) -- ic20.7 from 13 ic19.3 (13mhz clock)
+C02 pal9.8 (shielded) -- ic20.9 from 11 ic19.5 (7 mhz clock)
 C03 pal9.11 -- fdp.207 and fdp.180
 C04 nc? -- fdp.118 and fcm.119 // clock??
 C05 ic13.8 and ic30.9 (373 to rom2.a-1 and rom1 - only 1 and 2, not the sprite roms!) (244 from rom8.d0 and rom2.d0) -- fdp.125
