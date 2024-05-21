@@ -63,7 +63,8 @@ graphics ram chip enable: ic64.11  fdp.32 ic11.22 ic12.22
 
 ic18 "another clock divider"
 GND: ic18.3 ic18.4 ic18.5 ic18.6 ic18.8
-VCC: ic18.1 ic18.7 ic18.9 ic18.10 ic18.15 ic18.16
+VCC: ic18.1 ic18.7 ic18.9 ic18.10 ic18.16
+NC: ic18.15
 probably nc (div 4): ic18.13
 
 idk esp clock 8mhz: ic18.2 5701.8 esp.1 #who generates this? 5701?
@@ -72,11 +73,12 @@ counter div 8 1mhz: ic18.12 duart.38 duart.36 fio.107 #duart RxCB or counter/tim
 counter div 16 0.5mhz: ic18.11 duart.2 duart.39 #duart TxCA and RxCA
 
 GND:
-VCC: ic21.4 ic21.10 ic21.14
-GND: ic21.7
+VCC: ic21.4 ic21.10 ic21.14 ic22.9 ic22.16
+GND: ic21.7 ic22.3 ic22.4 ic22.5 ic22.6 ic22.8
+NC: ic22.15
 
 otis e: otis.30 5701.12 ic21.3 pal8.8 pal4.17 ic30.1 fcm.48
-bank counter reset: otis.bs ic21.1 ic21.13 ic22.1
+bank counter reset: otis.4 ic21.1 ic21.13 ic22.1
 feedback1: ic21.6 ic21.2
 feedback2: ic21.8 ic21.12
 div1: ic21.5 ic21.11 ic22.2
