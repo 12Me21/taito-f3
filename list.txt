@@ -45,3 +45,14 @@ NC: ic1.3 ic1.6 ic1.11
 15mhz clock buffered r2: r2.2 cpu.5
 
 ic64:
+GND: ic64.2 ic64.7 
+VCC: ic64.1 ic64.13 ic64.14
+NC: ic64.6 ic64.8
+
+clock 1: ic64.3  ic65.12
+preset 1+2: ic64.4 ic64.10  ic65.10
+output 1 to input 2: ic64.5 ic64.12
+
+output 2: ic64.9  fcm.109
+clock 2: ic64.11
+

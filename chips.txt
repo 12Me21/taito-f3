@@ -70,6 +70,24 @@ DUAL D-TYPE POSITIVE EDGE-TRIGGERED FLIP-FLOP
 13 ~C_D2 clear
 14 V_CC
 
+SN74F04 [N]
+inverter x6
+[300 mil DIP 14]
+1 1A
+2 1Y
+3 2A
+4 2Y
+5 3A
+6 3Y
+7 GND
+8 4Y
+9 4A
+10 5Y
+11 5A
+12 6Y
+13 6A
+14 V_CC
+
 MB87078 [-SK]
 https://www.digchip.com/datasheets/download_datasheet.php?id=2086624&part-number=MB87078
 6-bit 4-channel Electronic Volume Controller
@@ -1014,4 +1032,3 @@ https://pdf1.alldatasheet.com/datasheet-pdf/download/116089/ICSI/IS61C64AH.html
 MC33274A [P]
 https://www.onsemi.com/pdf/datasheet/mc33272a-d.pdf
 Operational Amplifiers, Single Supply, High Slew Rate, Low Input Offset Voltage
-

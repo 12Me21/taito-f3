@@ -108,7 +108,7 @@
 106 fio.118 (chip select?)
 107 cpu.dsack0
 108 cpu.dsack1
-109 -
+109 ic64.9
 110 gnd
 111 -
 112 -
