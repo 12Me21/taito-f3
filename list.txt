@@ -2,7 +2,6 @@ ic18 74F163
 ic19 74F74 vclkdiv
 ic20 74F244 clkbuf
 
-
 16mhz osc output: x3.8  clkbuf.2 
 16mhz buffered: clkbuf.18  5701.10
 
@@ -44,18 +43,22 @@ NC: ic1.3 ic1.6 ic1.11
 15mhz clock buffered: ic1.8 r2.1
 15mhz clock buffered r2: r2.2 cpu.5
 
-ic64:
+#ic64 and ic65 "whatever this fuckin thing is"
+# probably related to memory access between the FDP and main cpu
+#on ic65, only 2 of the inverters are used
+
 GND: ic64.2 ic64.7  ic65.7
 VCC: ic64.1 ic64.13 ic64.14  ic65.14
 NC: ic64.6 ic64.8
 probably nc: ic65.1 ic65.2 ic65.3 ic65.4 ic65.5 ic65.6 ic65.8 ic65.9
 
-clock 1: ic64.3  ic65.12
+idk fdp 205:  ic65.13  fdp.205
+inverted fdp 205: ic64.3  ic65.12
 cpu as: cpu.as ic65.11 fcm.138 pal2.7
 cpu as inverted preset 1+2: ic65.10  ic64.4 ic64.10
 output 1 to input 2: ic64.5 ic64.12
 output 2: ic64.9  fcm.109
 graphics ram chip enable: ic64.11  fdp.32 ic11.22 ic12.22
 
-ic65.13
 
+ic18:
