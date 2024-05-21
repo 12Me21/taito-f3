@@ -34,3 +34,14 @@ NC: clkbuf.5
 
 video sync pre buffer: clkbuf.17 fdp.120
 video sync buffered: clkbuf.3 r24.1   #this is what that bodge wire is connected to. it goes through the resistor to video sync output ??
+
+#note the only pins used on ic1 are 8 and 10, this is just used as a clock buffer like ic20.
+GND: ic1.1 ic1.2 ic1.4 ic1.5 ic1.7 ic1.12 ic1.13
+VCC: ic1.9 ic1.14
+NC: ic1.3 ic1.6 ic1.11
+
+15mhz clock [pullup R1]: ic1.10 cart.A82 cart.D69 audiocpu.16 5701.21 otis.34 pal6.1 #idk who is responsible for generating this?
+15mhz clock buffered: ic1.8 r2.1
+15mhz clock buffered r2: r2.2 cpu.5
+
+ic64:
