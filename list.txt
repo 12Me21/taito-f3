@@ -71,5 +71,17 @@ counter div 2 4mhz: ic18.14 duart.32 #duart clock input
 counter div 8 1mhz: ic18.12 duart.38 duart.36 fio.107 #duart RxCB or counter/timer input, and TxCB
 counter div 16 0.5mhz: ic18.11 duart.2 duart.39 #duart TxCA and RxCA
 
+GND:
+VCC: ic21.4 ic21.10 ic21.14
+GND: ic21.7
 
-
+otis e: otis.30 5701.12 ic21.3 pal8.8 pal4.17 ic30.1 fcm.48
+bank counter reset: otis.bs ic21.1 ic21.13 ic22.1
+feedback1: ic21.6 ic21.2
+feedback2: ic21.8 ic21.12
+div1: ic21.5 ic21.11 ic22.2
+div2: ic21.9 ic22.10 ic22.7 ic30.a0l
+div3: ic22.14 ic30.a1l
+div4: ic22.13 ic30.a2l
+div5: ic22.12 ic30.a3l
+div6: ic22.11 ic30.a4l

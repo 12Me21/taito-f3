@@ -41,7 +41,7 @@ reset:
 otis.bs -> ic21.clear1 + ic21.clear2 + ic22.mr // im guessing that they set the "bank" bit on the first voice only, and then use that to reset their counter when voice 0 is read
 
 clockinput:
-??? -> ic21.clock1
+otis.e -> ic21.clock1
 
 feedback1:
 ic21.inv1 -> ic21.input1
