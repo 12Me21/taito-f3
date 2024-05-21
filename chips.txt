@@ -980,20 +980,20 @@ https://pdf1.alldatasheet.com/datasheet-pdf/download/158643/MOTOROLA/MC74F161AN.
 SYNCHRONOUS PRESETTABLE BINARY COUNTER
 [300 mil DIP 16]
 1 ~R (~MR for 161, ~SR for 163)
-2 CP
+2 CP (CLK)
 3 P_0
 4 P_1
 5 P_2
 6 P_3
-7 CEP
+7 CEP (ENP)
 8 GND
-9 ~PE
-10 CET
+9 ~PE (~LOAD)
+10 CET (ENT)
 11 Q_3
 12 Q_2
 13 Q_1
 14 Q_0
-15 TC
+15 TC (RCO)
 16 V_CC
 
 

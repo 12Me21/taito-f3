@@ -39,7 +39,7 @@ GND: ic1.1 ic1.2 ic1.4 ic1.5 ic1.7 ic1.12 ic1.13
 VCC: ic1.9 ic1.14
 NC: ic1.3 ic1.6 ic1.11
 
-15mhz clock [pullup R1]: ic1.10 cart.A82 cart.D69 audiocpu.16 5701.21 otis.34 pal6.1 #idk who is responsible for generating this?
+15mhz clock [pullup R1]: ic1.10 cart.A82 cart.D69 audiocpu.16 5701.21 otis.34 pal6.1 #idk who is responsible for generating this? maybe 5701 again
 15mhz clock buffered: ic1.8 r2.1
 15mhz clock buffered r2: r2.2 cpu.5
 
@@ -61,4 +61,15 @@ output 2: ic64.9  fcm.109
 graphics ram chip enable: ic64.11  fdp.32 ic11.22 ic12.22
 
 
-ic18:
+ic18 "another clock divider"
+GND: ic18.3 ic18.4 ic18.5 ic18.6 ic18.8
+VCC: ic18.1 ic18.7 ic18.9 ic18.10 ic18.15 ic18.16
+probably nc (div 4): ic18.13
+
+idk esp clock 8mhz: ic18.2 5701.8 esp.1 #who generates this? 5701?
+counter div 2 4mhz: ic18.14 duart.32 #duart clock input
+counter div 8 1mhz: ic18.12 duart.38 duart.36 fio.107 #duart RxCB or counter/timer input, and TxCB
+counter div 16 0.5mhz: ic18.11 duart.2 duart.39 #duart TxCA and RxCA
+
+
+
