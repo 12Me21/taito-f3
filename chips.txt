@@ -588,9 +588,6 @@ Clock Oscillator (TTL Compatible)
 8 Output
 14 +5.0V D.C.
 
-ENSONIQ-5701? 
-[PQFP-100_14x20mm_P0.65mm]
-
 MC68000 [P12F]
 [900 mil DIP 64]
 1 D4
@@ -960,11 +957,11 @@ https://archive.org/details/bitsavers_hitachidatook_75119095/page/n165/mode/2up
 39 IO16
 40 V_SS
 
-MC74F161 [AN]
+MC74F161 [AN] / MC74F163 [AN]
 https://pdf1.alldatasheet.com/datasheet-pdf/download/158643/MOTOROLA/MC74F161AN.html
 SYNCHRONOUS PRESETTABLE BINARY COUNTER
 [300 mil DIP 16]
-1 ~MR
+1 ~R (~MR for 161, ~SR for 163)
 2 CP
 3 P_0
 4 P_1
@@ -980,6 +977,7 @@ SYNCHRONOUS PRESETTABLE BINARY COUNTER
 14 Q_0
 15 TC
 16 V_CC
+
 
 IS61C64AH [-20N]
 https://pdf1.alldatasheet.com/datasheet-pdf/download/116089/ICSI/IS61C64AH.html
@@ -1016,3 +1014,4 @@ https://pdf1.alldatasheet.com/datasheet-pdf/download/116089/ICSI/IS61C64AH.html
 MC33274A [P]
 https://www.onsemi.com/pdf/datasheet/mc33272a-d.pdf
 Operational Amplifiers, Single Supply, High Slew Rate, Low Input Offset Voltage
+

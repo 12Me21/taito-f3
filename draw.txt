@@ -16,10 +16,10 @@ ic15	.	TC51832ASPL-85	32,16 14x4	(cpu ram 2)
 ic16	.	TC51832ASPL-85	32,22 14x4	(cpu ram 3)
 ic17	.	TC51832ASPL-85	32,28 14x4	(cpu ram 4)
 ic18	.	MC74F163AN	32,34 8x4	(binary counter)
-ic19	.	MC74F74N	32,40 7x4	(d flip flops)
-ic20	.	MC74F244N	32,47 10x4	(buffer)
+ic19	.	MC74F74N	32,40 7x4	(video clock divider)
+ic20	.	MC74F244N	32,47 10x4	(clock buffer)
 ic21	.	MC74F74N	32,53 7x4	(d flip flops)
-ic22	.	MC74F161AN	32,57 8x4	(binary counter)
+ic22	.	MC74F161AN	32,57 8x4	(voice bank binary counter)
 ic23	pal3	PALCE20V8Q	37,88 12x4	
 ic24	pal4	PALCE20V8Q	37,94 12x4
 ic25	pal5	PALCE20V8Q	37,99 12x4
@@ -39,7 +39,7 @@ ic38	.	IS61C64AH-20N	70,45 14x4	(palette ram 1)
 ic39	.	IS61C64AH-20N	70,50 14x4	(palette ram 2)
 ic40	.	IS61C64AH-20N	70,55 14x4	(palette ram 3)
 ic41	fda	TC0650FDA	74,63 9x7
-ic42	esp	ESPR6	69,75	24x7
+ic42	esp	ESPR6	69,75 24x7
 ic43	pal8	PALCE16V8Q-15	69,88 10x4
 ic44	.	TC51832ASPL-85	69,95 14x4	(acpu ram 1)
 ic45	.	TC51832ASPL-85	69,102 14x4	(acpu ram 2)
@@ -63,5 +63,9 @@ ic62	?	?	?
 ic63	.	TA8221AH	107,95 2x14	(audio power amplifier)
 ic64	.	MC74F74N	18,28 7x4	(d flip flops)
 ic65	.	SN74F04N	18,34 7x4	(inverters)
+
+x1	.	(26.686 MHz)	23,40 7x4
+x2	.	(30.47618 MHz)	23,47 7x4
+x3	.	(16 MHz)	23,54 7x4
 
 cut -f1,4 <draw.txt | sed 's/^/<area href=#/' | sed 's/	/ shape=rect coords=/' | sed 's/$/>/'

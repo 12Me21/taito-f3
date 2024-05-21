@@ -1,3 +1,31 @@
-16mhz osc output: x3.8 ic20.2 
-16mhz buffered: ic20.18 5701.10
-26mhz osc output: 
+ic18 74F163 
+ic19 74F74 vclkdiv
+ic20 74F244 clkbuffer
+
+
+16mhz osc output: x3.8  clkbuf.2 
+16mhz buffered: clkbuf.18  5701.10
+
+26mhz osc output: x1.8  vclkdiv.11
+vclkdiv feedback 1: vclkdiv.8 vclkdiv.12
+vclkdiv feedback 2: vclkdiv.2 vclkdiv.6
+
+13mhz vclkdiv output 1: vclkdiv.3 vclkdiv.9  clkbuf.6 clkbuf.13
+13mhz buffered a: clkbuf.14 r52.2
+13mhz buffered a r52: r52.1 jp2.3
+fda jp2 clock input: jp2.2 fda.92
+13mhz buffered b: clkbuf.7
+
+7mhz vclkdiv output 2: vclkdiv.5  clkbuf.8 clkbuf.11
+7mhz buffered a: clkbuf.12 r53.1
+7mhz buffered a r53: r53.2 jp2.1
+7mhz buffered b: clkbuf.9
+
+GND: vclkdiv.1 vclkdiv.4 vclkdiv.7 vclkdiv.10 vclkdiv.13
+
+GND: clkbuf.1 
+
+30mhz osc output: x2.8 clkbuf.4
+30mhz buffered: clkbuf.16  5701.19
+
+???: clkbuf.3 clkbuf.5 clkbuf.10 clkbuf.15 clkbuf.17 clkbuf.19 clkbuf.20

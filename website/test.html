@@ -86,7 +86,7 @@ ic38	.	IS61C64AH-20N	70,45 14x4	(palette ram 1)
 ic39	.	IS61C64AH-20N	70,50 14x4	(palette ram 2)
 ic40	.	IS61C64AH-20N	70,55 14x4	(palette ram 3)
 ic41	fda	TC0650FDA	74,63 9x7
-ic42	esp	ESPR6	69,75	24x7
+ic42	esp	ESPR6	69,75 24x7
 ic43	pal8	PALCE16V8Q-15	69,88 10x4
 ic44	.	TC51832ASPL-85	69,95 14x4	(acpu ram 1)
 ic45	.	TC51832ASPL-85	69,102 14x4	(acpu ram 2)
@@ -96,7 +96,7 @@ ic48	.	TLP521-4	88,34 4x8	(optocouplers)
 ic49	.	TLP521-4	88,43 4x8	(optocouplers)
 ic50	.	TLP521-4	88,52 4x8	(optocouplers)
 ic51	espram	(fpm ram)	82,84 10x5
-ic52	dac	TDA1543	84,95 4x4
+ic52	dac	TDA1543	84,94 4x4
 ic53	.	MC33274AP	90,94 7x4	(amplifiers)
 ic54	.	MB87078-SK	85,102 12x4	(volume control)
 ic55	.	TLP620-4	96,7 4x8	(optocouplers)
@@ -112,7 +112,7 @@ ic64	.	MC74F74N	18,28 7x4	(d flip flops)
 ic65	.	SN74F04N	18,34 7x4	(inverters)`.split("\n")
 	for (let n of x) {
 		n = n.split("\t")
-		let nums = n[3].split(/[, x]/).map(x=>+x)
+		let nums = n[3].split(/[, x]/).map(x=>+x*4)
 		let q = document.createElement("area")
 		q.href = n[0]
 		q.shape = 'rect'
@@ -121,4 +121,4 @@ ic65	.	SN74F04N	18,34 7x4	(inverters)`.split("\n")
 	}
 </script>
 
-<img usemap=#abc src=f3.gif width=238 height=232>
+<img usemap=#abc src=f3.gif width=476 height=464 style=image-rendering:crisp-edges>
