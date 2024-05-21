@@ -77,7 +77,7 @@ VCC: ic21.4 ic21.10 ic21.14 ic22.9 ic22.16
 GND: ic21.7 ic22.3 ic22.4 ic22.5 ic22.6 ic22.8
 NC: ic22.15
 
-otis e: otis.30 5701.12 ic21.3 pal8.8 pal4.17 ic30.1 fcm.48
+3.8MHz otis e: otis.30 5701.12 ic21.3 pal8.8 pal4.17 ic30.1 fcm.48 #clock output from otis (input divided by 8) low = otis is accessing sound memory
 bank counter reset: otis.4 ic21.1 ic21.13 ic22.1
 feedback1: ic21.6 ic21.2
 feedback2: ic21.8 ic21.12

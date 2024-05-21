@@ -128,7 +128,7 @@
 125 cpu.avec
 126 pal2.22 (/o22 = i10 & i11 & i13)
 127 cart.A90
-128 -
+128 cart.C04 (clock?)
 129
 130 gnd
 131 30mhz clock input
