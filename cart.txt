@@ -216,7 +216,7 @@ C25 ic15.13 (373 to rom2.a19 and rom1 and pal9.4) -- fdp.148
 C26 ic15.14 (373 to pal9.5) -- fdp.149
 C27 ic15.17 (373 to pal9.6) -- fdp.150
 C28 ic15.18 (373 to pal9.7) -- fdp.151
-C29 ic23.9 (244 from rom7.d8) -- fdp.153
+C29 ic23.9 (244 from rom7.d8) -- fdp.152
 C30 ic23.7 (244 from rom7.d9) -- fdp.154
 C31 ic23.5 (244 from rom7.d10) -- fdp.155
 C32 ic23.3 (244 from rom7.d11) -- fdp.156
