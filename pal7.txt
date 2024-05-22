@@ -1,5 +1,5 @@
-1 
-2 
+1 fdp.120 (pulldown R12) 
+2 fdp.120 (pulldown R12) # pins 1 and 2 are tied together
 3 fdp.108
 4 GND
 5 GND
@@ -9,12 +9,12 @@
 9 GND
 10 GND
 11 GND - 
-12 
-13 
-14 
-15 
-16 
-17 
-18 
+12 nc?
+13 nc?
+14 nc?
+15 nc?
+16 nc?
+17 nc?
+18 nc?
 19 fdp.121
 20 VCC

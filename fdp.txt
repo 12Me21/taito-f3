@@ -9,7 +9,7 @@ fdp:
 8 cpu.a10
 9
 10 5v?
-11
+11 cpu.a8
 12
 13
 14
@@ -28,33 +28,99 @@ fdp:
 27 gnd?
 28
 29
-30 fb1.rw
-31 fb2.rw
-32 fb2.ce1 fb1.ce1
-33 fb2.a16 fb1.a16
-34 fb2.a15 fb1.a15 fb1.d7
-35 fb2.a14 fb1.a14 fb1.d6 
-36 fb2.a13 fb1.a13 fb1.d5
-37 fb2.a12 fb1.a12 fb1.d4
+30 gram1.rw
+31 gram2.rw
+32 gram2.ce1 gram1.ce1
+33 gram2.a16 gram1.a16
+34 gram2.a15 gram1.a15 gram1.d7
+35 gram2.a14 gram1.a14 gram1.d6 
+36 gram2.a13 gram1.a13 gram1.d5
+37 gram2.a12 gram1.a12 gram1.d4
 38 gnd?
-39 fb2.a11 fb1.a11 fb1.d3
-40 fb2.a8 fb1.a8 fb1.d2  # note address bits 8 and 10 are reversed
-41 fb2.a9 fb1.a9 fb1.d1
-42 fb2.a10 fb1.a10 fb1.d0
+39 gram2.a11 gram1.a11 gram1.d3
+40 gram2.a8 gram1.a8 gram1.d2  # note address bits 8 and 10 are reversed
+41 gram2.a9 gram1.a9 gram1.d1
+42 gram2.a10 gram1.a10 gram1.d0
 43 5v? 
-44 fb2.a7 fb1.a7 fb2.d7
-45 fb2.a6 fb1.a6 db2.d6
-46 fb2.a5 fb1.a5 fb2.d5
-47 fb2.a4 fb1.a4 fb2.d4
-48 fb2.a3 fb1.a3 fb2.d3
-49 fb2.a2 fb1.a2 fb2.d2
-50 fb2.a1 fb1.a1 fb2.d1
-51 fb2.a0 fb1.a0 fb2.d0
+44 gram2.a7 gram1.a7 gram2.d7
+45 gram2.a6 gram1.a6 db2.d6
+46 gram2.a5 gram1.a5 gram2.d5
+47 gram2.a4 gram1.a4 gram2.d4
+48 gram2.a3 gram1.a3 gram2.d3
+49 gram2.a2 gram1.a2 gram2.d2
+50 gram2.a1 gram1.a1 gram2.d1
+51 gram2.a0 gram1.a0 gram2.d0
 52 gnd?
+
 
 108 pal7.3
 
+
+118 cartc.4 and fcm.119 and fcm.128
+119
 120 video sync !
 121 pal7.19
+122
+123 gram2.oe gram1.oe
+124
+125 cartc.5
+126 cartc.6
+127 cartc.7
+128 cartc.8
+129 cartc.9
+130 cartc.10
+131 cartc.11
+132 cartc.12
+133 
+134 cartc.13
+135 cartc.14
+136 cartc.15
+137 cartc.16
+138 cartc.17
+139 cartc.18
+140 cartc.19
+141 cartc.20
+142 
+143 cartc.21
+144 cartc.22
+145 cartc.23
+146 cartc.24
+147 
+148 cartc.25
+149 cartc.26
+150 cartc.27
+151 cartc.28
+152 cartc.29
+153 GND
+154 cartc.30
+155 cartc.31
+156 cartc.32
+157 cartc.69
+158 cartc.70
+159 cartc.71
+160 cartc.72
+161 cartc.73
+162 cartc.74
+163 cartc.75
+164 GND
+165 VCC
+166 cartc.76
+167 cartc.77
+168 cartc.78
+169 cartc.79
+170 cartc.80
+171 cartc.81
+172 cartc.82
+173 cartc.83
+174 cartc.84
+175 cartc.85
+176 cartc.86
+177 GND
+178 cartc.87
+179 cartc.88
+180 carta.89 and cartc.3 and fdp.207
 
-123 fb2.oe fb1.oe
+
+205 ic65.13
+206
+207 same as fdp.180
