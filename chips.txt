@@ -758,6 +758,8 @@ https://www.nxp.com/docs/en/data-sheet/MC68020UM.pdf
 29 D29
 30 D28
 
+80 A8
+
 81 a9
 82 a10
 83 a11
