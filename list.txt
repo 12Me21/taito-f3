@@ -81,9 +81,9 @@ NC: ic22.15
 bank counter reset: otis.4 ic21.1 ic21.13 ic22.1
 feedback1: ic21.6 ic21.2
 feedback2: ic21.8 ic21.12
-div1: ic21.5 ic21.11 ic22.2
-div2: ic21.9 ic22.10 ic22.7 ic30.a0l
-div3: ic22.14 ic30.a1l
-div4: ic22.13 ic30.a2l
-div5: ic22.12 ic30.a3l
-div6: ic22.11 ic30.a4l
+3.8MHz/2 div1: ic21.5 ic21.11 ic22.2
+3.8MHz/4 div2: ic21.9 ic22.10 ic22.7 ic30.a0l
+3.8MHz/8 div3: ic22.14 ic30.a1l
+3.8MHz/16 div4: ic22.13 ic30.a2l
+3.8MHz/32 div5: ic22.12 ic30.a3l
+3.8MHz/64 div6: ic22.11 ic30.a4l
