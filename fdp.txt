@@ -52,6 +52,9 @@ fdp:
 51 fb2.a0 fb1.a0 fb2.d0
 52 gnd?
 
+108 pal7.3
+
 120 video sync !
+121 pal7.19
 
 123 fb2.oe fb1.oe
