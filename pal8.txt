@@ -1,0 +1,20 @@
+1 fda.89 (woah..)
+2 esp.17 (LRCLK)
+3 duart.26 (OP6)
+4 pal2.15
+5 audiocpu.32 (A1)
+6 ic30.20 (IO2_L, otis bank bit? why?)
+7 ic30.19 (IO1_L)
+8 otis.e
+9 cpu.80 (A8) FDP.11 ?
+10 GND
+11 otis.33 (CAS)
+12 dr2.7 esp.36 (HALT) ?
+13 nc?
+14 nc?
+15 nc?
+16 nc?
+17 audiocpu.20 (HALT)
+18 audiocpu.21 (RESET)
+19 ic54.21 (volume control DSEL)
+20 VCC

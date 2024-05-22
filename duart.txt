@@ -1,0 +1,40 @@
+1 audiocpu.32
+2 0.5mhz clock
+3 audiocpu.33
+4 VCC (ip1 unused)
+5 audiocpu.34
+6 audiocpu.36
+7 VCC (ip0 unused)
+8 audiocpu.10
+9 audiocpu.11
+10 (pullup RB2) SI.3
+11 (pullup RB2) SI.2
+12 nc? (op1 unused)
+13 nc? (op3 unused)
+14 nc? (op5 unused)
+15 nc? (op7 unused)
+16 audiocpu.5
+17 audiocpu.3
+18 audiocpu.68
+19 audiocpu.66
+20 GND
+21 pal3.3
+22 audiocpu.67
+23 audiocpu.2
+24 audiocpu.4
+25 audiocpu.6
+26 pal8.3
+27 nc? (op4 unused)
+28 nc? (op2 unused)
+29 nc? (op0 unused)
+30 (pullup RB2) si.4
+31 (pullup RB2) si.5
+32 4mhz clock
+33 GND (X2 unused)
+34 otis.22 (reset)
+35 pal5.22
+36 1mhz clock
+37 pal3.19
+38 1mhz clock
+39 0.5mhz clock
+40 VCC
