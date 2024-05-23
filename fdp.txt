@@ -1,6 +1,6 @@
 fdp:
 1 pal-d77-01.21  maybe chip enable
-2
+2 ic9.3
 3
 4 cpu.a14
 5 cpu.a13?
@@ -57,19 +57,19 @@ fdp:
 105 ic8.33 (fb ram)
 106 ic8.34 (fb ram)
 107 ic8.35 (fb ram)
-108 pal7.3  oops this is GND?
-109
-110
-111
-112
-113
+108 GND?
+109 ic8.36 (fb ram)
+110 ic8.37 (fb ram)
+111 ic8.12 ic8.13 (fb ram)
+112 ic5.14 ic6.14 ic7.14 ic8.14 (fb ram all RAS) and ic9.12 (A4)
+113 ic9.8 (Y3)
 114 VCC
-115
-116
-117
+115 ??
+116 ic9.9 (A3)
+117 ic9.11 (Y4)
 118 cartc.4 and fcm.119 and fcm.128 and pal7.3
 119 GND
-120 video sync !
+120 video sync ! pal7.1
 121 pal7.19
 122
 123 gram2.oe gram1.oe
