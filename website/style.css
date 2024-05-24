@@ -34,6 +34,12 @@ table {
 	font-variant-numeric: lining-nums;
 }
 
+.figures > table {
+	display: inline-table;
+	margin-right: 8px;
+	vertical-align: top;
+}
+
 table.port {
 	table-layout: fixed;
 	font-size: 12px;
