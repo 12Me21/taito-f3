@@ -30,25 +30,25 @@
 30 ?
 
 31 GND
-32 PWR
-33 ?
-34 ?
-35 ?
-36 pwr
-37 ?
-38 ?
-39 ?
-40 pwr
-41 ?
-42 - pull 75
+32 VCC
+33 (pulldown R17)
+34 (pullup R15) .42 and .47
+35 GND
+36 VCC
+37 #for some reason i cant probe these 3 but theyre rgb outputs i think
+38 #
+39 #
+40 VCC
+41 GND
+42 see .34
 43 - pull 75|1000
-44 ?
-45 pwr
-46 pwr
-47 ?
-48 ?
-49 pwr
-50 pwr
+44 TR1.2 TR2.2 TR3.2 ??
+45 VCC
+46 GND
+47 see .34
+48 (pullup R16)
+49 GND
+50 VCC
 
 51 ?
 52 ?
@@ -81,8 +81,8 @@
 79 ?
 80 ?
 
-81 pwr
-82 pwr
+81 VCC
+82 GND
 83 ?
 84 ?
 85 colram.oe (all)
@@ -90,17 +90,17 @@
 87 colram39.we
 88 colram38.we
 89 pal8.1
-90 pwr
-91 ?
-92 shielded, from pal
-93 shielded, from flip flop (is this divided clock?)
-94 ?
+90 GND
+91 VCC
+92 13 mhz clock
+93 7 mhz clock (through jp2) 
+94 VCC
 95 to fdp
 96 to fdp
-97 ?
-98 to fdp??
-99 pwr
-100 pwr
+97 GND
+98 fdp.181
+99 VCC
+100 GND
 
 
 
