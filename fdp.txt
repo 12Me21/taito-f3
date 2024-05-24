@@ -10,24 +10,24 @@ fdp:
 9 cpu.a9?
 10 VCC
 11 cpu.a8 #no higher/lower address pins from cpu, the rest go through fcm?
-12
-13
-14
+12 fcm.114
+13 fcm.113
+14 fcm.112
 15 GND
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
-26
+16 fcm.111
+17 fcm.96
+18 fcm.95?
+19 fcm.94?
+20 fcm.93?
+21 fcm.92?
+22 fcm.91
+23 fcm.89?
+24 fcm.88?
+25 fcm.87?
+26 fcm.86
 27 GND
-28
-29
+28 fcm.85
+29 fcm.84
 30 gram1.rw
 31 gram2.rw
 32 gram2.ce1 gram1.ce1

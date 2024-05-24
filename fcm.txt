@@ -1,4 +1,4 @@
-1 gnd
+1 GND
 2 cpu.d19
 3 cpu.d18
 4 cpu.d17
@@ -7,7 +7,7 @@
 7 cpu.a18
 8 cpu.a17
 9 cpu.a16
-10 gnd
+10 GND
 11 cpu.a15
 12 cpu.a7
 13 cpu.a6
@@ -17,7 +17,7 @@
 17 cpu.a2
 18 cpu.a1
 19 cpu.a0
-20 vcc
+20 VCC
 21 
 22
 23
@@ -27,7 +27,7 @@
 27
 28
 29
-30 gnd
+30 GND
 31
 32
 33
@@ -35,11 +35,11 @@
 35
 36
 37
-38 vcc
+38 VCC
 39
-40 vcc
+40 VCC
 
-41 gnd
+41 GND
 42
 43
 44
@@ -48,7 +48,7 @@
 47
 48 otis.e (yes, same as 122)
 49 otis.12 (serbclk)
-50 gnd
+50 GND
 51 otis.7 (ser1) - note otis pin 6 does not connect to fcm i think
 52 esp.15 (SERI/O0)
 53 otis.8 (ser2)
@@ -57,8 +57,8 @@
 56 esp.13 (SERI/O2)
 57 esp.12 (SERI/O3)
 58 dac.3 (data)
-59 gnd
-60 vcc
+59 GND
+60 VCC
 61 
 62 espram.15 (a0)  wow
 63 espram.32 (d9) 
@@ -68,7 +68,7 @@
 67 espram.34 (d11)
 68 espram.18 (a3)
 69 espram.35 (d12)
-70 gnd
+70 GND
 71 espram.19 (a4)
 72 espram.36 (d13)
 73 espram.22 (a5)
@@ -78,9 +78,9 @@
 77 espram.24 (a7)
 78 espram.39 (d16)
 79 esp.5 (gate)
-80 vcc
+80 VCC
 
-81 gnd
+81 GND
 82
 83
 84 fdp.29
@@ -89,7 +89,7 @@
 87 fdp.25?
 88 fdp.24?
 89 fdp.23?
-90 gnd
+90 GND
 91 fdp.22
 92 fdp.21?
 93 fdp.20?
@@ -99,7 +99,7 @@
 97 fda.27?
 98 fda.28?
 99 fda.26?
-100 vcc
+100 VCC
 101
 102 ic14.20 (ce)
 103 ic15.20 (ce)
@@ -109,19 +109,19 @@
 107 cpu.dsack0
 108 cpu.dsack1
 109 ic64.9
-110 gnd
-111 -
-112 -
-113 -
-114 -
+110 GND
+111 fdp.16
+112 fdp.14
+113 fdp.13
+114 fdp.12
 115 cpu.ipl2
 116 cpu.ipl1
 117 cpu.ipl0
 118
 119 cart.C04 (clock?)
-120 vcc
+120 VCC
 
-121 gnd
+121 GND
 122 ic21.3, otis.e, cart
 123 otis.11 (SERLR)
 124 
@@ -130,17 +130,17 @@
 127 cart.A90
 128 cart.C04 (clock?)
 129
-130 gnd
+130 GND
 131 30mhz clock input
-132 vcc
+132 VCC
 133 cpu.reset
 134 cpu.siz0
 135 cpu.siz1
 136 cpu.rw
 137 cpu.ds
 138 cpu.as  pal2.7
-139 gnd
-140 vcc
+139 GND
+140 VCC
 141 pal1.22 (/o22 = /i5 & /i6 & /i10 & i11 + /i5 & /i6 & i10 & /i11)
 142 pal1.20 (/o20 = /i3 & i4 & i5 & /i6)
 143 pal1.19 (/o19 = /i3 & /i4 & i5 & /i6 & /i10 & i11 + /i3 & /i4 & i5 & /i6 & i10 & /i11)
@@ -150,7 +150,7 @@
 147 cpu.d28
 148 cpu.d27
 149 cpu.d26
-150 gnd
+150 GND
 151 cpu.d25
 152 cpu.d24
 153 cpu.d23
@@ -160,7 +160,7 @@
 157
 158
 159
-160 vcc
+160 VCC
 
 
 dual port ram chip select: pal6.8
@@ -177,11 +177,11 @@ pal1, pal2 (pins 1-13 and 23 are shared)
 9 cpu.rw
 10 cpu.fc0
 11 cpu.fc1
-12 gnd
+12 GND
 13 cpu.fc2
 ...
 23 cpu.a17
-24 vcc
+24 VCC
 
 pal1:
 14 pal5.23 and mb3771.reset? and fio.115?
