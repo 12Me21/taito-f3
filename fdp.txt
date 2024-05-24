@@ -1,7 +1,7 @@
 fdp:
 1 pal-d77-01.21  maybe chip enable
 2 ic9.3
-3
+3 -
 4 cpu.a14
 5 cpu.a13?
 6 cpu.a12?
@@ -137,7 +137,7 @@ fdp:
 185 ic40.a3
 186 ic40.a4
 187 ic40.a5
-188 
+188 GND
 189 ic40.a6
 190 ic40.a7
 191 ic40.a8
@@ -149,12 +149,12 @@ fdp:
 197 fda.4
 198 fda.5
 199 fda.6
-200 
-201 
+200 GND
+201 VCC
 202 fda.7
-203 
-204 
+203 fda.95
+204 fda.96
 205 ic65.13
-206
+206 -
 207 same as fdp.180
 208

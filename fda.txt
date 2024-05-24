@@ -95,8 +95,8 @@
 92 13 mhz clock
 93 7 mhz clock (through jp2) 
 94 VCC
-95 to fdp
-96 to fdp
+95 fdp.203
+96 fdp.204
 97 GND
 98 fdp.181
 99 VCC
