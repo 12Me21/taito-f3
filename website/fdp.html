@@ -1,0 +1,185 @@
+<!doctype html><meta charset=utf-8>
+
+<title> ... </title>
+<link rel=icon sizes=16x16 href=fav.gif>
+<link rel=stylesheet href=style.css>
+
+<a href=home.html>Back</a>
+
+<h1><img width=119 height=116 src=fdp.gif alt><span>TC0630 FDP</span></h1>
+
+<p>the FDP handles all graphics rendering, except for final palette lookup and alpha blending.
+For each screen pixel, the FDP outputs two palette indexes. these are used as addresses for palette ram, and the resulting colors are sent to the FDA for blending.
+the four RAM chips to the left of the FDP are the sprite framebuffer.
+the two RAM chips above the FDP are accessible to the CPU. these store the tilemaps, list of sprites to render, text/pixel data, and line effects
+
+<h2>Pinout</h2>
+
+<div class=figures>
+<table class=pinout>
+	<tr><th>1<td colspan=2>pal1.21 (chip select)</tr>
+	<tr><th>2<td>ic9.3</tr>
+	<tr><th>3<td>-</tr>
+	<tr><th>4<td rowspan=8>cpu address<td>a14</tr>
+	<tr><th>5<td>a13?</tr>
+	<tr><th>6<td>a12?</tr>
+	<tr><th>7<td>a11?</tr>
+	<tr><th>8<td>a10</tr>
+	<tr><th>9<td>a9?</tr>
+	<tr><th>10<td class=vcc>VCC</tr>
+	<tr><th>11<td>a8</tr>
+	<tr><th>12<td rowspan=18>fcm<td>114 (a7?)</tr>
+	<tr><th>13<td>113 (a6?)</tr>
+	<tr><th>14<td>112 (a5?)</tr>
+	<tr><th>15<td class=gnd>GND</tr>
+	<tr><th>16<td>111 (a4?)</tr>
+	<tr><th>17<td>96 (a3?)</tr>
+	<tr><th>18<td>95? (a2?)</tr>
+	<tr><th>19<td>94? (a1?)</tr>
+	<tr><th>20<td>93? (a0?)</tr>
+	<tr><th>21<td>92? (d7?)</tr>
+	<tr><th>22<td>91 (d6?)</tr>
+	<tr><th>23<td>89? (d5?)</tr>
+	<tr><th>24<td>88? (d4?)</tr>
+	<tr><th>25<td>87? (d3?)</tr>
+	<tr><th>26<td>86 (d2?)</tr>
+	<tr><th>27<td class=gnd>GND</tr>
+	<tr><th>28<td>85 (d1?)</tr>
+	<tr><th>29<td>84 (d0?)</tr>
+	<tr><th>30<td>gram1.rw</tr>
+	<tr><th>31<td>gram2.rw</tr>
+	<tr><th>32<td>gram ce1</tr>
+	<tr><th>33<td rowspan=19>graphics ram<br>address/data<td>a16</tr>
+	<tr><th>34<td>a15 gram1.d7</tr>
+	<tr><th>35<td>a14 gram1.d6 </tr>
+	<tr><th>36<td>a13 gram1.d5</tr>
+	<tr><th>37<td>a12 gram1.d4</tr>
+	<tr><th>38<td class=gnd>GND</tr>
+	<tr><th>39<td>a11 gram1.d3</tr>
+	<tr><th>40<td>a8 gram1.d2</tr>
+	<tr><th>41<td>a9 gram1.d1</tr>
+	<tr><th>42<td>a10 gram1.d0</tr>
+	<tr><th>43<td class=vcc>VCC </tr>
+	<tr><th>44<td>a7 gram2.d7</tr>
+	<tr><th>45<td>a6 gram2.d6</tr>
+	<tr><th>46<td>a5 gram2.d5</tr>
+	<tr><th>47<td>a4 gram2.d4</tr>
+	<tr><th>48<td>a3 gram2.d3</tr>
+	<tr><th>49<td>a2 gram2.d2</tr>
+	<tr><th>50<td>a1 gram2.d1</tr>
+	<tr><th>51<td>a0 gram2.d0</tr>
+	<tr><th>52<td class=gnd>GND</tr>
+</table>
+<table class=pinout>
+	<tr><th>53-104<td> (all framebuffer ram)</tr>
+</table>
+<table class=pinout>
+	<tr><th>105<td rowspan=6>framebuffer ram<br>address/data<td>ic8.33</tr>
+	<tr><th>106<td>ic8.34</tr>
+	<tr><th>107<td>ic8.35</tr>
+	<tr><th>108<td class=gnd>GND?</tr>
+	<tr><th>109<td>ic8.36</tr>
+	<tr><th>110<td>ic8.37</tr>
+	<tr><th>111<td>ic8.uw/lw</tr>
+	<tr><th>112<td>(fb ram all RAS) and ic9.12 (A4)</tr>
+	<tr><th>113<td>ic9.8 (Y3)</tr>
+	<tr><th>114<td class=vcc>VCC</tr>
+	<tr><th>115<td>??</tr>
+	<tr><th>116<td>ic9.9 (A3)</tr>
+	<tr><th>117<td>ic9.11 (Y4)</tr>
+	<tr><th>118<td colspan=2>cartc.4 and fcm.119 and fcm.128 and pal7.3</tr>
+	<tr><th>119<td class=gnd>GND</tr>
+	<tr><th>120<td>video sync ! pal7.1</tr>
+	<tr><th>121<td>pal7.19</tr>
+	<tr><th>122<td></tr>
+	<tr><th>123<td>gram2.oe gram1.oe</tr>
+	<tr><th>124<td></tr>
+	<tr><th>125<td rowspan=32>graphics rom<br>address/data<td>cartc.5</tr>
+	<tr><th>126<td>cartc.6</tr>
+	<tr><th>127<td>cartc.7</tr>
+	<tr><th>128<td>cartc.8</tr>
+	<tr><th>129<td>cartc.9</tr>
+	<tr><th>130<td>cartc.10</tr>
+	<tr><th>131<td>cartc.11</tr>
+	<tr><th>132<td>cartc.12</tr>
+	<tr><th>133<td class=gnd>GND</tr>
+	<tr><th>134<td>cartc.13</tr>
+	<tr><th>135<td>cartc.14</tr>
+	<tr><th>136<td>cartc.15</tr>
+	<tr><th>137<td>cartc.16</tr>
+	<tr><th>138<td>cartc.17</tr>
+	<tr><th>139<td>cartc.18</tr>
+	<tr><th>140<td>cartc.19</tr>
+	<tr><th>141<td>cartc.20</tr>
+	<tr><th>142<td class=gnd>GND</tr>
+	<tr><th>143<td>cartc.21</tr>
+	<tr><th>144<td>cartc.22</tr>
+	<tr><th>145<td>cartc.23</tr>
+	<tr><th>146<td>cartc.24</tr>
+	<tr><th>147<td class=vcc>VCC</tr>
+	<tr><th>148<td>cartc.25</tr>
+	<tr><th>149<td>cartc.26</tr>
+	<tr><th>150<td>cartc.27</tr>
+	<tr><th>151<td>cartc.28</tr>
+	<tr><th>152<td>cartc.29</tr>
+	<tr><th>153<td class=gnd>GND</tr>
+	<tr><th>154<td>cartc.30</tr>
+	<tr><th>155<td>cartc.31</tr>
+	<tr><th>156<td>cartc.32</tr>
+</table>
+<table class=pinout>
+	<tr><th>157<td rowspan=23><td>cartc.69</tr>
+	<tr><th>158<td>cartc.70</tr>
+	<tr><th>159<td>cartc.71</tr>
+	<tr><th>160<td>cartc.72</tr>
+	<tr><th>161<td>cartc.73</tr>
+	<tr><th>162<td>cartc.74</tr>
+	<tr><th>163<td>cartc.75</tr>
+	<tr><th>164<td class=gnd>GND</tr>
+	<tr><th>165<td class=vcc>VCC</tr>
+	<tr><th>166<td>cartc.76</tr>
+	<tr><th>167<td>cartc.77</tr>
+	<tr><th>168<td>cartc.78</tr>
+	<tr><th>169<td>cartc.79</tr>
+	<tr><th>170<td>cartc.80</tr>
+	<tr><th>171<td>cartc.81</tr>
+	<tr><th>172<td>cartc.82</tr>
+	<tr><th>173<td>cartc.83</tr>
+	<tr><th>174<td>cartc.84</tr>
+	<tr><th>175<td>cartc.85</tr>
+	<tr><th>176<td>cartc.86</tr>
+	<tr><th>177<td class=gnd>GND</tr>
+	<tr><th>178<td>cartc.87</tr>
+	<tr><th>179<td>cartc.88</tr>
+	<tr><th>180<td colspan=2>carta.89 and cartc.3 and fdp.207</tr>
+	<tr><th>181<td>fda.98</tr>
+	<tr><th>182<td rowspan=14>palette ram address<td>a0</tr>
+	<tr><th>183<td>a1</tr>
+	<tr><th>184<td>a2</tr>
+	<tr><th>185<td>a3</tr>
+	<tr><th>186<td>a4</tr>
+	<tr><th>187<td>a5</tr>
+	<tr><th>188<td class=gnd>GND</tr>
+	<tr><th>189<td>a6</tr>
+	<tr><th>190<td>a7</tr>
+	<tr><th>191<td>a8</tr>
+	<tr><th>192<td>a9</tr>
+	<tr><th>193<td>a10</tr>
+	<tr><th>194<td>a11</tr>
+	<tr><th>195<td>a12</tr>
+	<tr><th>196<td>fda.3</tr>
+	<tr><th>197<td>fda.4</tr>
+	<tr><th>198<td>fda.5</tr>
+	<tr><th>199<td>fda.6</tr>
+	<tr><th>200<td class=gnd>GND</tr>
+	<tr><th>201<td class=vcc>VCC</tr>
+	<tr><th>202<td>fda.7</tr>
+	<tr><th>203<td>fda.95</tr>
+	<tr><th>204<td>fda.96</tr>
+	<tr><th>205<td>ic65.13</tr>
+	<tr><th>206<td>cpu.reset fcm.133</tr>
+	<tr><th>207<td>same as fdp.180</tr>
+        <tr><th>208<td></tr>
+</table>
+
+<script src=link.js></script>
