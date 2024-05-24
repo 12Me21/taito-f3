@@ -155,6 +155,6 @@ fdp:
 203 fda.95
 204 fda.96
 205 ic65.13
-206 -
+206 cpu.reset fcm.133
 207 same as fdp.180
 208
