@@ -18,9 +18,9 @@ the two RAM chips above the FDP are accessible to the CPU. these store the tilem
 <figure>
 <table class=pinout>
 	<tr><th>1<td colspan=2>pal1.21 (chip select)</tr>
-	<tr><th>2<td>ic9.3</tr>
-	<tr><th>3<td>-</tr>
-	<tr><th>4<td rowspan=8>cpu address<td>a14</tr>
+	<tr><th>2<td colspan=2>ic9.3</tr>
+	<tr><th>3<td colspan=2>fcm.137</tr>
+	<tr><th>4<td>a14<td rowspan=8>cpu address</tr>
 	<tr><th>5<td>a13?</tr>
 	<tr><th>6<td>a12?</tr>
 	<tr><th>7<td>a11?</tr>
@@ -28,7 +28,7 @@ the two RAM chips above the FDP are accessible to the CPU. these store the tilem
 	<tr><th>9<td>a9?</tr>
 	<tr><th>10<td class=vcc>VCC</tr>
 	<tr><th>11<td>a8</tr>
-	<tr><th>12<td rowspan=18>fcm<td>114 (a7?)</tr>
+	<tr><th>12<td>114 (a7?)<td rowspan=18>fcm</tr>
 	<tr><th>13<td>113 (a6?)</tr>
 	<tr><th>14<td>112 (a5?)</tr>
 	<tr><th>15<td class=gnd>GND</tr>
@@ -46,10 +46,10 @@ the two RAM chips above the FDP are accessible to the CPU. these store the tilem
 	<tr><th>27<td class=gnd>GND</tr>
 	<tr><th>28<td>85 (d1?)</tr>
 	<tr><th>29<td>84 (d0?)</tr>
-	<tr><th>30<td>gram1.rw</tr>
-	<tr><th>31<td>gram2.rw</tr>
-	<tr><th>32<td>gram ce1</tr>
-	<tr><th>33<td rowspan=19>graphics ram<br>address/data<td>a16</tr>
+	<tr><th>30<td colspan=2>gram1.rw</tr>
+	<tr><th>31<td colspan=2>gram2.rw</tr>
+	<tr><th>32<td colspan=2>gram ce1</tr>
+	<tr><th>33<td>a16<td rowspan=19>graphics ram<br>address/data</tr>
 	<tr><th>34<td>a15 gram1.d7</tr>
 	<tr><th>35<td>a14 gram1.d6 </tr>
 	<tr><th>36<td>a13 gram1.d5</tr>
@@ -74,14 +74,14 @@ the two RAM chips above the FDP are accessible to the CPU. these store the tilem
 	<tr><th>53-104<td> (all framebuffer ram)</tr>
 </table>
 <table class=pinout>
-	<tr><th>105<td rowspan=6>framebuffer ram<br>address/data<td>ic8.33</tr>
+	<tr><th>105<td>ic8.33<td rowspan=6>framebuffer ram<br>address/data</tr>
 	<tr><th>106<td>ic8.34</tr>
 	<tr><th>107<td>ic8.35</tr>
 	<tr><th>108<td class=gnd>GND?</tr>
 	<tr><th>109<td>ic8.36</tr>
 	<tr><th>110<td>ic8.37</tr>
 	<tr><th>111<td>ic8.uw/lw</tr>
-	<tr><th>112<td>(fb ram all RAS) and ic9.12 (A4)</tr>
+	<tr><th>112<td colspan=2>(fb ram all RAS) and ic9.12 (A4)</tr>
 	<tr><th>113<td>ic9.8 (Y3)</tr>
 	<tr><th>114<td class=vcc>VCC</tr>
 	<tr><th>115<td>??</tr>
@@ -94,7 +94,7 @@ the two RAM chips above the FDP are accessible to the CPU. these store the tilem
 	<tr><th>122<td></tr>
 	<tr><th>123<td>gram2.oe gram1.oe</tr>
 	<tr><th>124<td></tr>
-	<tr><th>125<td rowspan=32>graphics rom<br>address/data<td>cartc.5</tr>
+	<tr><th>125<td>cartc.5<td rowspan=32>graphics rom<br>address/data</tr>
 	<tr><th>126<td>cartc.6</tr>
 	<tr><th>127<td>cartc.7</tr>
 	<tr><th>128<td>cartc.8</tr>
@@ -128,7 +128,7 @@ the two RAM chips above the FDP are accessible to the CPU. these store the tilem
 	<tr><th>156<td>cartc.32</tr>
 </table>
 <table class=pinout>
-	<tr><th>157<td rowspan=23><td>cartc.69</tr>
+	<tr><th>157<td>cartc.69<td rowspan=23></tr>
 	<tr><th>158<td>cartc.70</tr>
 	<tr><th>159<td>cartc.71</tr>
 	<tr><th>160<td>cartc.72</tr>
@@ -153,7 +153,7 @@ the two RAM chips above the FDP are accessible to the CPU. these store the tilem
 	<tr><th>179<td>cartc.88</tr>
 	<tr><th>180<td colspan=2>carta.89 and cartc.3 and fdp.207</tr>
 	<tr><th>181<td>fda.98</tr>
-	<tr><th>182<td rowspan=14>palette ram address<td>a0</tr>
+	<tr><th>182<td>a0<td rowspan=14>palette ram address</tr>
 	<tr><th>183<td>a1</tr>
 	<tr><th>184<td>a2</tr>
 	<tr><th>185<td>a3</tr>
@@ -177,9 +177,9 @@ the two RAM chips above the FDP are accessible to the CPU. these store the tilem
 	<tr><th>203<td>fda.95</tr>
 	<tr><th>204<td>fda.96</tr>
 	<tr><th>205<td>ic65.13</tr>
-	<tr><th>206<td>cpu.reset fcm.133</tr>
-	<tr><th>207<td>same as fdp.180</tr>
-        <tr><th>208<td></tr>
+	<tr><th>206<td colspan=2>cpu.reset fcm.133</tr>
+	<tr><th>207<td colspan=2>same as fdp.180</tr>
+	<tr><th>208<td></tr>
 </table>
 </figure>
 

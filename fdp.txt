@@ -1,7 +1,7 @@
 fdp:
 1 pal-d77-01.21  maybe chip enable
 2 ic9.3
-3 -
+3 cpu.ds fcm.137
 4 cpu.a14
 5 cpu.a13?
 6 cpu.a12?

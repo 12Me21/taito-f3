@@ -35,7 +35,8 @@ table {
 }
 
 figure {
-	margin: 16px 24px 0px 32px;
+	//margin: 16px 24px 0px 32px;
+	margin: 16px 8px 0px 32px;
 }
 figure > * {
 	margin-right: 8px;
