@@ -91,8 +91,8 @@ tr.vcc th, tr.gnd th {
 	color: gray;
 	font-weight: normal;
 }
-.cont1 { border-bottom-style: dashed !important; border-bottom-color: gray !important;}
-.cont2 { border-top-style: dashed !important; border-top-color: gray !important; }
+.cont1.cont1 { border-bottom-style: dashed !important; border-bottom-color: gray !important; border-left: none; }
+.cont2.cont2 { border-top-style: dashed !important; border-top-color: gray !important; border-left: none; }
 
 .vcc {
 	/*border-color: transparent;*/
