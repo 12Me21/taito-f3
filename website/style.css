@@ -34,10 +34,16 @@ table {
 	font-variant-numeric: lining-nums;
 }
 
+figure {
+	margin: 16px 24px 0px 32px;
+}
+figure > * {
+	margin-right: 8px;
+	margin-bottom: 16px;
+	vertical-align: top;
+}
 figure > table {
 	display: inline-table;
-	margin-right: 8px;
-	vertical-align: top;
 }
 
 table.port {
@@ -81,18 +87,17 @@ table.pinout {
 	padding: 0 4px;
 }
 
+.pinout th {
+	min-width: 3ch;
+}
 .pinout tr>* {
 	text-align: center;
 }
-.pinout-divider {
-	border: 1px solid black;
+.cont1.cont1 { border-bottom-style: dashed !important; }
+.cont2.cont2 { border-top-style: dashed !important; }
+.pinout td + td {
+	border-left: none;
 }
-tr.vcc th, tr.gnd th {
-	color: gray;
-	font-weight: normal;
-}
-.cont1.cont1 { border-bottom-style: dashed !important; border-left: none; }
-.cont2.cont2 { border-top-style: dashed !important; border-left: none; }
 
 .vcc {
 	/*border-color: transparent;*/
