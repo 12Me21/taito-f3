@@ -269,26 +269,26 @@
 	
 <figure>
 <table class=pinout>
-	<tr><th>1<td colspan=2 class=vcc>VCC</tr>
-	<tr><th>2<td colspan=2 class=gnd>GND</tr>
-	<tr><th>3<td colspan=2 class=vcc>VCC</tr>
+	<tr class=vcc><th>1<td>VCC</tr>
+	<tr class=gnd><th>2<td>GND</tr>
+	<tr class=vcc><th>3<td>VCC</tr>
 	<tr><th>4<td colspan=2>??? VCC (through JP1)</tr>
-	<tr><th>5<td colspan=2 class=gnd>GND</tr>
-	<tr><th>6<td rowspan=4>port 0x04<br>(output)<td>bit 0</tr>
+	<tr class=gnd><th>5<td>GND</tr>
+	<tr><th>6<td>bit 0<td rowspan=4>port 0x04<br>(output)</tr>
 	<tr><th>7<td>bit 1</tr>
 	<tr><th>8<td>bit 2</tr>
 	<tr><th>9<td>bit 3</tr>
-	<tr><th>10<td colspan=2 class=gnd>GND</tr>
-	<tr><th>11<td rowspan=4>port 0x02<td>bit 0</tr>
+	<tr class=gnd><th>10<td>GND</tr>
+	<tr><th>11<td>bit 0<td rowspan=9>port 0x02</tr>
 	<tr><th>12<td>bit 1</tr>
 	<tr><th>13<td>bit 2</tr>
 	<tr><th>14<td>bit 3</tr>
-	<tr><th>15<td colspan=2 class=gnd>GND</tr>
-	<tr><th>16<td rowspan=4>port 0x02<td>bit 4</tr>
+	<tr class=gnd><th>15<td>GND</tr>
+	<tr><th>16<td>bit 4</tr>
 	<tr><th>17<td>bit 5</tr>
 	<tr><th>18<td>bit 6</tr>
 	<tr><th>19<td>bit 7</tr>
-	<tr><th>20<td rowspan=8>port 0x07<br>(input + dials)<td>bit 0</tr>
+	<tr><th>20<td>bit 0<td rowspan=8>port 0x07<br>(input + dials)</tr>
 	<tr><th>21<td>bit 1</tr>
 	<tr><th>22<td>bit 2</tr>
 	<tr><th>23<td>bit 3</tr>
@@ -296,22 +296,22 @@
 	<tr><th>25<td>bit 5</tr>
 	<tr><th>26<td>bit 6</tr>
 	<tr><th>27<td>bit 7</tr>
-	<tr><th>28<td colspan=2 class=gnd>GND</tr>
-	<tr><th>29<td>port 0x03<td>bit 0</tr>
-	<tr><th>30<td colspan=2 class=vcc>VCC</tr>
+	<tr class=gnd><th>28<td>GND</tr>
+	<tr><th>29<td>bit 0<td rowspan=1>port 0x03</tr>
+	<tr class=vcc><th>30<td>VCC</tr>
 </table>
 <table class=pinout>
-	<tr><th>31<td colspan=2 class=gnd>GND</tr>
-	<tr><th>32<td rowspan=3>port 0x03<td>bit 1</tr>
+	<tr class=gnd><th>31<td>GND</tr>
+	<tr><th>32<td>bit 1<td rowspan=8>port 0x03</tr>
 	<tr><th>33<td>bit 2</tr>
 	<tr><th>34<td>bit 3?</tr>
-	<tr><th>35<td colspan=2 class=gnd>GND</tr>
-	<tr><th>36<td rowspan=4>port 0x03<td>bit 4</tr>
+	<tr class=gnd><th>35<td>GND</tr>
+	<tr><th>36<td>bit 4</tr>
 	<tr><th>37<td>bit 5</tr>
 	<tr><th>38<td>bit 6</tr>
 	<tr><th>39<td>bit 7</tr>
-	<tr><th>40<td colspan=2 class=gnd>GND</tr>
-	<tr><th>41<td rowspan=8>port 0x12<td>bit 0</tr>
+	<tr class=gnd><th>40<td>GND</tr>
+	<tr><th>41<td>bit 0<td rowspan=8>port 0x12</tr>
 	<tr><th>42<td>bit 1</tr>
 	<tr><th>43<td>bit 2</tr>
 	<tr><th>44<td>bit 3?</tr>
@@ -319,7 +319,7 @@
 	<tr><th>46<td>bit 5</tr>
 	<tr><th>47<td>bit 6</tr>
 	<tr><th>48<td>bit 7?</tr>
-	<tr><th>49<td rowspan=8>port 0x17<br>(input + dials)<td>bit 0</tr>
+	<tr><th>49<td>bit 0<td rowspan=8>port 0x17<br>(input + dials)</tr>
 	<tr><th>50<td>bit 1</tr>
 	<tr><th>51<td>bit 2</tr>
 	<tr><th>52<td>bit 3</tr>
@@ -327,74 +327,74 @@
 	<tr><th>54<td>bit 5</tr>
 	<tr><th>55<td>bit 6</tr>
 	<tr><th>56<td>bit 7</tr>
-	<tr><th>57<td colspan=2 class=gnd>GND</tr>
-	<tr><th>58<td rowspan=2>port 0x13<br>(output)<td>bit 0?</tr>
+	<tr class=gnd><th>57<td>GND</tr>
+	<tr><th>58<td>bit 0?<td rowspan=2>port 0x13<br>(output)</tr>
 	<tr><th>59<td>bit 1?</tr>
-	<tr><th>60<td colspan=2 class=gnd>GND</tr>
+	<tr class=gnd><th>60<td>GND</tr>
 </table>
 <table class=pinout>
-	<tr><th>61<td colspan=2 class=vcc>VCC</tr>
-	<tr><th>62<td rowspan=6>port 0x13<br>(output)<td>bit 2</tr>
+	<tr class=vcc><th>61<td>VCC</tr>
+	<tr><th>62<td>bit 2<td rowspan=6>port 0x13<br>(output)</tr>
 	<tr><th>63<td>bit 3</tr>
 	<tr><th>64<td>bit 4</tr>
 	<tr><th>65<td>bit 5?</tr>
 	<tr><th>66<td>bit 6?</tr>
 	<tr><th>67<td>bit 7?</tr>
-	<tr><th>68<td colspan=2 class=gnd>GND</tr>
-	<tr><th>69<td rowspan=4>port 0x14<br>(output)<td>bit 0</tr>
+	<tr class=gnd><th>68<td>GND</tr>
+	<tr><th>69<td>bit 0<td rowspan=4>port 0x14<br>(output)</tr>
 	<tr><th>70<td>bit 1</tr>
 	<tr><th>71<td>bit 2</tr>
 	<tr><th>72<td>bit 3</tr>
-	<tr><th>73<td colspan=2 class=gnd>GND</tr>
-	<tr><th>74<td>port 0x01<td>bit 7</tr>
-	<tr><th>75<td colspan=2 class=gnd>GND</tr>
-	<tr><th>76<td rowspan=7>port 0x01<td>bit 6</tr>
+	<tr class=gnd><th>73<td>GND</tr>
+	<tr><th>74<td>bit 7<td rowspan=1 class=cont1>port 0x01</tr>
+	<tr class=gnd><th>75<td>GND</tr>
+	<tr><th>76<td>bit 6<td rowspan=7 class=cont2>port 0x01</tr>
 	<tr><th>77<td>bit 5</tr>
 	<tr><th>78<td>bit 4</tr>
 	<tr><th>79<td>bit 3?</tr>
 	<tr><th>80<td>bit 2?</tr>
 	<tr><th>81<td>bit 1</tr>
 	<tr><th>82<td>bit 0</tr>
-	<tr><th>83<td rowspan=7>port 0x00<td>bit 7?</tr>
+	<tr><th>83<td>bit 7?<td rowspan=7 class=cont1>port 0x00</tr>
 	<tr><th>84<td>bit 6?</tr>
 	<tr><th>85<td>bit 5?</tr>
 	<tr><th>86<td>bit 4?</tr>
 	<tr><th>87<td>bit 3</tr>
 	<tr><th>88<td>bit 2?</tr>
 	<tr><th>89<td>bit 1?</tr>
-	<tr><th>90<td colspan=2 class=vcc>VCC</tr>
+	<tr class=vcc><th>90<td>VCC</tr>
 </table>
 <table class=pinout>
-	<tr><th>91<td colspan=2 class=gnd>GND</tr>
-	<tr><th>92<td>port 0x00<td>bit 0?</tr>
-	<tr><th>93<td colspan=2 class=gnd>GND</tr>
-	<tr><th>94<td colspan=2>cpu reset</tr>
-	<tr><th>95<td colspan=2>cpu halt</tr>
-	<tr><th>96<td colspan=2 class=gnd>GND</tr>
-	<tr><th>97<td rowspan=4>cpu data<td>bit 0</tr>
+	<tr class=gnd><th>91<td>GND</tr>
+	<tr><th>92<td>bit 0?<td rowspan=1 class=cont2>port 0x00</tr>
+	<tr class=gnd><th>93<td>GND</tr>
+	<tr><th>94<td>cpu reset</tr>
+	<tr><th>95<td>cpu halt</tr>
+	<tr class=gnd><th>96<td>GND</tr>
+	<tr><th>97<td>bit 0<td rowspan=9>cpu data</tr>
 	<tr><th>98<td>bit 1</tr>
 	<tr><th>99<td>bit 2</tr>
 	<tr><th>100<td>bit 3</tr>
-	<tr><th>101<td colspan=2 class=gnd>GND</tr>
-	<tr><th>102<td rowspan=4>cpu data<td>bit 4</tr>
+	<tr class=gnd><th>101<td>GND</tr>
+	<tr><th>102<td>bit 4</tr>
 	<tr><th>103<td>bit 5</tr>
 	<tr><th>104<td>bit 6</tr>
 	<tr><th>105<td>bit 7</tr>
-	<tr><th>106<td colspan=2 class=gnd>GND</tr>
-	<tr><th>107<td colspan=2>clock input ? (1 MHz)</tr>
-	<tr><th>108<td colspan=2 class=gnd>GND</tr>
-	<tr><th>109<td rowspan=5>cpu address<td>bit 4</tr>
+	<tr class=gnd><th>106<td>GND</tr>
+	<tr><th>107<td colspan=2>clock input (1 MHz)</tr>
+	<tr class=gnd><th>108<td>GND</tr>
+	<tr><th>109<td>bit 4<td rowspan=5>cpu address</tr>
 	<tr><th>110<td>bit 3</tr>
 	<tr><th>111<td>bit 2</tr>
 	<tr><th>112<td>bit 1</tr>
 	<tr><th>113<td>bit 0</tr>
-	<tr><th>114<td colspan=2 class=gnd>GND</tr>
+	<tr class=gnd><th>114<td>GND</tr>
 	<tr><th>115<td colspan=2>reset input ? (mb3771.reset)</tr>
 	<tr><th>116<td colspan=2>read/write ? (cpuram.rw, pal2.21) </tr>
 	<tr><th>117<td colspan=2>output enable ? (cpuram.oe, pal2.20)</tr>
 	<tr><th>118<td colspan=2>maybe chip select ? (FCM.106)</tr>
-	<tr><th>119<td colspan=2 class=gnd>GND</tr>
-	<tr><th>120<td colspan=2 class=gnd>GND</tr>
+	<tr class=gnd><th>119<td>GND</tr>
+	<tr class=gnd><th>120<td>GND</tr>
 </table>
 </figure>
 

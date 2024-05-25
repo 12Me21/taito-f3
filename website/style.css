@@ -87,6 +87,12 @@ table.pinout {
 .pinout-divider {
 	border: 1px solid black;
 }
+tr.vcc th, tr.gnd th {
+	color: gray;
+	font-weight: normal;
+}
+.cont1 { border-bottom-style: dashed !important; border-bottom-color: gray !important;}
+.cont2 { border-top-style: dashed !important; border-top-color: gray !important; }
 
 .vcc {
 	/*border-color: transparent;*/
@@ -97,6 +103,7 @@ table.pinout {
 	background-color: white;
 	color: green;
 }
+
 .nc {
 	background-color: silver;
 	color: gray;
