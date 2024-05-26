@@ -1,6 +1,6 @@
 1 fdp.120 (pulldown R12) 
 2 fdp.120 (pulldown R12) # pins 1 and 2 are tied together
-3 fdp.108
+3 fdp.108  (todo: check this, typo?)
 4 GND
 5 GND
 6 GND
