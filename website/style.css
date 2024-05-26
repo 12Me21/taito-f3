@@ -1,3 +1,8 @@
+@font-face {
+	font-family: 'mspm';
+	src: url("./short2.otf?1");
+}
+
 o-l {
 	text-decoration: overline;
 }
@@ -12,6 +17,7 @@ body {
 	image-rendering: crisp-edges;
 	background: url("./tile1.png");
 	font-family: /*georgia,*/ serif;
+	font-family: mspm, serif;
 	/*font-variant-numeric: oldstyle-nums;*/
 }
 
@@ -35,7 +41,7 @@ h1 img {
 }
 
 table {
-	font-family: serif;
+	//font-family: serif;
 	font-variant-numeric: lining-nums;
 }
 
