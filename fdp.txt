@@ -52,7 +52,59 @@ fdp:
 51 gram2.a0 gram1.a0 gram2.d0
 52 GND
 
-53-104 (all framebuffer ram)
+# (all framebuffer ram)
+53 
+54 
+55 
+56 
+57 
+58 
+59 
+60 GND
+61 VCC
+62 
+63 
+64 
+65 
+66 
+67 
+68 
+69 
+70 
+71 
+72 
+73 GND
+74 
+75 
+76 
+77 
+78 
+79 
+80 
+81 
+82 
+83 
+84 GND
+85 
+86 
+87 
+88 
+89 
+90 
+91 
+92 
+93 
+94 
+95 
+96 GND
+97 VCC
+98 
+99 
+100 
+101 
+102 
+103 
+104 
 
 105 ic8.33 (fb ram)
 106 ic8.34 (fb ram)
@@ -71,7 +123,7 @@ fdp:
 119 GND
 120 video sync ! pal7.1
 121 pal7.19
-122 RB1.9 (why?)
+122 RB1.9 (pullup) (why?)
 123 7MHz from r53.2 (gram2.oe gram1.oe)
 124 13MHz from r52.1
 125 cartc.5

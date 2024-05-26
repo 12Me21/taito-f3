@@ -1,6 +1,6 @@
 <!doctype html><meta charset=utf-8>
 
-<title> ... </title>
+<title>TC0630 FDP</title>
 <link rel=icon sizes=16x16 href=fav.gif>
 <link rel=stylesheet href=style.css>
 
@@ -8,44 +8,44 @@
 
 <h1><img width=121 height=121 src=fdp.gif alt><span>TC0630 FDP</span></h1>
 
-<p>the FDP handles all graphics rendering, except for final palette lookup and alpha blending.
-For each screen pixel, the FDP outputs two palette indexes. these are used as addresses for palette ram, and the resulting colors are sent to the FDA for blending.
-the four RAM chips to the left of the FDP are the sprite framebuffer.
-the two RAM chips above the FDP are accessible to the CPU. these store the tilemaps, list of sprites to render, text/pixel data, and line effects
+<p>the <abbr>FDP</abbr> handles all graphics rendering, except for final palette lookup and alpha blending.
+For each screen pixel, the <abbr>FDP</abbr> outputs two palette indexes. these are used as addresses for palette <abbr>RAM</abbr>, and the resulting colors are sent to the <abbr>FDA</abbr> for blending.
+the four <abbr>RAM</abbr> chips to the left of the <abbr>FDP</abbr> are the sprite framebuffer.
+the two <abbr>RAM</abbr> chips above the <abbr>FDP</abbr> are accessible to the <abbr>CPU</abbr>. these store the tilemaps, list of sprites to render, text/pixel data, and line effects
 
 <h2>Pinout</h2>
 
 <figure>
 <table class=pinout>
 	<tr><th>1<td colspan=2>pal1.21 (chip select)</tr>
-	<tr><th>2<td colspan=2>ic9.3 (cpu.dsack0 and .dsack1 and .as)</tr>
+	<tr><th>2<td colspan=2>ic9.3 (cpu.dsack0 & .dsack1 & .as)</tr>
 	<tr><th>3<td colspan=2>cpu.ds</tr>
-	<tr><th>4<td>a14<td rowspan=8>cpu address</tr>
+	<tr><th>4<td>a14<td rowspan=6 class=cont1>cpu address</tr>
 	<tr><th>5<td>a13?</tr>
 	<tr><th>6<td>a12?</tr>
 	<tr><th>7<td>a11?</tr>
 	<tr><th>8<td>a10</tr>
 	<tr><th>9<td>a9?</tr>
-	<tr><th>10<td class=vcc>VCC</tr>
-	<tr><th>11<td>a8</tr>
-	<tr><th>12<td>114 (a7?)<td rowspan=18>fcm</tr>
-	<tr><th>13<td>113 (a6?)</tr>
-	<tr><th>14<td>112 (a5?)</tr>
-	<tr><th>15<td class=gnd>GND</tr>
-	<tr><th>16<td>111 (a4?)</tr>
-	<tr><th>17<td>96 (a3?)</tr>
-	<tr><th>18<td>95? (a2?)</tr>
-	<tr><th>19<td>94? (a1?)</tr>
-	<tr><th>20<td>93? (a0?)</tr>
-	<tr><th>21<td>92? (d7?)</tr>
-	<tr><th>22<td>91 (d6?)</tr>
-	<tr><th>23<td>89? (d5?)</tr>
-	<tr><th>24<td>88? (d4?)</tr>
-	<tr><th>25<td>87? (d3?)</tr>
-	<tr><th>26<td>86 (d2?)</tr>
+	<tr><th>10<td class=vcc colspan=2>VCC</tr>
+	<tr><th>11<td>a8<td rowspan=4 class='cont2 cont1'>cpu address</tr>
+	<tr><th>12<td>fcm.114 (a7?)</tr>
+	<tr><th>13<td>fcm.113 (a6?)</tr>
+	<tr><th>14<td>fcm.112 (a5?)</tr>
+	<tr><th>15<td class=gnd colspan=2>GND</tr>
+	<tr><th>16<td>fcm.111 (a4?)<td rowspan=5 class=cont2>cpu address</tr>
+	<tr><th>17<td>fcm.96 (a3?)</tr>
+	<tr><th>18<td>fcm.95? (a2?)</tr>
+	<tr><th>19<td>fcm.94? (a1?)</tr>
+	<tr><th>20<td>fcm.93? (a0?)</tr>
+	<tr><th>21<td>fcm.92? (d7?)</tr>
+	<tr><th>22<td>fcm.91 (d6?)</tr>
+	<tr><th>23<td>fcm.89? (d5?)</tr>
+	<tr><th>24<td>fcm.88? (d4?)</tr>
+	<tr><th>25<td>fcm.87? (d3?)</tr>
+	<tr><th>26<td>fcm.86 (d2?)</tr>
 	<tr><th>27<td class=gnd>GND</tr>
-	<tr><th>28<td>85 (d1?)</tr>
-	<tr><th>29<td>84 (d0?)</tr>
+	<tr><th>28<td>fcm.85 (d1?)</tr>
+	<tr><th>29<td>fcm.84 (d0?)</tr>
 	<tr><th>30<td colspan=2>gram1.rw</tr>
 	<tr><th>31<td colspan=2>gram2.rw</tr>
 	<tr><th>32<td colspan=2>gram ce1</tr>
@@ -71,7 +71,58 @@ the two RAM chips above the FDP are accessible to the CPU. these store the tilem
 	<tr><th>52<td class=gnd>GND</tr>
 </table>
 <table class=pinout>
-	<tr><th>53-104<td> (all framebuffer ram)</tr>
+	<tr><th>53<td></tr>
+	<tr><th>54<td></tr>
+	<tr><th>55<td></tr>
+	<tr><th>56<td></tr>
+	<tr><th>57<td></tr>
+	<tr><th>58<td></tr>
+	<tr><th>59<td></tr>
+	<tr><th>60<td class=gnd>GND</tr>
+	<tr><th>61<td class=vcc>VCC</tr>
+	<tr><th>62<td></tr>
+	<tr><th>63<td></tr>
+	<tr><th>64<td></tr>
+	<tr><th>65<td></tr>
+	<tr><th>66<td></tr>
+	<tr><th>67<td></tr>
+	<tr><th>68<td></tr>
+	<tr><th>69<td></tr>
+	<tr><th>70<td></tr>
+	<tr><th>71<td></tr>
+	<tr><th>72<td></tr>
+	<tr><th>73<td class=gnd>GND</tr>
+	<tr><th>74<td></tr>
+	<tr><th>75<td></tr>
+	<tr><th>76<td></tr>
+	<tr><th>77<td></tr>
+	<tr><th>78<td></tr>
+	<tr><th>79<td></tr>
+	<tr><th>80<td></tr>
+	<tr><th>81<td></tr>
+	<tr><th>82<td></tr>
+	<tr><th>83<td></tr>
+	<tr><th>84<td class=gnd>GND</tr>
+	<tr><th>85<td></tr>
+	<tr><th>86<td></tr>
+	<tr><th>87<td></tr>
+	<tr><th>88<td></tr>
+	<tr><th>89<td></tr>
+	<tr><th>90<td></tr>
+	<tr><th>91<td></tr>
+	<tr><th>92<td></tr>
+	<tr><th>93<td></tr>
+	<tr><th>94<td></tr>
+	<tr><th>95<td></tr>
+	<tr><th>96<td class=gnd>GND</tr>
+	<tr><th>97<td class=vcc>VCC</tr>
+	<tr><th>98<td></tr>
+	<tr><th>99<td></tr>
+	<tr><th>100<td></tr>
+	<tr><th>101<td></tr>
+	<tr><th>102<td></tr>
+	<tr><th>103<td></tr>
+	<tr><th>104<td></tr>
 </table>
 <table class=pinout>
 	<tr><th>105<td>ic8.33<td rowspan=6>framebuffer ram<br>address/data</tr>
@@ -92,8 +143,8 @@ the two RAM chips above the FDP are accessible to the CPU. these store the tilem
 	<tr><th>120<td>video sync ! pal7.1</tr>
 	<tr><th>121<td>pal7.19</tr>
 	<tr><th>122<td>RB1.9</tr>
-	<tr><th>123<td>gram2.oe gram1.oe</tr>
-	<tr><th>124<td></tr>
+	<tr><th>123<td>6.6715 MHz clock</tr>
+	<tr><th>124<td>13.343 MHz clock</tr>
 	<tr><th>125<td>cartc.5<td rowspan=32>graphics rom<br>address/data</tr>
 	<tr><th>126<td>cartc.6</tr>
 	<tr><th>127<td>cartc.7</tr>

@@ -1,6 +1,10 @@
 o-l {
 	text-decoration: overline;
 }
+abbr {
+	//text-transform: lowercase;
+	font-variant: all-small-caps;
+}
 
 body {
 	margin-bottom: 100px;
