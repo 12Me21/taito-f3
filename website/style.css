@@ -2,8 +2,9 @@ o-l {
 	text-decoration: overline;
 }
 abbr {
-	//text-transform: lowercase;
 	font-variant: all-small-caps;
+	//text-transform: lowercase;
+	//font-variant-numeric: oldstyle-nums;
 }
 
 body {
