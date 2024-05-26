@@ -23,6 +23,9 @@ body {
 p {
 	//background: #DEE1DEAA;
 }
+h1, h2, h3, th {
+	font-family: serif;
+}
 h1 {
 	background: #FFE;
 	margin: 12px -8px 21px;
