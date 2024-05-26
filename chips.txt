@@ -973,6 +973,7 @@ https://www.digchip.com/datasheets/parts/datasheet/340/MR27V1602DTP-pdf.php
 42 A19
 
 HM511664
+TC511664BJ-80 (replacement, confirmed working)
 https://archive.org/details/bitsavers_hitachidatook_75119095/page/n165/mode/2up
 65536word x 16bit dynamic ram, fast page mode
 1 V_CC

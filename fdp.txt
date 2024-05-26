@@ -53,71 +53,71 @@ fdp:
 52 GND
 
 # (all framebuffer ram)
-53 
-54 
-55 
-56 
-57 
-58 
-59 
+53 ic5 
+54 ic5
+55 ic5
+56 ic5
+57 ic5
+58 ic5
+59 ic5
 60 GND
 61 VCC
-62 
-63 
-64 
-65 
-66 
-67 
-68 
-69 
-70 
-71 
-72 
+62 ic5
+63 ic5
+64 ic5
+65 ic5
+66 ic5
+67 ic5 uw/lw?
+68 ic6
+69 ic6
+70 ic6
+71 ic6
+72 ic6
 73 GND
-74 
-75 
-76 
-77 
-78 
-79 
-80 
-81 
-82 
-83 
+74 ic6
+75 ic6
+76 ic6
+77 ic6
+78 ic6
+79 ic6
+80 ic6
+81 ic6 uw/lw?
+82 ic7
+83 ic7
 84 GND
-85 
-86 
-87 
-88 
-89 
-90 
-91 
-92 
-93 
-94 
-95 
+85 ic7
+86 ic7
+87 ic7
+88 ic7
+89 ic7
+90 ic7
+91 ic7
+92 ic7
+93 ic7
+94 ic7
+95 ic7 uw/lw?
 96 GND
 97 VCC
-98 
-99 
-100 
-101 
-102 
-103 
-104 
+98 ic8.15 a0 (io1?)
+99 ic8.16 a1 (io2?)
+100 ic8.17 a2 (io3?)
+101 ic8.18 a3 (io4?)
+102 ic8.19 a4 (io5?)
+103 ic8.22 a5 (io6?)
+104 ic8.23 a6 (io9?)
 
-105 ic8.33 (fb ram)
-106 ic8.34 (fb ram)
-107 ic8.35 (fb ram)
+105 ic8.33 (fb ram) io10 (a7?)
+106 ic8.34 (fb ram) io11
+107 ic8.35 (fb ram) io12
 108 GND
-109 ic8.36 (fb ram)
-110 ic8.37 (fb ram)
-111 ic8.12 ic8.13 (fb ram)
+109 ic8.36 (fb ram) io13
+110 ic8.37 (fb ram) io14
+111 ic8.12 ic8.13 (fb ram uw/lw)
 112 ic5.14 ic6.14 ic7.14 ic8.14 (fb ram all RAS) and ic9.12 (A4)
 113 ic9.8 (Y3) = fdp.116
 114 VCC
-115 ic5.28 ic6.28 ic7.28 ic8.28 (fb ram all RAS)
-116 ic9.9 (A3)
+115 ic5.28 ic6.28 ic7.28 ic8.28 (fb ram all OE)
+116 ic9.9 (A3) and fb ram all CAS
 117 ic9.11 (Y4) = fdp.112
 118 cartc.4 and fcm.119 and fcm.128 and pal7.3
 119 GND
