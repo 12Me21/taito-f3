@@ -7,7 +7,7 @@ o-l {
 	text-decoration: overline;
 }
 abbr {
-	font-variant: all-small-caps;
+	//font-variant: all-small-caps;
 	//text-transform: lowercase;
 	//font-variant-numeric: oldstyle-nums;
 }
@@ -15,12 +15,14 @@ abbr {
 body {
 	margin-bottom: 100px;
 	image-rendering: crisp-edges;
-	background: url("./tile1.png");
+	background: url("./tile32.png");
 	font-family: /*georgia,*/ serif;
 	font-family: mspm, serif;
 	/*font-variant-numeric: oldstyle-nums;*/
 }
-
+p {
+	//background: #DEE1DEAA;
+}
 h1 {
 	background: #FFE;
 	margin: 12px -8px 21px;
