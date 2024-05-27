@@ -1,7 +1,7 @@
 pal2:
-14 pal6.12
+14 (input) pal6.12
 15 pal8.4
-16 
+16 ic31.1 (chip select left) and pal6.8
 17 
 18 
 19 

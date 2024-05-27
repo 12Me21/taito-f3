@@ -1,20 +1,20 @@
 1 15mhz clock
 2 ic30.51 (chip select right) and pal5.16
-3 pal4.18
-4 -
-5 -
-6 -
-7 --
-8 -- ic31.1 (chip select left)
-9 -
+3 ic54.22 (volume control chip enable) and pal4.18
+4 ic31.51 (chip select right) and pal5.20
+5 otis.10 (SERWCLK)
+6 R7.2 (pullup) and ic31.3 (busy left)
+7 pal3.19 and duart.37 (IACK)
+8 ic31.1 (chip select left) and pal2.16
+9 cpu.24 (DS)
 10 GND
 11 GND
-12 pal2.14?
+12 pal2.14
 13 
-14 -
-15 
+14 
+15 esp.18 (WCLK)
 16 
 17 
 18 
-19 -
+19 pal3.6 and pal4.23
 20 VCC

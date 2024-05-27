@@ -7,7 +7,7 @@ pal3:
 3 (pullup)
 4 (pullup)
 5
-6
+6 pal4.23 and pal6.19
 7 audiocpu.rw
 8 audiocpu.lds
 9 audiocpu.uds
@@ -20,7 +20,7 @@ pal3:
 16 audiocpu.dtack
 17
 18
-19
+19 duart.37
 20
 21
 22
@@ -45,12 +45,12 @@ pal4:
 15
 16 audiocpu.dtack
 17
-18 pal6.3
+18 ic54.22 (volume control CE) and pal6.3
 19
 20
 21
 22
-23
+23 pal3.6 and pal6.19
 24 VCC
 
 pal5:
@@ -69,11 +69,11 @@ pal5:
 13 acpu.fc1
 14 acpu.fc2
 15
-16 pal6.2
+16 ic30.51 (chip select right) and pal6.2
 17 audiocpu.dtack
 18
 19
-20
+20 ic31.51 (chip select right) and pal6.4
 21
 22
 23
