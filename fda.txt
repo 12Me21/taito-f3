@@ -32,20 +32,20 @@
 31 GND
 32 VCC
 33 voltagediv
-34 (pullup R15) .42 and .47
+34 r15pullup
 35 GND
 36 VCC
-37 #for some reason i cant probe these 3 but theyre rgb outputs i think
-38 #
-39 #
+37 TR1.3 (blue output)
+38 nc??
+39 TR2.3 (green output)
 40 VCC
 41 GND
-42 see .34
+42 r15pullup
 43 voltagediv
-44 TR1.2 TR2.2 TR3.2 ??
+44 TR3.3 (red output)
 45 VCC
 46 GND
-47 see .34
+47 r15pullup
 48 voltagediv
 49 GND
 50 VCC
@@ -111,7 +111,18 @@ red
 green
 blue
 
-
-voltagediv: R16.1 R17.1 fda.43 fda.48 fda.33
 GND: R17.2
 VCC: R16.2 R15.2
+
+voltagediv 0.35v: R16.1 R17.1 fda.43 fda.48 fda.33
+r15pullup: R15.1 fda.47 fda.42 fda.34
+
+r15 75ohm
+r16 1000ohm
+r17 75ohm
+
+75 / (1000 + 75) * 5v ≈ 0.35v
+
+
+
+

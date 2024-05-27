@@ -90,3 +90,7 @@ feedback2: ic21.8 ic21.12
 3.8MHz/16 div4: ic22.13 ic30.a2l
 3.8MHz/32 div5: ic22.12 ic30.a3l
 3.8MHz/64 div6: ic22.11 ic30.a4l
+
+maincpu reset: cpu.6 fdp.206 fcm.133 fda.89 fio.94 carta.80 pal8.1
+power supply monitor reset: mb3771.8 fio.115 pal5.23 R57.2 pal1.14
+VCC: R57.1
