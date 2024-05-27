@@ -31,7 +31,7 @@
 
 31 GND
 32 VCC
-33 (pulldown R17)
+33 voltagediv
 34 (pullup R15) .42 and .47
 35 GND
 36 VCC
@@ -41,12 +41,12 @@
 40 VCC
 41 GND
 42 see .34
-43 - pull 75|1000
+43 voltagediv
 44 TR1.2 TR2.2 TR3.2 ??
 45 VCC
 46 GND
 47 see .34
-48 (pullup R16)
+48 voltagediv
 49 GND
 50 VCC
 
@@ -93,7 +93,7 @@
 90 GND
 91 VCC
 92 13 mhz clock
-93 7 mhz clock (through jp2) 
+93 7 mhz clock inverted (through jp2) 
 94 VCC
 95 fdp.203
 96 fdp.204
@@ -110,3 +110,8 @@ group of 4 vias, probably map to pins 10-14, probably more data bus?
 red
 green
 blue
+
+
+voltagediv: R16.1 R17.1 fda.43 fda.48 fda.33
+GND: R17.2
+VCC: R16.2 R15.2
