@@ -1,4 +1,4 @@
-1 fda.89 (woah..)
+1 cpu.reset
 2 esp.17 (LRCLK)
 3 duart.26 (OP6)
 4 pal2.15

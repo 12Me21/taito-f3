@@ -45,7 +45,7 @@ pal4:
 15
 16 audiocpu.dtack
 17
-18
+18 pal6.3
 19
 20
 21
@@ -69,7 +69,7 @@ pal5:
 13 acpu.fc1
 14 acpu.fc2
 15
-16
+16 pal6.2
 17 audiocpu.dtack
 18
 19

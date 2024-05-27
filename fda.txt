@@ -89,7 +89,7 @@
 86 colram40.we
 87 colram39.we
 88 colram38.we
-89 pal8.1
+89 cpu.reset
 90 GND
 91 VCC
 92 13 mhz clock
