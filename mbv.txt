@@ -1,0 +1,122 @@
+New	Single
+ic1	ic77	.	MC74HC08AN	4,22 7x4	(cpu clock driver)
+ic2	ic28?(D29-14)	pal1	PALCE20V8Q	4,28 12x4	(cpu address mapping)
+ic3	ic29?(D29-15)	pal2	PALCE20V8Q	4,34 12x4	(cpu address mapping)
+ic4	ic39	fcm	TC0660FCM	5,45 13x13	(misc.)
+ic5	ic31	.	(fpm ram)	5,68 10x5	(sprite framebuffer)
+ic6	ic32	.	(fpm ram)	5,77 10x5	(sprite framebuffer)
+ic7	ic33	.	(fpm ram)	5,86 10x5	(sprite framebuffer)
+ic8	ic34	.	(fpm ram)	5,95 10x5	(sprite framebuffer)
+ic9	ic13	.	SN74LS08N	9,103 7x4	(something with sprite framebuffer ram)
+ic10	ic44	cpu	MC68EC020FG16	16,16 9x7	(main cpu)
+ic11	ic41?	.	LH5P8128-80	17,63 16x7	(graphics ram 1)
+ic12	ic42?	.	LH5P8128-80	17,70 16x7	(graphics ram 2)
+ic13	ic43	fdp	TC0630FDP	20,85 13x13	(graphics rendering)
+ic14	ic25?	.	TC51832ASPL-85	32,10 14x4	(cpu ram 1)
+ic15	ic27?	.	TC51832ASPL-85	32,16 14x4	(cpu ram 2)
+ic16	ic36?	.	TC51832ASPL-85	32,22 14x4	(cpu ram 3)
+ic17	ic38?	.	TC51832ASPL-85	32,28 14x4	(cpu ram 4)
+ic18	ic8	.	MC74F163AN	32,34 8x4	(duart clock divider)
+ic19	ic74?	.	MC74F74N	32,40 7x4	(video clock divider)
+ic20	ic40	.	MC74F244N	32,47 10x4	(clock driver)
+ic21	ic5?	.	MC74F74N	32,53 7x4	(voice bank counter)
+ic22	ic6	.	MC74F161AN	32,57 8x4	(voice bank counter)
+ic23	ic12?(D29-12)	pal3	PALCE20V8Q	37,88 12x4	
+ic24	ic14?(D29-13)	pal4	PALCE20V8Q	37,94 12x4
+ic25	ic15?(D29-11)	pal5	PALCE20V8Q	37,99 12x4
+ic26	ic1	otis	OTISR2	51,15 24x7	(audio sample playback)
+ic27	ic4	.	5701	54,27 9x7	(OTIS/ESP/audiocpu communication, clock generation)
+ic28	ic21	duart	MC68681P	45,40 20x7	(communication)
+ic29	ic7?(D29-16)	pal6	PALCE16V8Q-15	49,54 10x4	
+ic30	ic20?	.	MB8421-90LP	45,61 18x7	(voice bank list)
+ic31	ic30?	.	MB8421-90LP	45,70 18x7	(cpu / acpu shared ram)
+ic32	ic11(MC68000P12F)	acpu	MC68EC000FN16	52,86 11x11	(audio cpu)
+ic33		pal7	PALCE16V8Q-15	53,102 10x4	
+ic34	ic76	.	TD62064AP	80,10 8x4	(coin mechanism driver)
+ic35	ic55	.	MB3771	76x17 4x4	(power supply monitor)
+ic36	ic62	.	93C46CB1	81,17 4x4	(serial eeprom)
+ic37	ic63	fio	TC0640FIO	71,27 13x13	(i/o ports)
+ic38	ic67?(CXK5863P-30)	.	IS61C64AH-20N	70,45 14x4	(palette ram 1)
+ic39	ic68?	.	IS61C64AH-20N	70,50 14x4	(palette ram 2)
+ic40	ic69?	.	IS61C64AH-20N	70,55 14x4	(palette ram 3)
+ic41	ic78	fda	TC0650FDA	74,63 9x7	(color blending)
+ic42	ic19	esp	ESPR6	69,75 24x7	(audio signal processing)
+ic43		pal8	PALCE16V8Q-15	69,88 10x4	
+ic44	ic9?	.	TC51832ASPL-85	69,95 14x4	(acpu ram 1)
+ic45	ic22?	.	TC51832ASPL-85	69,102 14x4	(acpu ram 2)
+ic46	ic80?	.	TLP521-4	88,16 4x8	(button optocouplers)
+ic47	ic81?	.	TLP521-4	88,25 4x8	(button optocouplers)
+ic48	ic82?	.	TLP521-4	88,34 4x8	(button optocouplers)
+ic49	ic85?	.	TLP521-4	88,43 4x8	(button optocouplers)
+ic50	ic86?	.	TLP521-4	88,52 4x8	(button optocouplers)
+ic51	ic18	espram	(fpm ram)	82,84 10x5	(ESP ram)
+ic52	ic79	dac	TDA1543	84,95 4x4	(audio DAC)
+ic53	ic75(MC33174P)	.	MC33274AP	90,94 7x4	(audio amplifier)
+ic54	ic61	.	MB87078-SK	85,102 12x4	(volume control)
+ic55	ic87?	.	TLP620-4	96,7 4x8	(joystick optocouplers)
+ic56	ic88?	.	TLP620-4	96,16 4x8	(joystick optocouplers)
+ic57	ic89?	.	TLP521-4	96,25 4x8	(button optocouplers)
+ic58	ic90?	.	TLP521-4	96,34 4x8	(button optocouplers)
+ic59	ic92?	.	TLP620-4	96,43 4x8	(joystick optocouplers)
+ic60	ic93?	.	TLP620-4	96,52 4x8	(joystick optocouplers)
+ic61	ic91	.	TD62064AP	94,61 8x4	(high current driver)
+ic62		?	?	?
+ic63	(obscured, probably 92)	.	TA8221AH	107,95 2x14	(audio power amplifier)
+ic64	?	.	MC74F74N	18,28 7x4	(?? cpu fdp memory?)
+ic65	?	.	SN74F04N	18,34 7x4	(?? cpu fdp memory?)
+
+old missing:
+ic83,ic84
+n/a	ic2	.	D53-01	.	(sample rom)
+n/a	ic3	.	D53-02	.	(sample rom)
+?	ic7	.	D29-16	.	pal 16V8
+n/a	ic10	.	D53-13	.	(audio prg rom)
+?	ic12	.	D29-12	.	pal 20L8B
+?	ic14	.	D29-13	.	pal 20L8B
+?	ic15	.	D29-11	.	pal 20L8B
+?	ic16	.	D29-17	.	pal 16V8
+?	ic17	.	D53-12	.	pal 16L8B
+n/a	ic23	.	D53-14	.	(audio prg rom)
+n/a	ic24	.	D53-15-1	.	(maincpu prg rom)
+n/a	ic26	.	D53-16-1	.	(maincpu prg rom)
+?	ic28	.	D29-14	.	pal 20L8B
+?	ic29	.	D29-15	.	pal 20L8B
+n/a	ic35	.	D53-20-1	.	(maincpu prg rom)
+n/a	ic37	.	D53-18-1	.	(maincpu prg rom)
+n/a	ic45	.	D53-03	.	(graphics rom)
+n/a	ic46	.	D53-04	.	(graphics rom)
+n/a	ic47	.	D53-05	.	(graphics rom)
+n/a	ic48	.	D53-09	.	(graphics rom)
+n/a	ic49	.	D53-10	.	(graphics rom)
+n/a	ic50	.	D53-11	.	(graphics rom)
+n/a	ic51	.	MC74F244N	.
+n/a	ic52	.	MC74F373N	.
+n/a	ic53	.	MC74F244N	.
+n/a	ic54	.	MC74F373N	.
+n/a	ic56	.	MC74F244N	.
+n/a	ic57	.	MC74F373N	.
+n/a	ic58	.	MC74F244N	.
+n/a	ic59	.	MC74F373N	.
+?	ic60	.	D49-12-1	.	pal 16L8B (probably grp rom mapping)
+n/a	ic64	.	D53-06	.	(graphics rom)
+n/a	ic65	.	D53-07	.	(graphics rom)
+n/a	ic66	.	D53-08	.	(graphics rom)
+n/a	ic70	.	MC74F244N	.
+n/a	ic71	.	MC74F373N	.
+n/a	ic72	.	MC74F244N	.
+n/a	ic73	.	MC74F373N	.
+
+x1	x3	.	(26.686 MHz)	23,40 7x4
+x2	x2	.	(30.47618 MHz)	23,47 7x4
+x3	x1	.	(16 MHz)	23,54 7x4
+
+cut -f1,4 <draw.txt | sed 's/^/<area href=#/' | sed 's/		/ shape=rect coords=/' | sed 's/$/>/'
+
+jp1	jp6	fda 7mhz clock input select
+jp2	jp5	fio pin 4
+jp3	jp8	joystick/dial pull resistors
+jp4	jp7	?? esp voltage?
+?	jp1	audio cpu?
+?	jp2	graphics rom?
+?	jp3	graphics rom?
+?	jp4	graphics rom?
