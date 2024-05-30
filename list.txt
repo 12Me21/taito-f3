@@ -94,3 +94,8 @@ feedback2: ic21.8 ic21.12
 maincpu reset: cpu.6 fdp.206 fcm.133 fda.89 fio.94 carta.80 pal8.1
 power supply monitor reset: mb3771.8 fio.115 pal5.23 R57.2 pal1.14
 VCC: R57.1
+
+
+3:14 AM est idea: make a "clock divider 74F74" symbol, which is a 74F74 but with certain pins internally connected and certain things exposed, to make the schematic more clear
+e.g. we expose both Q outputs, the clock input, the inverted Q outputs, tie together all of the reset/presets. and tie together the D and ~Q, and tie together the Q and clock !! yayy
+also we should make the octal buffer into 8 separate components rather than just 1 or 2 to improve routing
