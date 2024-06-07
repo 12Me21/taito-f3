@@ -1145,3 +1145,11 @@ MC68EC000
 66 D7
 67 D6
 68 D5
+
+LM317L [Z]
+https://www.ti.com/lit/ds/symlink/lm317l.pdf?ts=1717757392417&ref_url=https%253A%252F%252Fwww.google.com%252F
+3-Terminal Adjustable Regulator
+[TO-92]
+1 ADJUSTMENT
+2 OUTPUT
+3 INPUT

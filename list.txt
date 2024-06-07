@@ -168,10 +168,10 @@ l9.2 c34.2 jamma.8
 l10.2 c35.2 jamma.-8
 
 # plane connections
-l1
-l6
-l19
-l20
-l21
-l22
-l23
+AGND l1.2 l6.2 l19.2
+A5V l21.2 l22.2 l23.2
+GND l1.1 l6.1 l19.1
+5V l21.1 l22.1 l23.1
+
+A12V l20.2
+D12V l20.1

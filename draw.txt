@@ -59,7 +59,7 @@ ic58	.	TLP521-4	96,34 4x8	(button optocouplers)
 ic59	.	TLP620-4	96,43 4x8	(joystick optocouplers)
 ic60	.	TLP620-4	96,52 4x8	(joystick optocouplers)
 ic61	.	TD62064AP	94,61 8x4	(high current driver)
-ic62	?	?	?
+ic62	.	LM317LZ	.	(voltage regulator?)
 ic63	.	TA8221AH	107,95 2x14	(audio power amplifier)
 ic64	.	MC74F74N	18,28 7x4	(?? cpu fdp memory?)
 ic65	.	SN74F04N	18,34 7x4	(?? cpu fdp memory?)
