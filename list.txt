@@ -168,10 +168,24 @@ l9.2 c34.2 jamma.8
 l10.2 c35.2 jamma.-8
 
 # plane connections
-AGND l1.2 l6.2 l19.2
-A5V l21.2 l22.2 l23.2
-GND l1.1 l6.1 l19.1
+AGND l1.2 l6.2 l19.2 c47.1 c52.1 c46.1 c51.1
+A5V l21.2 l22.2 l23.2 c52.2 c51.2
+GND l1.1 l6.1 l19.1 c49.2 c44.1 c48.2
 5V l21.1 l22.1 l23.1
 
-A12V l20.2
-D12V l20.1
+A12V l20.2 c47.2 c46.2
+D12V l20.1 c45.2 c44.2 ic62.3 c49.1 ic63.17 ic63.10 ic63.9 d2.2 r47.2
+
+c45
+c48
+c50
+d2
+r47
+vr1
+
+# AGND to GND: l1,l6,l19
+# A5V to 5V: l21,l22,l23
+# A12V to D12V: l20
+# A12V to AGND: c46,c47
+# A5V to AGND: c51,c52
+# D12V to GND: c49
