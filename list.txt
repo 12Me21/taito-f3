@@ -112,15 +112,20 @@ r19.2 l14.1
 l13.2 c38.2 m2.blue
 l14.2 c39.2 jamma.vblue
 
+# 3p and 4p coin mechanism driver
+
 NC? ic34.1 ic34.8
 GND ic34.4 ic34.5 ic34.12 ic34.13
-ic34.3
-ic34.11
-2 zd4.2 l5.1
-7 zd3.2 l4.1
-9 zd2.2 l3.1
-16 zd1.2 l2.1
-l2.2 c28.2
-l3.2 c29.2
-l4.2 c30.2
-l5.2 c31.2
+ic34.3 fio.69
+ic34.6 fio.70
+ic34.11 fio.72
+ic34.14 fio.71
+ic34.16 zd1.2 l2.1
+ic34.9 zd2.2 l3.1
+ic34.7 zd3.2 l4.1
+ic34.2 zd4.2 l5.1
+GND zd1.1 zd2.1 zd2.1 zd2.1
+l2.2 c28.2 4p.12
+l3.2 c29.2 3p.12
+l4.2 c30.2 4p.13
+l5.2 c31.2 3p.13
