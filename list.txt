@@ -170,7 +170,7 @@ l10.2 c35.2 jamma.-8
 # plane connections
 AGND l1.2 l6.2 l19.2 c47.1 c52.1 c46.1 c51.1
 A5V l21.2 l22.2 l23.2 c52.2 c51.2
-GND l1.1 l6.1 l19.1 c49.2 c44.1 c48.2
+GND l1.1 l6.1 l19.1 c49.2 c44.1
 5V l21.1 l22.1 l23.1
 
 A12V l20.2 c47.2 c46.2
@@ -181,16 +181,15 @@ D12V l20.1 c45.2 c44.2 ic62.3 c49.1 ic63.17 ic63.10 ic63.9 d2.2 r47.2
 #d2
 #r47
 #vr1 (1=lower left, 2=lower right, 3=middle top)
-vr1.1 vr1.3
-vr1.2 c48.1 r32.1 r31.2 ic62.1
-r32.2 r33.1
-r31.1 ic62.2 jp4.1 d1.1
-d1.2 jp4.2 dr1.6 esp.47 c6.1 c7.1 otis.8 otis.9 dr2.6 c0.1
-# note c6 is unpopulated, marked as tantalum capacitor
-GND c0.2 esp.2
-# "c0" = extra capacitor on bottom of pcb
-jp4.3
-r33.2
+GND r33.2 c48.2
+vr1.1 vr1.3 r32.2 r33.1
+voltage regulator adjustment: vr1.2 c48.1 r32.1 r31.2 ic62.1
+voltage regulator output: ic62.2 r31.1 jp4.1 d1.1
+esp vdd: d1.2 jp4.2 dr1.6 esp.47 c6.1 c7.1 esp.8 esp.9 dr2.6
+VCC jp4.3
+GND c6.2 esp.2 c7.2
+# note c6's normal location is unpopulated (marked as tantalum capacitor) i assume it was moved to the back side of the board
+
 
 
 
