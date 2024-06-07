@@ -101,16 +101,34 @@ VCC: R57.1
 e.g. we expose both Q outputs, the clock input, the inverted Q outputs, tie together all of the reset/presets. and tie together the D and ~Q, and tie together the Q and clock !! yayy
 also we should make the octal buffer into 8 separate components rather than just 1 or 2 to improve routing
 
+# video output: sync
+
+r24.1
+r24.2
+zd5.1
+zd5.2
+l11.1
+l11.2
+l12.1
+l12.2
+c36.1
+c36.2
+c37.1
+c37.2
+
+
+# video output: blue
 
 tr1.1 tr4.3 r26.1
 tr4.1 r25.1 r18.1 r19.1
-GND r25.2 r26.2
+AGND r25.2 r26.2
 VCC tr1.2
 12V tr4.2
 r18.2 l13.1
 r19.2 l14.1
 l13.2 c38.2 m2.blue
 l14.2 c39.2 jamma.vblue
+AGND c38.1 c39.1
 
 # 3p and 4p coin mechanism driver
 
@@ -129,3 +147,31 @@ l2.2 c28.2 4p.12
 l3.2 c29.2 3p.12
 l4.2 c30.2 4p.13
 l5.2 c31.2 3p.13
+AGND c28.1 c29.1 c30.1 c31.1
+
+# 1p and 2p coin mech driver
+
+12V ic61.1 ic61.8
+GND ic61.4 ic61.5 ic61.12 ic61.13
+AGND c32.1 c33.1 c34.1 c35.1
+ic61.3 fio.8
+ic61.6 fio.7
+ic61.11 fio.6
+ic61.14 fio.9
+ic61.9 l7.1
+ic61.7 l8.1
+ic61.2 l9.1
+ic61.16 l10.1
+l7.2 c32.2 jamma.9
+l8.2 c33.2 jamma.-9
+l9.2 c34.2 jamma.8
+l10.2 c35.2 jamma.-8
+
+# plane connections
+l1
+l6
+l19
+l20
+l21
+l22
+l23
