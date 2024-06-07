@@ -77,8 +77,9 @@ counter div 16 0.5mhz: ic18.11 duart.2 duart.39 #duart TxCA and RxCA
 
 GND:
 VCC: ic21.4 ic21.10 ic21.14 ic22.9 ic22.16
-GND: ic21.7 ic22.3 ic22.4 ic22.5 ic22.6 ic22.8
+GND: ic21.7 ic22.3 ic22.4 ic22.5 ic22.6 ic22.8 ic30.2 r5.2
 NC: ic22.15
+pulldown r5: ic30.3 r5.1
 
 3.8MHz otis e: otis.30 5701.12 ic21.3 pal8.8 pal4.17 ic30.1 fcm.48 #clock output from otis (input divided by 8) low = otis is accessing sound memory
 bank counter reset: otis.4 ic21.1 ic21.13 ic22.1
@@ -99,3 +100,27 @@ VCC: R57.1
 3:14 AM est idea: make a "clock divider 74F74" symbol, which is a 74F74 but with certain pins internally connected and certain things exposed, to make the schematic more clear
 e.g. we expose both Q outputs, the clock input, the inverted Q outputs, tie together all of the reset/presets. and tie together the D and ~Q, and tie together the Q and clock !! yayy
 also we should make the octal buffer into 8 separate components rather than just 1 or 2 to improve routing
+
+
+tr1.1 tr4.3 r26.1
+tr4.1 r25.1 r18.1 r19.1
+GND r25.2 r26.2
+VCC tr1.2
+12V tr4.2
+r18.2 l13.1
+r19.2 l14.1
+l13.2 c38.2 m2.blue
+l14.2 c39.2 jamma.vblue
+
+NC? ic34.1 ic34.8
+GND ic34.4 ic34.5 ic34.12 ic34.13
+ic34.3
+ic34.11
+2 zd4.2 l5.1
+7 zd3.2 l4.1
+9 zd2.2 l3.1
+16 zd1.2 l2.1
+l2.2 c28.2
+l3.2 c29.2
+l4.2 c30.2
+l5.2 c31.2

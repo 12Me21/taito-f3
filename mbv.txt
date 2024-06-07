@@ -1,8 +1,8 @@
-New	Single
+New	Single	Orange
 ic1	ic77	.	MC74HC08AN	4,22 7x4	(cpu clock driver)
 ic2	ic28?(D29-14)	pal1	PALCE20V8Q	4,28 12x4	(cpu address mapping)
 ic3	ic29?(D29-15)	pal2	PALCE20V8Q	4,34 12x4	(cpu address mapping)
-ic4	ic39	fcm	TC0660FCM	5,45 13x13	(misc.)
+ic4	ic39	ic21	fcm	TC0660FCM	5,45 13x13	(misc.)
 ic5	ic31	.	(fpm ram)	5,68 10x5	(sprite framebuffer)
 ic6	ic32	.	(fpm ram)	5,77 10x5	(sprite framebuffer)
 ic7	ic33	.	(fpm ram)	5,86 10x5	(sprite framebuffer)
@@ -16,21 +16,21 @@ ic14	ic25?	.	TC51832ASPL-85	32,10 14x4	(cpu ram 1)
 ic15	ic27?	.	TC51832ASPL-85	32,16 14x4	(cpu ram 2)
 ic16	ic36?	.	TC51832ASPL-85	32,22 14x4	(cpu ram 3)
 ic17	ic38?	.	TC51832ASPL-85	32,28 14x4	(cpu ram 4)
-ic18	ic8	.	MC74F163AN	32,34 8x4	(duart clock divider)
+ic18	ic8	ic10	.	MC74F163AN	32,34 8x4	(duart clock divider)
 ic19	ic74?	.	MC74F74N	32,40 7x4	(video clock divider)
 ic20	ic40	.	MC74F244N	32,47 10x4	(clock driver)
-ic21	ic5?	.	MC74F74N	32,53 7x4	(voice bank counter)
-ic22	ic6	.	MC74F161AN	32,57 8x4	(voice bank counter)
+ic21	ic5?	ic14?	.	MC74F74N	32,53 7x4	(voice bank counter)
+ic22	ic6	ic13	.	MC74F161AN	32,57 8x4	(voice bank counter)
 ic23	ic12?(D29-12)	pal3	PALCE20V8Q	37,88 12x4	
 ic24	ic14?(D29-13)	pal4	PALCE20V8Q	37,94 12x4
 ic25	ic15?(D29-11)	pal5	PALCE20V8Q	37,99 12x4
-ic26	ic1	otis	OTISR2	51,15 24x7	(audio sample playback)
-ic27	ic4	.	5701	54,27 9x7	(OTIS/ESP/audiocpu communication, clock generation)
-ic28	ic21	duart	MC68681P	45,40 20x7	(communication)
+ic26	ic1	ic19	otis	OTISR2	51,15 24x7	(audio sample playback)
+ic27	ic4	ic16	.	5701	54,27 9x7	(OTIS/ESP/audiocpu communication, clock generation)
+ic28	ic21	ic9	duart	MC68681P	45,40 20x7	(communication)
 ic29	ic7?(D29-16)	pal6	PALCE16V8Q-15	49,54 10x4	
-ic30	ic20?	.	MB8421-90LP	45,61 18x7	(voice bank list)
+ic30	ic20?	ic12	.	MB8421-90LP	45,61 18x7	(voice bank list)
 ic31	ic30?	.	MB8421-90LP	45,70 18x7	(cpu / acpu shared ram)
-ic32	ic11(MC68000P12F)	acpu	MC68EC000FN16	52,86 11x11	(audio cpu)
+ic32	ic11(MC68000P12F)	ic4	acpu	MC68EC000FN16	52,86 11x11	(audio cpu)
 ic33		pal7	PALCE16V8Q-15	53,102 10x4	
 ic34	ic76	.	TD62064AP	80,10 8x4	(coin mechanism driver)
 ic35	ic55	.	MB3771	76x17 4x4	(power supply monitor)
@@ -40,16 +40,16 @@ ic38	ic67?(CXK5863P-30)	.	IS61C64AH-20N	70,45 14x4	(palette ram 1)
 ic39	ic68?	.	IS61C64AH-20N	70,50 14x4	(palette ram 2)
 ic40	ic69?	.	IS61C64AH-20N	70,55 14x4	(palette ram 3)
 ic41	ic78	fda	TC0650FDA	74,63 9x7	(color blending)
-ic42	ic19	esp	ESPR6	69,75 24x7	(audio signal processing)
+ic42	ic19	ic15	esp	ESPR6	69,75 24x7	(audio signal processing)
 ic43		pal8	PALCE16V8Q-15	69,88 10x4	
-ic44	ic9?	.	TC51832ASPL-85	69,95 14x4	(acpu ram 1)
-ic45	ic22?	.	TC51832ASPL-85	69,102 14x4	(acpu ram 2)
+ic44	ic9?	ic7?	.	TC51832ASPL-85	69,95 14x4	(acpu ram 1)
+ic45	ic22?	ic8?	.	TC51832ASPL-85	69,102 14x4	(acpu ram 2)
 ic46	ic80?	.	TLP521-4	88,16 4x8	(button optocouplers)
 ic47	ic81?	.	TLP521-4	88,25 4x8	(button optocouplers)
 ic48	ic82?	.	TLP521-4	88,34 4x8	(button optocouplers)
 ic49	ic85?	.	TLP521-4	88,43 4x8	(button optocouplers)
 ic50	ic86?	.	TLP521-4	88,52 4x8	(button optocouplers)
-ic51	ic18	espram	(fpm ram)	82,84 10x5	(ESP ram)
+ic51	ic18	ic20	espram	(fpm ram)	82,84 10x5	(ESP ram)
 ic52	ic79	dac	TDA1543	84,95 4x4	(audio DAC)
 ic53	ic75(MC33174P)	.	MC33274AP	90,94 7x4	(audio amplifier)
 ic54	ic61	.	MB87078-SK	85,102 12x4	(volume control)
@@ -69,13 +69,14 @@ old missing:
 ic83,ic84
 n/a	ic2	.	D53-01	.	(sample rom)
 n/a	ic3	.	D53-02	.	(sample rom)
-?	ic7	.	D29-16	.	pal 16V8
+?	ic7	ic11	.	D29-16	.	pal 16V8
 n/a	ic10	.	D53-13	.	(audio prg rom)
 ?	ic12	.	D29-12	.	pal 20L8B
-?	ic14	.	D29-13	.	pal 20L8B
-?	ic15	.	D29-11	.	pal 20L8B
+?	ic14	ic3	.	D29-13	.	pal 20L8B
+?	ic15	ic1	.	D29-11	.	pal 20L8B
+?	?	ic22	D29-09	pal 16L8B
 ?	ic16	.	D29-17	.	pal 16V8
-?	ic17	.	D53-12	.	pal 16L8B
+?	ic17	ic2	.	D53-12	.	pal 16L8B
 n/a	ic23	.	D53-14	.	(audio prg rom)
 n/a	ic24	.	D53-15-1	.	(maincpu prg rom)
 n/a	ic26	.	D53-16-1	.	(maincpu prg rom)
