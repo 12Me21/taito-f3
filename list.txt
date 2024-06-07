@@ -185,8 +185,10 @@ vr1.1 vr1.3
 vr1.2 c48.1 r32.1 r31.2 ic62.1
 r32.2 r33.1
 r31.1 ic62.2 jp4.1 d1.1
-d1.2 jp4.2 dr1.6 esp.-1 c6.1 c7.1
+d1.2 jp4.2 dr1.6 esp.47 c6.1 c7.1 otis.8 otis.9 dr2.6 c0.1
 # note c6 is unpopulated, marked as tantalum capacitor
+GND c0.2 esp.2
+# "c0" = extra capacitor on bottom of pcb
 jp4.3
 r33.2
 
