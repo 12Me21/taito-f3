@@ -1153,3 +1153,17 @@ https://www.ti.com/lit/ds/symlink/lm317l.pdf?ts=1717757392417&ref_url=https%253A
 1 ADJUSTMENT
 2 OUTPUT
 3 INPUT
+
+SN74S1057 [SC]
+???? SCHOTTKY BARRIER DIODE BUS-TERMINATON ARRAY?
+[SIP 10]
+1 D0?
+2 D1?
+3 D2?
+4 D3?
+5 GND?
+6 VCC?
+7 D4?
+8 D5?
+9 D6?
+10 D7?
