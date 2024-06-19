@@ -1,0 +1,57 @@
+R1 - (pullup on 15mhz clock?)
+R2 - (between buffered 15mhz clock and cpu)
+R3 - ?
+R4 - ?
+R5 - IC30.3 pulldown
+...
+
+
+
+
+
+
+
+
+
+
+
+R18 - video blue
+R19 - video blue
+...
+
+
+
+R24 - video sync
+R25 - video blue pulldown
+R26 - video blue pulldown
+...
+
+
+
+R31 - voltage regulator bypass
+R32 - variable resistor bypass
+R33 - variable resistor pulldown
+...
+
+
+
+
+
+
+
+
+
+
+
+
+R47 - 12V something?
+...
+
+
+
+R52 - 13mhz buffered
+R53 - 7mhz buffered
+R54 - 13mhz buffered to cart
+R55 - 7mhz buffered to cart
+R56 - ?
+R57 - power supply monitor reset pullup

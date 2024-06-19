@@ -15,8 +15,6 @@ vclkdiv feedback 2: vclkdiv.2 vclkdiv.6  jp2.3
 13mhz buffered b: clkbuf.7 r54.2
 13mhz buffered b r54: cart.c1
 
-idk: ic19.6
-
 7mhz vclkdiv output 2: vclkdiv.5  clkbuf.8 clkbuf.11
 7mhz buffered a: clkbuf.12 r53.1
 7mhz buffered a r53: r53.2 jp2.1 gram2.oe gram1.oe fdp.123
