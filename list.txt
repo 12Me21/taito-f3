@@ -37,10 +37,10 @@ video sync buffered: clkbuf.3 r24.1   #this is what that bodge wire is connected
 
 #note the only pins used on ic1 are 8 and 10, this is just used as a clock buffer like ic20.
 GND: ic1.1 ic1.2 ic1.4 ic1.5 ic1.7 ic1.12 ic1.13
-VCC: ic1.9 ic1.14
+VCC: ic1.9 ic1.14 r1.2
 NC: ic1.3 ic1.6 ic1.11
 
-15mhz clock [pullup R1]: ic1.10 cart.A82 cart.D69 audiocpu.16 5701.21 otis.34 pal6.1 #idk who is responsible for generating this? maybe 5701 again
+15mhz clock [pullup R1]: ic1.10 cart.A82 cart.D69 audiocpu.16 5701.21 otis.34 pal6.1 r1.1 c1.2 #idk who is responsible for generating this? maybe 5701 again
 15mhz clock buffered: ic1.8 r2.1
 15mhz clock buffered r2: r2.2 cpu.5
 
@@ -74,13 +74,13 @@ counter div 8 1mhz: ic18.12 duart.38 duart.36 fio.107 #duart RxCB or counter/tim
 counter div 16 0.5mhz: ic18.11 duart.2 duart.39 #duart TxCA and RxCA
 
 GND:
-VCC: ic21.4 ic21.10 ic21.14 ic22.9 ic22.16
+VCC: ic21.4 ic21.10 ic21.14 ic22.9 ic22.16 r3.1
 GND: ic21.7 ic22.3 ic22.4 ic22.5 ic22.6 ic22.8 ic30.2 r5.2
 NC: ic22.15
 pulldown r5: ic30.3 r5.1
 
 3.8MHz otis e: otis.30 5701.12 ic21.3 pal8.8 pal4.17 ic30.1 fcm.48 #clock output from otis (input divided by 8) low = otis is accessing sound memory
-bank counter reset: otis.4 ic21.1 ic21.13 ic22.1
+bank counter reset: otis.4 ic21.1 ic21.13 ic22.1 r3.2
 feedback1: ic21.6 ic21.2
 feedback2: ic21.8 ic21.12
 3.8MHz/2 div1: ic21.5 ic21.11 ic22.2
@@ -201,3 +201,68 @@ GND c6.2 esp.2 c7.2
 # A12V to AGND: c46,c47
 
 # D12V to GND: c49
+
+
+pal7.1 pal7.2 fdp.120 r12.2
+pal7.3 fdp.108
+GND r12.1 pal7.4 pal7.5 pal7.6 pal7.7 pal7.8 pal7.9 pal7.10 pal7.11
+pal7.19 fdp.121
+VCC pal7.20
+
+r4.1 ic30.-4 
+r5.1 ic30.3
+r6.1 ic31.-4
+r7.2 ic31.3
+VCC r4.2 r5.2 r6.2 r7.1
+
+r8.2 audiocpu.11
+VCC r8.1
+
+VCC rb3.1
+rb3.2 audiocpu.27
+rb3.3 audiocpu.26
+rb3.4 audiocpu.25
+rb3.5 audiocpu.24
+rb3.6 audiocpu.21
+rb3.7 audiocpu.20
+rb3.8 audiocpu.19
+rb3.9 audiocpu.13
+
+# note r9 is unpopulated
+GND r9.1 fdp.177
+r9.2 fdp.180
+
+VCC r10.1 r11.1
+r10.2 pal3.3
+r11.2 pal3.4
+
+
+#audio 
+r34.1 ic53.14
+r34.2 ic53.13
+
+VCC rb1.1
+rb1.2 cpu.17
+rb1.3 cpu.18
+rb1.4 cpu.6
+rb1.5 cpu.22
+rb1.6 cpu.1
+rb1.7 cpu.19
+rb1.8 cpu.15
+rb1.9 fdp.122 # wow
+
+GND c1.1
+# note c2 is unpopulated
+c2.1 fcm.138
+GND c2.2
+
+ic9.8 c4.1 fdp.114
+
+
+ic35
+GND ic35.2 ic35.4 r14.1 c64.1 c5.2
+VCC ic35.5 ic35.6 r57.1 r13.1 c133.1 #thick trace from ic35.5 to c133.1
+ic35.1 c5.1
+ic35.3 
+ic35.7 r13.2 r14.2 c64.2
+ic35.8 r57.2 fio.115

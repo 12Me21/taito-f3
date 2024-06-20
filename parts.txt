@@ -1,57 +1,95 @@
-R1 - (pullup on 15mhz clock?)
-R2 - (between buffered 15mhz clock and cpu)
-R3 - ?
-R4 - ?
-R5 - IC30.3 pulldown
+R1 - (pullup on 15mhz clock?) | lightblue 5 band (brown,blue,black,BROWN,BROWN)
+R2 - (between buffered 15mhz clock and cpu) | tan (green,blue,black,gold)
+R3 - ? near X3 | tan (red,yellow,red,gold)
+R4 - ic30? | tan (brown black red gold)
+R5 - IC30.3 pulldown | tan (brown black red gold)
+R6 - ic31? | tan (brown black red gold)
+R7 - ic31? | tan (brown black red gold)
+R8 - audiocpu pullup | (blue gray brown gold)
+R9 - unpopulated, fdp.177 to fdp.180 | ??
+R10 - pal3? | (red red red gold)
+R11 - pal3? | (red red red gold)
+R12 - pal7 pulldown | (violet green brown gold)
+R13 - near psm? | lightblue 5 band (yellow orange black brown brown)
+R14 - near psm? | lightblue 5 band (brown blue black brown brown)
+R15 - fda pullup | (violet green black gold)
+R16 - fda voltage div | (brown black red gold)
+R17 - fda voltage div | (violet green black gold)
+R18 - video blue | (violet green black gold)
+R19 - video blue | (violet green black gold)
+R20 - video color | (violet green black gold)
+R21 - video color | (violet green black gold)
+R22 - video color | (violet green black gold)
+R23 - video color | (violet green black gold)
+R24 - video sync | (violet green black gold)
+R25 - video blue pulldown | (brown black brown gold)
+R26 - video blue pulldown | (red black red gold)
+R27 - video color pulldown | (brown black brown gold)
+R28 - video color pulldown | (red black red gold)
+R29 - video color pulldown | (brown black brown gold)
+R30 - video color pulldown | (red black red gold)
+R31 - voltage regulator bypass | (red red brown gold)
+R32 - variable resistor bypass | (green brown brown gold)
+R33 - variable resistor pulldown | (green brown brown gold)
+R34 - audio | (red yellow brown gold)
+R35 - audio | (violet green red gold)
+R36 - audio | (violet green red gold)
+R37 - audio | (violet green red gold)
+R38 - audio | (red red orange gold)
+R39 - audio | (red red orange gold)
+R40 - audio | (red yellow brown gold)
+R41 - audio | (violet green red gold)
+R42 - audio | (violet green red gold)
+R43 - audio | (violet green red gold)
+R44 - audio | (red red orange gold)
+R45 - audio amp | (green brown brown gold)
+R46 - audio amp | (green brown brown gold)
+R47 - 12V something? | (green blue orange gold)
+R48 - audio output | pink, big (red red gold gold)
+R49 - audio output | pink, big (red red gold gold)
+R50 - audio output | pink, big (red red gold gold)
+R51 - audio output | pink, big (red red gold gold)
+R52 - 13mhz buffered | (blue red black gold)
+R53 - 7mhz buffered | (blue red black gold)
+R54 - 13mhz buffered to cart | (blue red black gold)
+R55 - 7mhz buffered to cart | (blue red black gold)
+R56 - pal3? | (brown black red gold)
+R57 - power supply monitor reset pullup | (brown black red gold)
+
+RB1 - "A 222J" (2200ohm)
+RB2 - "A 103J" (10000ohm)
+RB3 - "A 103J" (10000ohm)
+RB4 - "A 472J"
+RB5 - "A 102J"
+RB6 - "A 102J"
+RB7 - "A 102J"
+RB8 - "A 102J"
+RB9 - "A 391J"
+RB10 - "A 391J"
+RB11 - "A 391J"
+RB12 - "A 222J"
+RB13 - "A 102J"
+RB14 - "A 222J"
+RB15 - "A 391J"
+RB16 - "A 391J"
+RB17 - "A 391J"
+RB18 - "A 472J"
+RB19 - "A 472J"
+RB20 - "A 472J"
+RB21 - "A 472J"
+RB22 - "A 472J"
+
+C1 ceramic disc "_22"
+C2 unpopulated
+C3 ceramic disc "B _221"
+C4 ceramic disc "_68"
+C5 tantalum, "1 25+" positive left
+C6 tantalum, moved to back of board on different pins "22 16+"
+C7 blue, cant read markings
+C8 ceramic disc "B _221"
+C9 audio
+C10 audio
+C11 audio
+C12
 ...
-
-
-
-
-
-
-
-
-
-
-
-R18 - video blue
-R19 - video blue
-...
-
-
-
-R24 - video sync
-R25 - video blue pulldown
-R26 - video blue pulldown
-...
-
-
-
-R31 - voltage regulator bypass
-R32 - variable resistor bypass
-R33 - variable resistor pulldown
-...
-
-
-
-
-
-
-
-
-
-
-
-
-R47 - 12V something?
-...
-
-
-
-R52 - 13mhz buffered
-R53 - 7mhz buffered
-R54 - 13mhz buffered to cart
-R55 - 7mhz buffered to cart
-R56 - ?
-R57 - power supply monitor reset pullup
+C64 "_472"
