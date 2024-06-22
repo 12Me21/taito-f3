@@ -1,6 +1,6 @@
-R1 - (pullup on 15mhz clock?) | lightblue 5 band (brown,blue,black,BROWN,BROWN)
-R2 - (between buffered 15mhz clock and cpu) | tan (green,blue,black,gold)
-R3 - ? near X3 | tan (red,yellow,red,gold)
+R1 - (pullup on 15mhz clock?) | lightblue 5 band (brown,blue,black,BROWN,BROWN)  1600
+R2 - (between buffered 15mhz clock and cpu) | tan (green,blue,black,gold) 56
+R3 - ? near X3 | tan (red,yellow,red,gold) 2400
 R4 - ic30? | tan (brown black red gold)
 R5 - IC30.3 pulldown | tan (brown black red gold)
 R6 - ic31? | tan (brown black red gold)
@@ -22,14 +22,14 @@ R21 - video color | (violet green black gold)
 R22 - video color | (violet green black gold)
 R23 - video color | (violet green black gold)
 R24 - video sync | (violet green black gold)
-R25 - video blue pulldown | (brown black brown gold)
-R26 - video blue pulldown | (red black red gold)
+R25 - video blue pulldown | (brown black brown gold) 100
+R26 - video blue pulldown | (red black red gold) 2000
 R27 - video color pulldown | (brown black brown gold)
 R28 - video color pulldown | (red black red gold)
 R29 - video color pulldown | (brown black brown gold)
 R30 - video color pulldown | (red black red gold)
-R31 - voltage regulator bypass | (red red brown gold)
-R32 - variable resistor bypass | (green brown brown gold)
+R31 - voltage regulator bypass | (red red brown gold) 220
+R32 - variable resistor bypass | (green brown brown gold) 
 R33 - variable resistor pulldown | (green brown brown gold)
 R34 - audio | (red yellow brown gold)
 R35 - audio | (violet green red gold)
@@ -49,7 +49,7 @@ R48 - audio output | pink, big (red red gold gold)
 R49 - audio output | pink, big (red red gold gold)
 R50 - audio output | pink, big (red red gold gold)
 R51 - audio output | pink, big (red red gold gold)
-R52 - 13mhz buffered | (blue red black gold)
+R52 - 13mhz buffered | (blue red black gold) 62
 R53 - 7mhz buffered | (blue red black gold)
 R54 - 13mhz buffered to cart | (blue red black gold)
 R55 - 7mhz buffered to cart | (blue red black gold)

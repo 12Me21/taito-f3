@@ -96,7 +96,7 @@ table.port {
 }
 
 table.pinout {
-	border: 1px solid;
+	border: 2px solid transparent;
 	background: #FFE;
 }
 .pinout td {
@@ -110,6 +110,10 @@ table.pinout {
 .pinout tr>* {
 	text-align: center;
 }
+.pinout .vcc, .pinout  .gnd {
+	border: none;
+}
+
 .cont1.cont1 { border-bottom-style: dashed !important; }
 .cont2.cont2 { border-top-style: dashed !important; }
 .pinout td + td {

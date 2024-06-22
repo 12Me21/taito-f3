@@ -22,28 +22,27 @@ address buffering for the ESP's RAM, communication between the cpu and fdp, gene
 
 <h2 id=pinout>Pinout</h2>
 
-<div class=figures>
-
+<figure>
 <table class='pinout'>
 	<tr><th>1<td class=gnd>GND
-	<tr><th>2<td>cpu.d19
-	<tr><th>3<td>cpu.d18
-	<tr><th>4<td>cpu.d17
-	<tr><th>5<td>cpu.d16
-	<tr><th>6<td>cpu.a19
-	<tr><th>7<td>cpu.a18
-	<tr><th>8<td>cpu.a17
-	<tr><th>9<td>cpu.a16
+	<tr><th>2<td>D19<td rowspan=4 class=cont2>CPU data
+	<tr><th>3<td>D18
+	<tr><th>4<td>D17
+	<tr><th>5<td>D16
+	<tr><th>6<td>A19<td rowspan=6>CPU address<br>high
+	<tr><th>7<td>A18
+	<tr><th>8<td>A17
+	<tr><th>9<td>A16
 	<tr><th>10<td class=gnd>GND
-	<tr><th>11<td>cpu.a15
-	<tr><th>12<td>cpu.a7
-	<tr><th>13<td>cpu.a6
-	<tr><th>14<td>cpu.a5
-	<tr><th>15<td>cpu.a4
-	<tr><th>16<td>cpu.a3
-	<tr><th>17<td>cpu.a2
-	<tr><th>18<td>cpu.a1
-	<tr><th>19<td>cpu.a0
+	<tr><th>11<td>A15
+	<tr><th>12<td>A7<td rowspan=8>CPU address<br>low
+	<tr><th>13<td>A6
+	<tr><th>14<td>A5
+	<tr><th>15<td>A4
+	<tr><th>16<td>A3
+	<tr><th>17<td>A2
+	<tr><th>18<td>A1
+	<tr><th>19<td>A0
 	<tr><th>20<td class=vcc>VCC
 	<tr><th>21<td> 
 	<tr><th>22<td> 
@@ -89,23 +88,23 @@ address buffering for the ESP's RAM, communication between the cpu and fdp, gene
 	<tr><th>59<td class=gnd>GND
 	<tr><th>60<td class=vcc>VCC
 	<tr><th>61<td> 
-	<tr><th>62<td>espram.a0
-	<tr><th>63<td>espram.d9
-	<tr><th>64<td>espram.a1
-	<tr><th>65<td>espram.d10
-	<tr><th>66<td>espram.a2
-	<tr><th>67<td>espram.d11
-	<tr><th>68<td>espram.a3
-	<tr><th>69<td>espram.d12
+	<tr><th>62<td>A0<td rowspan=17>ESP RAM<br>data/addr<br>latch
+	<tr><th>63<td>D9
+	<tr><th>64<td>A1
+	<tr><th>65<td>D10
+	<tr><th>66<td>A2
+	<tr><th>67<td>D11
+	<tr><th>68<td>A3
+	<tr><th>69<td>D12
 	<tr><th>70<td class=gnd>GND
-	<tr><th>71<td>espram.a4
-	<tr><th>72<td>espram.d13
-	<tr><th>73<td>espram.a5
-	<tr><th>74<td>espram.d14
-	<tr><th>75<td>espram.a6
-	<tr><th>76<td>espram.d15
-	<tr><th>77<td>espram.a7
-	<tr><th>78<td>espram.d16
+	<tr><th>71<td>A4
+	<tr><th>72<td>D13
+	<tr><th>73<td>A5
+	<tr><th>74<td>D14
+	<tr><th>75<td>A6
+	<tr><th>76<td>D15
+	<tr><th>77<td>A7
+	<tr><th>78<td>D16
 	<tr><th>79<td>esp.gate
 	<tr><th>80<td class=vcc>VCC
 </table>
@@ -132,24 +131,24 @@ address buffering for the ESP's RAM, communication between the cpu and fdp, gene
 	<tr><th>99<td>fda.26
 	<tr><th>100<td class=vcc>VCC
 	<tr><th>101<td> 
-	<tr><th>102<td>ic14.cs
+	<tr><th>102<td>ic14.cs<td rowspan=4>CPU work RAM<br>chip select
 	<tr><th>103<td>ic15.cs
 	<tr><th>104<td>ic16.cs
 	<tr><th>105<td>ic17.cs
 	<tr><th>106<td>fio.118
 	<tr><th>107<td>cpu.dsack0
 	<tr><th>108<td>cpu.dsack1
-	<tr><th>109<td> 
+	<tr><th>109<td>ic64.9
 	<tr><th>110<td class=gnd>GND
-	<tr><th>111<td> 
-	<tr><th>112<td> 
-	<tr><th>113<td> 
-	<tr><th>114<td> 
+	<tr><th>111<td>fdp.16
+	<tr><th>112<td>fdp.14
+	<tr><th>113<td>fdp.13
+	<tr><th>114<td>fdp.12
 	<tr><th>115<td>cpu.ipl2
 	<tr><th>116<td>cpu.ipl1
 	<tr><th>117<td>cpu.ipl0
 	<tr><th>118<td> 
-	<tr><th>119<td> cart.C04 (clock?)
+	<tr><th>119<td> cart.C04
 	<tr><th>120<td class=vcc>VCC
 </table>
 
@@ -161,11 +160,11 @@ address buffering for the ESP's RAM, communication between the cpu and fdp, gene
 	<tr><th>125<td>cpu.avec
 	<tr><th>126<td>pal2.22
 	<tr><th>127<td>cart.A90
-	<tr><th>128<td> 
+	<tr><th>128<td>cart.C04 
 	<tr><th>129<td> 
 	<tr><th>130<td class=gnd>GND
-	<tr><th>131<td> 
-	<tr><th>132<td> 
+	<tr><th>131<td>30mhz clock in
+	<tr><th>132<td class=vcc>VCC
 	<tr><th>133<td>cpu.reset
 	<tr><th>134<td>cpu.siz0
 	<tr><th>135<td>cpu.siz1
@@ -177,7 +176,7 @@ address buffering for the ESP's RAM, communication between the cpu and fdp, gene
 	<tr><th>141<td>pal1.22
 	<tr><th>142<td>pal1.20
 	<tr><th>143<td>pal1.19
-	<tr><th>144<td>cpu.d31
+	<tr><th>144<td>cpu.d31<td rowspan=13 class=cont1>CPU data
 	<tr><th>145<td>cpu.d30
 	<tr><th>146<td>cpu.d29
 	<tr><th>147<td>cpu.d28
@@ -195,7 +194,6 @@ address buffering for the ESP's RAM, communication between the cpu and fdp, gene
 	<tr><th>159<td> 
 	<tr><th>160<td class=vcc>VCC
 </table>
-
-</div>
+</figure>
 
 <script src=link.js></script>
