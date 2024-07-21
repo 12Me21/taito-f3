@@ -47,7 +47,7 @@ h1 img {
 
 table {
 	//font-family: serif;
-	font-variant-numeric: lining-nums;
+	font-variant-numeric: lining-nums tabular-nums;
 }
 
 figure {
