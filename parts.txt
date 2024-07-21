@@ -1,6 +1,6 @@
 R1 - (pullup on 15mhz clock?) | lightblue 5 band (brown,blue,black,BROWN,BROWN)  1600
 R2 - (between buffered 15mhz clock and cpu) | tan (green,blue,black,gold) 56
-R3 - ? near X3 | tan (red,yellow,red,gold) 2400
+R3 - ? near X3  bank counter reset pullup | tan (red,yellow,red,gold) 2400
 R4 - ic30? | tan (brown black red gold)
 R5 - IC30.3 pulldown | tan (brown black red gold)
 R6 - ic31? | tan (brown black red gold)
