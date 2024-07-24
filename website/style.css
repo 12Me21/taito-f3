@@ -1,6 +1,6 @@
 @font-face {
 	font-family: 'mspm';
-	src: url("./short2.otf?2");
+	src: url("./short2.otf?4");
 }
 
 o-l {
@@ -22,12 +22,15 @@ body {
 }
 p {
 	//background: #DEE1DEAA;
+	max-width: 7in;
+	text-align: justify;
+	margin-left: 8px;
 }
 h1, h2, h3, th {
 	font-family: serif;
 }
 h1 {
-	background: #FFE;
+	background: beige;
 	margin: 12px -8px 21px;
 	padding: 8px 8px;
 	box-shadow: 0 0 5px black;
@@ -52,7 +55,7 @@ table {
 
 figure {
 	//margin: 16px 24px 0px 32px;
-	margin: 16px 8px 0px 32px;
+	margin: 16px 8px 0px 16px;
 }
 figure > * {
 	margin-right: 8px;
@@ -67,7 +70,7 @@ table.port {
 	table-layout: fixed;
 	font-size: 12px;
 	border: 1px solid;
-	background: #FFE;
+	background: beige;
 }
 .port td {
 	border: 1px solid;
@@ -97,7 +100,8 @@ table.port {
 
 table.pinout {
 	border: 2px solid transparent;
-	background: #FFE;
+	background: beige;
+	box-shadow: 0 0 1px #0008;
 }
 .pinout td {
 	border: 1px solid;
@@ -118,6 +122,7 @@ table.pinout {
 .cont2.cont2 { border-top-style: dashed !important; }
 .pinout td + td {
 	border-left: none;
+	border-radius: 0 10px 10px 0;
 }
 
 .vcc {
@@ -162,7 +167,7 @@ table.pinout {
 }
 .memory-map th {
 	font-family: monospace;
-	background: #FFE;
+	background: beige;
 	padding: 4px 1px;
 }
 .memory-map td {
