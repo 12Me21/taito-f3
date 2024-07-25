@@ -15,7 +15,9 @@ abbr {
 body {
 	margin-bottom: 100px;
 	image-rendering: crisp-edges;
-	background: url("./tile32.png");
+	background-image: url("./tile32.png");
+	background-size: 116px;
+	background-size: calc(116px * var(--RX,1) / var(--X,1));
 	font-family: /*georgia,*/ serif;
 	font-family: mspm, serif;
 	/*font-variant-numeric: oldstyle-nums;*/
