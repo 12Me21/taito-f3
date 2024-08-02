@@ -125,14 +125,6 @@ table.pinout {
 .pinout td + td {
 	border-left: none;
 	border-radius: 0 10px 10px 0;
-	border: 3px solid;
-	//border-image: round calc(6 / 13 * 100%) / 4px url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 13 13' width='156' height='156'><path d='m5.5,0.5h2l5,5v2l-5,5h-2l-5,-5v-2z' fill='none' stroke='red' stroke-width='1'/></svg>");
-	//border-image: round calc(6 / 13 * 100%) / 20px url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 13 13' width='156' height='156'><path d='m5.5,0.5h2l5,5v2l-5,5h-2l-5,-5v-2z' fill='none' stroke='red' stroke-width='1'/></svg>");
-	//border-image: round 25% / 8px url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='144' height='144'><path d='m2.5,0 h7 l2.5,2.5 v7 l-2.5,2.5 h-7 l-2.5-2.5 v-7 z m0.5,1 l-2,2 v6 l2,2 h6 l2,-2 v-6 l-2,-2 z'/></svg>");
-	//border-image: round calc(6 / 13 * 100%) / 6px url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='-0.5 -0.5 13 13' width='156' height='156'><path d='m5,0h2l5,5v2l-5,5h-2l-5,-5v-2z' fill='none' stroke='red' stroke-width='1'/></svg>");
-	//border-image: round calc(6 / 13 * 100%) / 12px url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='-0.5 -0.5 26 26' width='156' height='156'><path d='m10,0h4l10,10v4l-10,10h-4l-10,-10v-4z' fill='none' stroke='currentColor' stroke-width='1'/></svg>");
-	//border-image: round calc(6 / 13 * 100%) / 12px url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='-0.5 -0.5 26 26' width='156' height='156'><path d='m0,0h10l10,10v4l-10,10h-10z' fill='none' stroke='currentColor' stroke-width='1'/></svg>");
-	border-image: calc(12 / 25 * 100%) / 12px url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='-0.5 -0.5 25 25' width='156' height='156'><path d='m0,0h14l10,10v4l-10,10h-14z' fill='none' stroke='currentColor' stroke-width='1'/></svg>");
 }
 
 .vcc {
