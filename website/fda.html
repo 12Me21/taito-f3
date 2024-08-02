@@ -8,39 +8,40 @@
 
 <h1><img width=73 height=53 src=fda.gif alt><span>TC0650 FDA<br>&ldquo;F3 Digital to Analog&rdquo;</span></h1>
 
-...
+<p>the FDA handles color blending and output. for each screen pixel, it reads two RGB colors from palette RAM (whose address is controlled by the FDP) and some blending info from the FDP (likely a 4-bit alpha value and a few more bits to control blur, palette mode, additive blending, etc.). it then blends these colors and outputs the result as analog RGB.
+<p>the FDA also allows the CPU to read and write palette RAM, with help from the FDP. (i assume it just connects the CPU data bus to palette RAM data, when instructed to by the FDP or FCM)
 
 <figure>
 <table class=pinout>
 	<tr><th>1<td>nc??
 	<tr><th>2<td class=gnd>GND
-	<tr><th>3<td>to fdp.196
-	<tr><th>4<td>to fdp.197
-	<tr><th>5<td>to fdp.198
-	<tr><th>6<td>to fdp.199
-	<tr><th>7<td>to fdp.202
-	<tr><th>8<td>D16<td rowspan=7 class=cont1>CPU
-	<tr><th>9<td>D17
-	<tr><th>10<td>D18
-	<tr><th>11<td>D19
-	<tr><th>12<td>D20
-	<tr><th>13<td>D21
-	<tr><th>14<td>D22
+	<tr><th>3<td colspan=2>fdp.196
+	<tr><th>4<td colspan=2>fdp.197
+	<tr><th>5<td colspan=2>fdp.198
+	<tr><th>6<td colspan=2>fdp.199
+	<tr><th>7<td colspan=2>fdp.202
+	<tr><th>8<td>D0<td rowspan=7 class=cont1>CPU data<br>(16-bit)
+	<tr><th>9<td>D1
+	<tr><th>10<td>D2
+	<tr><th>11<td>D3
+	<tr><th>12<td>D4
+	<tr><th>13<td>D5
+	<tr><th>14<td>D6
 	<tr><th>15<td class=vcc>VCC
 	<tr><th>16<td class=gnd>GND
-	<tr><th>17<td>D23<td rowspan=9 class=cont2>CPU
-	<tr><th>18<td>D24
-	<tr><th>19<td>D25
-	<tr><th>20<td>D26
-	<tr><th>21<td>D27
-	<tr><th>22<td>D28
-	<tr><th>23<td>D29
-	<tr><th>24<td>D30
-	<tr><th>25<td>D31
-	<tr><th>26<td>fcm.99?
-	<tr><th>27<td>fcm.97?
-	<tr><th>28<td>fcm.98?
-	<tr><th>29<td>CPU R/<o-l>W</o-l>
+	<tr><th>17<td>D7<td rowspan=9 class=cont2>CPU data<br>(16-bit)
+	<tr><th>18<td>D8
+	<tr><th>19<td>D9
+	<tr><th>20<td>D10
+	<tr><th>21<td>D11
+	<tr><th>22<td>D12
+	<tr><th>23<td>D13
+	<tr><th>24<td>D14
+	<tr><th>25<td>D15
+	<tr><th>26<td colspan=2>fcm.99?
+	<tr><th>27<td colspan=2>fcm.97?
+	<tr><th>28<td colspan=2>fcm.98?
+	<tr><th>29<td colspan=2>CPU R/<o-l>W</o-l>
 	<tr><th>30<td>?
 </table>
 <table class=pinout>
@@ -68,44 +69,44 @@
 <table class=pinout>
 	<tr><th>51<td>?
 	<tr><th>52<td>?
-	<tr><th>53<td>colram38.d7<td rowspan=8>palette ram 1
-	<tr><th>54<td>colram?
-	<tr><th>55<td>colram?
-	<tr><th>56<td>colram?
-	<tr><th>57<td>colram?
-	<tr><th>58<td>colram?
-	<tr><th>59<td>colram?
-	<tr><th>60<td>colram?
-	<tr><th>61<td>colram?<td rowspan=4 class=cont1>palette ram 2
-	<tr><th>62<td>colram?
-	<tr><th>63<td>colram?
-	<tr><th>64<td>colram?
+	<tr><th>53<td>D7<td rowspan=8>palette RAM 1<br>data
+	<tr><th>54<td>D6?
+	<tr><th>55<td>D5?
+	<tr><th>56<td>D4?
+	<tr><th>57<td>D3?
+	<tr><th>58<td>D2?
+	<tr><th>59<td>D1?
+	<tr><th>60<td>D0?
+	<tr><th>61<td>D7?<td rowspan=4 class=cont1>palette RAM 2<br>data
+	<tr><th>62<td>D6?
+	<tr><th>63<td>D5?
+	<tr><th>64<td>D4?
 	<tr><th>65<td class=gnd>GND
 	<tr><th>66<td class=vcc>VCC
-	<tr><th>67<td>colram?<td rowspan=4 class=cont2>palette ram 2
-	<tr><th>68<td>colram B
-	<tr><th>69<td>colram B
-	<tr><th>70<td>colram B
-	<tr><th>71<td>colram C<td rowspan=8>palette ram 3
-	<tr><th>72<td>colram C
-	<tr><th>73<td>colram C
-	<tr><th>74<td>colram C
-	<tr><th>75<td>colram C
-	<tr><th>76<td>colram?
-	<tr><th>77<td>colram?
-	<tr><th>78<td>colram?
+	<tr><th>67<td>D3?<td rowspan=4 class=cont2>palette RAM 2<br>data
+	<tr><th>68<td>D2?
+	<tr><th>69<td>D1?
+	<tr><th>70<td>D0?
+	<tr><th>71<td>D7?<td rowspan=8>palette RAM 3<br>data
+	<tr><th>72<td>D6?
+	<tr><th>73<td>D5?
+	<tr><th>74<td>D4?
+	<tr><th>75<td>D3?
+	<tr><th>76<td>D2?
+	<tr><th>77<td>D1?
+	<tr><th>78<td>D0?
 	<tr><th>79<td>?
 	<tr><th>80<td>?
 </table>
 <table class=pinout>
-	<tr><th>81<td class=vcc>VCC
+	<tr><th>81<td class=vcc style=width:0>VCC<td style=border:none>
 	<tr><th>82<td class=gnd>GND
-	<tr><th>83<td colspan=2>?
-	<tr><th>84<td colspan=2>?
-	<tr><th>85<td colspan=2>colram.oe (all)
-	<tr><th>86<td colspan=2>colram40.we
-	<tr><th>87<td colspan=2>colram39.we
-	<tr><th>88<td colspan=2>colram38.we
+	<tr><th>83<td>?
+	<tr><th>84<td>?
+	<tr><th>85<td colspan=2>palette RAM output enable
+	<tr><th>86<td colspan=2>palette RAM 3 write enable
+	<tr><th>87<td colspan=2>palette RAM 2 write enable
+	<tr><th>88<td colspan=2>palette RAM 1 write enable
 	<tr><th>89<td colspan=2>CPU reset
 	<tr><th>90<td class=gnd>GND
 	<tr><th>91<td class=vcc>VCC
@@ -118,6 +119,9 @@
 	<tr><th>98<td colspan=2>fdp.181
 	<tr><th>99<td class=vcc>VCC
 	<tr><th>100<td class=gnd>GND
+</table>
 </figure>
+
+<p>i don't remember which byte of the color is stored in which palette RAM chip. here i've labelled them "1" (IC38), "2" (IC39), "3" (IC40).
 
 <script src=link.js></script>
