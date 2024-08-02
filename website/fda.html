@@ -11,6 +11,7 @@
 <p>the FDA handles color blending and output. for each screen pixel, it reads two RGB colors from palette RAM (whose address is controlled by the FDP) and some blending info from the FDP (likely a 4-bit alpha value and a few more bits to control blur, palette mode, additive blending, etc.). it then blends these colors and outputs the result as analog RGB.
 <p>the FDA also allows the CPU to read and write palette RAM, with help from the FDP. (i assume it just connects the CPU data bus to palette RAM data, when instructed to by the FDP or FCM)
 
+<h2>Pinout</h2>
 <figure>
 <table class=pinout>
 	<tr><th>1<td>nc??
@@ -20,24 +21,24 @@
 	<tr><th>5<td colspan=2>fdp.198
 	<tr><th>6<td colspan=2>fdp.199
 	<tr><th>7<td colspan=2>fdp.202
-	<tr><th>8<td>D0<td rowspan=7 class=cont1>CPU data<br>(16-bit)
-	<tr><th>9<td>D1
-	<tr><th>10<td>D2
-	<tr><th>11<td>D3
-	<tr><th>12<td>D4
-	<tr><th>13<td>D5
-	<tr><th>14<td>D6
+	<tr><th>8<td>D16<td rowspan=7 class=cont1>CPU data<br>(16-bit)
+	<tr><th>9<td>D17
+	<tr><th>10<td>D18
+	<tr><th>11<td>D19
+	<tr><th>12<td>D20
+	<tr><th>13<td>D21
+	<tr><th>14<td>D22
 	<tr><th>15<td class=vcc>VCC
 	<tr><th>16<td class=gnd>GND
-	<tr><th>17<td>D7<td rowspan=9 class=cont2>CPU data<br>(16-bit)
-	<tr><th>18<td>D8
-	<tr><th>19<td>D9
-	<tr><th>20<td>D10
-	<tr><th>21<td>D11
-	<tr><th>22<td>D12
-	<tr><th>23<td>D13
-	<tr><th>24<td>D14
-	<tr><th>25<td>D15
+	<tr><th>17<td>D23<td rowspan=9 class=cont2>CPU data<br>(16-bit)
+	<tr><th>18<td>D24
+	<tr><th>19<td>D25
+	<tr><th>20<td>D26
+	<tr><th>21<td>D27
+	<tr><th>22<td>D28
+	<tr><th>23<td>D29
+	<tr><th>24<td>D30
+	<tr><th>25<td>D31
 	<tr><th>26<td colspan=2>fcm.99?
 	<tr><th>27<td colspan=2>fcm.97?
 	<tr><th>28<td colspan=2>fcm.98?

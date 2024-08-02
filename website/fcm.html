@@ -25,7 +25,7 @@ address buffering for the ESP's RAM, communication between the cpu and fdp, gene
 <figure>
 <table class='pinout'>
 	<tr><th>1<td class=gnd>GND
-	<tr><th>2<td>D19<td rowspan=4 class=cont2>CPU data
+	<tr><th>2<td>D19<td rowspan=4 class=cont2>CPU data<br>(16-bit)
 	<tr><th>3<td>D18
 	<tr><th>4<td>D17
 	<tr><th>5<td>D16
@@ -74,17 +74,17 @@ address buffering for the ESP's RAM, communication between the cpu and fdp, gene
 	<tr><th>45<td> 
 	<tr><th>46<td> 
 	<tr><th>47<td> 
-	<tr><th>48<td>otis.e
-	<tr><th>49<td>otis.bclk
+	<tr><th>48<td colspan=2>otis.e
+	<tr><th>49<td colspan=2>otis.bclk
 	<tr><th>50<td class=gnd>GND
-	<tr><th>51<td>otis.ser1
-	<tr><th>52<td>esp.ser0
-	<tr><th>53<td>otis.ser2
-	<tr><th>54<td>esp.ser1
-	<tr><th>55<td>otis.ser3
-	<tr><th>56<td>esp.ser2
-	<tr><th>57<td>esp.ser3
-	<tr><th>58<td>dac.data
+	<tr><th>51<td colspan=2>otis.ser1
+	<tr><th>52<td colspan=2>esp.ser0
+	<tr><th>53<td colspan=2>otis.ser2
+	<tr><th>54<td colspan=2>esp.ser1
+	<tr><th>55<td colspan=2>otis.ser3
+	<tr><th>56<td colspan=2>esp.ser2
+	<tr><th>57<td colspan=2>esp.ser3
+	<tr><th>58<td colspan=2>dac.data
 	<tr><th>59<td class=gnd>GND
 	<tr><th>60<td class=vcc>VCC
 	<tr><th>61<td> 
@@ -105,7 +105,7 @@ address buffering for the ESP's RAM, communication between the cpu and fdp, gene
 	<tr><th>76<td>D15
 	<tr><th>77<td>A7
 	<tr><th>78<td>D16
-	<tr><th>79<td>esp.gate
+	<tr><th>79<td colspan=2>esp.gate
 	<tr><th>80<td class=vcc>VCC
 </table>
 
@@ -113,20 +113,20 @@ address buffering for the ESP's RAM, communication between the cpu and fdp, gene
 	<tr><th>81<td class=gnd>GND
 	<tr><th>82<td> 
 	<tr><th>83<td> 
-	<tr><th>84<td>fdp.29
+	<tr><th>84<td>fdp.29<td rowspan=6 class=cont1>CPU address to FDP?
 	<tr><th>85<td>fdp.28
 	<tr><th>86<td>fdp.26
 	<tr><th>87<td>fdp.25
 	<tr><th>88<td>fdp.24
 	<tr><th>89<td>fdp.23
 	<tr><th>90<td class=gnd>GND
-	<tr><th>91<td>fdp.22
+	<tr><th>91<td>fdp.22<td rowspan=6 class=cont2>CPU address to FDP?
 	<tr><th>92<td>fdp.21
 	<tr><th>93<td>fdp.20
 	<tr><th>94<td>fdp.19
 	<tr><th>95<td>fdp.18
 	<tr><th>96<td>fdp.17
-	<tr><th>97<td>fda.27
+	<tr><th>97<td>fda.27<td rowspan=3>FDA something
 	<tr><th>98<td>fda.28
 	<tr><th>99<td>fda.26
 	<tr><th>100<td class=vcc>VCC
@@ -135,60 +135,60 @@ address buffering for the ESP's RAM, communication between the cpu and fdp, gene
 	<tr><th>103<td>ic15.cs
 	<tr><th>104<td>ic16.cs
 	<tr><th>105<td>ic17.cs
-	<tr><th>106<td>fio.118
-	<tr><th>107<td>cpu.dsack0
-	<tr><th>108<td>cpu.dsack1
-	<tr><th>109<td>ic64.9
+	<tr><th>106<td colspan=2>fio.118
+	<tr><th>107<td colspan=2>cpu.dsack0
+	<tr><th>108<td colspan=2>cpu.dsack1
+	<tr><th>109<td colspan=2>ic64.9
 	<tr><th>110<td class=gnd>GND
-	<tr><th>111<td>fdp.16
-	<tr><th>112<td>fdp.14
-	<tr><th>113<td>fdp.13
-	<tr><th>114<td>fdp.12
-	<tr><th>115<td>cpu.ipl2
-	<tr><th>116<td>cpu.ipl1
-	<tr><th>117<td>cpu.ipl0
+	<tr><th>111<td colspan=2>fdp.16
+	<tr><th>112<td colspan=2>fdp.14
+	<tr><th>113<td colspan=2>fdp.13
+	<tr><th>114<td colspan=2>fdp.12
+	<tr><th>115<td colspan=2>cpu.ipl2
+	<tr><th>116<td colspan=2>cpu.ipl1
+	<tr><th>117<td colspan=2>cpu.ipl0
 	<tr><th>118<td> 
-	<tr><th>119<td> cart.C04
+	<tr><th>119<td colspan=2> cart.C04
 	<tr><th>120<td class=vcc>VCC
 </table>
 
 <table class=pinout>
 	<tr><th>121<td class=gnd>GND
-	<tr><th>122<td>otis.e
-	<tr><th>123<td>otis.serlr
+	<tr><th>122<td colspan=2>otis.e
+	<tr><th>123<td colspan=2>otis.serlr
 	<tr><th>124<td> 
-	<tr><th>125<td>cpu.avec
-	<tr><th>126<td>pal2.22
-	<tr><th>127<td>cart.A90
-	<tr><th>128<td>cart.C04 
+	<tr><th>125<td colspan=2>cpu.avec
+	<tr><th>126<td colspan=2>pal2.22
+	<tr><th>127<td colspan=2>cart.A90
+	<tr><th>128<td colspan=2>cart.C04 
 	<tr><th>129<td> 
 	<tr><th>130<td class=gnd>GND
-	<tr><th>131<td>30mhz clock in
+	<tr><th>131<td colspan=2>30mhz clock in
 	<tr><th>132<td class=vcc>VCC
-	<tr><th>133<td>cpu.reset
-	<tr><th>134<td>cpu.siz0
-	<tr><th>135<td>cpu.siz1
-	<tr><th>136<td>cpu.rw
-	<tr><th>137<td>cpu.ds
-	<tr><th>138<td>cpu.as
+	<tr><th>133<td colspan=2>cpu.reset
+	<tr><th>134<td colspan=2>cpu.siz0
+	<tr><th>135<td colspan=2>cpu.siz1
+	<tr><th>136<td colspan=2>cpu.rw
+	<tr><th>137<td colspan=2>cpu.ds
+	<tr><th>138<td colspan=2>cpu.as
 	<tr><th>139<td class=gnd>GND
 	<tr><th>140<td class=vcc>VCC
-	<tr><th>141<td>pal1.22
-	<tr><th>142<td>pal1.20
-	<tr><th>143<td>pal1.19
-	<tr><th>144<td>cpu.d31<td rowspan=13 class=cont1>CPU data
-	<tr><th>145<td>cpu.d30
-	<tr><th>146<td>cpu.d29
-	<tr><th>147<td>cpu.d28
-	<tr><th>148<td>cpu.d27
-	<tr><th>149<td>cpu.d26
+	<tr><th>141<td colspan=2>pal1.22
+	<tr><th>142<td colspan=2>pal1.20
+	<tr><th>143<td colspan=2>pal1.19
+	<tr><th>144<td>D31<td rowspan=13 class=cont1>CPU data<br>(16-bit)
+	<tr><th>145<td>D30
+	<tr><th>146<td>D29
+	<tr><th>147<td>D28
+	<tr><th>148<td>D27
+	<tr><th>149<td>D26
 	<tr><th>150<td class=gnd>GND
-	<tr><th>151<td>cpu.d25
-	<tr><th>152<td>cpu.d24
-	<tr><th>153<td>cpu.d23
-	<tr><th>154<td>cpu.d22
-	<tr><th>155<td>cpu.d21
-	<tr><th>156<td>cpu.d20
+	<tr><th>151<td>D25
+	<tr><th>152<td>D24
+	<tr><th>153<td>D23
+	<tr><th>154<td>D22
+	<tr><th>155<td>D21
+	<tr><th>156<td>D20
 	<tr><th>157<td> 
 	<tr><th>158<td> 
 	<tr><th>159<td> 
