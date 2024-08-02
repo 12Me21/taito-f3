@@ -102,6 +102,7 @@ table.port {
 
 table.pinout {
 	border: 2px solid transparent;
+	border-width: 0px 2px;
 	background: beige;
 	box-shadow: 0 0 1px #0008;
 }
