@@ -145,9 +145,11 @@
 	</tr>
 </table>
 
-<h3 id=port-z>Port <span class=portlabel>Z</span>: ???</h3>
+<h3 id=port-z>Port <span class=portlabel>Z</span>: Serial Output</h3>
 
-<p>These pins appear to be outputs from the <a href=fio.html>FIO</a>, possibly controlled by bits 0 and 1 at address 0x4A0013
+<p>This is a serial output port for the main CPU. It is controlled through the <a href=fio.html>FIO</a>, with bits 0 and 1 at address 0x4A0013.
+<p>When pin 4 goes low (i think), a bit can be read from pin 3. Each symbol consists of 10 bits: 2 control bits and 8 data bits. (i can't remember if the output is inverted)
+<p>All games use the same protocol for outputting data over this port. They log events such as inserting credits, getting a game over, etc.
 
 <table class=port>
 	<tr class=numbers>
@@ -156,8 +158,8 @@
 	<tr>
 		<td class=vcc>VCC
 		<td class=gnd>GND
-		<td>FIO<br>pin 58
-		<td>FIO<br>pin 59
+		<td>data
+		<td>latch
 	</tr>
 </table>
 
