@@ -46,7 +46,7 @@
 	</tr>
 	<tr>
 		<td colspan=5 class=gnd>GND
-		<td colspan=22 class=cpu>address
+		<td colspan=22 class=cpu>address<br>(a0&ctdot;a21)
 		<td colspan=5 class=vcc>VCC
 	</tr>
 	<tr>
@@ -55,7 +55,7 @@
 		<td colspan=15 class=vcc>VCC
 	</tr>
 	<tr>
-		<td colspan=2 class=cpu>address
+		<td colspan=2 class=cpu>address<br>(a22&ctdot;a23)
 		<td class=cpu>as
 		<td class=cpu>ds
 		<td class=cpu>rw
@@ -80,7 +80,7 @@
 		<td class=cpu>cdis
 		<td class=fdp>FDP<wbr>.180
 		<td class=fcm>FCM<wbr>.127
-		<td colspan=6 class=cpu>data
+		<td colspan=6 class=cpu>data<br>(d0&ctdot;d5)
 	</tr>
 	<tr class=numbers>
 		<th>65<th>66<th>67<th>68<th>69<th>70<th>71<th>72<th>73<th>74<th>75<th>76<th>77<th>78<th>79<th>80<th>81<th>82<th>83<th>84<th>85<th>86<th>87<th>88<th>89<th>90<th>91<th>92<th>93<th>94<th>95<th>96
@@ -99,7 +99,7 @@
 		<td class=fio>FIO<wbr>.84
 		<td class=fio>FIO<wbr>.83
 		<td class=fio>FIO<wbr>.80
-		<td colspan=22 class=cpu>data
+		<td colspan=22 class=cpu>data<br>(d6&ctdot;d27)
 		<td colspan=5 class=gnd>GND
 	</tr>
 	<tr>
@@ -108,9 +108,10 @@
 		<td colspan=16 class=gnd>GND
 	</tr>
 	<tr>
-		<td colspan=4 class=cpu>data
-		<td colspan=20 class=otis>address/data bus
-		<td colspan=4 class=otis>bank select
+		<td colspan=4 class=cpu>data<br>(d28&ctdot;d31)
+		<td colspan=16 class=otis>address/data<br>(a4&ctdot;a19 / d0&ctdot;d15)
+		<td colspan=4 class=otis>address<br>(a0&ctdot;a3)
+		<td colspan=4 class=otis>expanded bank select<br>(bs0&ctdot;bs3)
 		<td class=otis>e
 		<td class=otis>bs
 		<td class=otis><o-l>ras</o-l>
@@ -132,7 +133,7 @@
 		<td>6.6715<wbr>MHz clock
 		<td class=fdp>FDP<wbr>.207
 		<td class=fdp>FDP<wbr>.118
-		<td colspan=28 class=fdp>graphics bus
+		<td colspan=28 class=fdp>graphics bus (0&ctdot;27)
 	</tr>
 	<tr>
 		<td colspan=16 class=gnd>GND
@@ -141,8 +142,8 @@
 	</tr>
 	<tr>
 		<td colspan=4 class=gnd>GND
-		<td colspan=20 class=fdp>graphics bus
-		<td colspan=4 class=audiocpu>address
+		<td colspan=20 class=fdp>graphics bus (28&ctdot;47)
+		<td colspan=4 class=audiocpu>address<br>(a1&ctdot;a4)
 		<td colspan=4 class=vcc>VCC
 	</tr>
 	<tr class=numbers>
@@ -157,7 +158,7 @@
 		<th>1<th>2<th>3<th>4<th>5<th>6<th>7<th>8<th>9<th>10<th>11<th>12<th>13<th>14<th>15<th>16<th>17<th>18<th>19<th>20<th>21<th>22<th>23<th>24<th>25<th>26<th>27<th>28<th>29<th>30<th>31<th>32
 	</tr>
 	<tr>
-		<td colspan=19 class=audiocpu>address
+		<td colspan=19 class=audiocpu>address<br>(a5&ctdot;a23)
 		<td class=audiocpu><o-l>as</o-l>
 		<td class=audiocpu><o-l>lds</o-l>
 		<td class=audiocpu><o-l>uds</o-l>
@@ -186,7 +187,7 @@
 		<td class=audiocpu><o-l>berr</o-l>
 		<td colspan=2>??
 		<td class=audiocpu><o-l>avec</o-l>
-		<td colspan=16 class=audiocpu>data
+		<td colspan=16 class=audiocpu>data<br>(d0&ctdot;d15)
 		<td colspan=4 class=gnd>GND
 	</tr>
 	<tr class=numbers>
