@@ -87,7 +87,7 @@
 	</tr>
 </table>
 
-<h3 id=port-b>Port <span class=portlabel>B</span>: CPU cont., audio samples</h3>
+<h3 id=port-b>Port <span class=portlabel>B</span>: main CPU cont., audio samples</h3>
 
 <table class=port>
 	<tr class=numbers>
@@ -133,7 +133,8 @@
 		<td>6.6715<wbr>MHz clock
 		<td class=fdp>FDP<wbr>.207
 		<td class=fdp>FDP<wbr>.118
-		<td colspan=28 class=fdp>graphics bus (0&ctdot;27)
+		<td colspan=24 class=fdp>tile/sprite rom data/address<br>(a0&ctdot;a23 / d0&ctdot;d23)
+		<td colspan=4 class=fdp>tile rom data<br>(d24&ctdot;d27)
 	</tr>
 	<tr>
 		<td colspan=16 class=gnd>GND
@@ -142,7 +143,7 @@
 	</tr>
 	<tr>
 		<td colspan=4 class=gnd>GND
-		<td colspan=20 class=fdp>graphics bus (28&ctdot;47)
+		<td colspan=20 class=fdp>tile rom data<br>(d28&ctdot;d47)
 		<td colspan=4 class=audiocpu>address<br>(a1&ctdot;a4)
 		<td colspan=4 class=vcc>VCC
 	</tr>
@@ -151,7 +152,7 @@
 	</tr>
 </table>
 
-<h3 id=port-d>Port <span class=portlabel>D</span>: audio cpu</h3>
+<h3 id=port-d>Port <span class=portlabel>D</span>: audio CPU</h3>
 
 <table class=port>
 	<tr class=numbers>
