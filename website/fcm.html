@@ -18,7 +18,7 @@ text-align: left;
 </style>
 
 <p>the FCM seems to be responsible for various miscellaneous functions.
-address buffering for the ESP's RAM, communication between the cpu and fdp, generating cpu interrupts, etc.
+CPU address mapping, communication between the CPU and FDP, generating CPU interrupts, address buffering for the ESP's RAM, etc.
 
 <h2 id=pinout>Pinout</h2>
 
@@ -131,7 +131,7 @@ address buffering for the ESP's RAM, communication between the cpu and fdp, gene
 	<tr><th>99<td>fda.26
 	<tr><th>100<td class=vcc>VCC
 	<tr><th>101<td> 
-	<tr><th>102<td>ic14.cs<td rowspan=4>CPU work RAM<br>chip select
+	<tr><th>102<td>ic14.cs<td rowspan=4>CPU work RAM<br>chip selects
 	<tr><th>103<td>ic15.cs
 	<tr><th>104<td>ic16.cs
 	<tr><th>105<td>ic17.cs
