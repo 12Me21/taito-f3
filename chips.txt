@@ -999,6 +999,7 @@ https://www.digchip.com/datasheets/parts/datasheet/340/MR27V1602DTP-pdf.php
 19 D10
 20 D3
 21 D11
+
 22 V_CC
 23 D4
 24 D12
@@ -1216,3 +1217,21 @@ SN74S1057 [SC]
 8 D5?
 9 D6?
 10 D7?
+
+MC74HC86A [N]
+Quad 2-Input Exclusive OR Gate
+[300 mil DIP 14]
+1 A1
+2 B1
+3 Y1
+4 A2
+5 B2
+6 Y2
+7 GND
+8 Y3
+9 A3
+10 B3
+11 Y4
+12 A4
+13 B4
+14 V_CC

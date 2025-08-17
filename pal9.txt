@@ -1,22 +1,114 @@
-D77-09 sprite rom control ?
+D77-09 sprite/tile rom control
 
-pal9.4 input: address bit (unused)
-pal9.5 input: address bit
-pal9.6 input: address bit
-pal9.7 input: address bit
+pal9.4 input: C25 graphics a20 (unused)
+pal9.5 input: C26 graphics a21
+pal9.6 input: C27 graphics a22
+pal9.7 input: C28 graphics a23
 pal9.8 input: C01 13mhz
 pal9.9 input: C02 7mhz
-pal9.11 input: C03 3mhz (controls sprite? rom oe (active low))
+pal9.11 input: C03 3mhz (controls sprite rom oe (active low))
 pal9.12 nc? (inverts .11)
-pal9.13 ic24.le and ic26 and ic31
-pal9.14 ic22.oe and ic23 and ic25 and ic27 and ic29 and ic30 (the 244's OE_a and OE_b are connected here)
-pal9.15 oe for sprite? roms, group 3 (110)
-pal9.16 oe for sprite? roms, group 2 (010)
-pal9.17 oe for sprite? roms, group 1 (100)
-pal9.18 oe for sprite? roms, group 0 (000)
-pal9.19 ic13.le and ic15 and ic16
+pal9.13 tileaddr.le
+pal9.14 tiledata.oe and sharedata (the 244's OE_a and OE_b are connected here)
+pal9.15 oe for sprite roms, group 3 (011)
+pal9.16 oe for sprite roms, group 2 (010)
+pal9.17 oe for sprite roms, group 1 (001)
+pal9.18 oe for sprite roms, group 0 (000)
+pal9.19 spriteaddr.le
 
 pal9.11 is a 3.33MHz clock (2 pixels)
 i think:
 when this goes high, we enable the sprite rom address latches
 when this goes low, we enable output from sprite roms
+
+spriteaddr: ic13, ic15, ic16 - sprite rom address latches
+sharedata: ic25, ic29, ic30 - sprite rom and tile rom low data buffers
+
+tileaddr: ic24, ic26, ic31 - tile rom address latches
+tiledata: ic22, ic23, ic27 - tile rom high data buffers
+
+clock cycles:
+13 7 3
+8 9 11 12 13 14 15 16 17 18 19
+0 0 0 | 1  1  0  *  *  *  *  1
+1 0 0 | 1  1  1  *  *  *  *  1
+0 1 0 | 1  1  0  *  *  *  *  0 - latch sprite rom address
+1 1 0 | 1  1  1  *  *  *  *  1
+0 0 1 | 0  1  0  1  1  1  1  1
+1 0 1 | 0  1  1  1  1  1  1  1
+0 1 1 | 0  0  0  1  1  1  1  1 - latch tile rom address
+1 1 1 | 0  1  1  1  1  1  1  1
+
+
+
+Inputs:
+1, 2, 3, 4, 5, 6, 7, 8, 9, 11, 13, 14, 15, 16, 17, 18
+
+Outputs:
+12, 13, 14, 15, 16, 17, 18, 19
+
+Equations:
+
+/o12 = i11
+/o13 = i11 + /i8 + i9
+/o14 = /i8
+/o15 = i5 & i6 & /i7 & /i11
+/o16 = /i5 & i6 & /i7 & /i11
+/o17 = i5 & /i6 & /i7 & /i11
+/o18 = /i5 & /i6 & /i7 & /i11
+/o19 = /i11 + /i8 + i9
+
+
+
+D77-10 tile rom control
+
+pal10.1
+pal10.2
+pal10.3
+pal10.4: ic24.12 from C25 (a20)
+pal10.5: from a21?
+pal10.6: from a22?
+pal10.7: ic24.19 from C28 (a23)? unused - so, tiles only use a 23-bit address (we dont even check that this bit is 0)
+pal10.8: ic49.8 (y3)
+pal10.9
+pal10.11
+pal10.12
+pal10.13
+pal10.14
+pal10.15
+pal10.16: tile roms group 2 oe (001)
+pal10.17: tile roms group 1 oe (000)
+pal10.18: 
+pal10.19: tileroms.byte
+
+Equations:
+/o12 =
+/o13 =
+/o14 =
+/o15 =
+/o16 = i4 & /i5 & /i6 & /i8
+/o17 = /i4 & /i5 & /i6 & /i8
+/o18 =
+/o19 =
+
+tile address space is 1/4 as large (2 fewer bits) - half as many chips and addressed in 16-bit mode.
+
+
+
+IC49 - note high number, probably last-minute addition
+these are xor gates but only one is used, as a signal booster or delay or something?
+
+ic49.1 GND
+ic49.2 GND
+ic49.3 nc?
+ic49.4 GND
+ic49.5 GND
+ic49.6 nc?
+ic49.7 GND
+ic49.8 pal10.8
+ic49.9 (pull up) pal19.12 !
+ic49.10 GND!
+ic49.11 nc?
+ic49.12 GND
+ic49.13 GND
+ic49.14 VCC
