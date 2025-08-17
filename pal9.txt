@@ -1,0 +1,22 @@
+D77-09 sprite rom control ?
+
+pal9.4 input: address bit (unused)
+pal9.5 input: address bit
+pal9.6 input: address bit
+pal9.7 input: address bit
+pal9.8 input: C01 13mhz
+pal9.9 input: C02 7mhz
+pal9.11 input: C03 3mhz (controls sprite? rom oe (active low))
+pal9.12 nc? (inverts .11)
+pal9.13 ic24.le and ic26 and ic31
+pal9.14 ic22.oe and ic23 and ic25 and ic27 and ic29 and ic30 (the 244's OE_a and OE_b are connected here)
+pal9.15 oe for sprite? roms, group 3 (110)
+pal9.16 oe for sprite? roms, group 2 (010)
+pal9.17 oe for sprite? roms, group 1 (100)
+pal9.18 oe for sprite? roms, group 0 (000)
+pal9.19 ic13.le and ic15 and ic16
+
+pal9.11 is a 3.33MHz clock (2 pixels)
+i think:
+when this goes high, we enable the sprite rom address latches
+when this goes low, we enable output from sprite roms

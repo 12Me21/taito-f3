@@ -189,10 +189,10 @@ ic31.16 and rom7.a6 (373 from ic30.14)
 
 C01 pal9.9 (shielded) -- ic20.7 from 13 ic19.3 (13mhz clock)
 C02 pal9.8 (shielded) -- ic20.9 from 11 ic19.5 (7 mhz clock)
-C03 pal9.11 -- fdp.207 and fdp.180
+C03 pal9.11 -- fdp.207 and fdp.180 (3mhz clock, disabled during reset or something?)
 C04 nc? -- fdp.118 and fcm.119 and fcm.128 // clock?? 
-C05 ic13.8 and ic30.9 (373 to rom2.a-1 and rom1 - only 1 and 2, not the sprite roms!) (244 from rom8.d0 and rom2.d0) -- fdp.125
-all the rest of these also go to sprite rom data pins i presume
+C05 ic13.8 and ic30.9 (373 to rom2.a-1 and rom1 - only 1 and 2, not the tile? roms!) (244 from rom8.d0 and rom2.d0) -- fdp.125
+all the rest of these also go to sprite?? rom data pins i presume
 C06 ic13.7 (373 to rom2.a0 and rom1) -- fdp.126
 C07 ic13.4 (373 to rom2.a1 and rom1) -- fdp.127
 C08 ic13.3 (373 to rom2.a2 and rom1) -- fdp.128
@@ -221,22 +221,7 @@ C30 ic23.7 (244 from rom7.d9) -- fdp.154
 C31 ic23.5 (244 from rom7.d10) -- fdp.155
 C32 ic23.3 (244 from rom7.d11) -- fdp.156
 
-pal10.19 controls sprite rom byte mode - sprite roms are in 16bit mode !!?
-
-pal9.5 input: address bit
-pal9.6 input: address bit
-pal9.7 input: address bit
-pal9.8 input: ?
-pal9.9 input: ?
-pal9.11 input: controls tile rom oe (active low)
-pal9.12 nc?
-pal9.13 ic24.le and ic26 and ic31
-pal9.14 ic22.oe and ic23 and ic25 and ic27 and ic29 and ic30 (the 244's OE_a and OE_b are connected here)
-pal9.15 oe for tile roms, group 3 (110)
-pal9.16 oe for tile roms, group 2 (010)
-pal9.17 oe for tile roms, group 1 (100)
-pal9.18 oe for tile roms, group 0 (000)
-pal9.19 ic13.le and ic15 and ic16
+pal10.19 controls tile? rom byte mode - tile? roms are in 16bit mode !!?
 
 C33-C48 gnd
 C49 nc?
