@@ -1,9 +1,9 @@
 D77-09 sprite/tile rom control
 
-pal9.4 input: C25 graphics a20 (unused)
-pal9.5 input: C26 graphics a21
-pal9.6 input: C27 graphics a22
-pal9.7 input: C28 graphics a23
+pal9.4 input: latched from C25 graphics a20 (unused)
+pal9.5 input: latched from C26 graphics a21
+pal9.6 input: latched from C27 graphics a22
+pal9.7 input: latched from C28 graphics a23
 pal9.8 input: C01 13mhz
 pal9.9 input: C02 7mhz
 pal9.11 input: C03 3mhz (controls sprite rom oe (active low))
@@ -27,16 +27,21 @@ sharedata: ic25, ic29, ic30 - sprite rom and tile rom low data buffers
 tileaddr: ic24, ic26, ic31 - tile rom address latches
 tiledata: ic22, ic23, ic27 - tile rom high data buffers
 
+latches output are always enabled
+seems like what happens is, briefly their latch enable is turned off, so for that step any changes on the bus are ignored. simultaneously, we enable output of the rom data buffers
+
+strangely there is another point in the cycle where address latch is 1 AND data buffers output is enabled (i.e. we're reading the rom data into rom address latches???)
+
 clock cycles:
 13 7 3
 8 9 11 12 13 14 15 16 17 18 19
 0 0 0 | 1  1  0  *  *  *  *  1
 1 0 0 | 1  1  1  *  *  *  *  1
-0 1 0 | 1  1  0  *  *  *  *  0 - latch sprite rom address
+0 1 0 | 1  1  0  *  *  *  *  0 - turn off sprite rom address latch
 1 1 0 | 1  1  1  *  *  *  *  1
 0 0 1 | 0  1  0  1  1  1  1  1
 1 0 1 | 0  1  1  1  1  1  1  1
-0 1 1 | 0  0  0  1  1  1  1  1 - latch tile rom address
+0 1 1 | 0  0  0  1  1  1  1  1 - turn off tile rom address latch
 1 1 1 | 0  1  1  1  1  1  1  1
 
 
@@ -65,10 +70,10 @@ D77-10 tile rom control
 pal10.1
 pal10.2
 pal10.3
-pal10.4: ic24.12 from C25 (a20)
-pal10.5: from a21?
-pal10.6: from a22?
-pal10.7: ic24.19 from C28 (a23)? unused - so, tiles only use a 23-bit address (we dont even check that this bit is 0)
+pal10.4: latched from C25 (a20)
+pal10.5: latched from a21?
+pal10.6: latched from a22?
+pal10.7: latched from C28 (a23)? unused - so, tiles only use a 23-bit address (we dont even check that this bit is 0)
 pal10.8: ic49.8 (y3)
 pal10.9
 pal10.11
