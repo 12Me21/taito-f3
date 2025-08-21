@@ -51,34 +51,34 @@
 	</tr>
 	<tr>
 		<td colspan=16 class=gnd>GND
-		<td class=nc>nc?
+		<td class=nc>nc
 		<td colspan=15 class=vcc>VCC
 	</tr>
 	<tr>
 		<td colspan=2 class=cpu>address<br>(a22&ctdot;a23)
-		<td class=cpu>as
-		<td class=cpu>ds
-		<td class=cpu>rw
-		<td class=cpu>ds<wbr>ack0
-		<td class=cpu>ds<wbr>ack1
-		<td class=cpu>ipl0
-		<td class=cpu>ilp1
-		<td class=cpu>ipl2
+		<td class=cpu><o-l>as</o-l>
+		<td class=cpu><o-l>ds</o-l>
+		<td class=cpu>r/<o-l>w</o-l>
+		<td class=cpu><o-l>ds<wbr>ack0</o-l>
+		<td class=cpu><o-l>ds<wbr>ack1</o-l>
+		<td class=cpu><o-l>ipl0</o-l>
+		<td class=cpu><o-l>ilp1</o-l>
+		<td class=cpu><o-l>ipl2</o-l>
 		<td class=cpu>fc0
 		<td class=cpu>fc1
 		<td class=cpu>fc2
 		<td class=cpu>siz0
 		<td class=cpu>siz1
-		<td class=cpu>reset
-		<td class=cpu>halt
-		<td class=cpu>clock?
-		<td class=cpu>br
-		<td class=cpu>bg
-		<td class=cpu>berr
-		<td class=cpu>rmc
-		<td class=cpu>avec
-		<td class=cpu>cdis
-		<td class=fdp>FDP<wbr>.180
+		<td class=cpu><o-l>reset</o-l>
+		<td class=cpu><o-l>halt</o-l>
+		<td class=cpu>15.238<span style='font-size:0;'>09</span><wbr>MHz clock
+		<td class=cpu><o-l>br</o-l>
+		<td class=cpu><o-l>bg</o-l>
+		<td class=cpu><o-l>berr</o-l>
+		<td class=cpu><o-l>rmc</o-l>
+		<td class=cpu><o-l>avec</o-l>
+		<td class=cpu><o-l>cdis</o-l>
+		<td class=fdp>(C3)
 		<td class=fcm>FCM<wbr>.127
 		<td colspan=6 class=cpu>data<br>(d0&ctdot;d5)
 	</tr>
@@ -129,16 +129,16 @@
 		<th>1<th>2<th>3<th>4<th>5<th>6<th>7<th>8<th>9<th>10<th>11<th>12<th>13<th>14<th>15<th>16<th>17<th>18<th>19<th>20<th>21<th>22<th>23<th>24<th>25<th>26<th>27<th>28<th>29<th>30<th>31<th>32
 	</tr>
 	<tr>
-		<td>13.343<wbr>MHz clock
-		<td>6.6715<wbr>MHz clock
-		<td class=fdp>FDP<wbr>.207
+		<td class=fdp>13.343<wbr>MHz clock
+		<td class=fdp><o-l>data</o-l>/<wbr>addr
+		<td class=fdp><o-l>tile</o-l>/<wbr>sprite
 		<td class=fdp>FDP<wbr>.118
 		<td colspan=24 class=fdp>tile address / sprite address / tile data / sprite data<br>(a0&ctdot;a23 / d0&ctdot;d23)
 		<td colspan=4 class=fdp>tile data<br>(d24&ctdot;d27)
 	</tr>
 	<tr>
 		<td colspan=16 class=gnd>GND
-		<td class=nc>nc?
+		<td class=nc>nc
 		<td colspan=15 class=vcc>VCC
 	</tr>
 	<tr>
@@ -181,7 +181,7 @@
 	</tr>
 	<tr>
 		<td colspan=4 class=vcc>VCC
-		<td class=audiocpu>clk
+		<td class=audiocpu>15.238<span style='font-size:0;'>09</span><wbr>MHz clock
 		<td class=audiocpu><o-l>bgack</o-l>
 		<td class=audiocpu><o-l>bg</o-l>
 		<td class=audiocpu>mode
@@ -195,5 +195,20 @@
 		<th>65<th>66<th>67<th>68<th>69<th>70<th>71<th>72<th>73<th>74<th>75<th>76<th>77<th>78<th>79<th>80<th>81<th>82<th>83<th>84<th>85<th>86<th>87<th>88<th>89<th>90<th>91<th>92<th>93<th>94<th>95<th>96
 	</tr>
 </table>
+
+<h3>Notes</h3>
+<p>
+	A82 and D69 are connected (both CPUs use the same clock source)
+<p>
+	A89 and C03 are connected, and connect to both fdp.180 and fdp.207. it appears to be a 3.33575MHz clock (2 pixels)
+<p>
+	B1&ctdot;B5 are FIO inputs (could be used for extra buttons)
+<p>
+	C01, C02, C03 are connected to 13.343MHz, 6.6715MHz, and 3.33575MHz clocks, respectively.
+	C01 goes high during the first half of each cycle of C02, and likewise for C02 and C03.
+<p>
+	C04 is connected to fdp.118, fcm.119, fcm.128, and pal7.3
+<p>
+	C74 and C75 don't connect to anything, as far as i know
 
 <script src=link.js></script>

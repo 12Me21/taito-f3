@@ -1,0 +1,54 @@
+1 A23 cpu.a17
+2 A24 cpu.a18
+3 A25 cpu.a19
+4 A26 cpu.a20
+5 A27 cpu.a21
+6 A65 cpu.a22
+7 A66 cpu.a23
+8 A67 cpu.as
+9 A68 cpu.ds
+10 GND
+11 A69 cpu.rw
+12 nc?
+13 A80 cpu.reset
+14 A77 cpu.fc2
+15 A76 cpu.fc1
+16 A75 cpu.fc0
+17 program roms OE
+18 program roms a17
+19 program roms a18
+20 VCC
+
+// !o17 = !i6 & !i7 & !i8 & i15 & !i16
+
+/** Inputs **/
+Pin	2 = i2;
+Pin	3 = i3;
+Pin	4 = i4;
+Pin	5 = i5;
+Pin	6 = i6;
+Pin	7 = i7;
+Pin	8 = i8;
+Pin	9 = i9;
+Pin	13 = i13;
+Pin	14 = i14;
+Pin	15 = i15;
+Pin	16 = i16;
+
+/** Outputs **/
+Pin	12 = o12; /**(Combinatorial, Output feedback output, Active high) **/
+Pin	17 = o17; /**(Combinatorial, Output feedback output, Active low) **/
+Pin	18 = o18; /**(Combinatorial, Output feedback output, Active high) **/
+Pin	19 = o19; /**(Combinatorial, Output feedback output, Active high) **/
+
+/** Equations **/
+
+o12 = i13;
+// 
+
+!o17 = !i6 & !i7 & !i8 & i15 & !i16
+     # !i6 & !i7 & !i8 & !i15 & i16;
+
+o18 = i3;
+
+o19 = i4;

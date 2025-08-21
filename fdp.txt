@@ -181,7 +181,7 @@ fdp:
 177 GND
 178 cartc.87
 179 cartc.88
-180 carta.89 and cartc.3 and fdp.207   #trace sticks out
+180 carta.89 and cartc.3 and fdp.207   #trace sticks out(?)  3.33575MHz clock sometimes. connects to pal9.11
 181 fda.98
 182 ic40.a0 #all address pins tied together on ic38 ic39 ic40
 183 ic40.a1
