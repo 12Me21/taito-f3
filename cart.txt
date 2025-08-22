@@ -13,8 +13,8 @@ x62-64 key (japan)
 port A
 
 A01-05 GND
-A06 prg0.Q6 -- cpu.a0
-A07 prg0.Q7 -- cpu.a1
+A06 nc -- cpu.a0
+A07 nc -- cpu.a1
 A08 prg.A0 -- cpu.a2
 A09 prg.A1 -- cpu.a3?
 A10 prg.A2 -- cpu.a4?
@@ -87,8 +87,8 @@ B02 ? -- fio.85
 B03 ? -- fio.84
 B04 ? -- fio.83
 B05 ? -- fio.80
-B06 ? -- cpu.d6
-B07 ? -- cpu.d7
+B06 prg1.20 -- cpu.d6
+B07 prg1.21 -- cpu.d7
 B08 prg1.q0 -- cpu.d8?
 B09 prg1.q1 -- cpu.d9?
 B10 prg1.q2 -- cpu.d10?
@@ -370,3 +370,6 @@ need:
 16 (sprite rom data)
 16? (snd prg address)
 16? (snd prg data)
+
+
+note how single board f3's extend port was similar in concept, but not compatible with this
