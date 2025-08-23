@@ -1,0 +1,48 @@
+D77-12
+1
+2 audiocpu.a18
+3 audiocpu.a19
+4 audiocpu.a20
+5 audiocpu.a21
+6 audiocpu.a22
+7 audiocpu.a23
+8 audiocpu.as
+9 audiocpu.lds
+10 GND
+11 audiocpu.uds
+12 OUT audio roms a18 - unused on this board
+13 audiocpu.reset?
+14 audiocpu.rw
+15 audiocpu.fc2
+16 audiocpu.fc1
+17 audiocpu.fc0
+18 OUT audio roms oe
+19 OUT audio roms a17 = i2
+20 VCC
+
+Inputs:
+
+2, 3, 4, 5, 6, 7, 8, 9, 12, 13, 14, 15, 16, 17, 18, 19
+
+Outputs:
+
+12 (Combinatorial, Output feedback output, Active high)
+18 (Combinatorial, Output feedback output, Active low)
+19 (Combinatorial, Output feedback output, Active high)
+
+Equations:
+
+o12 =
+o12.oe = vcc
+
+/o18 = /i3 & /i4 & /i5 & i6 & i7 & /i8 & i16 & /i17 +
+       /i3 & /i4 & /i5 & i6 & i7 & /i8 & /i16 & i17 +
+       /i3 & /i4 & /i5 & /i6 & /i7 & /i8 & i15 & i16 & /i17
+00011 !as fc1 !fc0 fc(?10) program space
+00011 !as !fc1 fc0 fc(?01) data space
+00000 !as fc2 fc1 !fc0 fc(110) supervisor program space
+
+o18.oe = vcc
+
+o19 = i2
+o19.oe = vcc
