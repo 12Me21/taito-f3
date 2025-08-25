@@ -1,6 +1,6 @@
 pal D77-02
 controls address mapping for 0xC????? region
-and the oe/rw signals for cpu ram? 
+and the oe/rw signals for cpu ram 
 and maybe stuff with interrupt handling
 
 pal2:
@@ -16,7 +16,7 @@ pal2:
 10 cpu.fc0?
 11 cpu.fc1?
 13 cpu.fc2?
-14 pal6.12
+14 pal6.12 - presumably shared ram busy signal
 15 OUT pal8.4 - audio side of board, controls audio reset etc.
 16 OUT ic31.1 (chip select left) and pal6.8
 17 OUT ???
@@ -74,12 +74,13 @@ o18.oe = /i3 & /i4 & i5 & i6
        /i3 & /i4 & i5 & i6 & /i7 & /i8 & /i14
 o19.oe = /i3 & /i4 & i5 & i6
 
-# AS asserted, Write asserted
-# 
+# AS asserted, Read asserted
+# assert output enable on cpu ram
 /o20 = /i7 & i9
 o20.oe = vcc
 
-# AS and DS asserted, Read asserted, fc = ?01 (data space)
+# AS and DS asserted, Write asserted, fc = ?01 (data space)
+# assert cpu ram r/~w
 # thus, uhhh  i think this means we can only write to ram while in data space? not sure if it's ever possible to do writes using other spaces though? and this doesn't affect reads afaik.
 /o21 = /i7 & /i8 & /i9 & i10 & /i11
 o21.oe = vcc
