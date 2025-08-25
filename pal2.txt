@@ -1,15 +1,86 @@
 pal D77-02
 
 pal2:
-14 (input) pal6.12
-15 pal8.4 - audio side of board, controls audio reset etc.
-16 ic31.1 (chip select left) and pal6.8
-17 
-18 
-19 xx WRONG ~~fcm.112 and fdp.14? ------- comes FROM here!~~
-20 cpuram.oe?
-21 cpuram.rw?
-22 fcm.126
+1 cpu.a18 (unused)
+2 cpu.a19?
+3 cpu.a20?
+4 cpu.a21?
+5 cpu.a22?
+6 cpu.a23?
+7 cpu.as?
+8 cpu.ds?
+9 cpu.rw?
+10 cpu.fc0?
+11 cpu.fc1?
+13 cpu.fc2?
+14 pal6.12
+15 OUT pal8.4 - audio side of board, controls audio reset etc.
+16 OUT ic31.1 (chip select left) and pal6.8
+17 OUT ???
+18 OUT cpu.dsack1
+19 OUT cpu.dsack0
+20 OUT cpuram.oe?
+21 OUT cpuram.rw?
+22 OUT fcm.126
+
+
+
+Inputs:
+
+1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 13, 14, 16, 17, 18, 19, 20, 21, 23
+
+Outputs:
+
+15 (Combinatorial, No output feedback, Active low)
+16 (Combinatorial, Output feedback output, Active low)
+17 (Combinatorial, Output feedback output, Active low)
+18 (Combinatorial, Output feedback output, Active low)
+19 (Combinatorial, Output feedback output, Active low)
+20 (Combinatorial, Output feedback output, Active low)
+21 (Combinatorial, Output feedback output, Active low)
+22 (Combinatorial, No output feedback, Active low)
+
+Equations:
+
+#addr = 11001*, AS asserted, fc = ?10 or ?01 (any program or data)
+/o15 = i2 & /i3 & /i4 & i5 & i6 & /i7 & /i10 & i11 +
+       i2 & /i3 & /i4 & i5 & i6 & /i7 & i10 & /i11
+o15.oe = vcc
+
+#addr = 11000*, AS asserted, fc = ?01 or ?10 (any program or data)
+/o16 = /i2 & /i3 & /i4 & i5 & i6 & /i7 & /i10 & i11 +
+       /i2 & /i3 & /i4 & i5 & i6 & /i7 & i10 & /i11
+o16.oe = vcc
+
+# passthrough a23 ?
+/o17 = i6
+o17.oe = vcc
+
+#if the upper bits of address bus are 1100* then we control dsack. (this is kinda sus? why aren't we checking AS? like we could mistakenly grab them if e.g. addresses 10* and 01* are read in rapid succession, right?)
+# dsack1(o18) assert if: address is 11001*, and AS and DS are asserted
+# dsack0(o19) assert if: address is 1100*, and AS and DS are asserted, and (address is 11001* OR i14 is low)
+# thus, when accessing 11001* (the sound reset port), both will be asserted (indicating size of 32 bits)
+# when accessing 11000* (the shared ram), dsack1 is negated and dsack0 is asserted, indicating size of 8 bits. unless i14 is low, in which case neither are asserted, and the cpu waits!
+#otherwise
+# o18 and o19 are in high-impedance mode
+
+/o18 = i2 & /i3 & /i4 & i5 & i6 & /i7 & /i8
+o18.oe = /i3 & /i4 & i5 & i6
+
+/o19 = i2 & /i3 & /i4 & i5 & i6 & /i7 & /i8 +
+       /i3 & /i4 & i5 & i6 & /i7 & /i8 & /i14
+o19.oe = /i3 & /i4 & i5 & i6
+
+/o20 = /i7 & i9
+o20.oe = vcc
+
+/o21 = /i7 & /i8 & /i9 & i10 & /i11
+o21.oe = vcc
+
+/o22 = i10 & i11 & i13
+o22.oe = vcc
+
+
 
 Inputs:
 
@@ -31,7 +102,7 @@ Equations:
 ........................
 11001................... o15 (C80000-CFFFFF)
 11000................... o16 (C00000-C7FFFF)
-11001................... o18 
+11001................... o18  
 11001................... o19
 1100.................... o19
 
@@ -41,12 +112,14 @@ Equations:
        a19 & /a20 & /a21 & a22 & a23 & /as & fc0 & /fc1
 o15.oe = vcc
 
+
 /o16 = /a19 & /a20 & /a21 & a22 & a23 & /as & /fc0 & fc1 +
        /a19 & /a20 & /a21 & a22 & a23 & /as & fc0 & /fc1
 o16.oe = vcc
 
 /o17 = a23
 o17.oe = vcc
+
 
 /o18 = a19 & /a20 & /a21 & a22 & a23 & /as & /ds
 o18.oe = /a20 & /a21 & a22 & a23
@@ -63,3 +136,6 @@ o21.oe = vcc
 
 /o22 = fc0 & fc1 & fc2
 o22.oe = vcc
+
+
+  
