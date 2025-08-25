@@ -1,10 +1,12 @@
+pal D77-02
+
 pal2:
 14 (input) pal6.12
-15 pal8.4
+15 pal8.4 - audio side of board, controls audio reset etc.
 16 ic31.1 (chip select left) and pal6.8
 17 
 18 
-19 
+19 xx WRONG ~~fcm.112 and fdp.14? ------- comes FROM here!~~
 20 cpuram.oe?
 21 cpuram.rw?
 22 fcm.126
