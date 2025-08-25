@@ -1,4 +1,5 @@
-pal D77-02
+pal2
+D77-02
 controls address mapping for 0xC????? region
 and the oe/rw signals for cpu ram 
 and maybe stuff with interrupt handling

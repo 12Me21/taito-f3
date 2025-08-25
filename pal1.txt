@@ -1,14 +1,29 @@
-pal1:
-14 pal5.23 and mb3771.reset? and fio.115?
-15  (passthrough i3)
-16  (passthrough i2)
-17  (unused in pal, perhaps nc)
-18 ???
-19 fcm.143
-20 fcm.142
-21 fdp.1
-22 fcm.141
+pal1
+D77-01
 
+1 cpu.a18? (unused)
+2 cpu.a19?
+3 cpu.a20?
+4 cpu.a21?
+5 cpu.a22?
+6 cpu.a23?
+7 cpu.as?
+8 cpu.ds?? (unused)
+9 cpu.rw?? (unused)
+10 cpu.fc0?
+11 cpu.fc1?
+13 cpu.fc2?? (unused)
+14 pal5.23 and mb3771.reset? and fio.115?
+15 OUT (passthrough i3)
+16 OUT (passthrough i2)
+17 IN (unused in pal, perhaps nc)
+18 OUT ??? - map program rom space (0x[0-3]?????) - maybe used in single board?
+19 OUT fcm.143 - map misc ram space (0x4?????)
+20 OUT fcm.142 - map graphics ram space (0x6?????)
+21 OUT fdp.1 - same as 20
+22 OUT fcm.141 - map upper quadrant (0x[C-F]?????)
+
+
 
 Inputs:
 
@@ -26,6 +41,38 @@ Outputs:
 
 Equations:
 
+# = cpu.a20
+o15 = i3
+o15.oe = vcc
+
+# = cpu.a19
+o16 = i2
+o16.oe = vcc
+
+# addr = 00*, AS asserted, fc = ?01 or ?10 (any program or data)
+/o18 = /i5 & /i6 & /i7 & /i10 & i11 +
+       /i5 & /i6 & /i7 & i10 & /i11
+o18.oe = vcc
+
+# addr = 0100*, AS asserted, fc = ?01 or ?10 (any program or data)
+/o19 = /i3 & /i4 & i5 & /i6 & /i10 & i11 +
+       /i3 & /i4 & i5 & /i6 & i10 & /i11
+o19.oe = vcc
+
+# addr = 0110* (unsafe)
+/o20 = /i3 & i4 & i5 & /i6
+o20.oe = vcc
+
+# addr = 0110* (unsafe) - same as o20
+/o21 = /i3 & i4 & i5 & /i6
+o21.oe = vcc
+
+# addr = 11* (unsafe), fc = ?01 or ?10 (any program or data)
+/o22 = /i5 & /i6 & /i10 & i11 +
+       /i5 & /i6 & i10 & /i11
+o22.oe = vcc
+
+
 o15 = a20
 o15.oe = vcc
 
@@ -39,19 +86,24 @@ o16.oe = vcc
 0110xxxxxxxxxxxxxxxxxxxx o21 (6..... fdp)
 00xxxxxxxxxxxxxxxxxxxxxx o22
 
+
 /o18 = /a22 & /a23 & /as & /fc0 & fc1 +
        /a22 & /a23 & /as & fc0 & /fc1
 o18.oe = vcc
+
 
 /o19 = /a20 & /a21 & a22 & /a23 & /fc0 & fc1 +
        /a20 & /a21 & a22 & /a23 & fc0 & /fc1
 o19.oe = vcc
 
+
 /o20 = /a20 & a21 & a22 & /a23
 o20.oe = vcc
 
+
 /o21 = /a20 & a21 & a22 & /a23
 o21.oe = vcc
+
 
 /o22 = /a22 & /a23 & /fc0 & fc1 +
        /a22 & /a23 & fc0 & /fc1

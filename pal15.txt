@@ -1,4 +1,7 @@
-1 A23 cpu.a17
+pal15
+D77-15
+
+1 A23 cpu.a17 - unused
 2 A24 cpu.a18
 3 A25 cpu.a19
 4 A26 cpu.a20
@@ -8,18 +11,16 @@
 8 A67 cpu.as
 9 A68 cpu.ds
 10 GND
-11 A69 cpu.rw
-12 nc?
+11 A69 cpu.rw - unused
+12 OUT nc?
 13 A80 cpu.reset
 14 A77 cpu.fc2
 15 A76 cpu.fc1
 16 A75 cpu.fc0
-17 program roms OE
-18 program roms a17
-19 program roms a18
+17 OUT program roms OE
+18 OUT program roms a17
+19 OUT program roms a18
 20 VCC
-
-// !o17 = !i6 & !i7 & !i8 & i15 & !i16
 
 /** Inputs **/
 Pin	2 = i2;
@@ -43,12 +44,16 @@ Pin	19 = o19; /**(Combinatorial, Output feedback output, Active high) **/
 
 /** Equations **/
 
+// cpu reset, passthrough. unused??
 o12 = i13;
-// 
-
+ 
+// addr = 00*, AS asserted, fc = ?01 or ?10 (any program or data)
+// enables program rom output
 !o17 = !i6 & !i7 & !i8 & i15 & !i16
      # !i6 & !i7 & !i8 & !i15 & i16;
 
+// rom a17 = cpu.a19 (note address bits shifted by 2)
 o18 = i3;
 
+// rom a18 = cpu.a20
 o19 = i4;

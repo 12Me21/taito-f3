@@ -1,0 +1,43 @@
+ok so.
+the FCM can see address bits A0-A7, and A15-A19
+A20-A23 are mapped by pals, generally, while FCM handles most more granular mapping
+FDP: A0-A14
+FIO: A0-A4
+pal8: A8
+
+# 00* program rom
+cartridge, pal15 (rom chip enable)
+pal1 - but signal appears to be unused (may be used in single-board f3?)
+not sure who sets DSACK. may be FCM?
+
+# 0100* various
+pal1 to fcm.143
+fcm probably decodes further bits
+## 0100 00* work ram
+handled by fcm
+## 0100 01[00]* palette ram - may be mirrored more
+handled by fcm
+## 0100 10[10]* fio registers - may be mirrored more
+handled by fcm
+## 0100 11[00]* timer interrupt - may be mirrored more
+handled by fcm, i assume entirely
+
+# 0110* graphics
+pal1 to fcm.142 and fdp.1
+# 0110 00* graphics ram
+handled by fcm
+# 0110 01[10]* tilemap control registers - may be mirrored more
+
+# 11* upper quadrant
+pal1 to fcm.141  not sure why tbh
+# 1100* pal2 controlled
+pal2 handles dsack
+## 1100 0* shared ram
+pal2 handles dsack
+pal2 to ic31.1 and pal6.8
+## 1100 1* sound reset
+pal2 handles dsack
+pal2 to pal8.4
+### 1100 1??? ???? ???1*
+### 1100 1??? ???? ???0*
+pal8 checks A8 and sets the reset line based on that
