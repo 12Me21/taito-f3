@@ -1,3 +1,6 @@
+pal D77-06
+undumped?
+
 1 15mhz clock
 2 ic30.51 (chip select right) and pal5.16
 3 ic54.22 (volume control chip enable) and pal4.18
@@ -9,7 +12,7 @@
 9 cpu.24 (DS)
 10 GND
 11 GND
-12 pal2.14
+12 OUT pal2.14
 13 
 14 
 15 esp.18 (WCLK)
