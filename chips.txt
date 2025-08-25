@@ -328,7 +328,7 @@ https://pdf1.alldatasheet.com/datasheet-pdf/download/1460483/TOSHIBA/TC518128AFL
 26 A9
 27 A8
 28 A13
-29 R/W
+29 R/~W
 30 CE2
 31 A15
 32 V_DD
