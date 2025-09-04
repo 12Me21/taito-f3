@@ -1,0 +1,26 @@
+400000-43FFFF - work ram (17 bit)
+440000-45FFFF - palette ram (16 bit)
+460000 - freeze
+470000 - freeze
+480000-49FFFF - returns lower byte of address
+4A0000-4BFFFF - fio (5 bit)
+4C0000-4DFFFF - timer regsister (1 bit)
+4E0000-4FFFFF - work ram mirror
+
+500000 - freeze
+580000 - freeze
+
+640000 - freeze
+650000 - freeze
+
+660000-66001F - scroll registers
+660020+ - freeze
+680000-6B0000 - mirror of graphics ram
+6E0000 - mirror of scroll registers, followed by freeze
+
+C00000-C7FFFF - shared ram (11 bit)
+C80000-CFFFFF - reads 18,FC,00,FF repeated ?
+
+D00000 - freeze
+E00000 - freeze
+F00000 - freeze

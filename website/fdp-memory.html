@@ -1,0 +1,202 @@
+<!doctype html><meta charset=utf-8>
+
+<title>Graphics Memory Map</title>
+<link rel=icon sizes=16x16 href=fav.gif>
+<link rel=stylesheet href=style.css>
+
+<a href=home.html>Back</a>
+
+<h1>Graphics Memory Map</h1>
+
+<style>
+	tr > *, table {
+		border: 1px solid;
+		border-collapse: collapse;
+	}
+	tr > * {
+		width: 50px;
+		min-width: 50px;
+	}
+	tr > th:nth-child(n+2) {
+		width: 500px;
+		min-width: 500px;
+	}
+	.s5 {
+		background: #d9ead3;
+	}
+	.s8 {
+		background: #fff2cc;
+	}
+	.memory-map tr:not(:first-child) {
+		height: 20px;
+	}
+	table {
+		table-layout: fixed;
+		line-height: 1;
+		text-align: center;
+	}
+	.memory-map td {
+		background: white;
+	}
+	.space {
+		border: none !important;
+		background: none !important;
+	}
+</style>
+
+<table class=memory-map>
+	<tr>
+		<th><th colspan=2>*...
+	</tr>
+	<tr>
+		<th>*00...
+		<td rowspan=8 colspan=2>sprite list 0 (2048)
+	</tr>
+	<tr><th>*01...</tr>
+	<tr><th>*02...</tr>
+	<tr><th>*03...</tr>
+	<tr><th>*04...</tr>
+	<tr><th>*05...</tr>
+	<tr><th>*06...</tr>
+	<tr><th>*07...</tr>
+	<tr>
+		<th>*08...
+		<td rowspan=8 colspan=2>sprite list 1 (2048)
+	</tr>
+	<tr><th>*09...</tr>
+	<tr><th>*0A...</tr>
+	<tr><th>*0B...</tr>
+	<tr><th>*0C...</tr>
+	<tr><th>*0D...</tr>
+	<tr><th>*0E...</tr>
+	<tr><th>*0F...</tr>
+	<tr>
+		<th>*10...
+		<td>tilemap 0 (32x32)
+		<td rowspan=2>tilemap 0 (64x32)
+	<tr>
+		<th>*11...
+		<td>tilemap 1 (32x32)
+	<tr>
+		<th>*12...
+		<td>tilemap 2 (32x32)
+		<td rowspan=2>tilemap 1 (64x32)
+	<tr>
+		<th>*13...
+		<td>tilemap 3 (32x32)
+	<tr>
+		<th>*14...
+		<td>tilemap 3 (32x32) alternate
+		<td rowspan=2>tilemap 2 (64x32)
+	<tr>
+		<th>*15...
+		<td>tilemap 4 (32x32) alternate
+	<tr>
+		<th>*16...
+		<td class=space>
+		<td rowspan=2>tilemap 3 (64x32)
+	<tr>
+		<th>*17...
+		<td class=space>
+	<tr>
+		<th>*18...
+	<tr>
+		<th>*19...
+	<tr>
+		<th>*1A...
+	<tr>
+		<th>*1B...
+	<tr>
+		<th>*1C...
+		<td colspan=2 rowspan=2>text data (64x64)
+	<tr>
+		<th>*1D...
+	<tr>
+		<th>*1E...
+		<td colspan=2 rowspan=2>character font (256)
+	<tr>
+		<th>*1F...
+	<tr>
+		<th>*20...
+		<td colspan=2>lineram latches / mappings
+	<tr>
+		<th>*21...
+		<td colspan=2>"pivot port"?
+	<tr>
+		<th>*22...
+		<td colspan=2>lineram block 2
+	<tr>
+		<th>*23...
+		<td colspan=2>lineram block 3
+	<tr>
+		<th>*24...
+		<td colspan=2>lineram block 4
+	<tr>
+		<th>*25...
+		<td colspan=2>lineram block 5
+	<tr>
+		<th>*26...
+		<td colspan=2>lineram block 6
+	<tr>
+		<th>*27...
+		<td colspan=2>lineram block 7
+	<tr>
+		<th>*28...
+		<td colspan=2>lineram block 8
+	<tr>
+		<th>*29...
+		<td colspan=2>lineram block 9
+	<tr>
+		<th>*2A...
+		<td colspan=2>lineram block A
+	<tr>
+		<th>*2B...
+		<td colspan=2>lineram block B
+	<tr>
+		<th>*2C...
+		<td colspan=2>lineram block C
+	<tr>
+		<th>*2D...
+		<td colspan=2>lineram block D
+	<tr>
+		<th>*2E...
+		<td colspan=2>lineram block E
+	<tr>
+		<th>*2F...
+		<td colspan=2>lineram block F
+	<tr>
+		<th>*30...
+		<td colspan=2 rowspan=16>pixel data (512x256)
+	<tr>
+		<th>*31...
+	<tr>
+		<th>*32...
+	<tr>
+		<th>*33...
+	<tr>
+		<th>*34...
+	<tr>
+		<th>*35...
+	<tr>
+		<th>*36...
+	<tr>
+		<th>*37...
+	<tr>
+		<th>*38...
+	<tr>
+		<th>*39...
+	<tr>
+		<th>*3A...
+	<tr>
+		<th>*3B...
+	<tr>
+		<th>*3C...
+	<tr>
+		<th>*3D...
+	<tr>
+		<th>*3E...
+	<tr>
+		<th>*3F...
+</table>
+
+<script src=link.js></script>

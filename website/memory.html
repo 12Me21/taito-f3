@@ -60,13 +60,14 @@
 	</tr>
 	<tr>
 		<th>4.....
-		<td colspan=2>Work RAM
+		<td colspan=2>Work RAM (17-bit address)
 		<td colspan=2 class=mirror>Work RAM mirror
-		<td>Palette RAM
-		<td colspan=5 class=space>
-		<td><a href=fio-memory.html>FIO registers</a>
-		<td class=space>
-		<td>timer interrupt register
+		<td colspan=2>Palette RAM (15-bit address)
+		<td colspan=2 class=space>
+		<td colspan=2>reads as low byte of address
+		<td colspan=2><a href=fio-memory.html>FIO registers</a><br>(5-bit address)
+		<td colspan=2>timer interrupt register<br>(1-bit address)
+		<td colspan=2 class=mirror>Work RAM mirror
 	</tr>
 	<tr>
 		<th>5.....
@@ -76,6 +77,10 @@
 		<td colspan=4>Graphics RAM
 		<td colspan=2 class=space>
 		<td>tilemap control registers
+		<td colspan=1 class=space>
+		<td colspan=4>Graphics RAM mirror
+		<td colspan=2 class=space>
+		<td>tilemap control mirror
 	</tr>
 	<tr>
 		<th>7.....
