@@ -192,6 +192,9 @@ table.pinout {
 }
 .memory-map td {
 }
+.memory-map .mem-cutoff {
+	border-style: dashed none dashed solid;
+}
 
 /* "normal" tables */
 .table {

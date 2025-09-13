@@ -40,6 +40,7 @@
 
 <h2>Visual Map</h2>
 
+<figure>
 <table class=memory-map>
 	<tr>
 		<th><th>.00000<th>.10000<th>.20000<th>.30000<th>.40000<th>.50000<th>.60000<th>.70000<th>.80000<th>.90000<th>.A0000<th>.B0000<th>.C0000<th>.D0000<th>.E0000<th>.F0000
@@ -75,11 +76,11 @@
 		<th>6.....
 		<td colspan=4>Graphics <abbr>Ram</abbr>
 		<td colspan=2 class=space>
-		<td style=font-size:0.75em><abbr>Fdp</abbr> Regs
+		<td class=mem-cutoff style=font-size:0.75em><abbr>Fdp</abbr> Regs
 		<td colspan=1 class=space>
 		<td colspan=4>Graphics <abbr>Ram</abbr>
 		<td colspan=2 class=space>
-		<td style=font-size:0.75em><abbr>Fdp</abbr> Regs
+		<td class=mem-cutoff style=font-size:0.75em><abbr>Fdp</abbr> Regs
 	</tr>
 	<tr>
 		<th>7.....
@@ -111,18 +112,8 @@
 		<th>F.....
 	</tr>
 </table>
-
-<p>
-	Accessing unmapped addresses will freeze the <abbr>cpu</abbr>, not trigger a bus error<s-t>.</s-t>
-	Note that the tilemap control registers occupy exactly <d-n>$20</d-n> bytes of memory, and are <em>not</em> mirrored, unlike everything else (e.g. reading from <d-n>$660020</d-n> will freeze)<s-t>.</s-t>
-<p>
-	address bits legend:<br>
-<dl>
-	<dt><code>0</code>/<code>1</code><dd>mapping bit (must match)
-	<dt><code>.</code><dd> doesn't matter
-	<dt><code>a</code><dd> "real" address bit
-	<dt><code>A</code><dd> address bit that just selects a byte within the data bus
-</dl>
+</figure>
+<figure>
 <table class=table>
 	<tr><th>Name<th>Address Bits<th>Width<th>R/W<th>Start<th>Real Size
 	<tr><th>Program <abbr>Rom</abbr><td>[<bit-field>00aa aaaa aaaa aaaa aaaa aaAA</bit-field>]*<td>32-bit<td>R*<td><d-n>$000000</d-n><td><d-n>$400000*</d-n>
@@ -137,6 +128,18 @@
 	<tr><th>Sound Reset Clear<td>[<bit-field>1100 1... .... ...0 .... ....</bit-field>]<td>32-bit<td>W?<td><d-n>$C80000</d-n><td>N/A
 	<tr><th>Sound Reset Assert<td>[<bit-field>1100 1... .... ...1 .... ....</bit-field>]<td>32-bit<td>W?<td><d-n>$C80100</d-n><td>N/A
 </table>
+</figure>
+<p>
+	address bits legend:<br>
+<dl>
+	<dt><code>0</code>/<code>1</code><dd>mapping bit (must match)
+	<dt><code>.</code><dd> doesn't matter
+	<dt><code>a</code><dd> "real" address bit
+	<dt><code>A</code><dd> address bit that just selects a byte within the data bus
+</dl>
+<p>
+	Accessing unmapped addresses will freeze the <abbr>cpu</abbr>, not trigger a bus error<s-t>.</s-t>
+	Note that the tilemap control registers occupy exactly <d-n>$20</d-n> bytes of memory, and are <em>not</em> mirrored, unlike everything else (e.g. reading from <d-n>$660020</d-n> will freeze)<s-t>.</s-t>
 <p>
 	*The size and mapping of program <abbr>rom</abbr> depends on the cartridge.
 <p>
