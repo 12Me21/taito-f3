@@ -1,0 +1,7 @@
+command 
+at 0xA value 0x04 flashes different colors   bit depth??
+       value 0x10  very corrupted graphics text characters off by 1  broken sync signal    maybe broken horizontal flip mode??
+       value 0x20  (flipscreen)
+       rest  nothing?
+       
+sprite jump is not 12 bits  probably 11  nope just 10

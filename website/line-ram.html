@@ -1,0 +1,121 @@
+<!doctype html><meta charset=utf8>
+
+<title>FDP line ram</title>
+<link rel=icon sizes=16x16 href=fav.gif>
+<link rel=stylesheet href=style.css>
+
+<a href=home.html>Back</a>
+
+<h1>FDP line ram</h1>
+
+<style>
+	.s5 {
+		background: #d9ead3;
+	}
+	.s8 {
+		background: #fff2cc;
+	}
+	.memory-map tr>* {
+		width: 80px;
+		min-width: 80px;
+		max-width: 80px;
+	}
+	.memory-map tr:not(:first-child) {
+		height: 50px;
+	}
+	.memory-map td {
+		background: white;
+	}
+	.space {
+		border: none !important;
+		background: none !important;
+	}
+</style>
+
+<p>
+	each row in this table represents a block of 256 words, one for each scanline
+
+<table class=memory-map>
+	<tr>
+		<th>block<th>bit 15<th>bit 14<th>bit 13<th>bit 12<th>bit 11<th>bit 10<th>bit 9<th>bit 8<th>bit 7<th>bit 6<th>bit 5<th>bit 4<th>bit 3<th>bit 2<th>bit 1<th>bit 0
+	<tr>
+		<th>4400
+		<td>clip 1 R<br>high bit
+		<td>clip 1 L<br>high bit
+		<td>clip 0 R<br>high bit
+		<td>clip 0 L<br>high bit
+		<td class=space>
+		<td class=space>
+		<td>playfield 2<br>alt tilemap
+		<td colspan=9>playfield 2<br>colscroll
+	<tr>
+		<th>4600
+		<td>clip 3 R<br>high bit
+		<td>clip 3 L<br>high bit
+		<td>clip 2 R<br>high bit
+		<td>clip 2 L<br>high bit
+		<td class=space>
+		<td class=space>
+		<td>playfield 3<br>alt tilemap
+		<td colspan=9>playfield 3<br>colscroll
+	<tr>
+		<th>5000
+		<td colspan=8>clip 0 R<br>low bits
+		<td colspan=8>clip 0 L<br>high bit
+	<tr>
+		<th>5200
+		<td colspan=8>clip 1 R<br>low bits
+		<td colspan=8>clip 1 L<br>high bit
+	<tr>
+		<th>5400
+		<td colspan=8>clip 2 R<br>low bits
+		<td colspan=8>clip 2 L<br>high bit
+	<tr>
+		<th>5600
+		<td colspan=8>clip 3 R<br>low bits
+		<td colspan=8>clip 3 L<br>high bit
+	<tr>
+		<th>6000
+		<td class=space>?
+		<td class=space>?
+		<td>pivot enable bitmap
+		<td class=space>?
+		<td class=space>?
+		<td class=space>?
+		<td>pivot<br>blend select
+		<td class=space>?
+		<td colspan=2>sprite group 3<br>blend mode
+		<td colspan=2>sprite group 2<br>blend mode
+		<td colspan=2>sprite group 1<br>blend mode
+		<td colspan=2>sprite group 0<br>blend mode
+	<tr>
+		<th>6200
+		<td colspan=4>blend value A
+		<td colspan=4>blend value B
+		<td colspan=4>blend value C
+		<td colspan=4>blend value D
+	<tr>
+		<th>6400
+		<td class=space>?
+		<td>15/24-bit palette mode
+		<td>disable blur
+		<td class=space>1
+		<td class=space>?
+		<td class=space>?
+		<td>pivot<br>mosaic enable
+		<td>sprites<br>mosaic enable
+		<td colspan=4>mosaic level<br>(0=16x, 15=1x)
+		<td>playfield 3<br>mosaic enable
+		<td>playfield 2<br>mosaic enable
+		<td>playfield 1<br>mosaic enable
+		<td>playfield 0<br>mosaic enable
+	<tr>
+		<th>6600
+		<td colspan=16>background color index
+	<tr>
+		<th>7000
+		<td colspan=16 class=space>"pivot/vram layer enable"??
+	<tr>
+		<th>7200
+		<td colspan=16 class=space>"pivot/vram layer enable"??
+	

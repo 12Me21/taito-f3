@@ -1,0 +1,68 @@
+1 GND
+2 D4
+3 D3
+4 D2
+5 D1
+6 D0
+7 ~AS
+8 ~UDS
+9 ~LDS
+10 R/~W
+11 ~DTACK (pullup R8)
+12 ~BG
+13 ~BGACK (pulldown RB3)
+14 ~BR
+15 V_CC
+16 CLK
+17 GND
+18 GND
+19 MODE (pulldown RB3)
+20 ~HALT (pulldown RB3)
+21 ~RESET (pulldown RB3) otis.res pal8.18
+22 NC
+23 ~AVEC
+24 ~BERR (pulldown RB3)
+25 ~IPL2 (pulldown RB3)
+26 ~IPL1 (pulldown RB3)
+27 ~IPL0 (pulldown RB3)
+28 FC2
+29 FC1
+30 FC0
+31 A0
+32 A1
+33 A2
+34 A3
+35 GND
+36 A4
+37 A5
+38 A6
+39 A7
+40 A8
+41 A9
+42 A10
+43 A11
+44 A12
+45 A13
+46 A14
+47 A15
+48 A16
+49 A17
+50 A18
+51 A19
+52 A20
+53 V_CC
+54 A21
+55 A22
+56 A23
+57 GND
+58 D15
+59 D14
+60 D13
+61 D12
+62 D11
+63 D10
+64 D9
+65 D8
+66 D7
+67 D6
+68 D5

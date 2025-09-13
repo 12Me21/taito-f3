@@ -1,0 +1,12 @@
+6000 
+bit 11: tilemap infinite vertical stretch?
+
+6400
+bit 15: weird horizontal stretch shadow mode
+bit 8: sprite mosaic
+bit 9: NOT pivot mosaic
+
+6600
+seems to be all bg color index but not 100% sure
+
+7000
