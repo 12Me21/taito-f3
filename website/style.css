@@ -198,12 +198,12 @@ table.pinout {
 
 /* "normal" tables */
 .table {
-	background: beige;
+	background: #CCC8;
 	border-collapse: unset;
-	border-spacing: 1px;
-	padding: 3px;
+	border-spacing: 2px;
+	/padding: 3px;
 	border: none;
-	box-shadow: 0 0 1px #0008;
+	/box-shadow: 0 0 1px #0008;
 }
 .table th {
 	background: beige;
@@ -212,11 +212,11 @@ table.pinout {
 .table td {
 	padding: 1px 0.25em;
 	background: beige;
-	border: 1px solid #8888;
-	border-style: solid none none solid;
+	border: none;
+	/border: 1px solid #8888;
+	/border-style: solid none none solid;
 }
 .table tr:first-child {
-	background: beige;
 }
 .table tr:first-child > th {
 	border-radius: 5.5px 5.5px 0 0;
@@ -226,6 +226,9 @@ table.pinout {
 	border-radius: 5.5px 0 0 5.5px;
 	border-right: none;
 	background: beige;
+	font-weight: normal;
+	/font-style: italic;
+	font-family: mspm, serif;
 }
 .table tr:first-child > th:first-child {
 }

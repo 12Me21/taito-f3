@@ -38,7 +38,7 @@
 	}
 </style>
 
-<h2>Visual Map</h2>
+<h2>Visual Summary</h2>
 
 <figure>
 <table class=memory-map>
@@ -113,12 +113,15 @@
 	</tr>
 </table>
 </figure>
+
+<h2>Address Map</h2>
+
 <figure>
 <table class=table>
 	<tr><th>Name<th>Address Bits<th>Width<th>R/W<th>Start<th>Real Size
 	<tr><th>Program <abbr>Rom</abbr><td>[<bit-field>00aa aaaa aaaa aaaa aaaa aaAA</bit-field>]*<td>32-bit<td>R*<td><d-n>$000000</d-n><td><d-n>$400000*</d-n>
 	<tr><th>Work <abbr>Ram</abbr><td>[<bit-field>0100 00.a aaaa aaaa aaaa aaAA</bit-field>]<br>[<bit-field>0100 111a aaaa aaaa aaaa aaAA</bit-field>]<td>32-bit<td>R/W<td><d-n>$400000</d-n><td><d-n>$20000</d-n>
-	<tr><th>Color <abbr>Ram</abbr><td>[<bit-field>0100 010. .aaa aaaa aaaa aaAA</bit-field>]<td>32-bit**<td>R/W<td><d-n>$440000</d-n><td><d-n>$8000</d-n>**
+	<tr><th>Color <abbr>Ram</abbr><td>[<bit-field>0100 010. .aaa aaaa aaaa aaAA</bit-field>]<td>32-bit<td>R/W<td><d-n>$440000</d-n><td><d-n>$8000</d-n>
 	<tr><th>Address Reflect?<td>[<bit-field>0100 110. .... .... aaaa aaaa</bit-field>]<td>8-bit?<td>R?<td><d-n>$480000</d-n><td><d-n>$100</d-n>
 	<tr><th><abbr>Fio</abbr> Registers<td>[<bit-field>0100 101. .... .... ...a aaaa</bit-field>]<td>8-bit<td>R/W<td><d-n>$4A0000</d-n><td><d-n>$20</d-n>
 	<tr><th>Timer Register<td>[<bit-field>0100 110. .... .... .... ...A</bit-field>]<td>16-bit?<td>R/W<td><d-n>$4C0000</d-n><td><d-n>$2</d-n>
@@ -130,6 +133,8 @@
 </table>
 </figure>
 <p>
+	*The size and mapping of program <abbr>rom</abbr> depends on the cartridge.
+<p>
 	address bits legend:<br>
 <dl>
 	<dt><code>0</code>/<code>1</code><dd>mapping bit (must match)
@@ -137,14 +142,13 @@
 	<dt><code>a</code><dd> "real" address bit
 	<dt><code>A</code><dd> address bit that just selects a byte within the data bus
 </dl>
+<h2>Notes</h2>
 <p>
 	Accessing unmapped addresses will freeze the <abbr>cpu</abbr>, not trigger a bus error<s-t>.</s-t>
 <p>
 	The <abbr>fdp</abbr> registers occupy exactly <d-n>$20</d-n> bytes of memory, and are <em>not</em> mirrored, unlike everything else (e.g. reading from <d-n>$660020</d-n> will freeze)<s-t>.</s-t>
 <p>
-	*The size and mapping of program <abbr>rom</abbr> depends on the cartridge.
-<p>
-	**Color <abbr>ram</abbr> is mapped as 32-bit, but the first (highest) byte of each long-word is not connected to <abbr>ram</abbr><s-t>.</s-t>
+	Color <abbr>ram</abbr> is mapped as 32-bit, but the first (highest) byte of each long-word is not connected to <abbr>ram</abbr><s-t>.</s-t>
 <p>
 	Reading from "Address Reflect" returns the low byte of the address as data<s-t>.</s-t> I'm not sure what the point of this is, nor of what happens when you write to it<s-t>.</s-t>
 </p>
