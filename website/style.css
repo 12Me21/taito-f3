@@ -198,11 +198,14 @@ table.pinout {
 
 /* "normal" tables */
 .table {
-	background: #Ccc8;
+	/background: #CCC8;
 	border-collapse: unset;
 	border-spacing: 1px;
-	border-radius: 4px 4px 0 4px;
+	/border: 2px solid beige;
+	background: beige;
+	padding: 2px;
 	border: none;
+	box-shadow: 0 0 1px #0008;
 }
 .table th {
 	background: beige;
