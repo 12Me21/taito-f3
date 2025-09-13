@@ -139,7 +139,8 @@
 </dl>
 <p>
 	Accessing unmapped addresses will freeze the <abbr>cpu</abbr>, not trigger a bus error<s-t>.</s-t>
-	Note that the tilemap control registers occupy exactly <d-n>$20</d-n> bytes of memory, and are <em>not</em> mirrored, unlike everything else (e.g. reading from <d-n>$660020</d-n> will freeze)<s-t>.</s-t>
+<p>
+	The <abbr>fdp</abbr> registers occupy exactly <d-n>$20</d-n> bytes of memory, and are <em>not</em> mirrored, unlike everything else (e.g. reading from <d-n>$660020</d-n> will freeze)<s-t>.</s-t>
 <p>
 	*The size and mapping of program <abbr>rom</abbr> depends on the cartridge.
 <p>
