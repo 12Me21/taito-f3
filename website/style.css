@@ -12,13 +12,21 @@ s-t::after, track::after {
 	user-select: text;
 }
 abbr {
-	font-variant: all-small-caps;
+	font-variant: small-caps;
 	//text-transform: lowercase;
 	font-variant-numeric: oldstyle-nums;
 }
 n-d { /* number-data */
 	font-variant: lining-nums tabular-nums;
 }
+bit-field {
+	font-family: monospace;
+	word-spacing: -0.5ch;
+}
+/*bit-field::before {
+	content: "[";
+	font-family: mspm, serif;
+}just type this manually so it's selectable*/
 
 body {
 	margin-bottom: 100px;
@@ -187,7 +195,11 @@ table.pinout {
 
 /* "normal" tables */
 .table {
-	background: #CCC8;
+	background: #Ccc8;
+	border-collapse: unset;
+	border-spacing: 1px;
+	border-radius: 4px 4px 0 4px;
+	border: none;
 }
 .table th {
 	background: beige;
@@ -195,4 +207,16 @@ table.pinout {
 }
 .table td {
 	padding: 1px 0.25em;
+	background: beige;
+	border: none;
+}
+.table tr:first-child > th {
+	border-radius: 5.5px 5.5px 0 0;
+	border-bottom: none;
+}
+.table tr:not(:first-child) > th {
+	border-radius: 5.5px 0 0 5.5px;
+	border-right: none;
+}
+.table tr:first-child > th:first-child {
 }
