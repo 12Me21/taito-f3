@@ -6,33 +6,32 @@
 
 <a href=home.html>Back</a>
 
-<h1>Main CPU Memory Map</h1>
+<h1>Main <abbr>CPU</abbr> Memory Map</h1>
 
 <style>
 	tr > *, table {
 		border: 1px solid;
 		border-collapse: collapse;
 	}
-	tr > * {
+	
+	.memory-map tr > * {
 		width: 50px;
 		min-width: 50px;
-	}
-	.s5 {
-		background: #d9ead3;
-	}
-	.s8 {
-		background: #fff2cc;
 	}
 	.memory-map tr:not(:first-child) {
 		height: 50px;
 	}
-	table {
+	table.memory-map {
 		table-layout: fixed;
 		line-height: 1;
 		text-align: center;
 	}
 	.memory-map td {
 		background: white;
+	}
+	.memory-map td[data-mirrors] {
+		background: linear-gradient(to right, white calc(100% / var(--m)), #DEF 0);
+		/background: repeating-linear-gradient(to right, white, #DEF calc(100% / var(--m)));
 	}
 	.space {
 		border: none !important;
@@ -46,7 +45,7 @@
 	</tr>
 	<tr>
 		<th>0.....
-		<td colspan=16 rowspan=4>Program ROM (maximum size)
+		<td colspan=16 rowspan=4>Program <abbr>ROM</abbr> (maximum size)
 	</tr>
 	<tr>
 		<th>1.....
@@ -60,25 +59,24 @@
 	</tr>
 	<tr>
 		<th>4.....
-		<td colspan=2>Work RAM (17-bit address)
-		<td colspan=2 class=mirror>Work RAM mirror
-		<td colspan=2>Palette RAM (15-bit address)
+		<td colspan=4 data-mirrors style=--m:2>Work <abbr>RAM</abbr><br>(17-bit address)
+		<td colspan=2 data-mirrors style=--m:4>Palette <abbr>RAM</abbr><br>(15-bit address)
 		<td colspan=2 class=space>
-		<td colspan=2>reads as low byte of address
-		<td colspan=2><a href=fio-memory.html>FIO registers</a><br>(5-bit address)
-		<td colspan=2>timer interrupt register<br>(1-bit address)
-		<td colspan=2 class=mirror>Work RAM mirror
+		<td colspan=2 data-mirrors style=--m:256>(reads as low byte of addr.)
+		<td colspan=2 data-mirrors style=--m:2048><a href=fio-memory.html><abbr>FIO</abbr> registers</a><br>(5-bit address)
+		<td colspan=2 data-mirrors style=--m:32768>timer control<br>(1-bit address)
+		<td colspan=2 data-mirrors style=--m:1e999>work <abbr>RAM</abbr> mirror again
 	</tr>
 	<tr>
 		<th>5.....
 	</tr>
 	<tr>
 		<th>6.....
-		<td colspan=4>Graphics RAM
+		<td colspan=4>Graphics <abbr>RAM</abbr>
 		<td colspan=2 class=space>
-		<td>tilemap control registers
+		<td>tilemap control
 		<td colspan=1 class=space>
-		<td colspan=4>Graphics RAM mirror
+		<td colspan=4>Graphics <abbr>RAM</abbr> mirror
 		<td colspan=2 class=space>
 		<td>tilemap control mirror
 	</tr>
@@ -99,8 +97,8 @@
 	</tr>
 	<tr>
 		<th>C.....
-		<td colspan=8>Shared RAM (10-bit address, mirrored)
-		<td colspan=8>Sound Reset<br>(writing anywhere(?) here will set/clear the audio cpu reset line, depending on bit 8 of the address)
+		<td colspan=8 data-mirrors style=--m:512>Shared <abbr>RAM</abbr><br>(10-bit address)
+		<td colspan=8 data-mirrors>Sound Reset<br>(writing anywhere(?) here will set/clear the audio <abbr>CPU</abbr> reset line, depending on bit 8 of the address)
 	</tr>
 	<tr>
 		<th>D.....
@@ -113,4 +111,36 @@
 	</tr>
 </table>
 
+<p>
+	Accessing unmapped addresses will freeze the <abbr>CPU</abbr>, not trigger a bus error<s-t>.</s-t>
+	Note that the tilemap control registers occupy exactly <d-n>$20</d-n> bytes of memory, and are <em>not</em> mirrored, unlike everything else (e.g. reading from <d-n>$660020</d-n> will freeze)<s-t>.</s-t>
+<p>
+	address bits legend:<br>
+	0/1 - mapping bit (must match)<br>
+	. - doesn't matter<br>
+	a - "real" address bit<br>
+	A - address bit that just selects a byte within the data bus<br>
+<table class=table>
+	<tr><th>Name<th>Address Bits<th>Width<th>R/W<th>Start<th>Real Size
+	<tr><th>Program ROM<td>[<code>00aa aaaa aaaa aaaa aaaa aaAA</code>]*<td>32-bit<td>R*<td><d-n>$000000</d-n><td><d-n>$400000*</d-n>
+	<tr><th>Work RAM<td>[<code>0100 00.a aaaa aaaa aaaa aaAA</code>]<br>[<code>0100 111a aaaa aaaa aaaa aaAA</code>]<td>32-bit<td>R/W<td><d-n>$400000</d-n><td><d-n>$20000</d-n>
+	<tr><th>Color RAM<td>[<code>0100 010. .aaa aaaa aaaa aaAA</code>]<td>32-bit**<td>R/W<td><d-n>$440000</d-n><td><d-n>$8000</d-n>**
+	<tr><th>Address Reflect?<td>[<code>0100 110. .... .... aaaa aaaa</code>]<td>8-bit?<td>R?<td><d-n>$480000</d-n><td><d-n>$100</d-n>
+	<tr><th>FIO Registers<td>[<code>0100 101. .... .... ...a aaaa</code>]<td>8-bit<td>R/W<td><d-n>$4A0000</d-n><td><d-n>$20</d-n>
+	<tr><th>Timer Register<td>[<code>0100 110. .... .... .... ...A</code>]<td>16-bit?<td>R/W<td><d-n>$4C0000</d-n><td><d-n>$2</d-n>
+	<tr><th>Graphics RAM<td>[<code>0110 .0aa aaaa aaaa aaaa aaaA</code>]<td>16-bit<td>R/W<td><d-n>$600000</d-n><td><d-n>$40000</d-n>
+	<tr><th>FDP Registers<td>[<code>0110 .110 0000 0000 000a aaaA</code>]<td>16-bit<td>R/W<td><d-n>$660000</d-n><td><d-n>$20</d-n>
+	<tr><th>Dual-port RAM<td>[<code>1100 0... .... .aaa aaaa aaaa</code>]<td>8-bit<td>R/W<td><d-n>$C00000</d-n><td><d-n>$800</d-n>
+	<tr><th>Audio Reset Clear<td>[<code>1100 1... .... ...0 .... ....</code>]<td>32-bit<td>W?<td><d-n>$C80000</d-n><td>N/A
+	<tr><th>Audio Reset Assert<td>[<code>1100 1... .... ...1 .... ....</code>]<td>32-bit<td>W?<td><d-n>$C80100</d-n><td>N/A
+</table>
+<p>
+	*The size and mapping of program ROM depends on the cartridge.
+<p>
+	**Color RAM is mapped as 32-bit, but the first (highest) byte of each long-word is not connected to RAM<s-t>.</s-t>'
+<p>
+	Reading from "Address Reflect" returns the low byte of the address as data<s-t>.</s-t> I'm not sure what the point of this is, nor of what happens when you write to it<s-t>.</s-t>
+</p>
+todo: what does read/write actually MEAN? like, you <em>can</em> try to write to program rom, nothing will happen though. and some registers (e.g. FIO) have different behavior on write, while some act like RAM.
+also, need to test what happens when reading from "address reflect" or reading from audio reset
 <script src=link.js></script>

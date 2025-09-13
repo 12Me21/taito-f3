@@ -5,26 +5,37 @@ x = actually sent to chip address pins
 C = used for determining which chips in a group are written to
 ? = unknown (could be 0 or . depending on how specific the mapping is)
 
-work ram (400000-43FFFF)
-0100 00.x xxxx xxxx xxxx xxCC
 
-palette ram (440000-44FFFF)
-0100 01?? xxxx xxxx xxxx xxCC
+program ROM
+[00aa aaaa aaaa aaaa aaaa aaAA]
+$20000 bytes,
 
-FIO (4A0000-4A001F)
-0100 101? ???? ???? ??.x xxxx
+work RAM (400000-43FFFF)
+[0100 00.a aaaa aaaa aaaa aaAA]
+$20000 bytes,
+
+color RAM (440000-44FFFF)
+[0100 010. .aaa aaaa aaaa aaAA]
+
+address reflect (480000-)
+[0100 110. .... .... aaaa aaaa]
+havent checked bus size but almost certainly 8bit
+
+FIO registers (4A0000-4A001F)
+[0100 101. .... .... ...a aaaa]
 
 timer register (4C0000-idk)
-0100 11?? ???? ???? ???? ????
+[0100 110. .... .... .... ...A]
+havent checked size, probably 16 bit?
 
-FDP ram (600000-63FFFF)
-0110 00xx xxxx xxxx xxxx xxxx
+graphics RAM (600000-63FFFF)
+[0110 .0aa aaaa aaaa aaaa aaaA]
 
 FDP registers (660000-idk)
-0110 011? ???? ???? ???x xxxx
+[0110 .110 0000 0000 000a aaaA]
 
-shared ram (C00000-idk)
-1100 0??? ???? ?xxx xxxx xxxx
+dual-port RAM (C00000-idk)
+[1100 0... .... .aaa aaaa aaaa]
 
-sound reset register (C80000-idk)
-1100 1??? ???? ???? ???? ????
+sound reset (C80000-idk)
+[1100 1... .... ...a .... ....]

@@ -184,3 +184,15 @@ table.pinout {
 }
 .memory-map td {
 }
+
+/* "normal" tables */
+.table {
+	background: #CCC8;
+}
+.table th {
+	background: beige;
+	padding: 2px 0.25em;
+}
+.table td {
+	padding: 1px 0.25em;
+}
