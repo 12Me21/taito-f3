@@ -14,8 +14,8 @@
 	}
 </style>
 
-<p>Note: most of these plugs are numbered "backwards" (right to left, when viewed from the jamma connector side)
-<p>Note: the pin connectors have an unusual pitch of <u>2.5mm</u>, not the more common 100mil(2.54mm) spacing.
+<p>Note: most of these plugs are numbered "backwards" (right to left, when viewed from the jamma connector side)<s-t>.</s-t>
+<p>Note: the pin connectors have an unusual pitch of <u>2.5mm</u>, not the more common <u>2.54mm</u>(100mil) spacing<s-t>.</s-t>
 	
 <h3 id=port-f>Port <span class=portlabel>F</span>: Fan Power</h3>
 
@@ -88,16 +88,14 @@
 	<tr>
 </table>
 <p>
-	<i>The F3 does not use &minus;5V</i><s-t>.</s-t> (it is completely unconnected, i have tested this)
+	<b>The F3 does not use &minus;5V</b><s-t>.</s-t> (it is completely unconnected)
 <p>
-	button5 (for 1p only) was connected on the single-board F3 <b>only</b>
+	*On the single-board F3, <i>button5</i> was connected (but only for 1p)<s-t>.</s-t>
 <p>
-	button4 (1p and 2p) is connected, but also not used by any games afaik
+	Note that <i>button4</i> and <i>button5</i> are <b>not</b> the same as <i>kick1</i> and <i>kick2</i>, and are not used by any games (outside of test menus)<s-t>.</s-t>
 <p>
-	note that button4 and button5 are <b>not</b> the same as kick1 and kick2</p>
-<p>
-	there are 3 service switches (on the jamma connector, 3p connector, and 4p connector) and 2 test switches (jamma connector, and the switch on the board)<s-t>.</s-t>
-	these can all be read separately<s-t>.</s-t>
+	There are three <i>service</i> switches (on the jamma connector, 3<s-c style='text-transform:small-caps'>p</s-c> connector, and 4p connector) and two <i>test</i> switches (jamma connector, and the button on the board)<s-t>.</s-t>
+	These can all be read separately, but are usually redundant<s-t>.</s-t>
 <p>
 	(todo: maybe make a whole section about inputs in general, eventually)
 
@@ -128,7 +126,8 @@
 		<td>right<br>spk +
 	</tr>
 </table>
-<p>(Pins 1 and 2 also go to the jamma connector for mono audio)
+<p>
+	Pins 1 (left +) and 2 (right &minus;) also go to the jamma connector for mono audio output<s-t>.</s-t>
 
 <h3 id=port-si>Port <span class=portlabel>SI</span>: Serial Interface (MC68681 DUART)</h3>
 <table class=port>
@@ -137,17 +136,19 @@
 	</tr>
 	<tr>
 		<td class=vcc>VCC
-		<td>TxDB
-		<td>RxDB
-		<td>TxDA
-		<td>RxDA
+		<td>Tx B
+		<td>Rx B
+		<td>Tx A
+		<td>Rx A
 		<td class=gnd>GND
 	</tr>
 </table>
 <p>
-	This connects directly to the DUART, which is accessible to the audio cpu. The default audio program outputs some text over TxDB<s-t>.</s-t>
-	The clock inputs for channels A and B are 0.5 MHz and 1 MHz, respectively<s-t>.</s-t>
-
+	This connects directly to the <abbr>DUART</abbr>, which is accessible to the audio <abbr>CPU</abbr><s-t>.</s-t>
+	The F3's audio system is based on the Ensoniq SQ-1 synthesizer, and this port is a holdover from that<s-t>.</s-t>
+	Channel A (31,250 baud 8N1) was a MIDI port, and Channel B (62,500 baud 8N1) was for interfacing with a screen and buttons<s-t>.</s-t>
+	Some of this functionality remains in the F3, but i'm not sure how much (it still outputs some data, and reads from these ports)<s-t>.</s-t>
+	
 <h3 id=port-z>Port <span class=portlabel>Z</span>: Serial Output</h3>
 <table class=port>
 	<tr class=numbers>
@@ -161,14 +162,14 @@
 	</tr>
 </table>
 <p>
-	&nbsp;This is a serial output port for the main CPU.
-	&nbsp;It is controlled through the <a href=fio.html>FIO</a>, with bits 0 and 1 at address 0x4A0013.
-	&nbsp;All games use the same protocol for outputting data over this port.
-	&nbsp;When pin 4 goes low, a bit can be read from pin 3 (high = 1).
-	&nbsp;For each byte, 10 bits are transmtted: a start bit (0), then the data bits (lsb first), then a stop bit (1).
-	&nbsp;All values (including string characters!) are sent as BCD (2 decimal digits per byte) unless otherwise noted. e.g. "A" (ascii 65) is sent as the byte 0x65, not 0x41.
-	&nbsp;Games log events such as inserting credits, getting a game over, etc.
-	&nbsp;The functions for writing to the Z port are at the very beginning of the ROM (starting at address 0x402) and are identical across games.
+	This is a serial output port for the main <abbr>CPU</abbr><s-t>.</s-t>
+	It is controlled through the <a href=fio.html><abbr>FIO</abbr></a>, with bits 0 and 1 at address <n-d>$4A0013</n-d><s-t>.</s-t>
+	All games use the same protocol for outputting data over this port (similar to <abbr>UART</abbr>, but with a clock signal)<s-t>.</s-t>
+	Each time pin 4 goes low, a bit can be read from pin 3 (high = 1)<s-t>.</s-t>
+	10 bits are transmtted per byte: a start bit (0), then the data bits (lsb first), then a stop bit (1)<s-t>.</s-t>
+	All values (including string characters!) are sent as <abbr>BCD</abbr> (2 decimal digits per byte) unless otherwise noted. e.g. "A" (<abbr>ASCII</abbr> <n-d>65</n-d> in decimal) is sent as the byte <n-d>$65</n-d>, not <n-d>$41</n-d><s-t>.</s-t>
+	Games log events such as inserting credits, getting a game over, etc<s-t>.</s-t>
+	The functions for writing to the Z port are at the very beginning of the <abbr>ROM</abbr> (starting at address $402) and are identical across games<s-t>.</s-t>
 <p>
 	
 <table class=memory-map>
@@ -228,7 +229,7 @@
 		<td class=nc>nc
 	</tr>
 </table>
-<p>Note: these reuse the 3p inputs (1p kick1 = 3p stick up, etc.)<s-t>.</s-t>
+<p>Note: these reuse the 3p inputs (1p kick1 = 3p stick up, etc.)<s-t>.</s-t> - TODO list the rest of these?
 
 <h3 id=port-3p>Port <span class=portlabel>3P</span>/<span class=portlabel>4P</span>: Player 3/4 Connectors</h3>
 
@@ -267,7 +268,7 @@
 	</tr>
 </table>
 <p>
-	this configures the joystick inputs to use either pull-up resistors (for buttons or joysticks) or pull-down resistors (for rotary encoder dials)<s-t>.</s-t>
+	This configures the joystick inputs to use either pull-up resistors (for buttons or joysticks) or pull-down resistors (for rotary encoder dials)<s-t>.</s-t>
 
 <!--
 <h3>Jumper JP2: ???</h3>

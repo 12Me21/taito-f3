@@ -2,7 +2,7 @@
 	font-family: 'mspm';
 	src: url("./short2.otf?4");
 }
-
+÷
 o-l {
 	text-decoration: overline;
 }
@@ -12,9 +12,12 @@ s-t::after, track::after {
 	user-select: text;
 }
 abbr {
-	//font-variant: all-small-caps;
+	font-variant: all-small-caps;
 	//text-transform: lowercase;
-	//font-variant-numeric: oldstyle-nums;
+	font-variant-numeric: oldstyle-nums;
+}
+n-d { /* number-data */
+	font-variant: lining-nums tabular-nums;
 }
 
 body {
