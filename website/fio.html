@@ -16,9 +16,12 @@
 		background: #fff2cc;
 	}
 	.memory-map tr>* {
-		width: 64px;
-		min-width: 64px;
-		max-width: 64px;
+		width: 70px;
+		min-width: 70px;
+		max-width: 70px;
+	}
+	.memory-map th {
+		font-size: 1.5em;
 	}
 	.memory-map tr:not(:first-child) {
 		height: 50px;
@@ -47,25 +50,25 @@
 	}
 </style>
 
-<h2 id=registers>Registers</h2>
+<h2 id=registers>Register Map</h2>
 
 <p>(labels are based on F3 usage because that's what we've tested)
 
 <table class=memory-map>
 	<tr><th>
-	<tr><td class=in>input bit<div class=pin-label>FIO pin</div>
-	<tr><td class=out>output bit<div class=pin-label>FIO pin</div>
+	<tr><td class=in>input bit<div class=pin-label><abbr>fio</abbr> pin</div>
+	<tr><td class=out>output bit<div class=pin-label><abbr>fio</abbr> pin</div>
 </table>
 <p>
 <table class=memory-map>
 	<tr>
-		<th>address<th>bit 0<th>bit 1<th>bit 2<th>bit 3<th>bit 4<th>bit 5<th>bit 6<th>bit 7
+		<th><th>bit 0<th>bit 1<th>bit 2<th>bit 3<th>bit 4<th>bit 5<th>bit 6<th>bit 7
 	</tr>
 	<tr>
-		<th>0x00
-		<td class=in>1p button4<div class=pin-label>pin 92</div>
-		<td class=in>2p button4<div class=pin-label>pin 89</div>
-		<td class=in>1p button5*<div class=pin-label>pin 88?</div>
+		<th>$00
+		<td class=in>1p<br>button 4<div class=pin-label>pin 92</div>
+		<td class=in>2p<br>button 4<div class=pin-label>pin 89</div>
+		<td class=in>1p<br>button 5*<div class=pin-label>pin 88?</div>
 		<td class=in>test (jamma)<div class=pin-label>pin 87</div>
 		<td class=in>cartridge pin B1?<div class=pin-label>pin 86?</div>
 		<td class=in>cartridge pin B2?<div class=pin-label>pin 85?</div>
@@ -73,7 +76,7 @@
 		<td class=in>cartridge pin B4?<div class=pin-label>pin 83?</div>
 	</tr>
 	<tr>
-		<th>0x01
+		<th>$01
 		<td class=in>eeprom DO<div class=pin-label>pin 82</div>
 		<td class=in>test (board)<div class=pin-label>pin 81</div>
 		<td class=in>cartridge pin B5?<div class=pin-label>pin 80?</div>
@@ -84,29 +87,29 @@
 		<td class=in>coin 4<div class=pin-label>pin 74</div>
 	</tr>
 	<tr>
-		<th>0x02
+		<th>$02
 		<td class=in>tilt<div class=pin-label>pin 11</div>
 		<td class=in>service (jamma)<div class=pin-label>pin 12</div>
 		<td class=in>service (3p)<div class=pin-label>pin 13</div>
 		<td class=in>service (4p)<div class=pin-label>pin 14</div>
-		<td class=in>1p start<div class=pin-label>pin 16</div>
-		<td class=in>2p start<div class=pin-label>pin 17</div>
-		<td class=in>3p start<div class=pin-label>pin 18</div>
-		<td class=in>4p start<div class=pin-label>pin 19</div>
+		<td class=in>1p<br>start<div class=pin-label>pin 16</div>
+		<td class=in>2p<br>start<div class=pin-label>pin 17</div>
+		<td class=in>3p<br>start<div class=pin-label>pin 18</div>
+		<td class=in>4p<br>start<div class=pin-label>pin 19</div>
 	</tr>
 	<tr>
-		<th>0x03
-		<td class=in>1p button1<div class=pin-label>pin 29</div>
-		<td class=in>1p button2<div class=pin-label>pin 32</div>
-		<td class=in>1p button3<div class=pin-label>pin 33</div>
+		<th>$03
+		<td class=in>1p<br>button 1<div class=pin-label>pin 29</div>
+		<td class=in>1p<br>button 2<div class=pin-label>pin 32</div>
+		<td class=in>1p<br>button 3<div class=pin-label>pin 33</div>
 		<td class=in>nc<div class=pin-label>pin 34?</div>
-		<td class=in>2p button1<div class=pin-label>pin 36</div>
-		<td class=in>2p button2<div class=pin-label>pin 37</div>
-		<td class=in>2p button3<div class=pin-label>pin 38</div>
+		<td class=in>2p<br>button 1<div class=pin-label>pin 36</div>
+		<td class=in>2p<br>button 2<div class=pin-label>pin 37</div>
+		<td class=in>2p<br>button 3<div class=pin-label>pin 38</div>
 		<td class=in>nc<div class=pin-label>pin 39?</div>
 	</tr>
 	<tr>
-		<th>0x04
+		<th>$04
 		<td class=out>coin 1 lockout<div class=pin-label>pin 6</div>
 		<td class=out>coin 2 lockout<div class=pin-label>pin 7</div>
 		<td class=out>coin 1 counter<div class=pin-label>pin 8</div>
@@ -114,73 +117,73 @@
 		<td colspan=4>?
 	</tr>
 	<tr>
-		<th>0x05
+		<th>$05
 		<td colspan=8>?
 	</tr>
 	<tr>
-		<th>0x06
+		<th>$06
 		<td colspan=8>?
 	</tr>
 	<tr>
-		<th>0x07
-		<td class=in>1p stick up<div class=pin-label>pin 20</div>
-		<td class=in>1p stick down<div class=pin-label>pin 21</div>
-		<td class=in>1p stick left<div class=pin-label>pin 22</div>
-		<td class=in>1p stick right<div class=pin-label>pin 23</div>
-		<td class=in>2p stick up<div class=pin-label>pin 24</div>
-		<td class=in>2p stick down<div class=pin-label>pin 25</div>
-		<td class=in>2p stick left<div class=pin-label>pin 26</div>
-		<td class=in>2p stick right<div class=pin-label>pin 27</div>
+		<th>$07
+		<td class=in>1p stick<br>up<div class=pin-label>pin 20</div>
+		<td class=in>1p stick<br>down<div class=pin-label>pin 21</div>
+		<td class=in>1p stick<br>left<div class=pin-label>pin 22</div>
+		<td class=in>1p stick<br>right<div class=pin-label>pin 23</div>
+		<td class=in>2p stick<br>up<div class=pin-label>pin 24</div>
+		<td class=in>2p stick<br>down<div class=pin-label>pin 25</div>
+		<td class=in>2p stick<br>left<div class=pin-label>pin 26</div>
+		<td class=in>2p stick<br>right<div class=pin-label>pin 27</div>
 	</tr>
 	<tr>
-		<th>0x08
-		<td colspan=8 rowspan=2 class=dial>1p up/down dial counter
+		<th>$08
+		<td colspan=8 rowspan=2 class=dial>1p<br>up/down dial counter
 	</tr>
 	<tr>
-		<th>0x09
+		<th>$09
 	</tr>
 	<tr>
-		<th>0x0A
-		<td colspan=8 rowspan=2 class=dial>1p left/right dial counter
+		<th>$0A
+		<td colspan=8 rowspan=2 class=dial>1p<br>left/right dial counter
 	</tr>
 	<tr>
-		<th>0x0B
+		<th>$0B
 	</tr>
 	<tr>
-		<th>0x0C
-		<td colspan=8 rowspan=2 class=dial>2p up/down dial counter
+		<th>$0C
+		<td colspan=8 rowspan=2 class=dial>2p<br>up/down dial counter
 	</tr>
 	<tr>
-		<th>0x0D
+		<th>$0D
 	</tr>
 	<tr>
-		<th>0x0E
-		<td colspan=8 rowspan=2 class=dial>2p left/right dial counter
+		<th>$0E
+		<td colspan=8 rowspan=2 class=dial>2p<br>left/right dial counter
 	</tr>
 	<tr>
-		<th>0x0F
+		<th>$0F
 	</tr>
 	<tr>
-		<th>0x10
+		<th>$10
 		<td colspan=8>?
 	</tr>
 	<tr>
-		<th>0x11
+		<th>$11
 		<td colspan=8>?
 	</tr>
 	<tr>
-		<th>0x12
-		<td class=in>3p button1<div class=pin-label>pin 41</div>
-		<td class=in>3p button2<div class=pin-label>pin 42</div>
-		<td class=in>3p button3<div class=pin-label>pin 43</div>
+		<th>$12
+		<td class=in>3p<br>button 1<div class=pin-label>pin 41</div>
+		<td class=in>3p<br>button 2<div class=pin-label>pin 42</div>
+		<td class=in>3p<br>button 3<div class=pin-label>pin 43</div>
 		<td class=in>nc<div class=pin-label>pin 44?</div>
-		<td class=in>4p button1<div class=pin-label>pin 45</div>
-		<td class=in>4p button2<div class=pin-label>pin 46</div>
-		<td class=in>4p button3<div class=pin-label>pin 47</div>
+		<td class=in>4p<br>button 1<div class=pin-label>pin 45</div>
+		<td class=in>4p<br>button 2<div class=pin-label>pin 46</div>
+		<td class=in>4p<br>button 3<div class=pin-label>pin 47</div>
 		<td class=in>nc<div class=pin-label>pin 48?</div>
 	</tr>
 	<tr>
-		<th>0x13
+		<th>$13
 		<td class=out>Z pin 3?<div class=pin-label>pin 58?</div>
 		<td class=out>Z pin 4?<div class=pin-label>pin 59?</div>
 		<td class=out>eeprom DI<div class=pin-label>pin 62</div>
@@ -191,7 +194,7 @@
 		<td class=out>nc?<div class=pin-label>pin 67?</div>
 	</tr>
 	<tr>
-		<th>0x14
+		<th>$14
 		<td class=out>coin 3 lockout<div class=pin-label>pin 69</div>
 		<td class=out>coin 4 lockout<div class=pin-label>pin 70</div>
 		<td class=out>coin 3 counter<div class=pin-label>pin 71</div>
@@ -199,11 +202,11 @@
 		<td colspan=4>?
 	</tr>
 	<tr>
-		<th>0x15
+		<th>$15
 		<td colspan=8>?
 	</tr>
 	<tr>
-		<th>0x16
+		<th>$16
 		<td>1?
 		<td>1?
 		<td>1?
@@ -214,49 +217,49 @@
 		<td>0?
 	</tr>
 	<tr>
-		<th>0x17
-		<td class=in>3p stick up<div class=pin-label>pin 49</div>
-		<td class=in>3p stick down<div class=pin-label>pin 50</div>
-		<td class=in>3p stick left<div class=pin-label>pin 51</div>
-		<td class=in>3p stick right<div class=pin-label>pin 52</div>
-		<td class=in>4p stick up<div class=pin-label>pin 53</div>
-		<td class=in>4p stick down<div class=pin-label>pin 54</div>
-		<td class=in>4p stick left<div class=pin-label>pin 55</div>
-		<td class=in>4p stick right<div class=pin-label>pin 56</div>
+		<th>$17
+		<td class=in>3p stick<br>up<div class=pin-label>pin 49</div>
+		<td class=in>3p stick<br>down<div class=pin-label>pin 50</div>
+		<td class=in>3p stick<br>left<div class=pin-label>pin 51</div>
+		<td class=in>3p stick<br>right<div class=pin-label>pin 52</div>
+		<td class=in>4p stick<br>up<div class=pin-label>pin 53</div>
+		<td class=in>4p stick<br>down<div class=pin-label>pin 54</div>
+		<td class=in>4p stick<br>left<div class=pin-label>pin 55</div>
+		<td class=in>4p stick<br>right<div class=pin-label>pin 56</div>
 	</tr>
 	<tr>
-		<th>0x18
-		<td colspan=8 rowspan=2 class=dial>3p up/down dial counter
+		<th>$18
+		<td colspan=8 rowspan=2 class=dial>3p<br>up/down dial counter
 	</tr>
 	<tr>
-		<th>0x19
+		<th>$19
 	</tr>
 	<tr>
-		<th>0x1A
-		<td colspan=8 rowspan=2 class=dial>3p left/right dial counter
+		<th>$1A
+		<td colspan=8 rowspan=2 class=dial>3p<br>left/right dial counter
 	</tr>
 	<tr>
-		<th>0x1B
+		<th>$1B
 	</tr>
 	<tr>
-		<th>0x1C
-		<td colspan=8 rowspan=2 class=dial>4p up/down dial counter
+		<th>$1C
+		<td colspan=8 rowspan=2 class=dial>4p<br>up/down dial counter
 	</tr>
 	<tr>
-		<th>0x1D
+		<th>$1D
 	</tr>
 	<tr>
-		<th>0x1E
-		<td colspan=8 rowspan=2 class=dial>4p left/right dial counter
+		<th>$1E
+		<td colspan=8 rowspan=2 class=dial>4p<br>left/right dial counter
 	</tr>
 	<tr>
-		<th>0x1F
+		<th>$1F
 	</tr>
 </table>
 
 <h2 id=rotary-encoder>Rotary Encoder Inputs</h2>
 
-<p>Each joystick axis (8 total, 2 per player) can also be used as input for a rotary encoder (by connecting it to the up/down or left/right joystick input pins).<br>The FIO has a 16-bit (little endian) counter for each axis, which increments/decrements by 1 on each step (i.e. a full cycle (00 01 11 10) would increment/decrement the counter by 4)
+<p>Each joystick axis (8 total, 2 per player) can also be used as input for a rotary encoder (by connecting it to the up/down or left/right joystick input pins).<br>The <abbr>fio</abbr> has a 16-bit (little endian) counter for each axis, which increments/decrements by 1 on each step (i.e. a full cycle (00 01 11 10) would increment/decrement the counter by 4)
 <p>(Note: both input modes are always enabled; the game chooses whether to read the joystick bits or the dial counter registers. The F3 has a jumper switch for "joystick/sensor" mode, but this just configures pull-up/down resistors on some input lines)
 <p>afaik, F3 games have only used two dials (connected to the 1p and 2p left/right axes), but i've tested all 8 and they are real.
 	
@@ -274,21 +277,21 @@
 	<tr><th>3<td class=vcc>VCC
 	<tr><th>4<td colspan=2>??? VCC (through JP1)
 	<tr><th>5<td class=gnd>GND
-	<tr><th>6<td>bit 0<td rowspan=4>port 0x04<br>(output)
+	<tr><th>6<td>bit 0<td rowspan=4>port $04<br>(output)
 	<tr><th>7<td>bit 1
 	<tr><th>8<td>bit 2
 	<tr><th>9<td>bit 3
 	<tr><th>10<td class=gnd>GND
-	<tr><th>11<td>bit 0<td rowspan=4 class=cont1>port 0x02
+	<tr><th>11<td>bit 0<td rowspan=4 class=cont1>port $02
 	<tr><th>12<td>bit 1
 	<tr><th>13<td>bit 2
 	<tr><th>14<td>bit 3
 	<tr><th>15<td class=gnd>GND
-	<tr><th>16<td>bit 4<td rowspan=4 class=cont2>port 0x02
+	<tr><th>16<td>bit 4<td rowspan=4 class=cont2>port $02
 	<tr><th>17<td>bit 5
 	<tr><th>18<td>bit 6
 	<tr><th>19<td>bit 7
-	<tr><th>20<td>bit 0<td rowspan=8>port 0x07<br>(input + dials)
+	<tr><th>20<td>bit 0<td rowspan=8>port $07<br>(input + dials)
 	<tr><th>21<td>bit 1
 	<tr><th>22<td>bit 2
 	<tr><th>23<td>bit 3
@@ -297,21 +300,21 @@
 	<tr><th>26<td>bit 6
 	<tr><th>27<td>bit 7
 	<tr><th>28<td class=gnd>GND
-	<tr><th>29<td>bit 0<td rowspan=1 class=cont1>port 0x03
+	<tr><th>29<td>bit 0<td rowspan=1 class=cont1>port $03
 	<tr><th>30<td class=vcc>VCC
 </table>
 <table class=pinout>
 	<tr><th>31<td class=gnd>GND
-	<tr><th>32<td>bit 1<td rowspan=3 class='cont2 cont1'>port 0x03
+	<tr><th>32<td>bit 1<td rowspan=3 class='cont2 cont1'>port $03
 	<tr><th>33<td>bit 2
 	<tr><th>34<td>bit 3
 	<tr><th>35<td class=gnd>GND
-	<tr><th>36<td>bit 4<td rowspan=4 class=cont2>port 0x03
+	<tr><th>36<td>bit 4<td rowspan=4 class=cont2>port $03
 	<tr><th>37<td>bit 5
 	<tr><th>38<td>bit 6
 	<tr><th>39<td>bit 7
 	<tr><th>40<td class=gnd>GND
-	<tr><th>41<td>bit 0<td rowspan=8>port 0x12
+	<tr><th>41<td>bit 0<td rowspan=8>port $12
 	<tr><th>42<td>bit 1
 	<tr><th>43<td>bit 2
 	<tr><th>44<td>bit 3
@@ -319,7 +322,7 @@
 	<tr><th>46<td>bit 5
 	<tr><th>47<td>bit 6
 	<tr><th>48<td>bit 7
-	<tr><th>49<td>bit 0<td rowspan=8>port 0x17<br>(input + dials)
+	<tr><th>49<td>bit 0<td rowspan=8>port $17<br>(input + dials)
 	<tr><th>50<td>bit 1
 	<tr><th>51<td>bit 2
 	<tr><th>52<td>bit 3
@@ -328,34 +331,34 @@
 	<tr><th>55<td>bit 6
 	<tr><th>56<td>bit 7
 	<tr><th>57<td class=gnd>GND
-	<tr><th>58<td>bit 0<td rowspan=2 class=cont1>port 0x13<br>(output)
+	<tr><th>58<td>bit 0<td rowspan=2 class=cont1>port $13<br>(output)
 	<tr><th>59<td>bit 1
 	<tr><th>60<td class=gnd>GND
 </table>
 <table class=pinout>
 	<tr><th>61<td class=vcc>VCC
-	<tr><th>62<td>bit 2<td rowspan=6 class=cont2>port 0x13<br>(output)
+	<tr><th>62<td>bit 2<td rowspan=6 class=cont2>port $13<br>(output)
 	<tr><th>63<td>bit 3
 	<tr><th>64<td>bit 4
 	<tr><th>65<td>bit 5
 	<tr><th>66<td>bit 6
 	<tr><th>67<td>bit 7
 	<tr><th>68<td class=gnd>GND
-	<tr><th>69<td>bit 0<td rowspan=4>port 0x14<br>(output)
+	<tr><th>69<td>bit 0<td rowspan=4>port $14<br>(output)
 	<tr><th>70<td>bit 1
 	<tr><th>71<td>bit 2
 	<tr><th>72<td>bit 3
 	<tr><th>73<td class=gnd>GND
-	<tr><th>74<td>bit 7<td rowspan=1 class=cont1>port 0x01
+	<tr><th>74<td>bit 7<td rowspan=1 class=cont1>port $01
 	<tr><th>75<td class=gnd>GND
-	<tr><th>76<td>bit 6<td rowspan=7 class=cont2>port 0x01
+	<tr><th>76<td>bit 6<td rowspan=7 class=cont2>port $01
 	<tr><th>77<td>bit 5
 	<tr><th>78<td>bit 4
 	<tr><th>79<td>bit 3
 	<tr><th>80<td>bit 2
 	<tr><th>81<td>bit 1
 	<tr><th>82<td>bit 0
-	<tr><th>83<td>bit 7<td rowspan=7 class=cont1>port 0x00
+	<tr><th>83<td>bit 7<td rowspan=7 class=cont1>port $00
 	<tr><th>84<td>bit 6
 	<tr><th>85<td>bit 5
 	<tr><th>86<td>bit 4
@@ -366,32 +369,32 @@
 </table>
 <table class=pinout>
 	<tr><th>91<td class=gnd>GND
-	<tr><th>92<td>bit 0<td rowspan=1 class=cont2>port 0x00
+	<tr><th>92<td>bit 0<td rowspan=1 class=cont2>port $00
 	<tr><th>93<td class=gnd>GND
-	<tr><th>94<td colspan=2>CPU reset
-	<tr><th>95<td colspan=2>CPU halt
+	<tr><th>94<td colspan=2><abbr>cpu</abbr> reset
+	<tr><th>95<td colspan=2><abbr>cpu</abbr> halt
 	<tr><th>96<td class=gnd>GND
-	<tr><th>97<td>bit 0<td rowspan=4 class=cont1>CPU data
+	<tr><th>97<td>bit 0<td rowspan=4 class=cont1><abbr>cpu</abbr> data
 	<tr><th>98<td>bit 1
 	<tr><th>99<td>bit 2
 	<tr><th>100<td>bit 3
 	<tr><th>101<td class=gnd>GND
-	<tr><th>102<td>bit 4<td rowspan=4 class=cont2>CPU data
+	<tr><th>102<td>bit 4<td rowspan=4 class=cont2><abbr>cpu</abbr> data
 	<tr><th>103<td>bit 5
 	<tr><th>104<td>bit 6
 	<tr><th>105<td>bit 7
 	<tr><th>106<td class=gnd>GND
 	<tr><th>107<td colspan=2>clock input (1 MHz)
 	<tr><th>108<td class=gnd>GND
-	<tr><th>109<td>bit 4<td rowspan=5>CPU address
+	<tr><th>109<td>bit 4<td rowspan=5><abbr>cpu</abbr> address
 	<tr><th>110<td>bit 3
 	<tr><th>111<td>bit 2
 	<tr><th>112<td>bit 1
 	<tr><th>113<td>bit 0
 	<tr><th>114<td class=gnd>GND
-	<tr><th>115<td colspan=2>reset input ? (mb3771.reset)
-	<tr><th>116<td colspan=2>read/write ? (cpuram.rw, pal2.21) 
-	<tr><th>117<td colspan=2>output enable ? (cpuram.oe, pal2.20)
+	<tr><th>115<td colspan=2><o-l>reset</o-l>
+	<tr><th>116<td colspan=2>read/<o-l>write</o-l>
+	<tr><th>117<td colspan=2><o-l>output enable</o-l>
 	<tr><th>118<td colspan=2>maybe chip select ? (FCM.106)
 	<tr><th>119<td class=gnd>GND
 	<tr><th>120<td class=gnd>GND

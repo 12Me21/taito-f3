@@ -2,9 +2,11 @@
 	font-family: 'mspm';
 	src: url("./short2.otf?4");
 }
-÷
+
 o-l {
 	text-decoration: overline;
+	//text-decoration: underline;
+	//text-underline-offset: -0.6em;
 }
 s-t::after, track::after {
 	content: " ";
