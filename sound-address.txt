@@ -1,8 +1,16 @@
-[0000 0... aaaa aaaa aaaa aaaA] work ram
-[1111 1... aaaa aaaa aaaa aaaA] work ram
-[0001 01.. .... aaaa aaaa aaa0] dpram
-[0010 00.. .... .... ...a aaaA] otis
-[0010 01.. .... ...a aaaa aaa1] esp
-[0011 00.. .... .... ..aa aaa1] otis bank
-[0011 01.. .... .... .... ..a0] volume
-[11?? ?aaa aaaa aaaa aaaa aaaA] program rom
+[0000 0... aaaa aaaa aaaa aaaA] work ram (16bit)
+[1111 1... aaaa aaaa aaaa aaaA] work ram mirror (16bit)
+[0001 01.. .... aaaa aaaa aaa0] dpram (8bit even)
+[0010 00.. .... .... ...a aaaA] otis (16bit)
+[0010 01.. .... ...a aaaa aaa1] esp (8bit odd)
+[0010 10.. .... .... ...a aaa1] duart (8bit odd)
+[0011 00.. .... .... ..aa aaa1] otis bank (8bit odd)
+[0011 01.. .... .... .... ..a0] volume (8bit even)
+
+note: cartridge pal is responsible for mapping program rom
+in pbobble4j (pal D77-12) it is mapped like this:
+[1100 0?aa aaaa aaaa aaaa aaaA] - any program or data space
+[0000 0?aa aaaa aaaa aaaa aaaA] - supervisor program space only
+this is how the vector table is read, even though normally there is RAM there.
+when reading from supervisor program space, the program ROM exists at address 0
+(and presumably pals 3,4,5 are responsible for un-mapping RAM in this address space)
