@@ -1,0 +1,8 @@
+[0000 0... aaaa aaaa aaaa aaaA] work ram
+[1111 1... aaaa aaaa aaaa aaaA] work ram
+[0001 01.. .... aaaa aaaa aaa0] dpram
+[0010 00.. .... .... ...a aaaA] otis
+[0010 01.. .... ...a aaaa aaa1] esp
+[0011 00.. .... .... ..aa aaa1] otis bank
+[0011 01.. .... .... .... ..a0] volume
+[11?? ?aaa aaaa aaaa aaaa aaaA] program rom
