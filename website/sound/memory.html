@@ -9,6 +9,10 @@
 <h1>Audio <abbr>Cpu</abbr> Memory Map</h1>
 
 <style>
+	p {
+		
+	}
+	
 	tr > *, table {
 		border: 1px solid;
 		border-collapse: collapse;
@@ -29,8 +33,11 @@
 		background: white;
 	}
 	.memory-map td[data-mirrors] {
-		background: linear-gradient(to right, white calc(100% / var(--m)), #DEF 0);
+		background-image: linear-gradient(to right, #8C8 calc(100% / var(--m)), #FFF 0);
 		/background: repeating-linear-gradient(to right, white, #DEF calc(100% / var(--m)));
+	}
+	.memory-map td[data-registers] {
+		background: #DEF;
 	}
 	.space {
 		border: none !important;
@@ -47,25 +54,25 @@
 	</tr>
 	<tr>
 		<th>0.....
-		<td colspan=8>Work <abbr>Ram</abbr>
+		<td colspan=8 data-mirrors style='--m:8'>Work <abbr>Ram</abbr> / Program <abbr>Rom</abbr>**
 		<!--<td colspan=16 rowspan=4>Program <abbr>Rom</abbr> (maximum size)-->
 	</tr>
 	<tr>
 		<th>1.....
 		<td colspan=4 class=space>
-		<td colspan=4>Dual-Port <abbr>Ram</abbr>
+		<td colspan=4 data-mirrors style='--m:64'>Dual-Port <abbr>Ram</abbr>
 	</tr>
 	<tr>
 		<th>2.....
-		<td colspan=4><abbr>Otis</abbr> Registers
-		<td colspan=4><abbr>Esp</abbr> Registers
+		<td colspan=4 data-registers><abbr>Otis</abbr> Registers
+		<td colspan=4 data-registers><abbr>Esp</abbr> Registers
 		<td colspan=4 class=space>
-		<td colspan=4><abbr>Duart</abbr> Registers
+		<td colspan=4 data-registers><abbr>Duart</abbr> Registers
 	</tr>
 	<tr>
 		<th>3.....
-		<td colspan=4><abbr>Otis</abbr> Voices' Banks
-		<td colspan=4>Volume Registers
+		<td colspan=4 data-registers><abbr>Otis</abbr> Voices' Banks
+		<td colspan=4 data-registers>Volume Registers
 	</tr>
 	<tr>
 		<th>4.....
@@ -93,7 +100,7 @@
 	</tr>
 	<tr>
 		<th>C.....
-		<td colspan=8>Program <abbr>Rom</abbr>*
+		<td colspan=8 data-mirrors style='--m:1'>Program <abbr>Rom</abbr>* (maximum size?)
 	</tr>
 	<tr>
 		<th>D.....
@@ -103,28 +110,35 @@
 	</tr>
 	<tr>
 		<th>F.....
+		<td colspan=8 class=space>
+		<td colspan=8 data-mirrors>Work <abbr>Ram</abbr>
 	</tr>
 </table>
 </figure>
-
+<p>
+	The actual size of each block of memory is shown in green (if large enough to be visible), with mirrored regions shown in white. (very small blocks of memory (mirrored many hundreds of times) are shown in blue)
+	
 <h2>Address Map</h2>
 
 <figure>
 <table class=table>
-	<tr><th>Name<th>Address Bits<th style=font-size:0.5em;line-height:1>Address<br>Space<th>Width<th>R/W<th>Start<th>Real Size
-	<tr><th rowspan=2>Program <abbr>Rom</abbr><td>[<bit-field>0000 0?aa aaaa aaaa aaaa aaaA</bit-field>]*<td>supervisor program*<td rowspan=2>16-bit<td rowspan=2>R*<td><d-n>$000000</d-n><td rowspan=2><d-n></d-n>
-	<tr><td>[<bit-field>1100 0?aa aaaa aaaa aaaa aaaA</bit-field>]*<td>data, program*<td><d-n>$C00000</d-n>
-	<tr><th>Work <abbr>Ram</abbr><td>[<bit-field>0000 0... aaaa aaaa aaaa aaaA</bit-field>]<br>[<bit-field>1111 1... aaaa aaaa aaaa aaaA</bit-field>]<td>data, user program<td>16-bit<td>R/W<td><d-n>$000000</d-n><td><d-n></d-n>
-	<tr><th>Dual-Port <abbr>Ram</abbr><td>[<bit-field>0001 01.. .... aaaa aaaa aaa0</bit-field>]<td>data/?<td>8-bit (even)<td>R/W<td><d-n>$140000</d-n><td><d-n></d-n>
-	<tr><th><abbr>Otis</abbr> Registers<td>[<bit-field>0010 00.. .... .... ...a aaaA</bit-field>]<td>data/?<td>16-bit<td>R/W<td><d-n>$200000</d-n><td><d-n></d-n>
-	<tr><th><abbr>Esp</abbr> Registers<td>[<bit-field>0010 01.. .... ...a aaaa aaa1</bit-field>]<td>data/?<td>8-bit (odd)<td>R/W<td><d-n>$240000</d-n><td><d-n></d-n>
-	<tr><th><abbr>Duart</abbr> Registers<td>[<bit-field>0010 10.. .... .... ...a aaa1</bit-field>]<td>data/?<td>8-bit (odd)<td>R/W<td><d-n>$280000</d-n><td><d-n></d-n>
-	<tr><th><abbr>Otis</abbr> Voices' Banks<td>[<bit-field>0011 00.. .... .... ..aa aaa1</bit-field>]<td>data/?<td>8-bit (odd)<td>R/W<td><d-n>$300000</d-n><td><d-n></d-n>
-	<tr><th>Volume Registers<td>[<bit-field>0011 01.. .... .... .... ..a0</bit-field>]<td>data/?<td>8-bit (even)<td>R/W<td><d-n>$340000</d-n><td><d-n></d-n>
+	<tr><th>Name<th>Address Bits<th style=font-size:0.5em;line-height:1>Address<br>Spaces<th>Width<th>Start<th>Real Size
+	<tr style=color:blue><th>Program <abbr>Rom</abbr>**<td>[<bit-field>0000 0?aa aaaa aaaa aaaa aaaA</bit-field>]*<td>supervisor program*<td>16-bit<td><d-n>$000000</d-n><td><d-n></d-n>
+	<tr><th>Program <abbr>Rom</abbr><td>[<bit-field>1100 0?aa aaaa aaaa aaaa aaaA</bit-field>]*<td>data, program*<td>16-bit<td><d-n>$C00000</d-n><td><d-n></d-n>
+	<tr><th>Work <abbr>Ram</abbr><td>[<bit-field>0000 0... aaaa aaaa aaaa aaaA</bit-field>]<br>[<bit-field>1111 1... aaaa aaaa aaaa aaaA</bit-field>]<td>data, user program?<td>16-bit<td><d-n>$000000</d-n><td><d-n></d-n>
+	<tr><th>Dual-Port <abbr>Ram</abbr><td>[<bit-field>0001 01.. .... aaaa aaaa aaa0</bit-field>]<td>data/?<td>8-bit (even)<td><d-n>$140000</d-n><td><d-n></d-n>
+	<tr><th><abbr>Otis</abbr> Registers<td>[<bit-field>0010 00.. .... .... ...a aaaA</bit-field>]<td>data/?<td>16-bit<td><d-n>$200000</d-n><td><d-n></d-n>
+	<tr><th><abbr>Esp</abbr> Registers<td>[<bit-field>0010 01.. .... ...a aaaa aaa1</bit-field>]<td>data/?<td>8-bit (odd)<td><d-n>$240000</d-n><td><d-n></d-n>
+	<tr><th><abbr>Duart</abbr> Registers<td>[<bit-field>0010 10.. .... .... ...a aaa1</bit-field>]<td>data/?<td>8-bit (odd)<td><d-n>$280000</d-n><td><d-n></d-n>
+	<tr><th><abbr>Otis</abbr> Voices' Banks<td>[<bit-field>0011 00.. .... .... ..aa aaa1</bit-field>]<td>data/?<td>8-bit (odd)<td><d-n>$300000</d-n><td><d-n></d-n>
+	<tr><th>Volume Registers<td>[<bit-field>0011 01.. .... .... .... ..a0</bit-field>]<td>data/?<td>8-bit (even)<td><d-n>$340000</d-n><td><d-n></d-n>
 </table>
 </figure>
 <p>
 	*The size and mapping of program <abbr>rom</abbr> depends on the cartridge.
+<p>
+	**In supervisor program space, the program <abbr>rom</abbr>s, instead of <abbr>ram</abbr>, are available at address 0 (in addition to their normal location).
+	(This was done to allow reading the <abbr>pc</abbr> reset vector at startup)
 <p>
 	address bits legend:<br>
 <dl>
@@ -137,5 +151,6 @@
 <p>
 	Accessing unmapped addresses will freeze the <abbr>cpu</abbr>, not trigger a bus error<s-t>.</s-t>
 <p>
+	<abbr>Ram</abbr> is mirrored to the top of address space because they wanted all of it to be accessable via signed 16-bit offsets from $0.
 
 <script src=../link.js></script>

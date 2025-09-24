@@ -39,6 +39,7 @@ body {
 	font-family: /*georgia,*/ serif;
 	font-family: mspm, serif;
 	/*font-variant-numeric: oldstyle-nums;*/
+	/*text-shadow: white 1px 0px, white -1px 0px, white 0px -1px, white 0px 1px; i wish*/
 }
 p {
 	//background: #DEE1DEAA;
