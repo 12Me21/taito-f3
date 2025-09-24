@@ -1,0 +1,147 @@
+<!doctype html><meta charset=utf-8>
+
+<title>Audio CPU Memory Map</title>
+<link rel=icon sizes=16x16 href=../fav.gif>
+<link rel=stylesheet href=../style.css>
+
+<a href=../home.html>Back</a>
+
+<h1>Audio <abbr>Cpu</abbr> Memory Map</h1>
+
+<style>
+	tr > *, table {
+		border: 1px solid;
+		border-collapse: collapse;
+	}
+	
+	.memory-map tr > * {
+		width: 50px;
+		min-width: 50px;
+	}
+	.memory-map tr:not(:first-child) {
+		height: 20px;
+	}
+	table.memory-map {
+		table-layout: fixed;
+		text-align: center;
+	}
+	.memory-map td {
+		background: white;
+	}
+	.memory-map td[data-mirrors] {
+		background: linear-gradient(to right, white calc(100% / var(--m)), #DEF 0);
+		/background: repeating-linear-gradient(to right, white, #DEF calc(100% / var(--m)));
+	}
+	.space {
+		border: none !important;
+		background: none !important;
+	}
+</style>
+
+<h2>Visual Summary</h2>
+
+<figure>
+<table class=memory-map>
+	<tr>
+		<th><th>.00000<th>.10000<th>.20000<th>.30000<th>.40000<th>.50000<th>.60000<th>.70000<th>.80000<th>.90000<th>.A0000<th>.B0000<th>.C0000<th>.D0000<th>.E0000<th>.F0000
+	</tr>
+	<tr>
+		<th>0.....
+		<td colspan=16 rowspan=4>Program <abbr>Rom</abbr> (maximum size)
+	</tr>
+	<tr>
+		<th>1.....
+	</tr>
+	<tr>
+		<th>2.....
+	</tr>
+	<tr>
+		<th>3.....
+		<!--<td>kirameki bank switch-->
+	</tr>
+	<tr>
+		<th>4.....
+		<td colspan=4>Work <abbr>Ram</abbr>
+		<td colspan=2>Color <abbr>Ram</abbr>
+		<td colspan=2 class=space>
+		<td colspan=2>Address Reflect
+		<td colspan=2><a href=fio-memory.html><abbr>Fio</abbr> Registers</a>
+		<td colspan=2>Timer Register
+		<td colspan=2>Work <abbr>Ram</abbr>
+	</tr>
+	<tr>
+		<th>5.....
+	</tr>
+	<tr>
+		<th>6.....
+		<td colspan=4>Graphics <abbr>Ram</abbr>
+		<td colspan=2 class=space>
+		<td class=mem-cutoff style=font-size:0.75em><abbr>Fdp</abbr> Regs
+		<td colspan=1 class=space>
+		<td colspan=4>Graphics <abbr>Ram</abbr>
+		<td colspan=2 class=space>
+		<td class=mem-cutoff style=font-size:0.75em><abbr>Fdp</abbr> Regs
+	</tr>
+	<tr>
+		<th>7.....
+	</tr>
+	<tr>
+		<th>8.....
+	</tr>
+	<tr>
+		<th>9.....
+	</tr>
+	<tr>
+		<th>A.....
+	</tr>
+	<tr>
+		<th>B.....
+	</tr>
+	<tr>
+		<th>C.....
+		<td colspan=8>Dual-Port <abbr>Ram</abbr>
+		<td colspan=8>Sound Reset<br>
+	</tr>
+	<tr>
+		<th>D.....
+	</tr>
+	<tr>
+		<th>E.....
+	</tr>
+	<tr>
+		<th>F.....
+	</tr>
+</table>
+</figure>
+
+<h2>Address Map</h2>
+
+<figure>
+<table class=table>
+	<tr><th>Name<th>Address Bits<th style=font-size:0.5em;line-height:1>Address<br>Space<th>Width<th>R/W<th>Start<th>Real Size
+	<tr><th>Program <abbr>Rom</abbr><td>[<bit-field>0000 0?aa aaaa aaaa aaaa aaaA</bit-field>]*<td>supervisor program*<td>16-bit<td>R*<td><d-n>$000000</d-n><td><d-n></d-n>
+	<tr><th>Work <abbr>Ram</abbr><td>[<bit-field>0000 0... aaaa aaaa aaaa aaaA</bit-field>]<br>[<bit-field>1111 1... aaaa aaaa aaaa aaaA</bit-field>]<td>data, user program<td>16-bit<td>R/W<td><d-n>$000000</d-n><td><d-n></d-n>
+	<tr><th>Dual-Port <abbr>Ram</abbr><td>[<bit-field>0001 01.. .... aaaa aaaa aaa0</bit-field>]<td>data/?<td>8-bit (even)<td>R/W<td><d-n>$140000</d-n><td><d-n></d-n>
+	<tr><th><abbr>Otis</abbr> Registers<td>[<bit-field>0010 00.. .... .... ...a aaaA</bit-field>]<td>data/?<td>16-bit<td>R/W<td><d-n>$200000</d-n><td><d-n></d-n>
+	<tr><th><abbr>Esp</abbr> Registers<td>[<bit-field>0010 01.. .... ...a aaaa aaa1</bit-field>]<td>data/?<td>8-bit (odd)<td>R/W<td><d-n>$240000</d-n><td><d-n></d-n>
+	<tr><th><abbr>Duart</abbr> Registers<td>[<bit-field>0010 10.. .... .... ...a aaa1</bit-field>]<td>data/?<td>8-bit (odd)<td>R/W<td><d-n>$280000</d-n><td><d-n></d-n>
+	<tr><th><abbr>Otis</abbr> Voices' Banks<td>[<bit-field>0011 00.. .... .... ..aa aaa1</bit-field>]<td>data/?<td>8-bit (odd)<td>R/W<td><d-n>$300000</d-n><td><d-n></d-n>
+	<tr><th>Volume Registers<td>[<bit-field>0011 01.. .... .... .... ..a0</bit-field>]<td>data/?<td>8-bit (even)<td>R/W<td><d-n>$340000</d-n><td><d-n></d-n>
+</table>
+</figure>
+<p>
+	*The size and mapping of program <abbr>rom</abbr> depends on the cartridge.
+<p>
+	address bits legend:<br>
+<dl>
+	<dt><code>0</code>/<code>1</code><dd>mapping bit (must match)
+	<dt><code>.</code><dd> doesn't matter
+	<dt><code>a</code><dd> "real" address bit
+	<dt><code>A</code><dd> address bit that just selects a byte within the data bus
+</dl>
+<h2>Notes</h2>
+<p>
+	Accessing unmapped addresses will freeze the <abbr>cpu</abbr>, not trigger a bus error<s-t>.</s-t>
+<p>
+
+<script src=../link.js></script>
