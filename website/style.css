@@ -198,6 +198,17 @@ table.pinout {
 .memory-map .mem-cutoff {
 	border-style: dashed none dashed solid;
 }
+.memory-map .space {
+	border: none !important;
+	background: none !important;
+}
+.memory-map td[data-mirrors] {
+	background-image: linear-gradient(to right, #8C8 calc(100% / var(--m)), #FFF 0);
+	/background: repeating-linear-gradient(to right, white, #DEF calc(100% / var(--m)));
+}
+.memory-map td[data-registers] {
+	background: #DEF;
+}
 
 /* "normal" tables */
 .table {
