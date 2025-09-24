@@ -99,7 +99,7 @@
 	</tr>
 	<tr>
 		<th>C.....
-		<td colspan=8>Shared <abbr>Ram</abbr>
+		<td colspan=8>Dual-Port <abbr>Ram</abbr>
 		<td colspan=8>Sound Reset<br>
 	</tr>
 	<tr>
@@ -118,22 +118,23 @@
 
 <figure>
 <table class=table>
-	<tr><th>Name<th>Address Bits<th>Width<th>R/W<th>Start<th>Real Size
-	<tr><th>Program <abbr>Rom</abbr><td>[<bit-field>00aa aaaa aaaa aaaa aaaa aaAA</bit-field>]*<td>32-bit<td>R*<td><d-n>$000000</d-n><td><d-n>$400000*</d-n>
-	<tr><th>Work <abbr>Ram</abbr><td>[<bit-field>0100 00.a aaaa aaaa aaaa aaAA</bit-field>]<br>[<bit-field>0100 111a aaaa aaaa aaaa aaAA</bit-field>]<td>32-bit<td>R/W<td><d-n>$400000</d-n><td><d-n>$20000</d-n>
-	<tr><th>Color <abbr>Ram</abbr><td>[<bit-field>0100 010. .aaa aaaa aaaa aaAA</bit-field>]<td>32-bit<td>R/W<td><d-n>$440000</d-n><td><d-n>$8000</d-n>
-	<tr><th>Address Reflect?<td>[<bit-field>0100 110. .... .... aaaa aaaa</bit-field>]<td>8-bit?<td>R?<td><d-n>$480000</d-n><td><d-n>$100</d-n>
-	<tr><th><abbr>Fio</abbr> Registers<td>[<bit-field>0100 101. .... .... ...a aaaa</bit-field>]<td>8-bit<td>R/W<td><d-n>$4A0000</d-n><td><d-n>$20</d-n>
-	<tr><th>Timer Register<td>[<bit-field>0100 110. .... .... .... ...A</bit-field>]<td>16-bit?<td>R/W<td><d-n>$4C0000</d-n><td><d-n>$2</d-n>
-	<tr><th>Graphics <abbr>Ram</abbr><td>[<bit-field>0110 .0aa aaaa aaaa aaaa aaaA</bit-field>]<td>16-bit<td>R/W<td><d-n>$600000</d-n><td><d-n>$40000</d-n>
-	<tr><th><abbr>Fdp</abbr> Registers<td>[<bit-field>0110 .110 0000 0000 000a aaaA</bit-field>]<td>16-bit<td>R/W<td><d-n>$660000</d-n><td><d-n>$20</d-n>
-	<tr><th>Dual-port <abbr>Ram</abbr><td>[<bit-field>1100 0... .... .aaa aaaa aaaa</bit-field>]<td>8-bit<td>R/W<td><d-n>$C00000</d-n><td><d-n>$800</d-n>
-	<tr><th>Sound Reset Clear<td>[<bit-field>1100 1... .... ...0 .... ....</bit-field>]<td>32-bit<td>W?<td><d-n>$C80000</d-n><td>N/A
-	<tr><th>Sound Reset Assert<td>[<bit-field>1100 1... .... ...1 .... ....</bit-field>]<td>32-bit<td>W?<td><d-n>$C80100</d-n><td>N/A
+	<tr><th>Name<th>Address Bits<th style=font-size:0.5em;line-height:1>Address<br>Space<th>Width<th>R/W<th>Start<th>Real Size
+	<tr><th>Program <abbr>Rom</abbr><td>[<bit-field>00aa aaaa aaaa aaaa aaaa aaAA</bit-field>]*<td>data/prg*<td>32-bit<td>R*<td><d-n>$000000</d-n><td><d-n>$400000*</d-n>
+	<tr><th>Work <abbr>Ram</abbr><td>[<bit-field>0100 00.a aaaa aaaa aaaa aaAA</bit-field>]<br>[<bit-field>0100 111a aaaa aaaa aaaa aaAA</bit-field>]<td>data/?<td>32-bit<td>R/W<td><d-n>$400000</d-n><td><d-n>$20000</d-n>
+	<tr><th>Color <abbr>Ram</abbr><td>[<bit-field>0100 010. .aaa aaaa aaaa aaAA</bit-field>]<td>data/?<td>32-bit<td>R/W<td><d-n>$440000</d-n><td><d-n>$8000</d-n>
+	<tr><th>Address Reflect?<td>[<bit-field>0100 110. .... .... aaaa aaaa</bit-field>]<td>data/?<td>8-bit?<td>R?<td><d-n>$480000</d-n><td><d-n>$100</d-n>
+	<tr><th><abbr>Fio</abbr> Registers<td>[<bit-field>0100 101. .... .... ...a aaaa</bit-field>]<td>data/?<td>8-bit<td>R/W<td><d-n>$4A0000</d-n><td><d-n>$20</d-n>
+	<tr><th>Timer Register<td>[<bit-field>0100 110. .... .... .... ...A</bit-field>]<td>data/?<td>16-bit?<td>R/W<td><d-n>$4C0000</d-n><td><d-n>$2</d-n>
+	<tr><th>Graphics <abbr>Ram</abbr><td>[<bit-field>0110 .0aa aaaa aaaa aaaa aaaA</bit-field>]<td>data/prg?<td>16-bit<td>R/W<td><d-n>$600000</d-n><td><d-n>$40000</d-n>
+	<tr><th><abbr>Fdp</abbr> Registers<td>[<bit-field>0110 .110 0000 0000 000a aaaA</bit-field>]<td>data/?<td>16-bit<td>R/W<td><d-n>$660000</d-n><td><d-n>$20</d-n>
+	<tr><th>Dual-Port <abbr>Ram</abbr><td>[<bit-field>1100 0... .... .aaa aaaa aaaa</bit-field>]<td>data/?<td>8-bit<td>R/W<td><d-n>$C00000</d-n><td><d-n>$800</d-n>
+	<tr><th>Sound Reset Clear<td>[<bit-field>1100 1... .... ...0 .... ....</bit-field>]<td>data/?<td>32-bit<td>W?<td><d-n>$C80000</d-n><td>N/A
+	<tr><th>Sound Reset Assert<td>[<bit-field>1100 1... .... ...1 .... ....</bit-field>]<td>data/?<td>32-bit<td>W?<td><d-n>$C80100</d-n><td>N/A
 </table>
 </figure>
 <p>
 	*The size and mapping of program <abbr>rom</abbr> depends on the cartridge.
+	(but i think all extant games are basically the same)
 <p>
 	address bits legend:<br>
 <dl>
@@ -154,4 +155,7 @@
 </p>
 todo: what does read/write actually MEAN? like, you <em>can</em> try to write to program rom, nothing will happen though. and some registers (e.g. FIO) have different behavior on write, while some act like RAM.
 also, need to test what happens when reading from "address reflect" or reading from sound reset
+
+<li>sound reset reads [18, FC, 00, FF] (repeat)
+
 <script src=link.js></script>
