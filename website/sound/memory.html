@@ -47,40 +47,34 @@
 	</tr>
 	<tr>
 		<th>0.....
-		<td colspan=16 rowspan=4>Program <abbr>Rom</abbr> (maximum size)
+		<td colspan=8>Work <abbr>Ram</abbr>
+		<!--<td colspan=16 rowspan=4>Program <abbr>Rom</abbr> (maximum size)-->
 	</tr>
 	<tr>
 		<th>1.....
+		<td colspan=4 class=space>
+		<td colspan=4>Dual-Port <abbr>Ram</abbr>
 	</tr>
 	<tr>
 		<th>2.....
+		<td colspan=4><abbr>Otis</abbr> Registers
+		<td colspan=4><abbr>Esp</abbr> Registers
+		<td colspan=4 class=space>
+		<td colspan=4><abbr>Duart</abbr> Registers
 	</tr>
 	<tr>
 		<th>3.....
-		<!--<td>kirameki bank switch-->
+		<td colspan=4><abbr>Otis</abbr> Voices' Banks
+		<td colspan=4>Volume Registers
 	</tr>
 	<tr>
 		<th>4.....
-		<td colspan=4>Work <abbr>Ram</abbr>
-		<td colspan=2>Color <abbr>Ram</abbr>
-		<td colspan=2 class=space>
-		<td colspan=2>Address Reflect
-		<td colspan=2><a href=fio-memory.html><abbr>Fio</abbr> Registers</a>
-		<td colspan=2>Timer Register
-		<td colspan=2>Work <abbr>Ram</abbr>
 	</tr>
 	<tr>
 		<th>5.....
 	</tr>
 	<tr>
 		<th>6.....
-		<td colspan=4>Graphics <abbr>Ram</abbr>
-		<td colspan=2 class=space>
-		<td class=mem-cutoff style=font-size:0.75em><abbr>Fdp</abbr> Regs
-		<td colspan=1 class=space>
-		<td colspan=4>Graphics <abbr>Ram</abbr>
-		<td colspan=2 class=space>
-		<td class=mem-cutoff style=font-size:0.75em><abbr>Fdp</abbr> Regs
 	</tr>
 	<tr>
 		<th>7.....
@@ -99,8 +93,7 @@
 	</tr>
 	<tr>
 		<th>C.....
-		<td colspan=8>Dual-Port <abbr>Ram</abbr>
-		<td colspan=8>Sound Reset<br>
+		<td colspan=8>Program <abbr>Rom</abbr>*
 	</tr>
 	<tr>
 		<th>D.....
@@ -119,7 +112,8 @@
 <figure>
 <table class=table>
 	<tr><th>Name<th>Address Bits<th style=font-size:0.5em;line-height:1>Address<br>Space<th>Width<th>R/W<th>Start<th>Real Size
-	<tr><th>Program <abbr>Rom</abbr><td>[<bit-field>0000 0?aa aaaa aaaa aaaa aaaA</bit-field>]*<td>supervisor program*<td>16-bit<td>R*<td><d-n>$000000</d-n><td><d-n></d-n>
+	<tr><th rowspan=2>Program <abbr>Rom</abbr><td>[<bit-field>0000 0?aa aaaa aaaa aaaa aaaA</bit-field>]*<td>supervisor program*<td rowspan=2>16-bit<td rowspan=2>R*<td><d-n>$000000</d-n><td rowspan=2><d-n></d-n>
+	<tr><td>[<bit-field>1100 0?aa aaaa aaaa aaaa aaaA</bit-field>]*<td>data, program*<td><d-n>$C00000</d-n>
 	<tr><th>Work <abbr>Ram</abbr><td>[<bit-field>0000 0... aaaa aaaa aaaa aaaA</bit-field>]<br>[<bit-field>1111 1... aaaa aaaa aaaa aaaA</bit-field>]<td>data, user program<td>16-bit<td>R/W<td><d-n>$000000</d-n><td><d-n></d-n>
 	<tr><th>Dual-Port <abbr>Ram</abbr><td>[<bit-field>0001 01.. .... aaaa aaaa aaa0</bit-field>]<td>data/?<td>8-bit (even)<td>R/W<td><d-n>$140000</d-n><td><d-n></d-n>
 	<tr><th><abbr>Otis</abbr> Registers<td>[<bit-field>0010 00.. .... .... ...a aaaA</bit-field>]<td>data/?<td>16-bit<td>R/W<td><d-n>$200000</d-n><td><d-n></d-n>
