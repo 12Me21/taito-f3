@@ -39,7 +39,7 @@
 	</tr>
 	<tr>
 		<th>0.....
-		<td colspan=16 rowspan=4 data-mirrors style=--m:1>Program <abbr>Rom</abbr> (maximum size)
+		<td colspan=16 rowspan=2 data-mirrors style=--m:1>Program <abbr>Rom</abbr>* (maximum size?)
 	</tr>
 	<tr>
 		<th>1.....
@@ -49,7 +49,6 @@
 	</tr>
 	<tr>
 		<th>3.....
-		<!--<td>kirameki bank switch-->
 	</tr>
 	<tr>
 		<th>4.....
@@ -91,8 +90,8 @@
 	</tr>
 	<tr>
 		<th>C.....
-		<td colspan=8>Dual-Port <abbr>Ram</abbr>
-		<td colspan=8>Sound Reset<br>
+		<td colspan=8 data-mirrors style=--m:256>Dual-Port <abbr>Ram</abbr>
+		<td colspan=8 data-registers>Sound Reset<br>
 	</tr>
 	<tr>
 		<th>D.....
@@ -105,13 +104,15 @@
 	</tr>
 </table>
 </figure>
-
+<p>
+	The actual (non-mirrored) size of each region is shown in green, if visible (very small regions are indicated by a triangle in the corner)
+	
 <h2>Address Map</h2>
 
 <figure>
 <table class=table>
 	<tr><th>Name<th>Address Bits<th style=font-size:0.5em;line-height:1>Address<br>Space<th>Width<th>R/W<th>Start<th>Real Size
-	<tr><th>Program <abbr>Rom</abbr><td>[<bit-field>00aa aaaa aaaa aaaa aaaa aaAA</bit-field>]*<td>data/prg*<td>32-bit<td>R*<td><d-n>$000000</d-n><td><d-n>$400000*</d-n>
+	<tr><th>Program <abbr>Rom</abbr><td>[<bit-field>00?a aaaa aaaa aaaa aaaa aaAA</bit-field>]*<td>data/prg*<td>32-bit<td>R*<td><d-n>$000000</d-n><td><d-n>$200000?*</d-n>
 	<tr><th>Work <abbr>Ram</abbr><td>[<bit-field>0100 00.a aaaa aaaa aaaa aaAA</bit-field>]<br>[<bit-field>0100 111a aaaa aaaa aaaa aaAA</bit-field>]<td>data/?<td>32-bit<td>R/W<td><d-n>$400000</d-n><td><d-n>$20000</d-n>
 	<tr><th>Color <abbr>Ram</abbr><td>[<bit-field>0100 010. .aaa aaaa aaaa aaAA</bit-field>]<td>data/?<td>32-bit<td>R/W<td><d-n>$440000</d-n><td><d-n>$8000</d-n>
 	<tr><th>Address Reflect?<td>[<bit-field>0100 110. .... .... aaaa aaaa</bit-field>]<td>data/?<td>8-bit?<td>R?<td><d-n>$480000</d-n><td><d-n>$100</d-n>
@@ -126,7 +127,7 @@
 </figure>
 <p>
 	*The size and mapping of program <abbr>rom</abbr> depends on the cartridge.
-	(but i think all extant games are basically the same)
+	(but i think all extant games are basically the same. EXCEPT: Kirameki, which detects writes near address $300000 and switches the audio cpu program rom banks accordingly (TODO))
 <p>
 	address bits legend:<br>
 <dl>
@@ -147,7 +148,6 @@
 </p>
 todo: what does read/write actually MEAN? like, you <em>can</em> try to write to program rom, nothing will happen though. and some registers (e.g. FIO) have different behavior on write, while some act like RAM.
 also, need to test what happens when reading from "address reflect" or reading from sound reset
-
 <li>sound reset reads [18, FC, 00, FF] (repeat)
-
+	
 <script src=link.js></script>

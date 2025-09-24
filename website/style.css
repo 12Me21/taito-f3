@@ -207,7 +207,8 @@ table.pinout {
 	/background: repeating-linear-gradient(to right, white, #DEF calc(100% / var(--m)));
 }
 .memory-map td[data-registers] {
-	background: #DEF;
+	background-image: linear-gradient(45deg, #8C8 5px, #FFF 0);
+	background-origin: border-box;
 }
 
 /* "normal" tables */
