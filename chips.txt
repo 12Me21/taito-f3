@@ -554,6 +554,7 @@ file:///C:/Users/twelve/Downloads/MB8421.PDF
 
 MC68681 [P]
 https://pdf1.alldatasheet.com/datasheet-pdf/download/4164/MOTOROLA/MC68681.html
+https://www.nxp.com/docs/en/data-sheet/SCC68681.pdf
 Dual Asynchronous Reciever/Transmitter (DUART)
 [600 mil DIP 40]
 1 RS1
