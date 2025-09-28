@@ -230,12 +230,15 @@ table.pinout {
 	text-align: left;
 }
 .struct td {
-	padding: 2px 1px;
+	padding: 1px 1px;
 	vertical-align: top;
 }
-.struct td::first-line {
+.struct td > b {
 	font-size: 18px;
+	font-weight: normal;
 	text-decoration: underline;
+	display: inline-block;
+	margin-bottom: 2px;
 }
 
 /* "normal" tables */

@@ -214,28 +214,28 @@
 		<th><th>bit 15<th>bit 14<th>bit 13<th>bit 12<th>bit 11<th>bit 10<th>bit 9<th>bit 8<th>bit 7<th>bit 6<th>bit 5<th>bit 4<th>bit 3<th>bit 2<th>bit 1<th>bit 0
 	</tr>
 	<tr>
-		<th>word 0<td colspan=16>Tile Number Low<br>[tile & $FFFF]
+		<th>word 0<td colspan=16><b>Tile Number Low</b><br>[tile & $FFFF]
 	</tr>
 	<tr>
-		<th>word 1<td colspan=8>Y Zoom<br>[$100⋅(1&minus;scale)]<td colspan=8>X Zoom<br>[$100⋅(1&minus;scale)]
+		<th>word 1<td colspan=8><b>Y Zoom</b><br>[$100⋅(1&minus;scale)]<td colspan=8><b>X Zoom</b><br>[$100⋅(1&minus;scale)]
 	</tr>
 	<tr>
-		<th>word 2<td colspan=2>Add Scroll To Position<dl><dt>00<dd>use both<dt>01<dd>use global<dt>10<dd>?<dt>11<dd>use neither</dl><td colspan=2>Set Scroll From Position<dl><dt>00<dd>neither<dt>01<dd>set subglobal<dt>10<dd>set global<dt>11<dd>set both</dl><td colspan=12>X Position<br>[pixels]
+		<th>word 2<td colspan=2><b>Add Scroll To Position</b><dl><dt>00<dd>use both<dt>01<dd>use global<dt>10<dd>?<dt>11<dd>use neither</dl><td colspan=2><b>Set Scroll From Position</b><dl><dt>00<dd>neither<dt>01<dd>set subglobal<dt>10<dd>set global<dt>11<dd>set both</dl><td colspan=12><b>X Position</b><br>[pixels]
 	</tr>
 	<tr>
-		<th>word 3<td>Command Mode<dl><dt>0<dd>normal<dt>1<dd>command</dl><td colspan=3 class=space>unused?<td colspan=12>Y Position<br>[pixels]
+		<th>word 3<td><b>Command Mode</b><dl><dt>0<dd>normal<dt>1<dd>command</dl><td colspan=3 class=space>unused?<td colspan=12><b>Y Position</b><br>[pixels]
 	</tr>
 	<tr>
-		<th>word 4<td colspan=2>Block Position Control X<dl><dt>00<dd>set as origin & reset axis<dt>01<dd>?<dt>10<dd>reset axis<dt>11<dd>increment axis</dl><td colspan=2>Block Position Control Y<br>(same as X)<td>Multi??<dl><dt>0<dd>allow sett&shy;ing block origin on next sprite<dt>1<dd>disallow</dl><td>Palette<dl><dt>0<dd>normal<dt>1<dd>reuse from previous</dl><td colspan=2>Orientation<dl><dt>00<dd>normal<dt>01<dd>horizontal flip<dt>10<dd>vertical flip<dt>11<dd>both flip</dl><td colspan=8>Palette<br>[(color>>4)&minus;$1000]
+		<th>word 4<td colspan=2><b>Block Position Control X</b><dl><dt>00<dd>set as origin & reset axis<dt>01<dd>?<dt>10<dd>reset axis<dt>11<dd>increment axis</dl><td colspan=2><b>Block Position Control Y</b><br>(same as X)<td><b>Multi??</b><dl><dt>0<dd>allow sett&shy;ing block origin on next sprite<dt>1<dd>disallow</dl><td><b>Palette Mode</b><dl><dt>0<dd>normal<dt>1<dd>reuse from previous</dl><td colspan=2><b>Orientation</b><dl><dt>00<dd>normal<dt>01<dd>horizontal flip<dt>10<dd>vertical flip<dt>11<dd>both flip</dl><td colspan=8><b>Palette</b><br>[(index>>4)&minus;$1000]
 	</tr>
 	<tr>
-		<th>word 5<br>(normal)<td colspan=15 class=space><td>Tile Number High<br>[tile >> 16]
+		<th>word 5<br>(normal)<td colspan=15 class=space><td><b>Tile Number High</b><br>[tile >> 16]
 	</tr>
 	<tr>
-		<th>word 5<br>(command)<td colspan=+2><td>Set Screen Orientation<dl><dt>0<dd>normal<dt>1<dd>flipped</dl><td>?<td colspan=+2><td colspan=2>Set Sprite Bits-per-Pixel<dl><dt>00<dd>4-bit<dt>01<dd>5-bit<dt>11<dd>6-bit</dl><td colspan=+2><td colspan=2>??<td colspan=+2><td>Set Frame-buffer Mode<dl><dt>0<dd>clear<dt>1<dd>preserve</dl><td>Set Sprite-List Bank<br>[number]
+		<th>word 5<br>(command)<td colspan=+2><td><b>Set Screen Orientation</b><dl><dt>0<dd>normal<dt>1<dd>flipped</dl><td>?<td colspan=+2><td colspan=2><b>Set Sprite Bits-per-Pixel</b><dl><dt>00<dd>4-bit<dt>01<dd>5-bit<dt>11<dd>6-bit</dl><td colspan=+2><td colspan=2>??<td colspan=+2><td><b>Set Frame-buffer Mode</b><dl><dt>0<dd>clear<dt>1<dd>preserve</dl><td><b>Set Sprite-List Bank</b><br>[number]
 	</tr>
 	<tr>
-		<th>word 6<td>Next Index<dl><dt>0<dd>normal<dt>1<dd>jump</dl><td colspan=5 class=space><td colspan=10>Jump Destination<br>[index]
+		<th>word 6<td><b>Next Index</b><dl><dt>0<dd>normal<dt>1<dd>jump</dl><td colspan=5 class=space><td colspan=10><b>Jump Destination</b><br>[index]
 	</tr>
 	<tr>
 		<th>word 7<br>(unused)
