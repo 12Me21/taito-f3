@@ -8,6 +8,8 @@
 
 <h1>Graphics Memory Map</h1>
 
+WIP
+
 <style>
 	tr > *, table {
 		border: 1px solid;
@@ -232,13 +234,47 @@
 		<th>word 5<br>(normal)<td colspan=15 class=space><td><b>Tile Number High</b><br>[tile >> 16]
 	</tr>
 	<tr>
-		<th>word 5<br>(command)<td colspan=+2><td><b>Set Screen Orientation</b><dl><dt>0<dd>normal<dt>1<dd>flipped</dl><td>?<td colspan=+2><td colspan=2><b>Set Sprite Bits-per-Pixel</b><dl><dt>00<dd>4-bit<dt>01<dd>5-bit<dt>11<dd>6-bit</dl><td colspan=+2><td colspan=2>??<td colspan=+2><td><b>Set Frame-buffer Mode</b><dl><dt>0<dd>clear<dt>1<dd>preserve</dl><td><b>Set Sprite-List Bank</b><br>[number]
+		<th>word 5<br>(command)<td colspan=+2><td><b>Set Screen Orientation</b><dl><dt>0<dd>normal<dt>1<dd>flipped</dl><td>?<td colspan=+2><td colspan=2><b>Set Sprites Bits-per-Pixel</b><dl><dt>00<dd>4-bit<dt>01<dd>5-bit<dt>11<dd>6-bit</dl><td colspan=+2><td colspan=2>??<td colspan=+2><td><b>Set Frame-buffer Mode</b><dl><dt>0<dd>clear<dt>1<dd>preserve</dl><td><b>Set Sprite-List Bank</b><br>[number]
 	</tr>
 	<tr>
 		<th>word 6<td><b>Next Index</b><dl><dt>0<dd>normal<dt>1<dd>jump</dl><td colspan=5 class=space><td colspan=10><b>Jump Destination</b><br>[index]
 	</tr>
 	<tr>
 		<th>word 7<br>(unused)
+	</tr>
+</table>
+
+<h3>Tilemap Tile</h3>
+
+<table class='memory-map struct'>
+	<tr>
+		<th><th>bit 15<th>bit 14<th>bit 13<th>bit 12<th>bit 11<th>bit 10<th>bit 9<th>bit 8<th>bit 7<th>bit 6<th>bit 5<th>bit 4<th>bit 3<th>bit 2<th>bit 1<th>bit 0
+	</tr>
+	<tr>
+		<th>word 0<td colspan=2><b>Orientation</b><dl><dt>00<dd>normal<dt>01<dd>vertical flip<dt>10<dd>horizontal flip<dt>11<dd>both flip</dl><td colspan=2><b>Tile Number High</b><br>[tile >> 16]<td colspan=2><b>Tile Bits-per-Pixel</b><dl><dt>00<dd>4-bit<dt>01<dd>5-bit<dt>11<dd>6-bit</dl><td><b>Blend Value Select</b></td><td colspan=9><b>Palette</b><br>[index>>4]
+	</tr>
+	<tr>
+		<th>word 1<td colspan=16><b>Tile Number Low</b><br>[tile & $FFFF]
+	</tr>
+</table>
+
+<h3>Text Character</h3>
+<table class='memory-map struct'>
+	<tr>
+		<th><th>bit 15<th>bit 14<th>bit 13<th>bit 12<th>bit 11<th>bit 10<th>bit 9<th>bit 8<th>bit 7<th>bit 6<th>bit 5<th>bit 4<th>bit 3<th>bit 2<th>bit 1<th>bit 0
+	</tr>
+	<tr>
+		<th>word 0<td><b>Vertical Flip</b><td colspan=6><b>Palette</b><br>[index>>4]<td><b>Horizontal Flip</b><td colspan=8><b>Tile Number</b><br>[tile]
+	</tr>
+</table>
+
+<h3>Line-ram Latch Entry</h3>
+<table class='memory-map struct'>
+	<tr>
+		<th><th>bit 15<th>bit 14<th>bit 13<th>bit 12<th>bit 11<th>bit 10<th>bit 9<th>bit 8<th>bit 7<th>bit 6<th>bit 5<th>bit 4<th>bit 3<th>bit 2<th>bit 1<th>bit 0
+	</tr>
+	<tr>
+		<th>word 0<td colspan=2>?<td colspan=4><b>Section Mapping Position?</b><br>[(address&minus;$20000)/$1000]<td>?<td>?<td>subsection 3 latch<td>subsection 2 latch<td>subsection 1 latch<td>subsection 0 latch<td>subsection 3 alt<td>subsection 2 alt<td>subsection 1 alt<td>subsection 0 alt
 	</tr>
 </table>
 
