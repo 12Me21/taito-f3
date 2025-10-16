@@ -71,7 +71,7 @@ for each subsection (lsb to msb):
 [BBBB AAAA bbbb aaaa]
  (blend values, todo)
 "6400" (2.2)
-[dwBu Sgps mmmm 3210]
+[ffB. Sgps mmmm 3210]
  0 - {playfield 0} enable mosaic
  1 - {playfield 1} enable mosaic
  2 - {playfield 2} enable mosaic
@@ -81,10 +81,8 @@ for each subsection (lsb to msb):
  p - WRONG {pivot} enable mosaic
  g - {pivot?} ?? garbage?
  S - {playfield 3?} ? shadow mode?
- u - ??
  B - horizontal blur (FDA): 0 = enable, 1 = disable
- w - palette mode (FDA): 0 = 15-bit [RRRR GGGG BBBB rgb.], 1 = 24-bit
- d - ?? weird horizontal stretch mode (repeat first pixel all the way across) - maybe FDA effect?
+ f - FDA mode. 0 = 15bit color format mode, 1 = normal alpha mode, 2 = double resolution mode (no blending), 3 = invalid? (repeat first pixel all the way across)
 "6600"
 [...b bbbb bbbb bbbb]
  b - background color (palette index)
