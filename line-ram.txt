@@ -82,12 +82,13 @@ for each subsection (lsb to msb):
  g - {pivot?} ?? garbage?
  S - {playfield 3?} ? shadow mode?
  u - ??
- B - enable horizontal blur
- w - palette mode: 1 = 15-bit [RRRR GGGG BBBB rgb.], 0 = 24-bit
- d - ?? weird horizontal stretch shadow mode
+ B - horizontal blur (FDA): 0 = enable, 1 = disable
+ w - palette mode (FDA): 0 = 15-bit [RRRR GGGG BBBB rgb.], 1 = 24-bit
+ d - ?? weird horizontal stretch mode (repeat first pixel all the way across) - maybe FDA effect?
 "6600"
-[bbbb bbbb bbbb bbbb]
- b - background color (palette index) todo: i forgot how many bits this is
+[...b bbbb bbbb bbbb]
+ b - background color (palette index)
+"7000"
 
 terms:
 "playfield" / "bg layer" / "tilemap" / "scr" (which do we use? maybe one term for the object on the screen and one for the memory it refers to. e.g. we refer to the "playfield"'s scroll, but we say a playfield uses the alternate "tilemap")
