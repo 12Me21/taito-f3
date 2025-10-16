@@ -89,7 +89,7 @@ for each subsection (lsb to msb):
  b - {background color} color (palette index)
 
 "7000" (3.0)
-[BAEI BAEI BAEI BAEI] ??
+[BAEI cccc iiii pppp] ??
  - another layer we havent seen before? try setting $3333
 "7200" (3.1)
 [BAEI cccc iiii pppp]
