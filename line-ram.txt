@@ -64,7 +64,7 @@ for each subsection (lsb to msb):
  c - {sprite group 2} alpha mode
  d - {sprite group 3} alpha mode
  A - {pivot} blend value select
- N - ?? causes tilemap to brighten but might be related to pivot blend?
+ N - {background color} blend value select
  o - ?? tilemap infinite vertical stretch?
  p - {pivot} 1 = pixel, 0 = text
  B - {pivot pixel} data location: 0 = $620000 (collides with lineram), 1 = $630000
@@ -80,14 +80,83 @@ for each subsection (lsb to msb):
  m - mosaic strength (samples every (16-m) screen pixels)
  s - {sprites} enable mosaic
  p - WRONG {pivot} enable mosaic
- g - {pivot?} ?? garbage?
+ g - ??? (claimed to be  something with pivot  garbage?)
  S - {playfield 3?} ? shadow mode?
  B - horizontal blur (FDA): 0 = enable, 1 = disable
- f - FDA mode. 0 = 15bit color format mode, 1 = normal alpha mode, 2 = double resolution mode (no blending), 3 = invalid? (repeat first pixel all the way across)
-"6600"
+ f - FDA mode. 0 = 15bit color format mode, 1 = normal mode, 2 = double resolution mode (no blending), 3 = invalid? (repeat first pixel all the way across)
+"6600" (2.3)
 [...b bbbb bbbb bbbb]
- b - background color (palette index)
-"7000"
+ b - {background color} color (palette index)
+
+"7000" (3.0)
+ ????
+"7200" (3.1)
+[BAEI cccc iiii pppp]
+ - see b000
+"7400" (3.2)
+[AAAA ??EI cccc iiii]
+ - see b000
+ AAAA - {sprite group n} blend value select
+"7600" (3.3)
+[dddd cccc bbbb aaaa]
+ a - {sprite group 0} priority
+ b - {sprite group 1} priority
+ c - {sprite group 2} priority
+ d - {sprite group 3} priority
+
+"8000" (4.0)
+[xxxx xxxx yyyy yyyy]
+ y - {playfield 0} y scale
+ x - {playfield 0} x scale
+"8200" (4.1)
+[xxxx xxxx YYYY YYYY]
+ Y - {playfield 3} y scale - BUG
+ x - {playfield 1} x scale
+"8400" (4.2)
+[xxxx xxxx yyyy yyyy]
+ y - {playfield 2} y scale
+ x - {playfield 2} x scale
+"8600" (4.3)
+[xxxx xxxx YYYY YYYY]
+ Y - {playfield 1} y scale - BUG
+ x - {playfield 3} x scale
+
+"9000" (5.0)
+[.... ..cc cccc cccc]
+ c - {playfield 0} palette add (palette index) todo: how many bits?
+"9200" (5.1)
+- same for {playfield 1}
+"9400" (5.2)
+- same for {playfield 2}
+"9600" (5.3)
+- same for {playfield 3}
+ 
+"A000" (6.0)
+[ssss ssss ssss ssss]
+ s - {playfield 0} rowscroll (same format as x scroll register)
+"A200" (6.1)
+- same for {playfield 1}
+"A400" (6.2)
+- same for {playfield 2}
+"A600" (6.3)
+- same for {playfield 3}
+
+"B000" (7.0)
+[BAEI cccc iiii pppp]
+ p - {playfield 0} priority
+ iiii - {playfield 0} clip modes: 0 = hide inside, 1 = hide outside
+ cccc - {playfield 0} 1 = enable clip plane
+ I - {playfield 0} 1 = invert clipping
+ E - {playfield 0} 1 = enable display
+ A - {playfield 0} alpha mode A
+ B - {playfield 0} alpha mode B
+"B200" (7.1)
+- same for {playfield 1}
+"B400" (7.2)
+- same for {playfield 2}
+"B600" (7.3)
+- same for {playfield 3}
+
 
 terms:
 "playfield" / "bg layer" / "tilemap" / "scr" (which do we use? maybe one term for the object on the screen and one for the memory it refers to. e.g. we refer to the "playfield"'s scroll, but we say a playfield uses the alternate "tilemap")
@@ -97,3 +166,4 @@ terms:
 "mosaic" - horizontal pixelization effect
 "background color" - color drawn behind everything else (used if nothing else is displayed there)
 "palette index"/number/offset - todo: we need names for a full palette index (i.e. address/4) as well as the palette offset (just the upper bits) supported by individual sprites, tiles, etc.
+"priority" - blending priority (determines which 2 layers are chosen for blending etc) not to be confused with sprite priority, which only matters while rendering to the framebuffer, and is mapped to priority by lineram 7600
