@@ -10,3 +10,90 @@ bit 9: NOT pivot mosaic
 seems to be all bg color index but not 100% sure
 
 7000
+
+
+lineram has 8 "sections" (traditionally referred to as 4000,5000,...,A000,B000 because that's where every game maps them)
+each section can be mapped to one of 16 possible locations within the $62.... block of graphics ram (though, the first two would interfere with other things)
+
+each section contains four "subsections" (traditionally named 000,200,400,600)
+each subsection can occur in one of two positions within its section: either at its base address, or that address plus $800
+
+each subsection contains a list of 256 words, which control some parameter(s) on each scanline. (todo: what do we call these values (the raw 16-bit values, containing multiple parameters))
+
+the mapping of sections and subsections, and latching (reusing the same parameters across multiple scanlines) is controlled by the "latches".
+at $620000, there is a latch per scanline per section (todo: better language to describe arrays-of-arrays)
+
+latch:
+located at $620000 + (section*256 + scanline)*2 (i.e. word[num_scanlines][num_sections] todo: see above)
+[..mm mm.. aaaa llll]
+ m - mapping address (maps this section to address 0x620000 + 0x1000*m)
+for each subsection (lsb to msb):
+ a - 1 = add 0x800 to the subsection address (note: does nothing if latch is 0)
+ l - 1 = read parameter from lineram, 0 = reuse previous value (this persists across frames. i.e. if 0 on the first scanline, uses value from the last scanline of the previous frame)
+ 
+"4000" (0.0)
+- unused?
+"4200" (0.1)
+- unused?
+"4400" (0.2)
+[RLrl ??Ts ssss ssss]
+ s - {playfield 2} local scroll offset ("colscroll"), in screen pixels
+ T - {playfield 2}, 1 = use alternate tilemap
+ l - {clip plane 0} left, high bit
+ r - {clip plane 0} right, high bit
+ L - {clip plane 1} left, high bit
+ R - {clip plane 1} right, high bit
+"4600" (0.3)
+- same as previous, but for playfield 3 / clip planes 2 and 3
+
+"5000" (1.0)
+[rrrr rrrr llll llll]
+ l - {clip plane 0} left, lower 8 bits, in screen pixels
+ r - {clip plane 0} right, lower 8 bits, in screen pixels
+"5200" (1.1)
+- same, for {clip plane 1}
+"5400" (1.2)
+- same, for {clip plane 2}
+"5600" (1.3)
+- same, for {clip plane 3}
+
+"6000" (2.0)
+[B?p? o?A? ddcc bbaa]
+ a - {sprite group 0} alpha mode
+ b - {sprite group 1} alpha mode
+ c - {sprite group 2} alpha mode
+ d - {sprite group 3} alpha mode
+ A - {pivot} blend value select
+ o - ?? tilemap infinite vertical stretch?
+ p - {pivot} 1 = pixel, 0 = text
+ B - {pivot pixel} data location: 0 = $620000 (collides with lineram), 1 = $630000
+"6200" (2.1)
+[BBBB AAAA bbbb aaaa]
+ (blend values, todo)
+"6400" (2.2)
+[dwBu Sgps mmmm 3210]
+ 0 - {playfield 0} enable mosaic
+ 1 - {playfield 1} enable mosaic
+ 2 - {playfield 2} enable mosaic
+ 3 - {playfield 3} enable mosaic
+ m - mosaic strength (samples every (16-m) screen pixels)
+ s - {sprites} enable mosaic
+ p - WRONG {pivot} enable mosaic
+ g - {pivot?} ?? garbage?
+ S - {playfield 3?} ? shadow mode?
+ u - ??
+ B - enable horizontal blur
+ w - palette mode: 1 = 15-bit [RRRR GGGG BBBB rgb.], 0 = 24-bit
+ d - ?? weird horizontal stretch shadow mode
+"6600"
+[bbbb bbbb bbbb bbbb]
+ b - background color (palette index) todo: i forgot how many bits this is
+
+terms:
+"playfield" / "bg layer" / "tilemap" / "scr" (which do we use? maybe one term for the object on the screen and one for the memory it refers to. e.g. we refer to the "playfield"'s scroll, but we say a playfield uses the alternate "tilemap")
+"clip plane" - one of the four clipping intervals (why is it called a "plane"?)
+"sprite group" / "sprite priority group" - sprites are split into 4 groups based on the upper 2 bits of their palette (00,40,80,C0). these can have different effects applied to them, and also   (todo explain priority i forgot how that works)
+"blend value" - ranges from $7 (100%) to $F (0%). $B is 50%. represents an alpha value
+"mosaic" - horizontal pixelization effect
+"background color" - color drawn behind everything else (used if nothing else is displayed there)
+"palette index"/number/offset - todo: we need names for a full palette index (i.e. address/4) as well as the palette offset (just the upper bits) supported by individual sprites, tiles, etc.
