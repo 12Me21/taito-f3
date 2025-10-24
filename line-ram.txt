@@ -58,14 +58,15 @@ for each subsection (lsb to msb):
 - same, for {clip plane 3}
 
 "6000" (2.0)
-[B?p? oNA? ddcc bbaa]
+[B?p? oNAm ddcc bbaa]
  a - {sprite group 0} alpha mode
  b - {sprite group 1} alpha mode
  c - {sprite group 2} alpha mode
  d - {sprite group 3} alpha mode
+ m - {mystery layer} blend value select
  A - {pivot} blend value select
  N - {background color} blend value select
- o - ?? tilemap infinite vertical stretch?
+ o - {playfields} {mystery layer} ?? tilemap infinite vertical stretch?
  p - {pivot} 1 = pixel, 0 = text
  B - {pivot pixel} data location: 0 = $620000 (collides with lineram), 1 = $630000
 "6200" (2.1)
@@ -79,9 +80,9 @@ for each subsection (lsb to msb):
  3 - {playfield 3} enable mosaic
  m - mosaic strength (samples every (16-m) screen pixels)
  s - {sprites} enable mosaic
- p - WRONG {pivot} enable mosaic
+ p - {mystery layer} enable mosaic
  g - ??? (claimed to be  something with pivot  garbage?)
- S - {playfield 3?} ? shadow mode?
+ S - {playfield 3?} {mystery layer} ? shadow mode? maybe only if adjacent in priority levels (e.g. sprites are at 5, mystery layer at 6)
  B - horizontal blur (FDA): 0 = enable, 1 = disable
  f - FDA mode. 0 = 15bit color format mode, 1 = normal mode, 2 = double resolution mode (no blending), 3 = invalid? (repeat first pixel all the way across)
 "6600" (2.3)
@@ -89,14 +90,14 @@ for each subsection (lsb to msb):
  b - {background color} color (palette index)
 
 "7000" (3.0)
-[BAEI cccc iiii pppp] ??
- - another layer we havent seen before? try setting $3333
+[BAEI cccc iiii pppp]
+ - {mystery layer} see b000
 "7200" (3.1)
 [BAEI cccc iiii pppp]
- - see b000
+ - {pivot} see b000
 "7400" (3.2)
 [AAAA ??EI cccc iiii]
- - see b000
+ - {sprites} see b000
  AAAA - {sprite group n} blend value select
 "7600" (3.3)
 [dddd cccc bbbb aaaa]
@@ -124,7 +125,7 @@ for each subsection (lsb to msb):
 
 "9000" (5.0)
 [.... ..cc cccc cccc]
- c - {playfield 0} palette add (palette index) todo: how many bits?
+ c - {playfield 0} palette add (palette index) todo: how many bits? cant be more than 9
 "9200" (5.1)
 - same for {playfield 1}
 "9400" (5.2)
