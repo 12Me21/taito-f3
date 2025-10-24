@@ -1,0 +1,43 @@
+## playfield tile:
+
+### normal address: [01 0nnn yyyy yxxx xx--]
+$00007C x - x index
+$000F80 y - y index
+$000700 n - tilemap number (add 2 for alt tilemap)
+
+### extend address: [01 nnny yyyy xxxx xx--]
+$0000FC x - x index
+$001F00 y - y index
+$007000 n - tilemap number (add 2 for alt tilemap)
+
+### data: [xyTT ppvc cccc cccc] [tttt tttt tttt tttt]
+$0000FFFF t - tile index
+$01FF0000 c - palette row
+$02000000 v - blend select
+$0C000000 p - texture bpp (extra planes enable)
+$03000000 T ? tile index, upper bits
+$40000000 y - vertical flip
+$80000000 x - horizontal flip
+
+
+## text tile:
+
+### address: [01 110y yyyy yxxx xxx-]
+$00007E x - x index
+$001F80 y - y index
+
+### data: [yccc cccx tttt tttt]
+$00FF t - tile index
+$0100 x - horizontal flip
+$3E00 c - palette row
+$8000 y - vertical flip
+
+## text font texture:
+
+### address: [01 111t tttt ttty yyxx]
+$0003 x - x index/2
+$001C y - y index
+$1FE0 t - tile index
+
+### data: [aaaa bbbb cccc dddd] * 32
+(todo)

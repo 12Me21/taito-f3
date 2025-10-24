@@ -1,0 +1,48 @@
+ok so  taito f3 graphics
+
+basically, there are several "layers"
+for each pixel, the fdp picks 2 of these layers to have their colors (as a palette index) sent to the fda (along with 2 alpha values) to be looked up in palette ram and blended into a single output
+
+note that most settings are per-scanline unless otherwise noted
+
+the layers are:
+- "background color":
+ - a solid color
+ - priority hardcoded to 0, always enabled, can't be clipped
+- "pivot"
+ - can display either pixels or text
+ - in text mode:
+  - 64x64 grid of 8x8 tiles, with h/v flip and a 6-bit palette offset
+  - draws from a font (in ram) of 256 4bpp tiles
+ - in pixel mode:
+  - 512x256 4bpp bitmap (though the pixels are arranged weirdly, grouped into 8x8 cells similar to the font tiles)
+  - uses palette and flipping data from text ram (note that this data covers a 512x512 region, so if you scroll the pixel layer it will have a second copy, using the same data with different attributes) - rephase this
+- "sprites" x4
+ - rendered from a single 12bpp framebuffer
+ - sprites are split into 4 "groups" (depending on the high bits of their palettes), which can have different blending parameters, but because they share a framebuffer, they can't overlap or blend with each other.
+- "playfields" x4
+ - 32x32 (or 64x32) grid of 16x16 tiles, with h/v flip and a 9-bit palette offset (hm i was gonna list all attributes here, but i think this should just be a summary and we list the actual structs elsewhere)
+ - data loaded from rom, can be 4, 5, or 6bpp
+ - per-tile blend value select
+ - can be scaled up/down vertically, and scaled up horizontally
+- hicolor/picture layer (tentative name)
+ - 128x32 (or 256x32) grid of 4x16 tiles, reusing data from the playfields
+ - tiles loaded from rom, at 16bpp(!) (though only 13 can be used in practice)
+ - reuses all the rom data loaded for the playfields (though, it's a separate layer and can be used at the same time and even blended with them, it wouldn't really be useful to)
+
+for blending, every layer (except background color, which only has blend value select) has the following parameters, per-scanline
+
+- enable
+- clipping
+ - global invert
+ - 4x plane enables
+ - 4x plane inverts
+- priority ((i.e. z position) 0-15)
+- blending:
+ - blend enable
+ - blend reverse(?)
+ - blend value select (per tile, for playfields)
+- mosaic enable (not supported by pivot? maybe because of the pivot port)
+
+note: some settings are shared between sprite groups: enable, clipping, and mosaic enable
+
