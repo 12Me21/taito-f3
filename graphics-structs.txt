@@ -1,30 +1,31 @@
 ## playfield tile:
 
-### normal address: [...01 0nnn YYYY YXXX XX--]
-$00007C X [0,32) x index
-$000F80 Y [0,32) y index
+### normal address: [...01 0nnn yyyy yxxx xx--]
+$00007C x [0,32) x index
+$000F80 y [0,32) y index
 $000700 n [0,6)  tilemap number (add 2 for alt tilemap)
 
-### extend address: [...01 nnnY YYYY XXXX XX--]
-$0000FC X [0,64) x index 
-$001F00 Y [0,32) y index
-$007000 n [0,6)  tilemap number (add 2 for alt tilemap)
+### extend address: [...01 nnny yyyy xxxx xx--]
+$000FC x [0,64) x index 
+$01F00 y [0,32) y index
+$07000 n [0,6)  tilemap number (add 2 for alt tilemap)
 
-### data: [xyTT ppvc cccc cccc] [tttt tttt tttt tttt]
-$0000FFFF t [0,64K) tile index
+### data: [xytt ppvc cccc cccc] [tttt tttt tttt tttt]
+$0000FFFF t [0,256K) tile index (upper bits unemulated)
+$30000000 /
 $01FF0000 c [0,512) palette row
 $02000000 v (bool)  blend select
 $0C000000 p [0,4)   texture planes enable (bpp)
-$03000000 T ??????? tile index, upper bits (unemulated)
 $40000000 y (bool)  vertical flip
 $80000000 x (bool)  horizontal flip
 
+
 
 ## text tile:
 
-### address: [...01 110Y YYYY YXXX XXX-]
-$00007E X [0,64) x index
-$001F80 Y [0,64) y index
+### address: [...01 110y yyyy yxxx xxx-]
+$00007E x [0,64) x index
+$001F80 y [0,64) y index
 
 ### data: [yccc cccx tttt tttt]
 $00FF t [0,256) tile index
@@ -32,26 +33,42 @@ $0100 x (bool)  horizontal flip
 $3E00 c [0,64)  palette row
 $8000 y (bool)  vertical flip
 
+
 
-## text glyph:
+## text glyph row:
 
-### address: [...01 111t tttt ttty yyxx]
-$0003 x [0,4)   column ÷2
-$001C y [0,8)   row
-$1FE0 t [0,256) tile index
+### address: [...01 111t tttt tttr rr--]
+$00001C r [0,8)   row index
+$001FE0 t [0,256) tile index
 
-### data: [aaaa bbbb] * 32 (4bpp 8x8 bitmap)
+### data: [aaaa bbbb cccc dddd] [eeee ffff gggg hhhh] * 32
+(4bpp 8x8 bitmap)
 
-## pivot pixel cell:
+## pixel glyph row:
 
-### address: [...1b XXXX XXYY YYYy yyxx]
-$00003 x [0,4)  column ÷2
-$0001C r [0,8)  row
-$0FFE0 Y [0,32) y index ÷8
-$0FFE0 X [0,64) x index ÷8
-$10000 b [0,2)  bank
+### address: [...1b xxxx xxyy yyyr rr--]
+$00001C r [0,8)  row index
+$00FFE0 y [0,32) layer y index ÷8
+$00FFE0 x [0,64) layer x index ÷8
+$010000 b [0,2)  bank
 
-### data: [aaaa bbbb] * 32 (4bpp 8x8 bitmap)
+### data: (4bpp 8x8 bitmap)
 
+
 
-sprite 
+## sprite entry
+### address: [...00 b?ii iiii iiii ----]
+$03FF0 i [0,1024) index (might go to 2048)
+$08000 b [0,2)    bank
+
+### data[0]: [tttt tttt tttt tttt]
+t - tile index (low)
+### data[1]: [yyyy yyyy xxxx xxxx]
+x - z xoom ($00 = 100%,  $80 = 50%, $FF = 1/256) scale = 1 - zoom/256
+y - y zoom (same)
+### data[2]: [iiss xxxx xxxx xxxx]
+x - x position (integer)
+s - set scrolls
+i - ignore scrolls
+### data[3]
+ugh finish this later
