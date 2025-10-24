@@ -44,6 +44,8 @@ clock cycles:
 0 1 1 | 0  0  0  1  1  1  1  1 - turn off tile rom address latch
 1 1 1 | 0  1  1  1  1  1  1  1
 
+UPDATE: oh i forgot to add this but we checked on the oscilloscope and this is almost correct but i had some things inverted in my notes. it makes sense in reality
+
 
 
 Inputs:
