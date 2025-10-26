@@ -59,10 +59,10 @@ for each subsection (lsb to msb):
 
 "6000" (2.0)
 [B?p? oNAm ddcc bbaa]
- a - {sprite group 0} alpha mode
- b - {sprite group 1} alpha mode
- c - {sprite group 2} alpha mode
- d - {sprite group 3} alpha mode
+ a - {sprite group 0} blend mode. 0=neither, 1=left, 2=right, 3=both
+ b - {sprite group 1} blend mode
+ c - {sprite group 2} blend mode
+ d - {sprite group 3} blend mode
  m - {mystery layer} blend value select
  A - {pivot} blend value select
  N - {background color} blend value select
@@ -70,8 +70,14 @@ for each subsection (lsb to msb):
  p - {pivot} 1 = pixel, 0 = text
  B - {pivot pixel} data location: 0 = $620000 (collides with lineram), 1 = $630000
 "6200" (2.1)
-[BBBB AAAA bbbb aaaa]
- (blend values, todo)
+[LLLL llll RRRR rrrr]
+four blend values
+alpha = clamp((15-value)/8, 0, 1)  ($F = 0%, $B = 50%, $7+ = 100%)
+ r - "right" pixel, bsel = 0
+ R - "right" pixel, bsel = 1
+ l - "left" pixel, bsel = 0
+ L - "left" pixel, bsel = 1
+ 
 "6400" (2.2)
 [ffB? Sgps mmmm 3210]
  0 - {playfield 0} enable mosaic
@@ -90,11 +96,13 @@ for each subsection (lsb to msb):
  b - {background color} color (palette index)
 
 "7000" (3.0)
-[BAEI cccc iiii pppp]
+[BBEI cccc iiii pppp]
  - {mystery layer} see b000
+ - todo: check blend mode
 "7200" (3.1)
-[BAEI cccc iiii pppp]
- - {pivot} see b000
+[B?EI cccc iiii pppp]
+ B - {pivot} blend mode: 0 = both, 1 = left
+ rest - {pivot} see b000
 "7400" (3.2)
 [AAAA ??EI cccc iiii]
  - {sprites} see b000
@@ -144,14 +152,13 @@ for each subsection (lsb to msb):
 - same for {playfield 3}
 
 "B000" (7.0)
-[BAEI cccc iiii pppp]
+[BBEI cccc iiii pppp]
  p - {playfield 0} priority
  iiii - {playfield 0} clip modes: 0 = hide inside, 1 = hide outside
  cccc - {playfield 0} 1 = enable clip plane
  I - {playfield 0} 1 = invert clipping
  E - {playfield 0} 1 = enable display
- A - {playfield 0} alpha mode A
- B - {playfield 0} alpha mode B
+ B - {playfield 0} blend mode. 0=both, 1=left, 2=right, 3=neither
 "B200" (7.1)
 - same for {playfield 1}
 "B400" (7.2)
@@ -164,8 +171,11 @@ terms:
 "playfield" / "bg layer" / "tilemap" / "scr" (which do we use? maybe one term for the object on the screen and one for the memory it refers to. e.g. we refer to the "playfield"'s scroll, but we say a playfield uses the alternate "tilemap")
 "clip plane" - one of the four clipping intervals (why is it called a "plane"?)
 "sprite group" / "sprite priority group" - sprites are split into 4 groups based on the upper 2 bits of their palette (00,40,80,C0). these can have different effects applied to them, and also   (todo explain priority i forgot how that works)
-"blend value" - ranges from $7 (100%) to $F (0%). $B is 50%. represents an alpha value
+"blend value" - ranges from $7 (100%) to $F (0%). $B is 50%. represents an alpha value. there are 4 of these, 2 for the left half-pixel and 2 for the right half-pixel
 "mosaic" - horizontal pixelization effect
 "background color" - color drawn behind everything else (used if nothing else is displayed there)
-"palette index"/number/offset - todo: we need names for a full palette index (i.e. address/4) as well as the palette offset (just the upper bits) supported by individual sprites, tiles, etc.
+"palette index"/number/offset - todo: we need names for a full palette index (i.e. address/4) as well as the palette offset (just the upper bits) supported by individual sprites, tiles, etc. (idea: "color" = an index into color ram, "rgb color" = a real color, "palette" = the high bits of the color (i.e. color = color | palette<<4) set in the tile and sprite data etc.)
 "priority" - blending priority (determines which 2 layers are chosen for blending etc) not to be confused with sprite priority, which only matters while rendering to the framebuffer, and is mapped to priority by lineram 7600
+"blend mode" / "alpha mode" - which pixels a layer contributes to (left/right/both/neither)
+"blend select" / "blend value select" - setting which determines which of the 2 possible blend values will be used for a given half-pixel
+"half-pixel" - one of two pixels that is sent to the FDA for each screen pixel (todo: refine this concept. does this include the blend value sent alongside it? or does it include the blend value select bit)

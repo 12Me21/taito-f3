@@ -5,3 +5,21 @@ at 0xA value 0x04 flashes different colors   bit depth??
        rest  nothing?
        
 sprite jump is not 12 bits  probably 11  nope just 10
+
+
+scroll offsets:
+- both scrolls can be set at once (e.g. 0b1111) to the same value
+- scroll is always set from the un-adjusted coordinates (i.e. ignore bits dont matter)
+- ignore bits:
+ - 0b1000 is the same as 0b0000 (!) - use both offsets
+ - 0b0100 - ignore scroll set by 0b0001
+ - 0b1100 - ignore both
+- scroll is applied BEFORE rendering the current sprite(!) (i.e. using the set scroll bits on a visible sprite will render it at 2x the listed position)
+- basically, the sequence of events is
+ - read the x and y positions
+ - set the scrolls if specified
+ - add the scrolls if specified
+ - use this value to render the sprite
+
+- the y position is 12 bits (e.g. 0x7000 = 0x0000 ≠ 0x0800)
+
