@@ -26,7 +26,7 @@
 	.memory-map tr:not(:first-child) {
 		height: 50px;
 	}
-	.in, .out, .dial {
+	.in, .out, .dial, .io, .ctrl {
 		background-color: white;
 	}
 	.in .pin-label {
@@ -35,7 +35,10 @@
 	.out .pin-label {
 		background-color: lemonchiffon;
 	}
-	.memory-map .in, .memory-map .out {
+	.io .pin-label {
+		background-color: peachpuff;
+	}
+	.memory-map .in, .memory-map .out, .memory-map .io {
 		vertical-align: bottom;
 	}
 	.dial {
@@ -58,6 +61,7 @@
 	<tr><th>
 	<tr><td class=in>input bit<div class=pin-label><abbr>fio</abbr> pin</div>
 	<tr><td class=out>output bit<div class=pin-label><abbr>fio</abbr> pin</div>
+	<tr><td class=io>input or output bit<div class=pin-label><abbr>fio</abbr> pin</div>
 </table>
 <p>
 <table class=memory-map>
@@ -107,14 +111,14 @@
 	</tr>
 	<tr>
 		<th>$03
-		<td class=in>(unused)<div class=pin-label>pin 39?</div>
-		<td class=in>2p<br>button 3<div class=pin-label>pin 38</div>
-		<td class=in>2p<br>button 2<div class=pin-label>pin 37</div>
-		<td class=in>2p<br>button 1<div class=pin-label>pin 36</div>
-		<td class=in>(unused)<div class=pin-label>pin 34?</div>
-		<td class=in>1p<br>button 3<div class=pin-label>pin 33</div>
-		<td class=in>1p<br>button 2<div class=pin-label>pin 32</div>
-		<td class=in>1p<br>button 1<div class=pin-label>pin 29</div>
+		<td class=io>(unused)<div class=pin-label>pin 39?</div>
+		<td class=io>2p<br>button 3<div class=pin-label>pin 38</div>
+		<td class=io>2p<br>button 2<div class=pin-label>pin 37</div>
+		<td class=io>2p<br>button 1<div class=pin-label>pin 36</div>
+		<td class=io>(unused)<div class=pin-label>pin 34?</div>
+		<td class=io>1p<br>button 3<div class=pin-label>pin 33</div>
+		<td class=io>1p<br>button 2<div class=pin-label>pin 32</div>
+		<td class=io>1p<br>button 1<div class=pin-label>pin 29</div>
 	</tr>
 	<tr>
 		<th>$04
@@ -130,7 +134,7 @@
 	</tr>
 	<tr>
 		<th>$06
-		<td colspan=8>?
+		<td colspan=8 class=ctrl>port $03 direction controls (0=input, 1=output)
 	</tr>
 	<tr>
 		<th>$07
@@ -192,14 +196,14 @@
 	</tr>
 	<tr>
 		<th>$13
-		<td class=out>(unused)<div class=pin-label>pin 67?</div>
-		<td class=out>(unused)<div class=pin-label>pin 66?</div>
-		<td class=out>(unused)<div class=pin-label>pin 65?</div>
-		<td class=out>eeprom CS<div class=pin-label>pin 64</div>
-		<td class=out>eeprom CLK<div class=pin-label>pin 63</div>
-		<td class=out>eeprom DI<div class=pin-label>pin 62</div>
-		<td class=out>Z pin 4<div class=pin-label>pin 59</div>
-		<td class=out>Z pin 3<div class=pin-label>pin 58</div>
+		<td class=io>(unused)<div class=pin-label>pin 67?</div>
+		<td class=io>(unused)<div class=pin-label>pin 66?</div>
+		<td class=io>(unused)<div class=pin-label>pin 65?</div>
+		<td class=io>eeprom CS<div class=pin-label>pin 64</div>
+		<td class=io>eeprom CLK<div class=pin-label>pin 63</div>
+		<td class=io>eeprom DI<div class=pin-label>pin 62</div>
+		<td class=io>Z pin 4<div class=pin-label>pin 59</div>
+		<td class=io>Z pin 3<div class=pin-label>pin 58</div>
 	</tr>
 	<tr>
 		<th>$14
@@ -215,14 +219,7 @@
 	</tr>
 	<tr>
 		<th>$16
-		<td>0?
-		<td>0?
-		<td>0?
-		<td>0?
-		<td>1?
-		<td>1?
-		<td>1?
-		<td>1?
+		<td colspan=8 class=ctrl>port $13 direction controls (0=input, 1=output)
 	</tr>
 	<tr>
 		<th>$17
@@ -308,16 +305,16 @@
 	<tr><th>26<td>bit 6
 	<tr><th>27<td>bit 7
 	<tr><th>28<td class=gnd>GND
-	<tr><th>29<td>bit 0<td rowspan=1 class=cont1>port $03
+	<tr><th>29<td>bit 0<td rowspan=1 class=cont1>port $03 (i/o)
 	<tr><th>30<td class=vcc>VCC
 </table>
 <table class=pinout>
 	<tr><th>31<td class=gnd>GND
-	<tr><th>32<td>bit 1<td rowspan=3 class='cont2 cont1'>port $03
+	<tr><th>32<td>bit 1<td rowspan=3 class='cont2 cont1'>port $03<br>(i/o)
 	<tr><th>33<td>bit 2
 	<tr><th>34<td>bit 3
 	<tr><th>35<td class=gnd>GND
-	<tr><th>36<td>bit 4<td rowspan=4 class=cont2>port $03
+	<tr><th>36<td>bit 4<td rowspan=4 class=cont2>port $03<br>(i/o)
 	<tr><th>37<td>bit 5
 	<tr><th>38<td>bit 6
 	<tr><th>39<td>bit 7
@@ -339,13 +336,13 @@
 	<tr><th>55<td>bit 6
 	<tr><th>56<td>bit 7
 	<tr><th>57<td class=gnd>GND
-	<tr><th>58<td>bit 0<td rowspan=2 class=cont1>port $13<br>(output)
+	<tr><th>58<td>bit 0<td rowspan=2 class=cont1>port $13<br>(i/o)
 	<tr><th>59<td>bit 1
 	<tr><th>60<td class=gnd>GND
 </table>
 <table class=pinout>
 	<tr><th>61<td class=vcc>VCC
-	<tr><th>62<td>bit 2<td rowspan=6 class=cont2>port $13<br>(output)
+	<tr><th>62<td>bit 2<td rowspan=6 class=cont2>port $13<br>(i/o)
 	<tr><th>63<td>bit 3
 	<tr><th>64<td>bit 4
 	<tr><th>65<td>bit 5
@@ -382,28 +379,28 @@
 	<tr><th>94<td colspan=2><abbr>cpu</abbr> reset
 	<tr><th>95<td colspan=2><abbr>cpu</abbr> halt
 	<tr><th>96<td class=gnd>GND
-	<tr><th>97<td>bit 0<td rowspan=4 class=cont1><abbr>cpu</abbr> data
-	<tr><th>98<td>bit 1
-	<tr><th>99<td>bit 2
-	<tr><th>100<td>bit 3
+	<tr><th>97<td>D0<td rowspan=4 class=cont1><abbr>cpu</abbr> data
+	<tr><th>98<td>D1
+	<tr><th>99<td>D2
+	<tr><th>100<td>D3
 	<tr><th>101<td class=gnd>GND
-	<tr><th>102<td>bit 4<td rowspan=4 class=cont2><abbr>cpu</abbr> data
-	<tr><th>103<td>bit 5
-	<tr><th>104<td>bit 6
-	<tr><th>105<td>bit 7
+	<tr><th>102<td>D4<td rowspan=4 class=cont2><abbr>cpu</abbr> data
+	<tr><th>103<td>D5
+	<tr><th>104<td>D6
+	<tr><th>105<td>D7
 	<tr><th>106<td class=gnd>GND
 	<tr><th>107<td colspan=2>clock input (1 MHz)
 	<tr><th>108<td class=gnd>GND
-	<tr><th>109<td>bit 4<td rowspan=5><abbr>cpu</abbr> address
-	<tr><th>110<td>bit 3
-	<tr><th>111<td>bit 2
-	<tr><th>112<td>bit 1
-	<tr><th>113<td>bit 0
+	<tr><th>109<td>A4<td rowspan=5><abbr>cpu</abbr> address
+	<tr><th>110<td>A3
+	<tr><th>111<td>A2
+	<tr><th>112<td>A1
+	<tr><th>113<td>A0
 	<tr><th>114<td class=gnd>GND
 	<tr><th>115<td colspan=2><o-l>reset</o-l>
 	<tr><th>116<td colspan=2>read/<o-l>write</o-l>
 	<tr><th>117<td colspan=2><o-l>output enable</o-l>
-	<tr><th>118<td colspan=2>maybe chip select ? (FCM.106)
+	<tr><th>118<td colspan=2>chip select ? (FCM.106)
 	<tr><th>119<td class=gnd>GND
 	<tr><th>120<td class=gnd>GND
 </table>
