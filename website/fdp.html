@@ -22,38 +22,38 @@ the two <abbr>RAM</abbr> chips above the <abbr>FDP</abbr> are accessible to the 
 <h2>Pinout</h2>
 
 <p>note: many of these pin assignments are only approximately correct
-
+ss lllL xxxx xxxx xxxx
 <figure>
 <table class=pinout>
-	<tr><th>1<td colspan=2>pal1.21 (chip select?)
-	<tr><th>2<td colspan=2>ic9.3 (cpu.dsack0 && .dsack1 && .as)
-	<tr><th>3<td colspan=2>cpu.ds
-	<tr><th>4<td>A14<td rowspan=6 class=cont1>CPU bus
+	<tr><th>1<td><o-l>CS</o-l>? (pal1.21)<td rowspan=9 class=cont1>CPU interface
+	<tr><th>2<td><o-l>AS</o-l>? <small>ic9.3 (cpu.dsack0 && .dsack1 && .as)</small>
+	<tr><th>3<td><o-l>DS</o-l>
+	<tr><th>4<td>A14
 	<tr><th>5<td>A13
 	<tr><th>6<td>A12
 	<tr><th>7<td>A11
 	<tr><th>8<td>A10
 	<tr><th>9<td>A9
 	<tr><th>10<td class=vcc>VCC
-	<tr><th>11<td>A8<td rowspan=4 class='cont2 cont1'>CPU bus
-	<tr><th>12<td>fcm.114 ?A7/D15
-	<tr><th>13<td>fcm.113 ?A6/D14
-	<tr><th>14<td>fcm.112 ?A5/D13
+	<tr><th>11<td>A8<td rowspan=4 class='cont2 cont1'>CPU interface
+	<tr><th>12<td>fcm.114 A?/D15?
+	<tr><th>13<td>fcm.113 A?/D14?
+	<tr><th>14<td>fcm.112 A?/D13?
 	<tr><th>15<td class=gnd>GND
-	<tr><th>16<td>fcm.111 ?A4/D12<td rowspan=11 class='cont2 cont1'>CPU bus
-	<tr><th>17<td>fcm.96 ?A3/D11
-	<tr><th>18<td>fcm.95 ?A2/D10
-	<tr><th>19<td>fcm.94 ?A1/D9
-	<tr><th>20<td>fcm.93 ?A0/D8
-	<tr><th>21<td>fcm.32 ?D7
-	<tr><th>22<td>fcm.91 ?D6
-	<tr><th>23<td>fcm.89 ?D5
-	<tr><th>24<td>fcm.88 ?D4
-	<tr><th>25<td>fcm.87 ?D3
-	<tr><th>26<td>fcm.86 ?D2
+	<tr><th>16<td>fcm.111 A?/D12?<td rowspan=11 class='cont2 cont1'>CPU interface
+	<tr><th>17<td>fcm.96 A?/D11?
+	<tr><th>18<td>fcm.95 A?/D10?
+	<tr><th>19<td>fcm.94 A?/D9?
+	<tr><th>20<td>fcm.93 A?/D8?
+	<tr><th>21<td>fcm.32 A?/D7?
+	<tr><th>22<td>fcm.91 A?/D6?
+	<tr><th>23<td>fcm.89 A?/D5?
+	<tr><th>24<td>fcm.88 A?/D4?
+	<tr><th>25<td>fcm.87 A?/D3?
+	<tr><th>26<td>fcm.86 A?/D2?
 	<tr><th>27<td class=gnd>GND
-	<tr><th>28<td>fcm.85 ?D1<td rowspan=2 class=cont2>CPU bus
-	<tr><th>29<td>fcm.84 ?D0
+	<tr><th>28<td>fcm.85 A?/D1?<td rowspan=2 class=cont2>CPU interface
+	<tr><th>29<td>fcm.84 A?/D0?
 	<tr><th>30<td><o-l>UW</o-l><td rowspan=22>graphics ram
 	<tr><th>31<td><o-l>LW</o-l>
 	<tr><th>32<td><o-l>CE</o-l>
