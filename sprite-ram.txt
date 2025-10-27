@@ -43,5 +43,13 @@ the first 2 bits are the upper bits of the tile id regardless of whether we're i
  c - (both) mix up rows? not similar to the previous
  d - (both) display right half different?
  e - (both) squish vertically and display bottom different?
- in command mode, if the $00F0 nibble is set to 3, 5, 11, or 13, sprites disappear. when changed out of these modes, they reappear and there are garbage pixels for a frame (but the amount of garbage pixels can vary a lot)
+ in command mode, if the $00F0 nibble is set to 3, 5, 11, or 13, sprites disappear. when changed out of these modes, they reappear and there are garbage pixels for a frame (but the amount of garbage pixels can vary a lot)  this would mean, if a=1 and c≠d
+ 0001 x
+ 0011
+ 0101 
+ 0111 x
+ 1001 x
+ 1011
+ 1101
+ 1111 x
  
