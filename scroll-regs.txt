@@ -1,0 +1,14 @@
+playfield scroll
+address: [*110 0000 0000 app-]
+a - axis: 0=x, 1=y
+p - playfield number
+
+pivot scroll
+address:
+
+settings
+address: [*110 0000 0001 111-]
+data: [???? ???? e??? ??ba]
+a - ??
+b - ??
+e - "extend": 0=32x32 playfields, 1=64x32. afaik there's no disadvantage to enabling this; it seems to be another "backwards compatibility" mode.
