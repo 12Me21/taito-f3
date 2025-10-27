@@ -10,9 +10,14 @@ sprite jump is not 12 bits  probably 11  nope just 10
 scroll offsets:
 - both scrolls can be set at once (e.g. 0b1111) to the same value
 - scroll is always set from the un-adjusted coordinates (i.e. ignore bits dont matter)
+- set bits:
+ - 0b0000 - set neither
+ - 0b0001 - set one ("local")
+ - 0b0010 - set the other ("global")
+ - 0b0011 - set both
 - ignore bits:
  - 0b1000 is the same as 0b0000 (!) - use both offsets
- - 0b0100 - ignore scroll set by 0b0001
+ - 0b0100 - ignore scroll set by 0b0001 (use "global" only)
  - 0b1100 - ignore both
 - scroll is applied BEFORE rendering the current sprite(!) (i.e. using the set scroll bits on a visible sprite will render it at 2x the listed position)
 - basically, the sequence of events is
@@ -21,5 +26,22 @@ scroll offsets:
  - add the scrolls if specified
  - use this value to render the sprite
 
-- the y position is 12 bits (e.g. 0x7000 = 0x0000 ≠ 0x0800)
+- the x and y positions are 12 bits (e.g. 0x7000 = 0x0000 ≠ 0x0800)
 
+- word 5 (tile id high) has at least 2 bits for the tile id. but i suspect carts can support 3 or 4
+
+- a sprite IS rendered if the command bit is set, as well as if the lower 16 bits of the id is 0 (and upper bits are set) - but not sure if sprites are rendered if all id bits are 0, our rom has a blank sprite there i think
+
+- approximately 880 sprites can be rendered total ?
+
+sprite word 5:
+[???? ???? edca ??tb]
+ b - (command mode only) set bank (todo test this more)
+ t - (command mode only) disable clearing? seems to have a strange effect in reality though. may require using both banks or something.
+the first 2 bits are the upper bits of the tile id regardless of whether we're in command mode or not
+ a - (both) flip each group of 4 columns (texture relative)?
+ c - (both) mix up rows? not similar to the previous
+ d - (both) display right half different?
+ e - (both) squish vertically and display bottom different?
+ in command mode, if the $00F0 nibble is set to 3, 5, 11, or 13, sprites disappear. when changed out of these modes, they reappear and there are garbage pixels for a frame (but the amount of garbage pixels can vary a lot)
+ 
