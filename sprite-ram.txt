@@ -35,7 +35,7 @@ scroll offsets:
 - approximately 880 sprites can be rendered total ?
 
 sprite word 5:
-[???? ???? edca ??tb]
+[??kj ?hgf edca ??tb]
  b - (command mode only) set bank (todo test this more)
  t - (command mode only) disable clearing? seems to have a strange effect in reality though. may require using both banks or something.
 the first 2 bits are the upper bits of the tile id regardless of whether we're in command mode or not
@@ -43,13 +43,29 @@ the first 2 bits are the upper bits of the tile id regardless of whether we're i
  c - (both) mix up rows? not similar to the previous
  d - (both) display right half different?
  e - (both) squish vertically and display bottom different?
- in command mode, if the $00F0 nibble is set to 3, 5, 11, or 13, sprites disappear. when changed out of these modes, they reappear and there are garbage pixels for a frame (but the amount of garbage pixels can vary a lot)  this would mean, if a=1 and c≠d
- 0001 x
- 0011
- 0101 
- 0111 x
- 1001 x
- 1011
- 1101
- 1111 x
- 
+ in command mode, if the $00F0 nibble is set to 3, 5, 11, or 13, sprites disappear. when changed out of these modes, they reappear and there are garbage pixels for a frame (but the amount of garbage pixels can vary a lot) so, this happens, if a=1 and c≠d, i suppose. 3 and 11 and different from 5 and 13 in some way (namely, if we set those, and also set a bank switch, we can still see sprites as we swap between banks. while 5 and 13 don't do that)
+ also other values cause our sprites to not be visible when flipping banks: 1, and 9.
+ so, basically.
+ i think the upper bit doesnt matter, and the lower 3 are like, in a scenario where we have this settings set on one bank but not the other, and are flipping between them:
+ .000 - normal
+ .001 - sprites in bank 0 (ie the other bank from the one we're in after setting this value) arent visible
+ .010 - normal?
+ .011 - sprites in both banks not visible
+ .100 - normal?
+ .101 - sprites in both banks not visible
+ .110 - normal?
+ .111 - normal?
+ f - (command mode) sets palettes to 0(?), and then adds some garbage pixels around the sprites which do a palette offset? not sure where these come from, they seem consistent?
+ g - (command mode) similar to f but different
+ h - (command mode) bank select 2 (uses sprite list at $604000 (and presumably $60C000 if the other bank switch is set)
+ j - (command mode) changes video signal (causes us to lose sync, but definitely still outputting a picture)
+ k - (command mode) flipscreen
+
+also note that the command mode bits's (b, t, f, etc.) effects are permanent until set back by another command sprite.
+
+and i think thats everything. 
+
+so basically in non command mode we use these bits to affect the current sprite:
+$00F3
+and in command mode we additionally use these bits to set persistent settings:
+$3773
