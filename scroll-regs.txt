@@ -1,10 +1,24 @@
-playfield scroll
-address: [*110 0000 0000 app-]
-a - axis: 0=x, 1=y
+playfield horizontal scroll
+address: [*110 0000 0000 0pp-]
 p - playfield number
+data: [iiii iiii iiff ffff]
+i - integer part
+f - negative fractional part
 
-pivot scroll
-address:
+playfield vertical scroll
+address: [*110 0000 0000 1pp-]
+p - playfield number
+data: (forgot)
+
+pivot horizontal scroll
+address: [*110 0000 0001 100-]?
+data: [.... ..ss ssss ssss]
+s - scroll
+
+pivot vertical scroll
+address: [*110 0000 0001 101-]?
+data: [.... ..ss ssss ssss]
+s - scroll
 
 settings
 address: [*110 0000 0001 111-]
