@@ -61,11 +61,11 @@ the first 2 bits are the upper bits of the tile id regardless of whether we're i
  j - (command mode) changes video signal (causes us to lose sync, but definitely still outputting a picture)
  k - (command mode) flipscreen
 
-also note that the command mode bits's (b, t, f, etc.) effects are permanent until set back by another command sprite.
+also note that the command mode bits' (b, t, f, etc.) effects are permanent until set back by another command sprite.
 
 and i think thats everything. 
 
-so basically in non command mode we use these bits to affect the current sprite:
+so basically these bits affect the current sprite:
 $00F3
-and in command mode we additionally use these bits to set persistent settings:
+and when command mode is enabled, these bits will set persistent settings:
 $3773
