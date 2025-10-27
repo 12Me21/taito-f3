@@ -72,3 +72,4 @@ s - set scrolls
 i - ignore scrolls
 ### data[3]
 ugh finish this later
+1 - scale = zoom/256

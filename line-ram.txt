@@ -24,7 +24,7 @@ the mapping of sections and subsections, and latching (reusing the same paramete
 at $620000, there is a latch per scanline per section (todo: better language to describe arrays-of-arrays)
 
 latch:
-address: [...10 0000 sssl llll lll-]
+address: [*010 0000 sssl llll lll-]
 s [0,8)   section
 l [0,256) scanline
 data: [..mm mm.. aaaa llll]
@@ -35,7 +35,7 @@ for each subsection (lsb to msb):
 
 line ram subsection:
 
-address: [...10 mmmm auul llll lll-]
+address: [*010 mmmm auul llll lll-]
 m [0,16)  section mapping (from the section's latches)
 a (bool)  subsection bank (from the section's latches)
 u [0,4)   subsection number
@@ -193,13 +193,13 @@ terms:
 "half-pixel" - one of two pixels that is sent to the FDA for each screen pixel (todo: refine this concept. does this include the blend value sent alongside it? or does it include the blend value select bit)
 
 pivot port latch:
-address: [...10 0001 000l llll lll-]
+address: [*010 0001 000l llll lll-]
 l [0,256) scanline
 data: [.... .... llll ....]
 l (bool[4]) latch for some subsection ? not sure which subsection is controlled by which latches, because there's more than 4 subsections.
 
 pivot port subsection:
-address: [...10 0001 uuul llll lll-]
+address: [*010 0001 uuul llll lll-]
 u [1,8) subsection
 l [0,256) scanline
 
