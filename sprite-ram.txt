@@ -21,15 +21,16 @@ scroll offsets:
  - 0b1100 - ignore both
 - scroll is applied BEFORE rendering the current sprite(!) (i.e. using the set scroll bits on a visible sprite will render it at 2x the listed position)
 - basically, the sequence of events is
- - POS = read from the sprite entry
- - set the scrolls from POS if specified
- - add the scrolls to POS if specified
- - set the block origin y from POS if specified
- - set (from POS) or increment block x if specified
- - set (from block origin y) or increment block y if specified
- - 
- - use this value to render the sprite
-
+ - POS1.x = read from the sprite entry
+ - POS1.y = read from sprite entry (if [the old value of] Y_LOCK is 0)
+ - read Y_LOCK and PALETTE_LOCK and PALETTE1 (and block control bits and everything else in word 4) from sprite entry
+ - PALETTE2 = PALETTE1 (if PALETTE_LOCK is 0)
+ - set the scroll(s) from POS1, if specified
+ - add the scroll(s) to POS1, if specified
+ - set (from POS1.x) or increment or leave unchanged, POS2.x
+ - set (from POS1.y) or increment, POS2.y
+ - render the sprite at POS2 with PALETTE2
+ 
 - the x and y positions are 12 bits (e.g. 0x7000 = 0x0000 ≠ 0x0800)
 
 - word 5 (tile id high) has at least 2 bits for the tile id. but i suspect carts can support 3 or 4
