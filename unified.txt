@@ -1,0 +1,35 @@
+full description (actually lets hold off on this)
+
+program rom
+addr: [00aa aaaa aaaa aaaa aaaa aaAA]
+
+work ram
+addr: [0100 00.a aaaa aaaa aaaa aaAA]
+
+color ram
+addr: [0100 010. .aaa aaaa aaaa aaAA]
+data (24bit) [xxxx xxxx rrrr rrrr gggg gggg bbbb bbbb]
+data (15bit) [xxxx xxxx .... .... rrrr gggg bbbb rgbx] i think
+ b - blue
+ g - green
+ r - red
+ x - unmapped
+
+address reflect
+addr: [0100 110. .... .... aaaa aaaa]
+data (read): [aaaa aaaa]
+ a - reflected address
+ 
+fio registers
+addr: [0100 101. .... .... ...a aaaa]
+data: ok this is a case which doesnt fit our format well
+
+timer register
+addr: [0100 110. .... .... .... ...A]
+
+dual-port ram
+addr: [1100 0... .... .aaa aaaa aaaa]
+
+sound reset
+addr: [1100 1... .... ...a .... ....]
+
