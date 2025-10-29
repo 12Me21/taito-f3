@@ -57,9 +57,9 @@ $010000 b [0,2)  bank
 
 
 ## sprite entry
-### address: [...00 b?ii iiii iiii ----]
-$03FF0 i [0,1024) index (might go to 2048)
-$08000 b [0,2)    bank
+### address: [...00 bbii iiii iiii ----]
+$03FF0 i [0,1024) index
+$08000 b [0,4)    bank
 
 ### data[0]: [tttt tttt tttt tttt]
 t - tile index (low)
@@ -68,8 +68,11 @@ x - z xoom ($00 = 100%,  $80 = 50%, $FF = 1/256) scale = 1 - zoom/256
 y - y zoom (same)
 ### data[2]: [iiss xxxx xxxx xxxx]
 x - x position (integer)
-s - set scrolls
-i - ignore scrolls
-### data[3]
+s - set scrolls (00 = neither, 01 = local, 10 = global, 11 = both)
+i - use scrolls (00/10 = use both, 01 = global only, 11 = neither)
+### data[3]: 
 ugh finish this later
-1 - scale = zoom/256
+
+
+### data[5] - see sprite-ram.txt
+
