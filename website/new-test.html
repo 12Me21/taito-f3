@@ -1,0 +1,84 @@
+<!--<bit-field>...01110yyyyyyxxxxxx-</bit-field>
+<bit-field>yccc cccx tttt tttt</bit-field>
+<dl>
+<dt>y<dd>y index
+<dt>x<dd>x index
+</dl>
+
+
+
+[yccc cccx tttt tttt]
+ ||     || |       |
+ ||     || '-------'-> t [0,256) tile index
+ ||     |'----------- > x (bool)  horizontal flip
+ |'-----'------------ > c [0,64)  palette row
+ '------------------- > y (bool)  vertical flip
+
+
+no no
+
+[*01 110y yyyy yxxx xxx-]
+ y - y index
+ x - x index
+{yccc cccx tttt tttt}
+ t - tile index
+ x - horizontal flip
+ c - palette
+ y - vertical flip
+
+thusly, then turn that into
+-->
+<link rel=stylesheet href=style.css>
+
+<style>
+	f3-table {
+		border: solid;
+		display: block;
+	}
+	f3-table > * {
+		display: block;
+		margin: 0;
+	}
+	f3-table > dl > * {
+		margin: 0;
+		align-self: baseline;
+	}
+	f3-table dt {
+		font-family: monospace;
+		font-size: 16px;
+	}
+	f3-table dt::after {
+		content: "-";
+	}
+	f3-table > dl {
+		display: grid;
+		grid: auto-flow / min-content 1fr;
+	}
+</style>
+
+<f3-table>
+	<b>*01 110y yyyy yxxx xxx-</b>
+	<dl>
+		<dt>y<dd>y index
+		<dt>x<dd>x index
+	</dl>
+	<b>yccc cccx tttt tttt</b>
+	<dl>
+		<dt><dd>
+		<dt><dd>
+	</dl>
+</f3-table>
+
+<pre>
+address: [...01 110y yyyy yxxx xxx-]
+ x - x index
+ y - y index
+
+data: [y<b>ccc ccc</b>x <b>tttt tttt</b>]
+ t - tile index
+ x - horizontal flip
+ c - palette row
+ y - vertical flip
+</pre>
+
+the problem is it's actually impossible to make this look better than unformatted text

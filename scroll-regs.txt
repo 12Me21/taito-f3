@@ -1,28 +1,31 @@
 playfield horizontal scroll
-address: [*110 0000 0000 0pp-]
+address: [*110 0000 0000 0pp-] ($660000)
 p - playfield number
 data: [iiii iiii iiff ffff]
 i - integer part
 f - negative fractional part
 
 playfield vertical scroll
-address: [*110 0000 0000 1pp-]
+address: [*110 0000 0000 1pp-] ($660008)
 p - playfield number
 data: (forgot)
 
 pivot horizontal scroll
-address: [*110 0000 0001 100-]?
+address: {*110 0000 0001 100-} ($660018) addr notation? [] vs () vs {}  maybe {} for data [] for addr
 data: [.... ..ss ssss ssss]
-s - scroll
+ s - scroll
 
 pivot vertical scroll
-address: [*110 0000 0001 101-]?
+address: {*110 0000 0001 101-} ($66001A)
 data: [.... ..ss ssss ssss]
-s - scroll
+ s - scroll
 
 settings
-address: [*110 0000 0001 111-]
-data: [???? ???? e??? ??ba]
-a - ??
-b - ??
-e - "extend": 0=32x32 playfields, 1=64x32. afaik there's no disadvantage to enabling this; it seems to be another "backwards compatibility" mode.
+address: [*110 0000 0001 111-] ($66001E)
+data: [???? ???? e??? ??bl]
+ l - 1 = lock ? (all further writes to this register are ignored until next reset. also clears blank and extend mode)
+ b - 1 = blank video - no color signals, outputs invalid sync signal
+ e - "extend": 0 = 32x32 playfields, 1 = 64x32. afaik there's no disadvantage to enabling this; it seems to be another "backwards compatibility" mode.
+ (afaik, no other bits do anything)
+
+afaik, $660010-$660017 and $66001C-$66001D do nothing
