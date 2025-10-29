@@ -62,17 +62,26 @@ $03FF0 i [0,1024) index
 $08000 b [0,4)    bank
 
 ### data[0]: [tttt tttt tttt tttt]
-t - tile index (low)
+ t - tile index (low)
 ### data[1]: [yyyy yyyy xxxx xxxx]
-x - z xoom ($00 = 100%,  $80 = 50%, $FF = 1/256) scale = 1 - zoom/256
-y - y zoom (same)
+ x - z xoom ($00 = 100%,  $80 = 50%, $FF = 1/256) scale = 1 - zoom/256
+ y - y zoom (same)
 ### data[2]: [iiss xxxx xxxx xxxx]
-x - x position (integer)
-s - set scrolls (00 = neither, 01 = local, 10 = global, 11 = both)
-i - use scrolls (00/10 = use both, 01 = global only, 11 = neither)
-### data[3]: 
-ugh finish this later
-
+ x - x position (signed int)
+ s - set scrolls (00 = neither, 01 = local, 10 = global, 11 = both)
+ i - use scrolls (00/10 = use both, 01 = global only, 11 = neither)
+### data[3]: [c... yyyy yyyy yyyy]
+ y - y position (signed int)
+ c - 1 = command mode (uses data[5])
+### data[4]: [xx?y mlvh cccc cccc]
+ c - palette
+ h - horizontal flip
+ v - vertical flip
+ l - reuse prev palette
+tessellation controls:
+ m - "multi" - 0=following sprite sets block origin from position
+ y - 0=reset y (use block origin if multi is 1, otherwise use position), 1=increment y
+ x - 0=set x from position, 1=x unchanged, 2=inc x(broken), 3=inc x
 
 ### data[5] - see sprite-ram.txt
 
