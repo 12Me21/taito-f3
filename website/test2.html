@@ -91,21 +91,17 @@
 <f3-struct>
 	<h1>Playfield Tile</h1>
 	<f3-addr>
-		<h1>Address (normal)</h1>
-		<f3-bits><ruby><rb>&ctdot; 01</rb><rt>$601....</rt></ruby> 0nnn yyyy yxxx xx--</f3-bits>
+		<h1>Address</h1>
+		<div><f3-bits>&ctdot; 01 0nnn yyyy yxxx xx--</f3-bits> (normal)</div>
+		<div><f3-bits>&ctdot; 01 nnny yyyy xxxx xx--</f3-bits> (extend mode)</div>
 		<dl>
-			<dt>x<dd>x index (0-31)
+			<dt>x<dd>x index (0-31 or 0-64)
 			<dt>y<dd>y index (0-31)
 			<dt>n<dd>playfield index
 				<dl>
 					<dt>0,1,2,3<dd>regular playfield data
 					<dt>4,5<dd>alternate data for playfields 2 and 3
 				</dl>
-		</dl>
-		<h1>Address (extend mode)</h1>
-		<f3-bits>&ctdot; 01 nnny yyyy xxxx xx--</f3-bits>
-		<dl>
-			<dt>x<dd>x index (0-63)
 		</dl>
 	</f3-addr>
 	<f3-data>
@@ -155,6 +151,6 @@
 
 <script>
 	for (let e of document.querySelectorAll('f3-bits')) {
-	//	e.innerHTML = e.innerHTML.replace(/([a-zA-Z])( ?\1)*/g, "<b>$&</b>")
+		e.innerHTML = e.innerHTML.replace(/([a-zA-Z])( ?\1)*/g, "<b>$&</b>")
 	}
 </script>
