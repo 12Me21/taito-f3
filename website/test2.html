@@ -41,7 +41,7 @@
 		display: grid;
 		grid: auto-flow / max-content 1fr;
 		margin-left: 1em;
-		margin-top: 0.5em;
+		margin-top: 0.25em;
 		margin-bottom: 0em;
 	}
 	f3-struct f3-addr dl {
@@ -69,17 +69,12 @@
 	<f3-addr>
 		<h1>Address (normal)</h1>
 		<f3-bits>&ctdot; 01 0nnn yyyy yxxx xx--</f3-bits>
-		<dl>
-			<dt>x<dd>x index
-			<dt>y<dd>y index
-		</dl>
-	</f3-addr>
-	<f3-addr>
 		<h1>Address (extend mode)</h1>
 		<f3-bits>&ctdot; 01 nnny yyyy xxxx xx--</f3-bits>
 		<dl>
-			<dt>x<dd>x index
-			<dt>y<dd>y index
+			<dt>x<dd>x index (0-31 or 0-63)
+			<dt>y<dd>y index (0-31)
+			<dt>n<dd>playfield index (0-5)
 		</dl>
 	</f3-addr>
 	<f3-data>
