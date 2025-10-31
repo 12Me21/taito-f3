@@ -4,16 +4,24 @@
 	f3-bits, f3-struct dt {
 		font-family: courier, monospace;
 		word-spacing: -0.25ch;
-		font-size: 1.5em;
+		font-size: 1.25em;
 	}
-	f3-struct, f3-struct > * {
+	f3-struct, f3-addr, f3-data {
 		display: block;
+	}
+	f3-variants {
+		display: block;
+		border-left: solid black;
+		padding: 0.5em 0 0.5em 1em;
 	}
 	f3-bits {
 		border: 2px inset;
 		display: inline-block;
 		padding: 0 0.5ch;
 		white-space: pre-wrap;
+	}
+	f3-bits >* {
+		font-weight: normal;
 	}
 	f3-bits b:nth-child(2n) {
 		color: maroon;
@@ -22,26 +30,69 @@
 		border-left: solid black;
 		padding: 0.5em 0 0.5em 1em;
 	}
+	f3-struct dt {
+		margin-right: 0.5em;
+	}
+	f3-struct dt::after {
+		content: ":";
+		font-weight: normal;
+	}
+	f3-struct dl {
+		display: grid;
+		grid: auto-flow / max-content 1fr;
+		margin-left: 1em;
+		margin-top: 0.5em;
+		margin-bottom: 0em;
+	}
+	f3-struct f3-addr dl {
+		margin-bottom: 0.5em;
+	}
+	f3-struct dl>* {
+		align-self: baseline;
+	}
+	f3-struct dd {
+		margin: 0;
+	}
+	f3-struct h1 {
+		margin: 0;
+		font-size: 1.5em;
+		margin-bottom: 0.5em;
+	}
+	f3-struct f3-addr h1, f3-struct f3-data h1 {
+		font-size: 1.2em;
+		margin-bottom: 0;
+	}
 </style>
 
 <f3-struct>
+	<h1>Playfield Tile</h1>
 	<f3-addr>
+		<h1>Address (normal)</h1>
 		<f3-bits>&ctdot; 01 0nnn yyyy yxxx xx--</f3-bits>
 		<dl>
 			<dt>x<dd>x index
 			<dt>y<dd>y index
 		</dl>
 	</f3-addr>
+	<f3-addr>
+		<h1>Address (extend mode)</h1>
+		<f3-bits>&ctdot; 01 nnny yyyy xxxx xx--</f3-bits>
+		<dl>
+			<dt>x<dd>x index
+			<dt>y<dd>y index
+		</dl>
+	</f3-addr>
 	<f3-data>
+		<h1>Data</h1>
 		<f3-bits>hvTT ppsc cccc cccc  tttt tttt tttt tttt</f3-bits>
 		<dl>
-			<dt>t (0+16)<dd>tile index (lower bits)
-			<dt>c (16+9)<dd>palette
-			<dt>s (25+1)<dd>blend select
-			<dt>p (26+2)<dd>texture bit planes
-			<dt>T (28+2)<dd>tile index (upper bits)
-			<dt>v (30+1)<dd>vertical flip
-			<dt>h (31+1)<dd>horizontal flip
+			<dt>t<dd>tile index (lower bits)
+			<dt>c<dd>palette
+			<dt>s<dd>blend select
+			<dt>p<dd>texture bit planes
+			<dt>T<dd>tile index (upper bits)
+			<dt>v<dd>vertical flip
+			<dt>h<dd>horizontal flip
 		</dl>
 	</f3-data>
 </f3-struct>
