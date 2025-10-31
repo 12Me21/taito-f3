@@ -5,6 +5,7 @@
 		font-family: courier, monospace;
 		word-spacing: -0.25ch;
 		font-size: 1.25em;
+		line-height: 22px;
 	}
 	f3-struct, f3-addr, f3-data {
 		display: block;
@@ -69,12 +70,15 @@
 	<f3-addr>
 		<h1>Address (normal)</h1>
 		<f3-bits>&ctdot; 01 0nnn yyyy yxxx xx--</f3-bits>
+		<dl>
+			<dt>x<dd>x index (0-31)
+			<dt>y<dd>y index (0-31)
+			<dt>n<dd>playfield index (0&ndash;3=regular, 4-5=alternate data for 2-3)
+		</dl>
 		<h1>Address (extend mode)</h1>
 		<f3-bits>&ctdot; 01 nnny yyyy xxxx xx--</f3-bits>
 		<dl>
-			<dt>x<dd>x index (0-31 or 0-63)
-			<dt>y<dd>y index (0-31)
-			<dt>n<dd>playfield index (0-5)
+			<dt>x<dd>x index (0-63)
 		</dl>
 	</f3-addr>
 	<f3-data>
