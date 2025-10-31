@@ -1,0 +1,53 @@
+<!doctype html>
+
+<style>
+	f3-bits, f3-struct dt {
+		font-family: courier, monospace;
+		word-spacing: -0.25ch;
+		font-size: 1.5em;
+	}
+	f3-struct, f3-struct > * {
+		display: block;
+	}
+	f3-bits {
+		border: 2px inset;
+		display: inline-block;
+		padding: 0 0.5ch;
+		white-space: pre-wrap;
+	}
+	f3-bits b:nth-child(2n) {
+		color: maroon;
+	}
+	f3-struct {
+		border-left: solid black;
+		padding: 0.5em 0 0.5em 1em;
+	}
+</style>
+
+<f3-struct>
+	<f3-addr>
+		<f3-bits>&ctdot; 01 0nnn yyyy yxxx xx--</f3-bits>
+		<dl>
+			<dt>x<dd>x index
+			<dt>y<dd>y index
+		</dl>
+	</f3-addr>
+	<f3-data>
+		<f3-bits>hvTT ppsc cccc cccc  tttt tttt tttt tttt</f3-bits>
+		<dl>
+			<dt>t (0+16)<dd>tile index (lower bits)
+			<dt>c (16+9)<dd>palette
+			<dt>s (25+1)<dd>blend select
+			<dt>p (26+2)<dd>texture bit planes
+			<dt>T (28+2)<dd>tile index (upper bits)
+			<dt>v (30+1)<dd>vertical flip
+			<dt>h (31+1)<dd>horizontal flip
+		</dl>
+	</f3-data>
+</f3-struct>
+
+<script>
+	for (let e of document.querySelectorAll('f3-bits')) {
+		e.innerHTML = e.innerHTML.replace(/([a-zA-Z])( ?\1)*/g, "<b>$&</b>")
+	}
+</script>
