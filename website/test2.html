@@ -11,6 +11,9 @@
 		display: flex;
 		flex-direction: column;
 	}
+	f3-struct {
+		margin-bottom: 1em;
+	}
 	f3-bits {
 		border: 2px inset;
 		display: inline-block;
@@ -89,7 +92,7 @@
 	<h1>Playfield Tile</h1>
 	<f3-addr>
 		<h1>Address (normal)</h1>
-		<f3-bits>&ctdot; 01 00nn yyyy yxxx xx--</f3-bits>
+		<f3-bits><ruby><rb>&ctdot; 01</rb><rt>$601....</rt></ruby> 0nnn yyyy yxxx xx--</f3-bits>
 		<dl>
 			<dt>x<dd>x index (0-31)
 			<dt>y<dd>y index (0-31)
@@ -110,7 +113,7 @@
 		<f3-bits>hvTT ppsc cccc cccc  tttt tttt tttt tttt</f3-bits>
 		<dl>
 			<dt>t<dd>tile index (lower bits)
-			<dt>c<dd>palette
+			<dt>c<dd>palette (0-511)
 			<dt>s<dd>blend select
 			<dt>p<dd>texture bit planes (bits per pixel select)
 				<dl class=inline>
@@ -126,8 +129,32 @@
 	</f3-data>
 </f3-struct>
 
+
+<f3-struct>
+	<h1>Text Tile</h1>
+	<f3-addr>
+		<h1>Address</h1>
+		<f3-bits>&ctdot; 01 110y yyyy yxxx xxx-</f3-bits>
+		<dl>
+			<dt>x<dd>x index (0-63)
+			<dt>y<dd>y index (0-63)
+		</dl>
+	</f3-addr>
+	<f3-data>
+		<h1>Data</h1>
+		<f3-bits>hccc cccv tttt tttt</f3-bits>
+		<dl>
+			<dt>t<dd>tile index (0-255)
+			<dt>v<dd>vertical flip
+			<dt>c<dd>palette (0-63)
+			<dt>h<dd>horizontal flip
+		</dl>
+	</f3-data>
+</f3-struct>
+
+
 <script>
 	for (let e of document.querySelectorAll('f3-bits')) {
-		e.innerHTML = e.innerHTML.replace(/([a-zA-Z])( ?\1)*/g, "<b>$&</b>")
+	//	e.innerHTML = e.innerHTML.replace(/([a-zA-Z])( ?\1)*/g, "<b>$&</b>")
 	}
 </script>
