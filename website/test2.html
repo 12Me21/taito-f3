@@ -8,18 +8,15 @@
 		line-height: 22px;
 	}
 	f3-struct, f3-addr, f3-data {
-		display: block;
-	}
-	f3-variants {
-		display: block;
-		border-left: solid black;
-		padding: 0.5em 0 0.5em 1em;
+		display: flex;
+		flex-direction: column;
 	}
 	f3-bits {
 		border: 2px inset;
 		display: inline-block;
 		padding: 0 0.5ch;
 		white-space: pre-wrap;
+		align-self: flex-start;
 	}
 	f3-bits >* {
 		font-weight: normal;
@@ -33,6 +30,7 @@
 	}
 	f3-struct dt {
 		margin-right: 0.5em;
+		justify-self: right;
 	}
 	f3-struct dt::after {
 		content: ":";
@@ -58,10 +56,32 @@
 		margin: 0;
 		font-size: 1.5em;
 		margin-bottom: 0.5em;
+		margin-left: -0.25em;
 	}
 	f3-struct f3-addr h1, f3-struct f3-data h1 {
 		font-size: 1.2em;
+		margin: 0;
+	}
+	f3-struct dl dl {
+		margin-left: 0;
+		margin-top: 0;
 		margin-bottom: 0;
+	}
+	f3-struct dl dl dt {
+		font-size: unset;
+	}
+	dl.inline {
+		display: flex;
+		flex-wrap: wrap;
+	}
+	dl.inline > dd:not(:last-child) {
+		margin-right: 1em;
+	}
+	dl.inline > dt {
+		margin-right: 0em;
+	}
+	dl.inline > dt::after {
+		content: "=";
 	}
 </style>
 
@@ -69,11 +89,15 @@
 	<h1>Playfield Tile</h1>
 	<f3-addr>
 		<h1>Address (normal)</h1>
-		<f3-bits>&ctdot; 01 0nnn yyyy yxxx xx--</f3-bits>
+		<f3-bits>&ctdot; 01 00nn yyyy yxxx xx--</f3-bits>
 		<dl>
 			<dt>x<dd>x index (0-31)
 			<dt>y<dd>y index (0-31)
-			<dt>n<dd>playfield index (0&ndash;3=regular, 4-5=alternate data for 2-3)
+			<dt>n<dd>playfield index
+				<dl>
+					<dt>0,1,2,3<dd>regular playfield data
+					<dt>4,5<dd>alternate data for playfields 2 and 3
+				</dl>
 		</dl>
 		<h1>Address (extend mode)</h1>
 		<f3-bits>&ctdot; 01 nnny yyyy xxxx xx--</f3-bits>
@@ -88,7 +112,13 @@
 			<dt>t<dd>tile index (lower bits)
 			<dt>c<dd>palette
 			<dt>s<dd>blend select
-			<dt>p<dd>texture bit planes
+			<dt>p<dd>texture bit planes (bits per pixel select)
+				<dl class=inline>
+					<dt>0<dd>4bpp
+					<dt>1<dd>5bpp
+					<dt>2<dd>?
+					<dt>3<dd>6bpp
+				</dl>
 			<dt>T<dd>tile index (upper bits)
 			<dt>v<dd>vertical flip
 			<dt>h<dd>horizontal flip
