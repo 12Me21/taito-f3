@@ -21,15 +21,22 @@ scroll offsets:
  - 0b1100 - ignore both
 - scroll is applied BEFORE rendering the current sprite(!) (i.e. using the set scroll bits on a visible sprite will render it at 2x the listed position)
 - basically, the sequence of events is
- - POS1.x = read from the sprite entry
- - POS1.y = read from sprite entry (if [the old value of] Y_LOCK is 0)
+ - POS0 = read from sprite entry
+ - set the scroll(s) from POS0, if specified
+ - add the scroll(s) to POS0, if specified
+ 
+ - POS1.y = POS0.y (if [the old value of] Y_LOCK is 0)
  - read Y_LOCK and PALETTE_LOCK and PALETTE1 (and block control bits and everything else in word 4) from sprite entry
  - PALETTE2 = PALETTE1 (if PALETTE_LOCK is 0)
- - set the scroll(s) from POS1, if specified
- - add the scroll(s) to POS1, if specified
- - set (from POS1.x) or increment or leave unchanged, POS2.x
- - set (from POS1.y) or increment, POS2.y
- - render the sprite at POS2 with PALETTE2
+ 
+ - POS2.y = POS1.y (if Y_MODE is 0)
+ 
+ - POS2.x = POS1.x = POS0.x (if X_MODE is 0)
+ - POS2.x = POS1.x (if X_MODE is 1)
+ - POS1.x = POS2.x; POS2.x = POS0.x (if X_MODE is 2)
+ - POS1.x = POS2.x (if X_MODE is 3)
+ 
+ - render the sprite at POS2 (resetting POS2.x from POS1.x after each row), with PALETTE2 and the flip settings etc.
  
 - the x and y positions are 12 bits (e.g. 0x7000 = 0x0000 ≠ 0x0800)
 

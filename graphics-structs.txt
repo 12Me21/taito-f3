@@ -10,7 +10,7 @@ $000FC x [0,64) x index
 $01F00 y [0,32) y index
 $07000 n [0,6)  tilemap number (add 2 for alt tilemap)
 
-### data: [xytt ppvc cccc cccc] [tttt tttt tttt tttt]
+### data: {xytt ppvc cccc cccc} {tttt tttt tttt tttt}
 $0000FFFF t [0,256K) tile index (upper bits unemulated)
 $30000000 /
 $01FF0000 c [0,512) palette row
@@ -37,7 +37,7 @@ $8000 y (bool)  vertical flip
 
 ## text glyph row:
 
-### address: [...01 111t tttt tttr rr--]
+### address: @[...01 111t tttt tttr rr--]
 $00001C r [0,8)   row index
 $001FE0 t [0,256) tile index
 
@@ -46,7 +46,7 @@ $001FE0 t [0,256) tile index
 
 ## pixel glyph row:
 
-### address: [...1b xxxx xxyy yyyr rr--]
+### address: @[...1b xxxx xxyy yyyr rr--]
 $00001C r [0,8)  row index
 $00FFE0 y [0,32) layer y index ÷8
 $00FFE0 x [0,64) layer x index ÷8
@@ -73,15 +73,15 @@ $08000 b [0,4)    bank
 ### data[3]: [c... yyyy yyyy yyyy]
  y - y position (signed int)
  c - 1 = command mode (uses data[5])
-### data[4]: [xx?y mlvh cccc cccc]
+### data[4]: [xx?y Mpvh cccc cccc]
  c - palette
  h - horizontal flip
  v - vertical flip
- l - reuse prev palette
+ p - palette lock: 1=reuse previous palette, 0=use new palette
 tessellation controls:
- m - "multi" - 0=following sprite sets block origin from position
- y - 0=reset y (use block origin if multi is 1, otherwise use position), 1=increment y
- x - 0=set x from position, 1=x unchanged, 2=inc x(broken), 3=inc x
+ M - y_lock "multi" - affects following sprite: 1=don't update block origin and zoom
+ y - how to set POS2.y: 0=from block origin, 1=increment by sprite size
+ x - how to set POS2.x: 0=from data, 1=leave unchanged, 2=increment (broken), 3=increment (normal)
 
 ### data[5] - see sprite-ram.txt
 
