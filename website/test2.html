@@ -25,7 +25,7 @@
 		font-weight: normal;
 	}
 	f3-bits b:nth-child(2n) {
-		color: maroon;
+		color: red;
 	}
 	f3-struct {
 		border-left: solid black;
@@ -88,6 +88,10 @@
 	}
 </style>
 
+<p>to help you get your bearings, here is an overview of the layout of graphics ram: (todo: baby mode table)</p>
+
+<p>There are four playfields consisting of a 32x32 or 64x32 grid of 16x16px tiles.</p>
+
 <f3-struct>
 	<h1>Playfield Tile</h1>
 	<f3-addr>
@@ -95,13 +99,13 @@
 		<div><f3-bits>&ctdot; 01 0nnn yyyy yxxx xx--</f3-bits> (normal)</div>
 		<div><f3-bits>&ctdot; 01 nnny yyyy xxxx xx--</f3-bits> (extend mode)</div>
 		<dl>
-			<dt>x<dd>x index (0-31 or 0-64)
-			<dt>y<dd>y index (0-31)
 			<dt>n<dd>playfield index
 				<dl>
 					<dt>0,1,2,3<dd>regular playfield data
 					<dt>4,5<dd>alternate data for playfields 2 and 3
 				</dl>
+			<dt>y<dd>y index (0-31)
+			<dt>x<dd>x index (0-31 or 0-64)
 		</dl>
 	</f3-addr>
 	<f3-data>
@@ -125,6 +129,7 @@
 	</f3-data>
 </f3-struct>
 
+<p>the pivot layer is a 64x64 grid of 8x8 tiles, which gets its textures from RAM instead of ROM. it can either be in "text mode" (where the texture is looked up based on the tile's id) or "pixel mode" (where each cell has a unique texture, whose address depends on its position in the grid, effectively giving you a 512x256 bitmap, though the pixels are in a weird order)</p>
 
 <f3-struct>
 	<h1>Text Tile</h1>
@@ -132,8 +137,8 @@
 		<h1>Address</h1>
 		<f3-bits>&ctdot; 01 110y yyyy yxxx xxx-</f3-bits>
 		<dl>
-			<dt>x<dd>x index (0-63)
 			<dt>y<dd>y index (0-63)
+			<dt>x<dd>x index (0-63)
 		</dl>
 	</f3-addr>
 	<f3-data>
@@ -148,6 +153,45 @@
 	</f3-data>
 </f3-struct>
 
+<f3-struct>
+	<h1>Text Glyph</h1>
+	<f3-addr>
+		<h1>Address</h1>
+		<f3-bits>&ctdot; 01 111t tttt ttt- ----</f3-bits>
+		<dl>
+			<dt>t<dd>tile index (0-255)
+		</dl>
+	</f3-addr>
+	<f3-data>
+		<h1>Data</h1>
+		<div><f3-bits>bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb</f3-bits> × 8</div>
+		<dl>
+			<dt>b<dd>8×8 bitmap, 4 bits per pixel
+		</dl>
+	</f3-data>
+</f3-struct>
+
+<p>pixel mode is similar to text mode, but the data for each tile is fetched based on the tile's position rather than the tile index in the text data.</p>
+
+<f3-struct>
+	<h1>Pixel Data Cell</h1>
+	<f3-addr>
+		<h1>Location:</h1>
+		<f3-bits>&ctdot; 1b xxxx xxyy yyy- ----</f3-bits>
+		<dl>
+			<dt>b<dd>bank
+			<dt>x<dd>x index (0-63)
+			<dt>y<dd>y index (0-31)
+		</dl>
+	</f3-addr>
+	<f3-data>
+		<h1>Data</h1>
+		<div><f3-bits>bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb</f3-bits> × 8</div>
+		<dl>
+			<dt>b<dd>8×8 bitmap, 4 bits per pixel
+		</dl>
+	</f3-data>
+</f3-struct>
 
 <script>
 	for (let e of document.querySelectorAll('f3-bits')) {

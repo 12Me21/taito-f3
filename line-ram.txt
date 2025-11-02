@@ -191,6 +191,7 @@ terms:
 "blend mode" / "alpha mode" - which pixels a layer contributes to (left/right/both/neither)
 "blend select" / "blend value select" - setting which determines which of the 2 possible blend values will be used for a given half-pixel
 "half-pixel" - one of two pixels that is sent to the FDA for each screen pixel (todo: refine this concept. does this include the blend value sent alongside it? or does it include the blend value select bit)
+"tile" - does this mean one of the cells within the tilemap (i.e. the 32 bit value containing the tile id, palette, etc.) or does it mean the texture (hence "tile id")? this is a problem we need to resolve. Either: we call the data "tiles" and we MUST stop saying "tile id" (perhaps should be called "character id" or "glyph id" or "texture id" or something) or we call them "cells" or something else, and then "tile id" is ok to say (because tile means the texture)
 
 pivot port latch:
 address: [*010 0001 000l llll lll-]
