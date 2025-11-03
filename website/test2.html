@@ -193,6 +193,40 @@
 	</f3-data>
 </f3-struct>
 
+<p>clip planes
+	<dl>
+		<dt>
+	</dl>
+
+<f3-struct>
+	<h1>Section 7.0 ("B000")</h1>
+	<f3-data>
+		<f3-bits>BBEI cccc iiii pppp</f3-bits>
+		<dl>
+			<dt>p<dd><i>playfield 0</i> <i>priority</i> (0-15)
+			<dt>i<dd><i>playfield 0</i> <i>clip planes</i> modes<dl class=inline><dt>0<dd>hide inside<dt>1<dd>hide outside</dl>
+			<dt>c<dd><i>playfield 0</i> <i>clip planes</i> enables<dl class=inline><dt>0<dd>disable<dt>1<dd>enable</dl>
+			<dt>I<dd><i>playfield 0</i> clip global invert<dl class=inline><dt>0<dd>normal<dt>1<dd>invert clipping</dl>
+			<dt>E<dd><i>playfield 0</i> display enable<dl class=inline><dt>0<dd>off<dt>1<dd>on</dl>
+		</dl>
+	</f3-data>
+	
+	
+[]
+ p - {playfield 0} priority
+ iiii - {playfield 0} clip modes: 0 = hide inside, 1 = hide outside
+ cccc - {playfield 0} 1 = enable clip plane
+ I - {playfield 0} 1 = invert clipping
+ E - {playfield 0} 1 = enable display
+ B - {playfield 0} blend mode. 0=both, 1=left, 2=right, 3=neither
+"B200" (7.1)
+- same for {playfield 1}
+"B400" (7.2)
+- same for {playfield 2}
+"B600" (7.3)
+- same for {playfield 3}
+</f3-struct>
+
 <script>
 	for (let e of document.querySelectorAll('f3-bits')) {
 		e.innerHTML = e.innerHTML.replace(/([a-zA-Z])( ?\1)*/g, "<b>$&</b>")
