@@ -56,6 +56,7 @@
 		margin: 0;
 	}
 	f3-struct h1 {
+		//font-style: italic;
 		margin: 0;
 		font-size: 1.5em;
 		margin-bottom: 0.5em;
@@ -73,18 +74,21 @@
 	f3-struct dl dl dt {
 		font-size: unset;
 	}
-	dl.compact {
+	dl[compact] {
 		display: flex;
 		flex-wrap: wrap;
 	}
-	dl.compact > dd:not(:last-child) {
+	dl[compact] > dd:not(:last-child) {
 		margin-right: 1em;
 	}
-	dl.compact > dt {
+	dl[compact] > dt {
 		margin-right: 0em;
 	}
-	dl.compact > dt::after {
+	dl[compact] > dt::after {
 		content: "=";
+	}
+	abbr {
+		font-variant-caps: small-caps;
 	}
 </style>
 
@@ -116,7 +120,7 @@
 			<dt>c<dd>palette (0-511)
 			<dt>s<dd>blend select
 			<dt>p<dd>texture bit planes (bits per pixel select)
-				<dl class=compact>
+				<dl compact>
 					<dt>0<dd>4bpp
 					<dt>1<dd>5bpp
 					<dt>2<dd>?
@@ -195,46 +199,171 @@
 
 <f3-struct>
 	<h1>common layer properties</h1>
-	<dl class=>
-		<dt>display enable<dd><dl class=compact><dt>0<dd>off<dt>1<dd>on</dl>(todo: hm does disabling turn off the updating of y position based on scale?)
+	<dl>
+		<dt>display enable<dd><dl compact><dt>0<dd>off<dt>1<dd>on</dl>(todo: hm does disabling turn off the updating of y position based on scale?)
 		<dt>priority<dd>0-15. higher = above other things. two layers with the same priority can cause a conflict.
-		<dt>clip invert<dd><dl class=compact><dt>0<dd>normal<dt>1<dd>inverted</dl>
-		<dt>clip plane enable ×4<dd>one per clip plane<dl class=compact><dt>0<dd>off<dt>1<dd>on</dl>
-		<dt>clip plane mode ×4<dd>one per clip plane<dl class=compact><dt>0<dd>hide inside<dt>1<dd>hide outside</dl>
+		<dt>clip invert<dd><dl compact><dt>0<dd>normal<dt>1<dd>inverted</dl>
+		<dt>clip plane enable ×4<dd>one per clip plane<dl compact><dt>0<dd>off<dt>1<dd>on</dl>
+		<dt>clip plane mode ×4<dd>one per clip plane<dl compact><dt>0<dd>hide inside<dt>1<dd>hide outside</dl>
 		<dt>blend mode<dd>which half-pixel(s) to contribute to. encoding varies by layer
 		<dt>blend select<dd>which of the 2 possible blend values will be used for a given half-pixel
-		<dt>mosaic enable<dd><dl class=compact><dt>0<dd>off<dt>1<dd>on</dl>
+		<dt>mosaic enable<dd><dl compact><dt>0<dd>off<dt>1<dd>on</dl>
 	</dl>
+</f3-struct>
+
+<f3-struct>
+	<h1>Section 2.0 "6000" - Misc Blending, Pivot Mode</h1>
+	<f3-data>
+		<f3-bits>B?p? oNAm ddcc bbaa</f3-bits>
+		<dl>
+			<dt>a<dd><i>sprite group 0</i>: <i>blend mode</i><dl compact><dt>0<dd>neither<dt>1<dd>left<dt>2<dd>right<dt>3<dd>both</dl>
+			<dt>b<dd><i>sprite group 1</i>: <i>blend mode</i>
+			<dt>c<dd><i>sprite group 2</i>: <i>blend mode</i>
+			<dt>d<dd><i>sprite group 3</i>: <i>blend mode</i>
+			<dt>m<dd><i>hicolor layer</i>: <i>blend value select</i>
+			<dt>A<dd><i>pivot</i>: <i>blend value select</i>
+			<dt>N<dd><i>background color</i>: <i>blend value select</i>
+			<dt>o<dd>tilemap infinite vertical stretch?
+			<dt>p<dd><i>pivot</i>: mode<dl compact><dt>0<dd>text<dt>1<dd>pixel</dl>
+			<dt>B<dd><i>pivot</i>: pixel data location<dl compact><dt>0<dd>$620000 (conflicts with lineram)<dt>1<dd>$630000</dl>
+		</dl>
+	</f3-data>
+</f3-struct>
+
+<f3-struct>
+	<h1>Section 2.1 "6200" - Blend Alpha Values</h1>
+	<f3-data>
+		<f3-bits>LLLL llll RRRR rrrr</f3-bits>
+		<dl>
+			<dt>r<dd>right half-pixel, blend select 0<br>alpha = clamp((15-value)/8, 0, 1)<dl compact><dt>$F<dd>0%<dt>$B<dd>50%<dt>$0-$7<dd>100%</dl>
+			<dt>R<dd>right half-pixel, blend select 1
+			<dt>l<dd>left half-pixel, blend select 0
+			<dt>L<dd>left half-pixel, blend select 1
+		</dl>
+	</f3-data>
 </f3-struct>
 	
 <f3-struct>
-	<h1>Section 7.0 ("B000")</h1>
+	<h1>Section 2.2 "6400" - Mosaic and <abbr>Fda</abbr> Settings</h1>
+	<f3-data>
+		<f3-bits>ffb? S?hs mmmm DCBA</f3-bits>
+		<dl>
+			<dt>A<dd><i>playfield 0</i>: <i>mosaic enable</i>
+			<dt>B<dd><i>playfield 1</i>: <i>mosaic enable</i>
+			<dt>C<dd><i>playfield 2</i>: <i>mosaic enable</i>
+			<dt>D<dd><i>playfield 3</i>: <i>mosaic enable</i>
+			<dt>m<dd>mosaic strength: samples every [16&minus;m] pixels
+			<dt>s<dd><i>sprites</i>: <i>mosaic enable</i>
+			<dt>h<dd><i>hicolor layer</i>: <i>mosaic enable</i>
+			<dt>S<dd>?? shadow mode?
+			<dt>b<dd><i><abbr>fda</abbr></i>: horizontal blur<dl compact><dt>0<dd>blurred<dt>1<dd>normal</dl>
+			<dt>f<dd><i><abbr>fda</abbr></i>: mode<dl><dt>0<dd>15-bit <abbr>rgb</abbr> format (legacy mode)<dt>1<dd>normal mode<dt>2<dd>no blending, display half-pixels separately (debug mode?)<dt>3<dd>invalid? first pixel repeats all the way across</dl>
+		</dl>
+	</f3-data>
+</f3-struct>
+
+<f3-struct>
+	<h1>Section 2.3 "6600" - Background Color Index</h1>
+	<f3-data>
+		<f3-bits>...b bbbb bbbb bbbb</f3-bits>
+		<dl>
+			<dt>b<dd><i>background color</i>: <i>color index</i>
+		</dl>
+	</f3-data>
+</f3-struct>
+
+<f3-struct>
+	<h1>Section 3.0 "7000" - Hicolor Layer Blending</h1>
+	<f3-data>
+		<f3-bits>BBEI cccc iiii pppp</f3-bits>
+		(same as playfield 0, but for the hicolor layer)
+	</f3-data>
+</f3-struct>
+
+<f3-struct>
+	<h1>Section 3.1 "7200" - Pivot Layer Blending</h1>
+	<f3-data>
+		<f3-bits>B?EI cccc iiii pppp</f3-bits>
+		<dl>
+			<dt>p<dd><i>pivot</i>: <i>priority</i> (0-15)
+			<dt>i<dd><i>pivot</i>: <i>clip plane modes</i>
+			<dt>c<dd><i>pivot</i>: <i>clip plane enables</i>
+			<dt>I<dd><i>pivot</i>: <i>clip invert</i>
+			<dt>E<dd><i>pivot</i>: <i>enable</i>
+			<dt>B<dd><i>pivot</i>: <i>blend mode</i><dl compact><dt>0<dd>both<dt>1<dd>left</dl>
+		</dl>
+	</f3-data>
+</f3-struct>
+
+<f3-struct>
+	<h1>Section 3.2 "7400" - Sprite Blending</h1>
+	<f3-data>
+		<f3-bits>DCBA ??EI cccc iiii</f3-bits>
+		<dl>
+			<dt>i<dd><i>sprites</i>: <i>clip plane modes</i>
+			<dt>c<dd><i>sprites</i>: <i>clip plane enables</i>
+			<dt>I<dd><i>sprites</i>: <i>clip invert</i>
+			<dt>E<dd><i>sprites</i>: <i>enable</i>
+			<dt>A<dd><i>sprite group 0</i>: <i>blend select</i>
+			<dt>B<dd><i>sprite group 1</i>: <i>blend select</i>
+			<dt>C<dd><i>sprite group 2</i>: <i>blend select</i>
+			<dt>D<dd><i>sprite group 3</i>: <i>blend select</i>
+		</dl>
+	</f3-data>
+</f3-struct>
+
+<f3-struct>
+	<h1>Section 3.3 "7600" - Sprite Group Priorities</h1>
+	<f3-data>
+		<f3-bits>dddd cccc bbbb aaaa</f3-bits>
+		<dl>
+			<dt>a<dd><i>sprite group 0</i>: <i>priority</i>
+			<dt>b<dd><i>sprite group 1</i>: <i>priority</i>
+			<dt>c<dd><i>sprite group 2</i>: <i>priority</i>
+			<dt>d<dd><i>sprite group 3</i>: <i>priority</i>
+		</dl>
+	</f3-data>
+</f3-struct>
+
+
+"7000" (3.0)
+[BBEI cccc iiii pppp]
+ - {mystery layer} see b000
+ - todo: check blend mode
+"7200" (3.1)
+[B?EI cccc iiii pppp]
+ B - {pivot} blend mode: 0 = both, 1 = left
+ rest - {pivot} see b000
+"7400" (3.2)
+[AAAA ??EI cccc iiii]
+ - {sprites} see b000
+ AAAA - {sprite group n} blend value select
+"7600" (3.3)
+[dddd cccc bbbb aaaa]
+ a - {sprite group 0} priority
+ b - {sprite group 1} priority
+ c - {sprite group 2} priority
+ d - {sprite group 3} priority
+
+
+<f3-struct>
+	<h1>Section 7.0 ("B000") - Playfield 0 Blending</h1>
 	<f3-data>
 		<f3-bits>BBEI cccc iiii pppp</f3-bits>
 		<dl>
-			<dt>p<dd><i>playfield 0</i> <i>priority</i> (0-15)
-			<dt>i<dd><i>playfield 0</i> <i>clip interval modes</i>
-			<dt>c<dd><i>playfield 0</i> <i>clip interval enables</i>
-			<dt>I<dd><i>playfield 0</i> <i>clip invert</i>
-			<dt>E<dd><i>playfield 0</i> <i>enable</i>
-			<dt>B<dd><i>playfield 0</i> <i>blend mode</i>
+			<dt>p<dd><i>playfield 0</i>: <i>priority</i> (0-15)
+			<dt>i<dd><i>playfield 0</i>: <i>clip plane modes</i>
+			<dt>c<dd><i>playfield 0</i>: <i>clip plane enables</i>
+			<dt>I<dd><i>playfield 0</i>: <i>clip invert</i>
+			<dt>E<dd><i>playfield 0</i>: <i>enable</i>
+			<dt>B<dd><i>playfield 0</i>: <i>blend mode</i><dl compact><dt>0<dd>both<dt>1<dd>left<dt>2<dd>right<dt>3<dd>neither</dl>
 		</dl>
 	</f3-data>
-	
-	
-[]
- p - {playfield 0} priority
- iiii - {playfield 0} clip modes: 0 = hide inside, 1 = hide outside
- cccc - {playfield 0} 1 = enable clip plane
- I - {playfield 0} 1 = invert clipping
- E - {playfield 0} 1 = enable display
- B - {playfield 0} blend mode. 0=both, 1=left, 2=right, 3=neither
-"B200" (7.1)
-- same for {playfield 1}
-"B400" (7.2)
-- same for {playfield 2}
-"B600" (7.3)
-- same for {playfield 3}
+</f3-struct>
+
+<f3-struct>
+	<h1>Section 7.2 ("B200")</h1>
+	<div>(same as 7.0, but for playfield 1)</div>
 </f3-struct>
 
 <script>
