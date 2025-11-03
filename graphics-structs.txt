@@ -68,8 +68,8 @@ $08000 b [0,4)    bank
  y - y zoom (same)
 ### data[2]: [iiss xxxx xxxx xxxx]
  x - x position (signed int)
- s - set scrolls (00 = neither, 01 = local, 10 = global, 11 = both)
- i - use scrolls (00/10 = use both, 01 = global only, 11 = neither)
+ s - set scrolls from position (00 = neither, 01 = local, 10 = global, 11 = both)
+ i - use scroll offsets (00/10 = both, 01 = global only, 11 = neither)
 ### data[3]: [c... yyyy yyyy yyyy]
  y - y position (signed int)
  c - 1 = command mode (uses data[5])

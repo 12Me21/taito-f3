@@ -179,20 +179,6 @@ alpha = clamp((15-value)/8, 0, 1)  ($F = 0%, $B = 50%, $7+ = 100%)
 - same for {playfield 3}
 
 
-terms:
-"playfield" / "bg layer" / "tilemap" / "scr" (which do we use? maybe one term for the object on the screen and one for the memory it refers to. e.g. we refer to the "playfield"'s scroll, but we say a playfield uses the alternate "tilemap")
-"clip plane" - one of the four clipping intervals (why is it called a "plane"?)
-"sprite group" / "sprite priority group" - sprites are split into 4 groups based on the upper 2 bits of their palette (00,40,80,C0). these can have different effects applied to them, and also   (todo explain priority i forgot how that works)
-"blend value" - ranges from $7 (100%) to $F (0%). $B is 50%. represents an alpha value. there are 4 of these, 2 for the left half-pixel and 2 for the right half-pixel
-"mosaic" - horizontal pixelization effect
-"background color" - color drawn behind everything else (used if nothing else is displayed there)
-"palette index"/number/offset - todo: we need names for a full palette index (i.e. address/4) as well as the palette offset (just the upper bits) supported by individual sprites, tiles, etc. (idea: "color" = an index into color ram, "rgb color" = a real color, "palette" = the high bits of the color (i.e. color = color | palette<<4) set in the tile and sprite data etc.)
-"priority" - blending priority (determines which 2 layers are chosen for blending etc) not to be confused with sprite priority, which only matters while rendering to the framebuffer, and is mapped to priority by lineram 7600
-"blend mode" / "alpha mode" - which pixels a layer contributes to (left/right/both/neither)
-"blend select" / "blend value select" - setting which determines which of the 2 possible blend values will be used for a given half-pixel
-"half-pixel" - one of two pixels that is sent to the FDA for each screen pixel (todo: refine this concept. does this include the blend value sent alongside it? or does it include the blend value select bit)
-"tile" - does this mean one of the cells within the tilemap (i.e. the 32 bit value containing the tile id, palette, etc.) or does it mean the texture (hence "tile id")? this is a problem we need to resolve. Either: we call the data "tiles" and we MUST stop saying "tile id" (perhaps should be called "character id" or "glyph id" or "texture id" or something) or we call them "cells" or something else, and then "tile id" is ok to say (because tile means the texture)
-
 pivot port latch:
 address: [*010 0001 000l llll lll-]
 l [0,256) scanline
