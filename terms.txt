@@ -21,6 +21,10 @@ terms:
 
 "texture" - the bitmap that a sprite, tilemap tile, or text cell is rendered from.
 
-"pivot layer" - one of the graphics layers. 64x64 grid of 8x8px tiles, with textures defined in RAM. in text mode, each tile's texture depends on its texture id. in pixel mode, each tile uses a unique texture, based on its position in the grid. (effectively, a 512x256 (the second half uses the same textures, but with potentially different palette and attributes) bitmap image, though the pixels are in a weird order)
+"pivot layer" - one of the graphics layers. 64x64 grid of 8x8px tiles, with textures defined in RAM.
+this layer has 2 modes: "text mode" and "pixel mode", which affect how textures are mapped to the tiles.
+ in text mode, a tile's texture is chosen based on its texture id, from a set of 256 textures.
+ in pixel mode, each tile in the first 32 rows (the bottom half of the layer reuses the same data) references a distinct texture, effectively creating a 512x256 bitmap image (though the pixels are in a strange order)
+ note that the palette and flip attributes function the same in either mode.
 
 note: taito calls sprites "object"/"OBJ" and tilemaps "screen"/"SCR". i've elected not to use these names.
