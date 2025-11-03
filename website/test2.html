@@ -73,17 +73,17 @@
 	f3-struct dl dl dt {
 		font-size: unset;
 	}
-	dl.inline {
+	dl.compact {
 		display: flex;
 		flex-wrap: wrap;
 	}
-	dl.inline > dd:not(:last-child) {
+	dl.compact > dd:not(:last-child) {
 		margin-right: 1em;
 	}
-	dl.inline > dt {
+	dl.compact > dt {
 		margin-right: 0em;
 	}
-	dl.inline > dt::after {
+	dl.compact > dt::after {
 		content: "=";
 	}
 </style>
@@ -116,7 +116,7 @@
 			<dt>c<dd>palette (0-511)
 			<dt>s<dd>blend select
 			<dt>p<dd>texture bit planes (bits per pixel select)
-				<dl class=inline>
+				<dl class=compact>
 					<dt>0<dd>4bpp
 					<dt>1<dd>5bpp
 					<dt>2<dd>?
@@ -193,21 +193,31 @@
 	</f3-data>
 </f3-struct>
 
-<p>clip planes
-	<dl>
-		<dt>
+<f3-struct>
+	<h1>common layer properties</h1>
+	<dl class=>
+		<dt>display enable<dd><dl class=compact><dt>0<dd>off<dt>1<dd>on</dl>(todo: hm does disabling turn off the updating of y position based on scale?)
+		<dt>priority<dd>0-15. higher = above other things. two layers with the same priority can cause a conflict.
+		<dt>clip invert<dd><dl class=compact><dt>0<dd>normal<dt>1<dd>inverted</dl>
+		<dt>clip plane enable ×4<dd>one per clip plane<dl class=compact><dt>0<dd>off<dt>1<dd>on</dl>
+		<dt>clip plane mode ×4<dd>one per clip plane<dl class=compact><dt>0<dd>hide inside<dt>1<dd>hide outside</dl>
+		<dt>blend mode<dd>which half-pixel(s) to contribute to. encoding varies by layer
+		<dt>blend select<dd>which of the 2 possible blend values will be used for a given half-pixel
+		<dt>mosaic enable<dd><dl class=compact><dt>0<dd>off<dt>1<dd>on</dl>
 	</dl>
-
+</f3-struct>
+	
 <f3-struct>
 	<h1>Section 7.0 ("B000")</h1>
 	<f3-data>
 		<f3-bits>BBEI cccc iiii pppp</f3-bits>
 		<dl>
 			<dt>p<dd><i>playfield 0</i> <i>priority</i> (0-15)
-			<dt>i<dd><i>playfield 0</i> <i>clip planes</i> modes<dl class=inline><dt>0<dd>hide inside<dt>1<dd>hide outside</dl>
-			<dt>c<dd><i>playfield 0</i> <i>clip planes</i> enables<dl class=inline><dt>0<dd>disable<dt>1<dd>enable</dl>
-			<dt>I<dd><i>playfield 0</i> clip global invert<dl class=inline><dt>0<dd>normal<dt>1<dd>invert clipping</dl>
-			<dt>E<dd><i>playfield 0</i> display enable<dl class=inline><dt>0<dd>off<dt>1<dd>on</dl>
+			<dt>i<dd><i>playfield 0</i> <i>clip interval modes</i>
+			<dt>c<dd><i>playfield 0</i> <i>clip interval enables</i>
+			<dt>I<dd><i>playfield 0</i> <i>clip invert</i>
+			<dt>E<dd><i>playfield 0</i> <i>enable</i>
+			<dt>B<dd><i>playfield 0</i> <i>blend mode</i>
 		</dl>
 	</f3-data>
 	
