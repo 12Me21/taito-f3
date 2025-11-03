@@ -16,10 +16,11 @@ terms:
 "sprite list" - the list in graphics ram which the sprites are rendered from
 "sprite [list] entry" - one item in the sprite list, consisting of 8 words
 
-"tile" - the thing that a playfield is composed of, represented by 2 words in the playfield data.
+"tile"/"playfield tile" - the thing that a playfield is composed of, represented by 2 words in the playfield data.
 "text cell" / "character" / "text tile" - same as a tile, but for the text layer
 
 "texture" - the bitmap that a sprite, tilemap tile, or text cell is rendered from.
 
-"pivot layer" - one of the graphics layers. 64x64 grid of 8x8px tiles. in text mode, each tile is rendered based on 
-god i'm so tired..
+"pivot layer" - one of the graphics layers. 64x64 grid of 8x8px tiles, with textures defined in RAM. in text mode, each tile's texture depends on its texture id. in pixel mode, each tile uses a unique texture, based on its position in the grid. (effectively, a 512x256 (the second half uses the same textures, but with potentially different palette and attributes) bitmap image, though the pixels are in a weird order)
+
+note: taito calls sprites "object"/"OBJ" and tilemaps "screen"/"SCR". i've elected not to use these names.
