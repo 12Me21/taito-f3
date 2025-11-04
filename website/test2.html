@@ -96,34 +96,40 @@
 	table.bits {
 		table-layout: fixed;
 		border-spacing: 0;
-		border: 2px inset;
-	}
-	table.bits th {
-		font-size: 10px;
-		height: 8px;
-		font-weight: normal;
-		border-right: 1px solid #0008;
-	}
-	table.bits th:nth-child(4n) {
-		border-right: 1px solid;
-	}
-	table.bits th:nth-child(4n+1) {
-		border-left: 1px solid;
-	}
-	table.bits td:nth-child(2n) {
-		background: silver;
+		border: 2px groove;
+		counter-reset: bnum 16;
 	}
 	table.bits tr>* {
-		height: 16px;
 		font-family: courier, monospace;
 		width: 16px;
 		max-width: 16px;
 		text-align: center;
-		padding: 0;
 	}
+	table.bits th {
+		font-size: 9.5px;
+		padding: 0;
+		font-weight: normal;
+		border-right: 1px inset;
+	}
+	table.bits th::after {
+		content: counter(bnum);
+		counter-increment: bnum -1;
+		color: gray;
+	}
+	table.bits td {
+		padding: 1px 0;
+		border-top: 1px solid #DDD;
+		padding-top: 0;
+	}
+	table.bits th:nth-child(4n) { border-right: 1px outset; }
+	table.bits th:nth-child(4n+1) { border-left: 1px outset; }
+	table.bits tr>:last-child { border-right: none; }
+	table.bits tr>:first-child { border-left: none; }
+	table.bits td:nth-child(2n) { background: linear-gradient(to top, white, #DDD); }
+	table.bits td:nth-child(2n+1) { background: linear-gradient(to bottom, white, #DDD); }
 </style>
 
-<table class=bits><tr><th>15<th>14<th>13<th>12<th>11<th>10<th>9<th>8<th>7<th>6<th>5<th>4<th>3<th>2<th>1<th>0<tr><td colspan=2>B<td>E<td>I<td>c<td>c<td>c<td>c<td>i<td>i<td>i<td>i<td colspan=4>p</table>
+<table class=bits><tr><th><th><th><th><th><th><th><th><th><th><th><th><th><th><th><th><tr><td colspan=2>B<td>E<td>I<td>c<td>c<td>c<td>c<td>i<td>i<td>i<td>i<td colspan=4>p</table>
 
 <p>to help you get your bearings, here is an overview of the layout of graphics ram: (todo: baby mode table)</p>
 
