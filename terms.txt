@@ -60,5 +60,5 @@ note: taito calls sprites "object"/"OBJ" and tilemaps "screen"/"SCR". i've elect
 pivot layer: pixel data address. say this 5 times fast.
 
 "index" - location /within/ a thing (e.g. "x index" - position along the x axis, "palette index" (if we used this) index within the palette.)
-"number" - location /of/ a thing within its list. e.g. "playfield number" or "texture number" - could also be called "id" in some cases.
+"id"/"number" - location /of/ a thing within its list. e.g. "playfield id" or "texture id"
 "offset" - do we use this? or is it always redundant.  "scroll horizontal offset" is just "horizontal scroll"

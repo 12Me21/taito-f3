@@ -92,6 +92,30 @@
 	}
 </style>
 
+<style>
+	table.bits {
+		table-layout: fixed;
+		background: repeating-linear-gradient(to right, black 0px 1.1px, white 0 6.25%)
+	}
+	table.bits th {
+		font-size: 8px;
+		font-weight: normal;
+		border-right: 1px solid;
+	}
+	table.bits th:nth-child(4n) {
+		border-right: 3px solid;
+	}
+	table.bits tr>* {
+		font-family: courier, monospace;
+		width: 16px;
+		max-width: 16px;
+		text-align: center;
+		padding: 0;
+	}
+</style>
+
+<table class=bits><tr><th>15<th>14<th>13<th>12<th>11<th>10<th>9<th>8<th>7<th>6<th>5<th>4<th>3<th>2<th>1<th>0<tr><td colspan=2>BB<td>E<td>I<td>c<td>c<td>c<td>c<td>i<td>i<td>i<td>i<td colspan=4>pppp</table>
+
 <p>to help you get your bearings, here is an overview of the layout of graphics ram: (todo: baby mode table)</p>
 
 <p>There are four playfields consisting of a 32x32 or 64x32 grid of 16x16px tiles.</p>
@@ -443,11 +467,11 @@
 </f3-struct>
 
 <f3-struct>
-	<h1>Lineram Section 6.0 "A000" - Playfield 0 Local Horizontal Scroll</h1>
+	<h1>Lineram Section 6.0 "A000" - Playfield 0 Local Scroll X</h1>
 	<f3-data>
-		<f3-bits>ssss ssss ssss ssss</f3-bits>
+		<f3-bits>xxxx xxxx xxxx xxxx</f3-bits>
 		<dl>
-			<dt>s<dd><i>playfield 0</i>: local horizontal scroll (same format as horizontal scroll)
+			<dt>s<dd><i>playfield 0</i>: local scroll x (same format as global scroll)
 		</dl>
 	</f3-data>
 </f3-struct>
@@ -455,7 +479,7 @@
 <f3-struct>
 	<h1>Lineram Section 7.0 "B000" - Playfield 0 Blending</h1>
 	<f3-data>
-		<f3-bits>BBEI cccc iiii pppp</f3-bits>
+		<f3-bits>BBEI cccc iiii pppp<br>.... 3210 3210 ....</f3-bits>
 		<dl>
 			<dt>p<dd><i>playfield 0</i>: <i>priority</i> (0-15)
 			<dt>i<dd><i>playfield 0</i>: <i>clip plane modes</i>
@@ -474,6 +498,6 @@
 
 <script>
 	for (let e of document.querySelectorAll('f3-bits')) {
-		e.innerHTML = e.innerHTML.replace(/([a-zA-Z])( ?\1)*/g, "<b>$&</b>")
+	//	e.innerHTML = e.innerHTML.replace(/([a-zA-Z])( ?\1)*/g, "<b>$&</b>")
 	}
 </script>
