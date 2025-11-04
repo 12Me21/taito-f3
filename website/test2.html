@@ -1,15 +1,24 @@
 <!doctype html>
 
 <style>
-	f3-bits, f3-struct dt {
-		font-family: courier, monospace;
-		word-spacing: -0.25ch;
+	@font-face {
+		font-family: 'mspm';
+		src: url("./short2.otf?4");
+	}
+	body {
+		font-family: mspm, georgia;
+	}
+	f3-bits, f3-struct dt, table.bits td {
+		font-family: mspm, times new roman;
+	}
+	f3-struct dt {
 		font-size: 1.25em;
 		line-height: 22px;
 	}
 	f3-struct, f3-addr, f3-data {
 		display: flex;
 		flex-direction: column;
+		align-items: flex-start;
 	}
 	f3-struct {
 		margin-bottom: 1em;
@@ -36,6 +45,7 @@
 		justify-self: right;
 	}
 	f3-struct dt::after {
+		padding-left: 1px;
 		content: ":";
 		font-weight: normal;
 	}
@@ -85,6 +95,7 @@
 		margin-right: 0em;
 	}
 	dl[compact] > dt::after {
+		padding: 0 1px;
 		content: "=";
 	}
 	abbr {
@@ -100,12 +111,12 @@
 		counter-reset: bnum 16;
 	}
 	table.bits tr>* {
-		font-family: courier, monospace;
 		width: 16px;
 		max-width: 16px;
 		text-align: center;
 	}
 	table.bits th {
+		font-family: courier, monospace;
 		font-size: 9.5px;
 		padding: 0;
 		font-weight: normal;
@@ -127,9 +138,20 @@
 	table.bits tr>:first-child { border-left: none; }
 	table.bits td:nth-child(2n) { background: linear-gradient(to top, white, #DDD); }
 	table.bits td:nth-child(2n+1) { background: linear-gradient(to bottom, white, #DDD); }
+	table.bits td:nth-child(n) {
+		background: linear-gradient(to right, white, #DDD);
+		background: linear-gradient(to right, white, #DDD calc((8px + 100%) / 2));
+		background: linear-gradient(110deg, white, #E7E7E7 calc(8px + 20%) calc(100% - 8px - 15%), #ccc);
+}
+	}
+	table.bits td.space { background: linear-gradient(to bottom right, white, #DDD); }
+	/*table.bits td.x { background: #DDD; }*/
+	table.bits td.x:first-child { background: #ccc; }
+	table.bits td.x:last-child { background: #fff; }
 </style>
 
-<table class=bits><tr><th><th><th><th><th><th><th><th><th><th><th><th><th><th><th><th><tr><td colspan=2>B<td>E<td>I<td>c<td>c<td>c<td>c<td>i<td>i<td>i<td>i<td colspan=4>p</table>
+<table class=bits><tr><th><th><th><th><th><th><th><th><th><th><th><th><th><th><th><th><tr><td colspan=2>B<td>E<td>I<td>c<td class=c>c<td class=c>c<td class=c>c<td>i<td>i<td>i<td>i<td colspan=4>p</table>
+<table class=bits><tr><th><th><th><th><th><th><th><th><th><th><th><th><th><th><th><th><tr>hccc cccv tttt tttt</table>
 
 <p>to help you get your bearings, here is an overview of the layout of graphics ram: (todo: baby mode table)</p>
 
@@ -138,11 +160,12 @@
 <f3-struct>
 	<h1>Playfield Tile</h1>
 	<f3-addr>
-		<h1>Address</h1>
-		<div><f3-bits>&ctdot; 01 0nnn yyyy yxxx xx--</f3-bits> (normal)</div>
-		<div><f3-bits>&ctdot; 01 nnny yyyy xxxx xx--</f3-bits> (extend mode)</div>
+		<h1>Address (normal)</h1>
+		<f3-bits>&ctdot;,0,0,1,0,pf:3,y:5,x:5,-:2</f3-bits>
+		<h1>Address (extend mode)</h1>
+		<f3-bits>&ctdot;,0,0,1,pf:3,y:5,x:6,-:2</f3-bits>
 		<dl>
-			<dt>n<dd>playfield index
+			<dt>pf<dd>playfield id
 				<dl>
 					<dt>0,1,2,3<dd>regular playfield data
 					<dt>4,5<dd>alternate data for playfields 2 and 3
@@ -153,21 +176,21 @@
 	</f3-addr>
 	<f3-data>
 		<h1>Data</h1>
-		<f3-bits>hvTT ppsc cccc cccc  tttt tttt tttt tttt</f3-bits>
+		<f3-bits>h,v,tex2:2,bpp:2,bs,palette:9,texture:16</f3-bits>
 		<dl>
-			<dt>t<dd>tile index (lower bits)
-			<dt>c<dd>palette (0-511)
-			<dt>s<dd>blend select
-			<dt>p<dd>texture bit planes (bits per pixel select)
+			<dt>texture<dd>texture id (lower bits)
+			<dt>palette<dd>palette id (0-511)
+			<dt>bs<dd>blend select
+			<dt>bpp<dd>texture bit planes (bits per pixel select)
 				<dl compact>
 					<dt>0<dd>4bpp
 					<dt>1<dd>5bpp
 					<dt>2<dd>?
 					<dt>3<dd>6bpp
 				</dl>
-			<dt>T<dd>tile index (upper bits)
-			<dt>v<dd>vertical flip
-			<dt>h<dd>horizontal flip
+			<dt>tex2<dd>texture id (upper bits)
+			<dt>v<dd><dl compact><dt>1<dd>vertical flip</dl>
+			<dt>h<dd><dl compact><dt>1<dd>horizontal flip</dl>
 		</dl>
 	</f3-data>
 </f3-struct>
@@ -186,12 +209,12 @@
 	</f3-addr>
 	<f3-data>
 		<h1>Data</h1>
-		<f3-bits>hccc cccv tttt tttt</f3-bits>
+		<f3-bits>h,palette:6,v,texture:8</f3-bits>
 		<dl>
-			<dt>t<dd>tile index (0-255)
-			<dt>v<dd>vertical flip
-			<dt>c<dd>palette (0-63)
-			<dt>h<dd>horizontal flip
+			<dt>texture<dd>texture id (0-255)
+			<dt>v<dd><dl compact><dt>1<dd>vertical flip</dl>
+			<dt>palette<dd>palette id (0-63)
+			<dt>h<dd><dl compact><dt>1<dd>horizontal flip</dl>
 		</dl>
 	</f3-data>
 </f3-struct>
@@ -331,12 +354,9 @@
 <f3-struct>
 	<h1>Lineram Section 2.2 "6400" - Mosaic and <abbr>Fda</abbr> Settings</h1>
 	<f3-data>
-		<f3-bits>ffb? S?hs mmmm DCBA</f3-bits>
+		<f3-bits>ffb? S?hs mmmm pppp</f3-bits>
 		<dl>
-			<dt>A<dd><i>playfield 0</i>: <i>mosaic enable</i>
-			<dt>B<dd><i>playfield 1</i>: <i>mosaic enable</i>
-			<dt>C<dd><i>playfield 2</i>: <i>mosaic enable</i>
-			<dt>D<dd><i>playfield 3</i>: <i>mosaic enable</i>
+			<dt>p<dd><i>playfield n</i>: <i>mosaic enables</i>
 			<dt>m<dd>mosaic strength: samples every [16&minus;m] pixels
 			<dt>s<dd><i>sprites</i>: <i>mosaic enable</i>
 			<dt>h<dd><i>hicolor layer</i>: <i>mosaic enable</i>
@@ -513,6 +533,21 @@
 
 <script>
 	for (let e of document.querySelectorAll('f3-bits')) {
+		if (/,/.test(e.textContent)) {
+			let n = e.textContent.split(",")
+			let l = 0
+			let d = n.map(m=>{
+				m = m.split(":")
+				console.log(m)
+				let c = (+m[1])||1
+				l += c
+				return `<td${/^(⋯|-|0|1)$/.test(m[0])?" class=x":""} colspan=${c}>${m[0]}`
+			})
+			e.outerHTML = `<table class=bits><tr style="counter-reset:bnum ${l}">${"<th>".repeat(l)}<tr>${d.join("")}</table>`
+		} else {
+			let n = e.textContent.replace(/ /g,"")
+			e.outerHTML = `<table class=bits><tr style="counter-reset:bnum ${n.length}">${"<th>".repeat(n.length)}<tr>${n.replace(/[01]|([^01])( ?\1)*/g, (m)=>`<td${m[0]<="1"?" class=x":""} colspan=${m.length}>${m[0]}`)}</table>`
+		}
 	//	e.innerHTML = e.innerHTML.replace(/([a-zA-Z])( ?\1)*/g, "<b>$&</b>")
 	}
 </script>
