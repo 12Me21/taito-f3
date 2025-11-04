@@ -95,17 +95,26 @@
 <style>
 	table.bits {
 		table-layout: fixed;
-		background: repeating-linear-gradient(to right, black 0px 1.1px, white 0 6.25%)
+		border-spacing: 0;
+		border: 2px inset;
 	}
 	table.bits th {
-		font-size: 8px;
+		font-size: 10px;
+		height: 8px;
 		font-weight: normal;
-		border-right: 1px solid;
+		border-right: 1px solid #0008;
 	}
 	table.bits th:nth-child(4n) {
-		border-right: 3px solid;
+		border-right: 1px solid;
+	}
+	table.bits th:nth-child(4n+1) {
+		border-left: 1px solid;
+	}
+	table.bits td:nth-child(2n) {
+		background: silver;
 	}
 	table.bits tr>* {
+		height: 16px;
 		font-family: courier, monospace;
 		width: 16px;
 		max-width: 16px;
@@ -114,7 +123,7 @@
 	}
 </style>
 
-<table class=bits><tr><th>15<th>14<th>13<th>12<th>11<th>10<th>9<th>8<th>7<th>6<th>5<th>4<th>3<th>2<th>1<th>0<tr><td colspan=2>BB<td>E<td>I<td>c<td>c<td>c<td>c<td>i<td>i<td>i<td>i<td colspan=4>pppp</table>
+<table class=bits><tr><th>15<th>14<th>13<th>12<th>11<th>10<th>9<th>8<th>7<th>6<th>5<th>4<th>3<th>2<th>1<th>0<tr><td colspan=2>B<td>E<td>I<td>c<td>c<td>c<td>c<td>i<td>i<td>i<td>i<td colspan=4>p</table>
 
 <p>to help you get your bearings, here is an overview of the layout of graphics ram: (todo: baby mode table)</p>
 
@@ -482,8 +491,8 @@
 		<f3-bits>BBEI cccc iiii pppp<br>.... 3210 3210 ....</f3-bits>
 		<dl>
 			<dt>p<dd><i>playfield 0</i>: <i>priority</i> (0-15)
-			<dt>i<dd><i>playfield 0</i>: <i>clip plane modes</i>
-			<dt>c<dd><i>playfield 0</i>: <i>clip plane enables</i>
+			<dt>i[4]<dd><i>playfield 0</i>: <i>clip plane modes</i>
+			<dt>c[4]<dd><i>playfield 0</i>: <i>clip plane enables</i>
 			<dt>I<dd><i>playfield 0</i>: <i>clip invert</i>
 			<dt>E<dd><i>playfield 0</i>: <i>enable</i>
 			<dt>B<dd><i>playfield 0</i>: <i>blend mode</i><dl compact><dt>0<dd>both<dt>1<dd>left<dt>2<dd>right<dt>3<dd>neither</dl>
