@@ -1,8 +1,13 @@
 terms:
 "layer" - one of the eleven graphics layers that can contribute to the color of a pixel.
+ - background color
+ - pivot (text / pixel)
+ - 4 sprite groups
+ - 4 tilemaps
+ - hicolor tilemap layer (todo: name)
 
 "playfield" / "tilemap" (which do we use? maybe one term for the object on the screen and one for the data it refers to. e.g. we refer to the "playfield"'s scroll, but we say a playfield uses the alternate "tilemap")
-"clip plane" - one of the four clipping intervals (why is it called a "plane"?)
+"clip plane" - one of the four clipping intervals (why is it called a "plane"?). each interval has a "left" and "right" value
 "sprite group" / "sprite priority group" - sprites are split into 4 groups based on the upper 2 bits of their palette (00,40,80,C0). these can have different effects applied to them, and also   (todo explain priority i forgot how that works)
 "blend value" - ranges from $7 (100%) to $F (0%). $B is 50%. represents an alpha value. there are 4 of these, 2 for the left half-pixel and 2 for the right half-pixel
 "mosaic" - horizontal pixelization effect
@@ -13,6 +18,7 @@ terms:
 "color index" - a color in the FDP - that is, a 13-bit number, which is later used as an index into color RAM.
 "palette" - the upper bits of a color index (while the lower bits are supplied by the texture). abstractly, an object's palette selects which set of 16 (or 32, or 64) colors is used for it.
 "rgb color" - an actual color, seen and blended by the FDA and output to the screen.
+"color ram" / "palette ram" - the map of color numbers to rgb colors
 
 "priority" - blending priority (determines which 2 layers are chosen for blending etc) not to be confused with sprite priority, which only matters while rendering to the framebuffer, and is mapped to priority by lineram 7600
 "blend mode" / "alpha mode" - which pixels a layer contributes to (left/right/both/neither)
@@ -32,8 +38,27 @@ terms:
 
 "pivot layer" - one of the graphics layers. 64x64 grid of 8x8px tiles, with textures defined in RAM.
 this layer has 2 modes: "text mode" and "pixel mode", which affect how textures are mapped to the tiles.
- in text mode, a tile's texture is chosen based on its texture id, from a set of 256 textures.
- in pixel mode, each tile in the first 32 rows (the bottom half of the layer reuses the same data) references a distinct texture, effectively creating a 512x256 bitmap image (though the pixels are in a strange order)
+ in "text mode", a tile's texture is chosen based on its texture id, from a set of 256 textures.
+ in "pixel mode", each tile in the first 32 rows (the bottom half of the layer reuses the same data) references a distinct texture, effectively creating a 512x256 bitmap image (though the pixels are in a strange order)
  note that the palette and flip attributes function the same in either mode.
 
 note: taito calls sprites "object"/"OBJ" and tilemaps "screen"/"SCR". i've elected not to use these names.
+
+"mystery layer"/"hicolor layer"/"picture layer"/"photo layer" (really need a name for this) - (todo: copy my definition i already wrote)
+
+"scroll" - the position of a playfield. this is controlled by 2 components: the "global scroll" (set by the scroll registers) and a "local scroll" offset per-scanline (we have called the x component "rowscroll" and the y "colscroll", but i think these are misnomers). (also do you ever think about how we only use "scroll" to describe the position of playfields, not sprites? welll  i guess how i would think of it is, scroll controls the position of an entire group of things, as it does with sprites. while position means the position of the things within that group (so, the coordinates of a tile, or the position of an individual sprite))
+
+"scale"/"zoom" - stretching applied to a playfield or sprite. for some reason we use "scale" for playfields and "zoom" for sprites.
+
+"x"/"horizontal" - todo: decide when/if to use each of these
+"y"/"vertical" - same
+
+"data" - when we want to refer to e.g. "playfield 0" vs "playfield 0's data". or the location of the pivot layer's pixel data. 
+
+"address"/"location"  for some reason i have been saying location to mean address, not sure why. need to be consistent.
+
+pivot layer: pixel data address. say this 5 times fast.
+
+"index" - location /within/ a thing (e.g. "x index" - position along the x axis, "palette index" (if we used this) index within the palette.)
+"number" - location /of/ a thing within its list. e.g. "playfield number" or "texture number" - could also be called "id" in some cases.
+"offset" - do we use this? or is it always redundant.  "scroll horizontal offset" is just "horizontal scroll"

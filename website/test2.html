@@ -212,7 +212,53 @@
 </f3-struct>
 
 <f3-struct>
-	<h1>Section 2.0 "6000" - Misc Blending, Pivot Mode</h1>
+	<h1>Lineram Section 0.2 "4400" - Vertical Scroll Offset, Misc.</h1>
+	<f3-data>
+		<f3-bits>RLrl ??Ts ssss ssss</f3-bits>
+		<dl>
+			<dt>s<dd><i>playfield 2</i>: vertical scroll offset (format?)
+			<dt>T<dd><i>playfield 2</i>: data location<dl compact><dt>0<dd>normal<dt>1<dd>alternate (tilemap number+2)</dl>
+			<dt>l<dd>clip plane 0 left: upper bit
+			<dt>r<dd>clip plane 0 right: upper bit
+			<dt>L<dd>clip plane 1 left: upper bit
+			<dt>R<dd>clip plane 1 right: upper bit
+		</dl>
+	</f3-data>
+</f3-struct>
+
+<f3-struct>
+	<h1>Lineram Section 0.3 "4600"</h1>
+	<div>(same as 0.3, but for playfield 3 and clip planes 2 and 3)</div>
+</f3-struct>
+
+<f3-struct>
+	<h1>Lineram Section 1.0 "5000" - Clip Planes</h1>
+	<f3-data>
+		<f3-bits>rrrr rrrr llll llll</f3-bits>
+		<dl>
+			<dt>l<dd><i>clip plane 0</i> left: lower bits
+			<dt>r<dd><i>clip plane 0</i> right: lower bits
+		</dl>
+	</f3-data>
+</f3-struct>
+
+<f3-struct>
+	<h1>Lineram Section 1.1 "5200"</h1>
+	<div>(same as 1.0, but for clip plane 1)</div>
+</f3-struct>
+
+<f3-struct>
+	<h1>Lineram Section 1.2 "5400"</h1>
+	<div>(same as 1.0, but for clip plane 2)</div>
+</f3-struct>
+
+<f3-struct>
+	<h1>Lineram Section 1.3 "5600"</h1>
+	<div>(same as 1.0, but for clip plane 3)</div>
+</f3-struct>
+
+<f3-struct>
+	<h1>Lineram Section 2.0 "6000" - Misc Blending, Pivot Mode</h1>
 	<f3-data>
 		<f3-bits>B?p? oNAm ddcc bbaa</f3-bits>
 		<dl>
@@ -231,20 +277,20 @@
 </f3-struct>
 
 <f3-struct>
-	<h1>Section 2.1 "6200" - Blend Alpha Values</h1>
+	<h1>Lineram Section 2.1 "6200" - Blend Alpha Values</h1>
 	<f3-data>
 		<f3-bits>LLLL llll RRRR rrrr</f3-bits>
 		<dl>
-			<dt>r<dd>right half-pixel, blend select 0<br>alpha = clamp((15-value)/8, 0, 1)<dl compact><dt>$F<dd>0%<dt>$B<dd>50%<dt>$0-$7<dd>100%</dl>
-			<dt>R<dd>right half-pixel, blend select 1
-			<dt>l<dd>left half-pixel, blend select 0
-			<dt>L<dd>left half-pixel, blend select 1
+			<dt>r<dd>right half-pixel, blend select = 0<br>alpha = clamp((15-value)/8, 0, 1)<dl compact><dt>$0-$7<dd>100%<dt>$B<dd>50%<dt>$F<dd>0%</dl>
+			<dt>R<dd>right half-pixel, blend select = 1
+			<dt>l<dd>left half-pixel, blend select = 0
+			<dt>L<dd>left half-pixel, blend select = 1
 		</dl>
 	</f3-data>
 </f3-struct>
 	
 <f3-struct>
-	<h1>Section 2.2 "6400" - Mosaic and <abbr>Fda</abbr> Settings</h1>
+	<h1>Lineram Section 2.2 "6400" - Mosaic and <abbr>Fda</abbr> Settings</h1>
 	<f3-data>
 		<f3-bits>ffb? S?hs mmmm DCBA</f3-bits>
 		<dl>
@@ -263,7 +309,7 @@
 </f3-struct>
 
 <f3-struct>
-	<h1>Section 2.3 "6600" - Background Color Index</h1>
+	<h1>Lineram Section 2.3 "6600" - Background Color Index</h1>
 	<f3-data>
 		<f3-bits>...b bbbb bbbb bbbb</f3-bits>
 		<dl>
@@ -273,7 +319,7 @@
 </f3-struct>
 
 <f3-struct>
-	<h1>Section 3.0 "7000" - Hicolor Layer Blending</h1>
+	<h1>Lineram Section 3.0 "7000" - Hicolor Layer Blending</h1>
 	<f3-data>
 		<f3-bits>BBEI cccc iiii pppp</f3-bits>
 		(same as playfield 0, but for the hicolor layer)
@@ -281,7 +327,7 @@
 </f3-struct>
 
 <f3-struct>
-	<h1>Section 3.1 "7200" - Pivot Layer Blending</h1>
+	<h1>Lineram Section 3.1 "7200" - Pivot Layer Blending</h1>
 	<f3-data>
 		<f3-bits>B?EI cccc iiii pppp</f3-bits>
 		<dl>
@@ -296,7 +342,7 @@
 </f3-struct>
 
 <f3-struct>
-	<h1>Section 3.2 "7400" - Sprite Blending</h1>
+	<h1>Lineram Section 3.2 "7400" - Sprite Blending</h1>
 	<f3-data>
 		<f3-bits>DCBA ??EI cccc iiii</f3-bits>
 		<dl>
@@ -313,7 +359,7 @@
 </f3-struct>
 
 <f3-struct>
-	<h1>Section 3.3 "7600" - Sprite Group Priorities</h1>
+	<h1>Lineram Section 3.3 "7600" - Sprite Group Priorities</h1>
 	<f3-data>
 		<f3-bits>dddd cccc bbbb aaaa</f3-bits>
 		<dl>
@@ -325,29 +371,89 @@
 	</f3-data>
 </f3-struct>
 
-
-"7000" (3.0)
-[BBEI cccc iiii pppp]
- - {mystery layer} see b000
- - todo: check blend mode
-"7200" (3.1)
-[B?EI cccc iiii pppp]
- B - {pivot} blend mode: 0 = both, 1 = left
- rest - {pivot} see b000
-"7400" (3.2)
-[AAAA ??EI cccc iiii]
- - {sprites} see b000
- AAAA - {sprite group n} blend value select
-"7600" (3.3)
-[dddd cccc bbbb aaaa]
- a - {sprite group 0} priority
- b - {sprite group 1} priority
- c - {sprite group 2} priority
- d - {sprite group 3} priority
-
+<f3-struct>
+	<h1>Lineram Section 4.0 "8000" - Playfield 0 Scale</h1>
+	<f3-data>
+		<f3-bits>xxxx xxxx yyyy yyyy</f3-bits>
+		<dl>
+			<dt>y<dd><i>playfield 0</i>: vertical scale
+				<dl compact><dt>$00<dd><dt>$80<dd><dt>$FF<dd></dl>
+			<dt>x<dd><i>playfield 0</i>: horizontal scale
+				<dl compact><dt>$00<dd><dt>$80<dd><dt>$FF<dd></dl>
+		</dl>
+	</f3-data>
+</f3-struct>
 
 <f3-struct>
-	<h1>Section 7.0 ("B000") - Playfield 0 Blending</h1>
+	<h1>Lineram Section 4.1 "8200" - Playfield 1 Scale</h1>
+	<f3-data>
+		<f3-bits>xxxx xxxx YYYY YYYY</f3-bits>
+		<dl>
+			<dt>y<dd><i>playfield 3</i>*: vertical scale<br>*bug: playfields 1 and 3 have their vertical scales swapped
+			<dt>x<dd><i>playfield 1</i>: horizontal scale
+		</dl>
+	</f3-data>
+</f3-struct>
+
+<f3-struct>
+	<h1>Lineram Section 4.2 "8400" - Playfield 2 Scale</h1>
+	<f3-data>
+		<f3-bits>xxxx xxxx yyyy yyyy</f3-bits>
+		<dl>
+			<dt>y<dd><i>playfield 2</i>: vertical scale
+			<dt>x<dd><i>playfield 2</i>: horizontal scale
+		</dl>
+	</f3-data>
+</f3-struct>
+
+<f3-struct>
+	<h1>Lineram Section 4.3 "8600" - Playfield 3 Scale</h1>
+	<f3-data>
+		<f3-bits>xxxx xxxx YYYY YYYY</f3-bits>
+		<dl>
+			<dt>y<dd><i>playfield 1</i>*: vertical scale
+			<dt>x<dd><i>playfield 3</i>: horizontal scale
+		</dl>
+	</f3-data>
+</f3-struct>
+
+<f3-struct>
+	<h1>Lineram Section 5.0 "9000" - Playfield 0 Palette Add</h1>
+	<f3-data>
+		<f3-bits>.... ..cc cccc cccc</f3-bits>
+		<dl>
+			<dt>c<dd><i>playfield 0</i>: offset added to the palette of all tiles
+		</dl>
+	</f3-data>
+</f3-struct>
+
+<f3-struct>
+	<h1>Lineram Section 5.1 "9200"</h1>
+	<div>(same as 5.0, but for playfield 1)</div>
+</f3-struct>
+
+<f3-struct>
+	<h1>Lineram Section 5.2 "9400"</h1>
+	<div>(same as 5.0, but for playfield 2)</div>
+</f3-struct>
+
+<f3-struct>
+	<h1>Lineram Section 5.3 "9600"</h1>
+	<div>(same as 5.0, but for playfield 3)</div>
+</f3-struct>
+
+<f3-struct>
+	<h1>Lineram Section 6.0 "A000" - Playfield 0 Local Horizontal Scroll</h1>
+	<f3-data>
+		<f3-bits>ssss ssss ssss ssss</f3-bits>
+		<dl>
+			<dt>s<dd><i>playfield 0</i>: local horizontal scroll (same format as horizontal scroll)
+		</dl>
+	</f3-data>
+</f3-struct>
+
+<f3-struct>
+	<h1>Lineram Section 7.0 "B000" - Playfield 0 Blending</h1>
 	<f3-data>
 		<f3-bits>BBEI cccc iiii pppp</f3-bits>
 		<dl>
@@ -362,7 +468,7 @@
 </f3-struct>
 
 <f3-struct>
-	<h1>Section 7.2 ("B200")</h1>
+	<h1>Lineram Section 7.2 "B200"</h1>
 	<div>(same as 7.0, but for playfield 1)</div>
 </f3-struct>
 
