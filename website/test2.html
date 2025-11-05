@@ -146,8 +146,12 @@
 	}
 	table.bits td.space { background: linear-gradient(to bottom right, white, #DDD); }
 	/*table.bits td.x { background: #DDD; }*/
+	table.bits td.x {
+		font-variant: tabular-nums;
+		background: linear-gradient(to right, #ddd, #ccc 4px calc(100% - 4px), #bbb);
+	}
 	table.bits td.x:first-child { background: #ccc; }
-	table.bits td.x:last-child { background: #fff; }
+	table.bits td.x:last-child { background: linear-gradient(to right, #fff, #fff); }
 </style>
 
 <table class=bits><tr><th><th><th><th><th><th><th><th><th><th><th><th><th><th><th><th><tr><td colspan=2>B<td>E<td>I<td>c<td class=c>c<td class=c>c<td class=c>c<td>i<td>i<td>i<td>i<td colspan=4>p</table>
@@ -176,10 +180,10 @@
 	</f3-addr>
 	<f3-data>
 		<h1>Data</h1>
-		<f3-bits>h,v,tex2:2,bpp:2,bs,palette:9,texture:16</f3-bits>
+		<f3-bits>h,v,tex2:2,bpp:2,bs,pal:9,tex:16</f3-bits>
 		<dl>
-			<dt>texture<dd>texture id (lower bits)
-			<dt>palette<dd>palette id (0-511)
+			<dt>tex<dd>texture id (lower bits)
+			<dt>pal<dd>palette id (0-511)
 			<dt>bs<dd>blend select
 			<dt>bpp<dd>texture bit planes (bits per pixel select)
 				<dl compact>
@@ -198,10 +202,10 @@
 <p>the pivot layer is a 64x64 grid of 8x8 tiles, which gets its textures from RAM instead of ROM. it can either be in "text mode" (where the texture is looked up based on the tile's id) or "pixel mode" (where each cell has a unique texture, whose address depends on its position in the grid, effectively giving you a 512x256 bitmap, though the pixels are in a weird order)</p>
 
 <f3-struct>
-	<h1>Text Tile</h1>
+	<h1>Pivot Tile</h1>
 	<f3-addr>
 		<h1>Address</h1>
-		<f3-bits>&ctdot; 01 110y yyyy yxxx xxx-</f3-bits>
+		<f3-bits>&ctdot;,0,1,1,1,0,y:6,x:6,-</f3-bits>
 		<dl>
 			<dt>y<dd>y index (0-63)
 			<dt>x<dd>x index (0-63)
@@ -209,55 +213,44 @@
 	</f3-addr>
 	<f3-data>
 		<h1>Data</h1>
-		<f3-bits>h,palette:6,v,texture:8</f3-bits>
+		<f3-bits>h,pal:6,v,tex:8</f3-bits>
 		<dl>
-			<dt>texture<dd>texture id (0-255)
+			<dt>tex<dd>texture id (0-255)
 			<dt>v<dd><dl compact><dt>1<dd>vertical flip</dl>
-			<dt>palette<dd>palette id (0-63)
+			<dt>pal<dd>palette id (0-63)
 			<dt>h<dd><dl compact><dt>1<dd>horizontal flip</dl>
 		</dl>
 	</f3-data>
 </f3-struct>
 
 <f3-struct>
-	<h1>Text Glyph</h1>
+	<h1>Pivot Texture</h1>
 	<f3-addr>
-		<h1>Address</h1>
-		<f3-bits>&ctdot; 01 111t tttt ttt- ----</f3-bits>
+		<h1>Address (Text Mode)</h1>
+		<f3-bits>&ctdot;,0,1,1,1,1,tex:8,row:3,-:2</f3-bits>
 		<dl>
-			<dt>t<dd>tile index (0-255)
+			<dt>tex<dd>texture id (0-255)
+			<dt>row<dd>row of texture (0-8)
+		</dl>
+		<h1>Address (Pixel Mode)</h1>
+		<f3-bits>&ctdot;,1,b,x:6,y:5,row:3,-:2</f3-bits>
+		<dl>
+			<dt>b<dd>pivot pixel bank (set in lineram)
+			<dt>x<dd>tile x index (0-63)
+			<dt>y<dd>tile y index (0-31; bottom half uses same data)
+			<dt>row<dd>row of texture (0-8)
 		</dl>
 	</f3-addr>
 	<f3-data>
-		<h1>Data</h1>
-		<div><f3-bits>bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb</f3-bits> × 8</div>
+		<h1>Data (Row)</h1>
+		<f3-bits>b:4,b:4,b:4,b:4,b:4,b:4,b:4,b:4</f3-bits>
 		<dl>
-			<dt>b<dd>8×8 bitmap, 4 bits per pixel
+			<dt>b<dd>data for 1 pixel (todo: what order are these in?)
 		</dl>
 	</f3-data>
 </f3-struct>
 
 <p>pixel mode is similar to text mode, but the data for each tile is fetched based on the tile's position rather than the tile index in the text data.</p>
-
-<f3-struct>
-	<h1>Pixel Data Cell</h1>
-	<f3-addr>
-		<h1>Location:</h1>
-		<f3-bits>&ctdot; 1b xxxx xxyy yyy- ----</f3-bits>
-		<dl>
-			<dt>b<dd>bank
-			<dt>x<dd>x index (0-63)
-			<dt>y<dd>y index (0-31)
-		</dl>
-	</f3-addr>
-	<f3-data>
-		<h1>Data</h1>
-		<div><f3-bits>bbbb bbbb bbbb bbbb bbbb bbbb bbbb bbbb</f3-bits> × 8</div>
-		<dl>
-			<dt>b<dd>8×8 bitmap, 4 bits per pixel
-		</dl>
-	</f3-data>
-</f3-struct>
 
 <f3-struct>
 	<h1>common layer properties</h1>
