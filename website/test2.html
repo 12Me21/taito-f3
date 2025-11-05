@@ -156,6 +156,25 @@
 		background: #ddd;
 	}
 	table.bits td.x:last-child { background: #eee; }
+	
+	@supports (font-variant-position: sub) {
+		sub, sup {
+			font-size: unset;
+			vertical-align: unset;
+		}
+		sub { font-variant-position: sub; }
+		sup { font-variant-position: super; }
+	}
+	@supports not (font-variant-position: sub) {
+		sub, sup {
+			font-size: 81.25%;
+			line-height: 0;
+			position: relative;
+			vertical-align: baseline;
+		}
+		sub { bottom: -0.25em; }
+		sup { top: -0.5em; /* todo: check this */ }
+	}
 </style>
 
 <table class=bits><tr><th><th><th><th><th><th><th><th><th><th><th><th><th><th><th><th><tr><td colspan=2>B<td>E<td>I<td>c<td class=c>c<td class=c>c<td class=c>c<td>i<td>i<td>i<td>i<td colspan=4>p</table>
@@ -321,9 +340,9 @@
 <f3-struct>
 	<h1>Lineram Section 2.0 "6000" - Misc Blending, Pivot Mode</h1>
 	<f3-data>
-		<f3-bits>B,?,P,?,o,b,p,h,s3:2,s2:2,s1:2,s0:2</f3-bits>
+		<f3-bits>B,?,P,?,o,b,p,h,s<sub>3</sub>:2,s<sub>2</sub>:2,s<sub>1</sub>:2,s<sub>0</sub>:2</f3-bits>
 		<dl>
-			<dt>s[n]<dd><i>sprite group n</i>: blend mode (note 0 and 3 are swapped)<dl compact><dt>0<dd>neither<dt>1<dd>left<dt>2<dd>right<dt>3<dd>both</dl>
+			<dt>s<sub>n</sub><dd><i>sprite group n</i>: blend mode (note 0 and 3 are swapped)<dl compact><dt>0<dd>neither<dt>1<dd>left<dt>2<dd>right<dt>3<dd>both</dl>
 			<dt>h<dd><i>highcolor layer</i>: blend value select
 			<dt>p<dd><i>pivot</i>: blend value select
 			<dt>b<dd><i>background color</i>: blend value select
@@ -352,7 +371,7 @@
 	<f3-data>
 		<f3-bits>fda:2,b,?,S,?,h,s,mosaic:4,p3,p2,p1,p0</f3-bits>
 		<dl>
-			<dt>p[n]<dd><i>playfield n</i>: <i>mosaic enable</i>
+			<dt>p<sub>n</sub><dd><i>playfield n</i>: <i>mosaic enable</i>
 			<dt>mosaic<dd>mosaic strength: samples every [16&minus;m] pixels
 			<dt>s<dd><i>sprites</i>: <i>mosaic enable</i>
 			<dt>h<dd><i>hicolor layer</i>: <i>mosaic enable</i>
@@ -376,7 +395,7 @@
 <f3-struct>
 	<h1>Lineram Section 3.0 "7000" - Highcolor Layer Blending</h1>
 	<f3-data>
-		<f3-bits>bm:2,E,I,c3,c2,c1,c0,i3,i2,i1,i0,prio:4</f3-bits>
+		<f3-bits>bm:2,E,I,c<sub>3</sub>,c<sub>2</sub>,c<sub>1</sub>,c<sub>0</sub>,i<sub>3</sub>,i<sub>2</sub>,i<sub>1</sub>,i<sub>0</sub>,prio:4</f3-bits>
 		(same as section 7.0, but for the highcolor layer)
 	</f3-data>
 </f3-struct>
@@ -384,11 +403,11 @@
 <f3-struct>
 	<h1>Lineram Section 3.1 "7200" - Pivot Layer Blending</h1>
 	<f3-data>
-		<f3-bits>bm,?,E,I,c3,c2,c1,c0,i3,i2,i1,i0,prio:4</f3-bits>
+		<f3-bits>bm,?,E,I,c<sub>3</sub>,c<sub>2</sub>,c<sub>1</sub>,c<sub>0</sub>,i<sub>3</sub>,i<sub>2</sub>,i<sub>1</sub>,i<sub>0</sub>,prio:4</f3-bits>
 		<dl>
 			<dt>prio<dd><i>pivot</i>: priority (0-15)
-			<dt>i[n]<dd><i>pivot</i>: clip plane n mode
-			<dt>c[n]<dd><i>pivot</i>: clip plane n enable
+			<dt>i<sub>n</sub><dd><i>pivot</i>: clip plane n mode
+			<dt>c<sub>n</sub><dd><i>pivot</i>: clip plane n enable
 			<dt>I<dd><i>pivot</i>: clip invert
 			<dt>E<dd><i>pivot</i>: enable
 			<dt>bm<dd><i>pivot</i>: blend mode (note different interpretation than elsewhere)<dl compact><dt>0<dd>both<dt>1<dd>left</dl>
@@ -399,13 +418,13 @@
 <f3-struct>
 	<h1>Lineram Section 3.2 "7400" - Sprite Blending</h1>
 	<f3-data>
-		<f3-bits>s3,s2,s1,s0,?,?,E,I,c3,c2,c1,c0,i3,i2,i1,i0</f3-bits>
+		<f3-bits>s<sub>3</sub>,s<sub>2</sub>,s<sub>1</sub>,s<sub>0</sub>,?,?,E,I,c<sub>3</sub>,c<sub>2</sub>,c<sub>1</sub>,c<sub>0</sub>,i<sub>3</sub>,i<sub>2</sub>,i<sub>1</sub>,i<sub>0</sub></f3-bits>
 		<dl>
-			<dt>i[n]<dd><i>sprites</i>: clip plane n mode
-			<dt>c[n]<dd><i>sprites</i>: clip plane n enable
+			<dt>i<sub>n</sub><dd><i>sprites</i>: clip plane n mode
+			<dt>c<sub>n</sub><dd><i>sprites</i>: clip plane n enable
 			<dt>I<dd><i>sprites</i>: clip invert
 			<dt>E<dd><i>sprites</i>: enable
-			<dt>s[n]<dd><i>sprite group n</i>: <i>blend select</i>
+			<dt>s<sub>n</sub><dd><i>sprite group n</i>: <i>blend select</i>
 		</dl>
 	</f3-data>
 </f3-struct>
@@ -413,9 +432,9 @@
 <f3-struct>
 	<h1>Lineram Section 3.3 "7600" - Sprite Priorities</h1>
 	<f3-data>
-		<f3-bits>prio3:4,prio2:4,prio1:4,prio0:4</f3-bits>
+		<f3-bits>prio<sub>3</sub>:4,prio<sub>2</sub>:4,prio<sub>1</sub>:4,prio<sub>0</sub>:4</f3-bits>
 		<dl>
-			<dt>prio[n]<dd><i>sprite group n</i>: priority
+			<dt>prio<sub>n</sub><dd><i>sprite group n</i>: priority
 		</dl>
 	</f3-data>
 </f3-struct>
@@ -426,9 +445,9 @@
 		<f3-bits>hscale:8,vscale:8</f3-bits>
 		<dl>
 			<dt>vscale<dd><i>playfield 0</i>: vertical scale
-				<dl compact><dt>$00<dd><dt>$80<dd><dt>$FF<dd></dl>
+				<dl compact><dt>$00<dd>0%<dt>$40<dd>50%<dt>$80<dd>100%<dt>$C0<dd>150%<dt>$FF<dd>199%</dl>
 			<dt>hscale<dd><i>playfield 0</i>: horizontal scale
-				<dl compact><dt>$00<dd><dt>$80<dd><dt>$FF<dd></dl>
+				<dl compact><dt>$00<dd>100%<dt>$40<dd>75%<dt>$80<dd>50%<dt>$C0<dd>25%<dt>$FF<dd>0.4%</dl>
 		</dl>
 	</f3-data>
 </f3-struct>
@@ -504,11 +523,11 @@
 <f3-struct>
 	<h1>Lineram Section 7.0 "B000" - Playfield 0 Blending</h1>
 	<f3-data>
-		<f3-bits>bm:2,E,I,c3,c2,c1,c0,i3,i2,i1,i0,prio:4</f3-bits>
+		<f3-bits>bm:2,E,I,c<sub>3</sub>,c<sub>2</sub>,c<sub>1</sub>,c<sub>0</sub>,i<sub>3</sub>,i<sub>2</sub>,i<sub>1</sub>,i<sub>0</sub>,prio:4</f3-bits>
 		<dl>
 			<dt>prio<dd><i>playfield 0</i>: priority (0-15)
-			<dt>i[n]<dd><i>playfield 0</i>: clip plane n mode
-			<dt>c[n]<dd><i>playfield 0</i>: clip plane n enable
+			<dt>i<sub>n</sub><dd><i>playfield 0</i>: clip plane n mode
+			<dt>c<sub>n</sub><dd><i>playfield 0</i>: clip plane n enable
 			<dt>I<dd><i>playfield 0</i>: clip invert
 			<dt>E<dd><i>playfield 0</i>: enable
 			<dt>bm<dd><i>playfield 0</i>: blend mode<dl compact><dt>0<dd>both<dt>1<dd>left<dt>2<dd>right<dt>3<dd>neither</dl>
@@ -524,7 +543,7 @@
 <script>
 	for (let e of document.querySelectorAll('f3-bits')) {
 		if (/,|:/.test(e.textContent)) {
-			let n = e.textContent.split(",")
+			let n = e.innerHTML.split(",")
 			let l = 0
 			let d = n.map(m=>{
 				m = m.split(":")
