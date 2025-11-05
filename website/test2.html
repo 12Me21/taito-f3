@@ -7,13 +7,17 @@
 	}
 	body {
 		font-family: mspm, georgia;
+		font-variant: tabular-nums;
+	}
+	h1 {
+		font-variant: lining-nums;
 	}
 	f3-bits, f3-struct dt, table.bits td {
 		font-family: mspm, times new roman;
 	}
 	f3-struct dt {
-		font-size: 1.25em;
-		line-height: 22px;
+		font-size: 1.125em;
+		//line-height: 22px;
 	}
 	f3-struct, f3-addr, f3-data {
 		display: flex;
@@ -111,9 +115,10 @@
 		counter-reset: bnum 16;
 	}
 	table.bits tr>* {
-		width: 16px;
-		max-width: 16px;
+		width: 18px;
+		max-width: 18px;
 		text-align: center;
+		text-shadow: 1px 0 white;
 	}
 	table.bits th {
 		font-family: courier, monospace;
@@ -148,10 +153,9 @@
 	/*table.bits td.x { background: #DDD; }*/
 	table.bits td.x {
 		font-variant: tabular-nums;
-		background: linear-gradient(to right, #ddd, #ccc 4px calc(100% - 4px), #bbb);
+		background: #ddd;
 	}
-	table.bits td.x:first-child { background: #ccc; }
-	table.bits td.x:last-child { background: linear-gradient(to right, #fff, #fff); }
+	table.bits td.x:last-child { background: #eee; }
 </style>
 
 <table class=bits><tr><th><th><th><th><th><th><th><th><th><th><th><th><th><th><th><th><tr><td colspan=2>B<td>E<td>I<td>c<td class=c>c<td class=c>c<td class=c>c<td>i<td>i<td>i<td>i<td colspan=4>p</table>
@@ -180,9 +184,9 @@
 	</f3-addr>
 	<f3-data>
 		<h1>Data</h1>
-		<f3-bits>h,v,tex2:2,bpp:2,bs,pal:9,tex:16</f3-bits>
+		<f3-bits>h,v,chr2:2,bpp:2,bs,pal:9,chr:16</f3-bits>
 		<dl>
-			<dt>tex<dd>texture id (lower bits)
+			<dt>chr<dd>character id (lower bits)
 			<dt>pal<dd>palette id (0-511)
 			<dt>bs<dd>blend select
 			<dt>bpp<dd>texture bit planes (bits per pixel select)
@@ -192,7 +196,7 @@
 					<dt>2<dd>?
 					<dt>3<dd>6bpp
 				</dl>
-			<dt>tex2<dd>texture id (upper bits)
+			<dt>chr2<dd>character id (upper bits)
 			<dt>v<dd><dl compact><dt>1<dd>vertical flip</dl>
 			<dt>h<dd><dl compact><dt>1<dd>horizontal flip</dl>
 		</dl>
@@ -213,9 +217,9 @@
 	</f3-addr>
 	<f3-data>
 		<h1>Data</h1>
-		<f3-bits>h,pal:6,v,tex:8</f3-bits>
+		<f3-bits>h,pal:6,v,chr:8</f3-bits>
 		<dl>
-			<dt>tex<dd>texture id (0-255)
+			<dt>chr<dd>character id (0-255)
 			<dt>v<dd><dl compact><dt>1<dd>vertical flip</dl>
 			<dt>pal<dd>palette id (0-63)
 			<dt>h<dd><dl compact><dt>1<dd>horizontal flip</dl>
@@ -224,25 +228,25 @@
 </f3-struct>
 
 <f3-struct>
-	<h1>Pivot Texture</h1>
+	<h1>Pivot Texture Row</h1>
 	<f3-addr>
 		<h1>Address (Text Mode)</h1>
-		<f3-bits>&ctdot;,0,1,1,1,1,tex:8,row:3,-:2</f3-bits>
+		<f3-bits>&ctdot;,0,1,1,1,1,chr:8,row:3,-:2</f3-bits>
 		<dl>
-			<dt>tex<dd>texture id (0-255)
-			<dt>row<dd>row of texture (0-8)
+			<dt>chr<dd>character id (0-255)
+			<dt>row<dd>row of texture (0-7)
 		</dl>
 		<h1>Address (Pixel Mode)</h1>
 		<f3-bits>&ctdot;,1,b,x:6,y:5,row:3,-:2</f3-bits>
 		<dl>
 			<dt>b<dd>pivot pixel bank (set in lineram)
 			<dt>x<dd>tile x index (0-63)
-			<dt>y<dd>tile y index (0-31; bottom half uses same data)
-			<dt>row<dd>row of texture (0-8)
+			<dt>y<dd>tile y index (0-31; top and bottom halves of the pivot layer use same textures in pixel mode)
+			<dt>row<dd>row of texture (0-7)
 		</dl>
 	</f3-addr>
 	<f3-data>
-		<h1>Data (Row)</h1>
+		<h1>Data</h1>
 		<f3-bits>b:4,b:4,b:4,b:4,b:4,b:4,b:4,b:4</f3-bits>
 		<dl>
 			<dt>b<dd>data for 1 pixel (todo: what order are these in?)
@@ -266,17 +270,19 @@
 	</dl>
 </f3-struct>
 
+<p>note: lineram section 0 is missing its first 2 subsections (0.0 "4000" and 0.1 "4200"), so per-line y scroll adjust and alternate tilemap are only available on playfields 2 and 3.</p>
+
 <f3-struct>
-	<h1>Lineram Section 0.2 "4400" - Vertical Scroll Offset, Misc.</h1>
+	<h1>Lineram Section 0.2 "4400" - Playfield 2 Y Scroll Adjust, Misc.</h1>
 	<f3-data>
-		<f3-bits>RLrl ??Ts ssss ssss</f3-bits>
+		<f3-bits>R1,L1,R0,L0,?:2,a,yscroll:9</f3-bits>
 		<dl>
-			<dt>s<dd><i>playfield 2</i>: vertical scroll offset (format?)
-			<dt>T<dd><i>playfield 2</i>: data location<dl compact><dt>0<dd>normal<dt>1<dd>alternate (tilemap number+2)</dl>
-			<dt>l<dd>clip plane 0 left: upper bit
-			<dt>r<dd>clip plane 0 right: upper bit
-			<dt>L<dd>clip plane 1 left: upper bit
-			<dt>R<dd>clip plane 1 right: upper bit
+			<dt>yscroll<dd><i>playfield 2</i>: y scroll adjust (todo: format?)
+			<dt>a<dd><i>playfield 2</i>: data location<dl compact><dt>0<dd>normal<dt>1<dd>alternate (tilemap number+2)</dl>
+			<dt>L0<dd>clip plane 0 left (upper bit)
+			<dt>R0<dd>clip plane 0 right (upper bit)
+			<dt>L1<dd>clip plane 1 left (upper bit)
+			<dt>R1<dd>clip plane 1 right (upper bit)
 		</dl>
 	</f3-data>
 </f3-struct>
@@ -287,12 +293,12 @@
 </f3-struct>
 
 <f3-struct>
-	<h1>Lineram Section 1.0 "5000" - Clip Planes</h1>
+	<h1>Lineram Section 1.0 "5000" - Clip Plane Values</h1>
 	<f3-data>
-		<f3-bits>rrrr rrrr llll llll</f3-bits>
+		<f3-bits>right:8,left:8</f3-bits>
 		<dl>
-			<dt>l<dd><i>clip plane 0</i> left: lower bits
-			<dt>r<dd><i>clip plane 0</i> right: lower bits
+			<dt>left<dd><i>clip plane 0</i> left (lower bits)
+			<dt>right<dd><i>clip plane 0</i> right (lower bits)
 		</dl>
 	</f3-data>
 </f3-struct>
@@ -315,17 +321,14 @@
 <f3-struct>
 	<h1>Lineram Section 2.0 "6000" - Misc Blending, Pivot Mode</h1>
 	<f3-data>
-		<f3-bits>B?p? oNAm ddcc bbaa</f3-bits>
+		<f3-bits>B,?,P,?,o,b,p,h,s3:2,s2:2,s1:2,s0:2</f3-bits>
 		<dl>
-			<dt>a<dd><i>sprite group 0</i>: <i>blend mode</i><dl compact><dt>0<dd>neither<dt>1<dd>left<dt>2<dd>right<dt>3<dd>both</dl>
-			<dt>b<dd><i>sprite group 1</i>: <i>blend mode</i>
-			<dt>c<dd><i>sprite group 2</i>: <i>blend mode</i>
-			<dt>d<dd><i>sprite group 3</i>: <i>blend mode</i>
-			<dt>m<dd><i>hicolor layer</i>: <i>blend value select</i>
-			<dt>A<dd><i>pivot</i>: <i>blend value select</i>
-			<dt>N<dd><i>background color</i>: <i>blend value select</i>
+			<dt>s[n]<dd><i>sprite group n</i>: blend mode (note 0 and 3 are swapped)<dl compact><dt>0<dd>neither<dt>1<dd>left<dt>2<dd>right<dt>3<dd>both</dl>
+			<dt>h<dd><i>highcolor layer</i>: blend value select
+			<dt>p<dd><i>pivot</i>: blend value select
+			<dt>b<dd><i>background color</i>: blend value select
 			<dt>o<dd>tilemap infinite vertical stretch?
-			<dt>p<dd><i>pivot</i>: mode<dl compact><dt>0<dd>text<dt>1<dd>pixel</dl>
+			<dt>P<dd><i>pivot</i>: mode<dl compact><dt>0<dd>text<dt>1<dd>pixel</dl>
 			<dt>B<dd><i>pivot</i>: pixel data location<dl compact><dt>0<dd>$620000 (conflicts with lineram)<dt>1<dd>$630000</dl>
 		</dl>
 	</f3-data>
@@ -334,12 +337,12 @@
 <f3-struct>
 	<h1>Lineram Section 2.1 "6200" - Blend Alpha Values</h1>
 	<f3-data>
-		<f3-bits>LLLL llll RRRR rrrr</f3-bits>
+		<f3-bits>left1:4,left0:4,right1:4,right0:4</f3-bits>
 		<dl>
-			<dt>r<dd>right half-pixel, blend select = 0<br>alpha = clamp((15-value)/8, 0, 1)<dl compact><dt>$0-$7<dd>100%<dt>$B<dd>50%<dt>$F<dd>0%</dl>
-			<dt>R<dd>right half-pixel, blend select = 1
-			<dt>l<dd>left half-pixel, blend select = 0
-			<dt>L<dd>left half-pixel, blend select = 1
+			<dt>right0<dd>right half-pixel, blend select = 0<br>alpha = clamp((15-value)/8, 0, 1)<dl compact><dt>$0-$7<dd>100%<dt>$B<dd>50%<dt>$F<dd>0%</dl>
+			<dt>right1<dd>right half-pixel, blend select = 1
+			<dt>left0<dd>left half-pixel, blend select = 0
+			<dt>left1<dd>left half-pixel, blend select = 1
 		</dl>
 	</f3-data>
 </f3-struct>
@@ -347,48 +350,48 @@
 <f3-struct>
 	<h1>Lineram Section 2.2 "6400" - Mosaic and <abbr>Fda</abbr> Settings</h1>
 	<f3-data>
-		<f3-bits>ffb? S?hs mmmm pppp</f3-bits>
+		<f3-bits>fda:2,b,?,S,?,h,s,mosaic:4,p3,p2,p1,p0</f3-bits>
 		<dl>
-			<dt>p<dd><i>playfield n</i>: <i>mosaic enables</i>
-			<dt>m<dd>mosaic strength: samples every [16&minus;m] pixels
+			<dt>p[n]<dd><i>playfield n</i>: <i>mosaic enable</i>
+			<dt>mosaic<dd>mosaic strength: samples every [16&minus;m] pixels
 			<dt>s<dd><i>sprites</i>: <i>mosaic enable</i>
 			<dt>h<dd><i>hicolor layer</i>: <i>mosaic enable</i>
 			<dt>S<dd>?? shadow mode?
 			<dt>b<dd><i><abbr>fda</abbr></i>: horizontal blur<dl compact><dt>0<dd>blurred<dt>1<dd>normal</dl>
-			<dt>f<dd><i><abbr>fda</abbr></i>: mode<dl><dt>0<dd>15-bit <abbr>rgb</abbr> format (legacy mode)<dt>1<dd>normal mode<dt>2<dd>no blending, display half-pixels separately (debug mode?)<dt>3<dd>invalid? first pixel repeats all the way across</dl>
+			<dt>fda<dd><i><abbr>fda</abbr></i> mode<dl><dt>0<dd>15-bit <abbr>rgb</abbr> format (legacy mode)<dt>1<dd>normal mode<dt>2<dd>no blending, display half-pixels separately (debug mode?)<dt>3<dd>invalid? first pixel repeats all the way across</dl>
 		</dl>
 	</f3-data>
 </f3-struct>
 
 <f3-struct>
-	<h1>Lineram Section 2.3 "6600" - Background Color Index</h1>
+	<h1>Lineram Section 2.3 "6600" - Background Color</h1>
 	<f3-data>
-		<f3-bits>...b bbbb bbbb bbbb</f3-bits>
+		<f3-bits>.:3,color:13</f3-bits>
 		<dl>
-			<dt>b<dd><i>background color</i>: <i>color index</i>
+			<dt>color<dd><i>background color</i>: <i>color index</i>
 		</dl>
 	</f3-data>
 </f3-struct>
 
 <f3-struct>
-	<h1>Lineram Section 3.0 "7000" - Hicolor Layer Blending</h1>
+	<h1>Lineram Section 3.0 "7000" - Highcolor Layer Blending</h1>
 	<f3-data>
-		<f3-bits>BBEI cccc iiii pppp</f3-bits>
-		(same as playfield 0, but for the hicolor layer)
+		<f3-bits>bm:2,E,I,c3,c2,c1,c0,i3,i2,i1,i0,prio:4</f3-bits>
+		(same as section 7.0, but for the highcolor layer)
 	</f3-data>
 </f3-struct>
 
 <f3-struct>
 	<h1>Lineram Section 3.1 "7200" - Pivot Layer Blending</h1>
 	<f3-data>
-		<f3-bits>B?EI cccc iiii pppp</f3-bits>
+		<f3-bits>bm,?,E,I,c3,c2,c1,c0,i3,i2,i1,i0,prio:4</f3-bits>
 		<dl>
-			<dt>p<dd><i>pivot</i>: <i>priority</i> (0-15)
-			<dt>i<dd><i>pivot</i>: <i>clip plane modes</i>
-			<dt>c<dd><i>pivot</i>: <i>clip plane enables</i>
-			<dt>I<dd><i>pivot</i>: <i>clip invert</i>
-			<dt>E<dd><i>pivot</i>: <i>enable</i>
-			<dt>B<dd><i>pivot</i>: <i>blend mode</i><dl compact><dt>0<dd>both<dt>1<dd>left</dl>
+			<dt>prio<dd><i>pivot</i>: priority (0-15)
+			<dt>i[n]<dd><i>pivot</i>: clip plane n mode
+			<dt>c[n]<dd><i>pivot</i>: clip plane n enable
+			<dt>I<dd><i>pivot</i>: clip invert
+			<dt>E<dd><i>pivot</i>: enable
+			<dt>bm<dd><i>pivot</i>: blend mode (note different interpretation than elsewhere)<dl compact><dt>0<dd>both<dt>1<dd>left</dl>
 		</dl>
 	</f3-data>
 </f3-struct>
@@ -396,29 +399,23 @@
 <f3-struct>
 	<h1>Lineram Section 3.2 "7400" - Sprite Blending</h1>
 	<f3-data>
-		<f3-bits>DCBA ??EI cccc iiii</f3-bits>
+		<f3-bits>s3,s2,s1,s0,?,?,E,I,c3,c2,c1,c0,i3,i2,i1,i0</f3-bits>
 		<dl>
-			<dt>i<dd><i>sprites</i>: <i>clip plane modes</i>
-			<dt>c<dd><i>sprites</i>: <i>clip plane enables</i>
-			<dt>I<dd><i>sprites</i>: <i>clip invert</i>
-			<dt>E<dd><i>sprites</i>: <i>enable</i>
-			<dt>A<dd><i>sprite group 0</i>: <i>blend select</i>
-			<dt>B<dd><i>sprite group 1</i>: <i>blend select</i>
-			<dt>C<dd><i>sprite group 2</i>: <i>blend select</i>
-			<dt>D<dd><i>sprite group 3</i>: <i>blend select</i>
+			<dt>i[n]<dd><i>sprites</i>: clip plane n mode
+			<dt>c[n]<dd><i>sprites</i>: clip plane n enable
+			<dt>I<dd><i>sprites</i>: clip invert
+			<dt>E<dd><i>sprites</i>: enable
+			<dt>s[n]<dd><i>sprite group n</i>: <i>blend select</i>
 		</dl>
 	</f3-data>
 </f3-struct>
 
 <f3-struct>
-	<h1>Lineram Section 3.3 "7600" - Sprite Group Priorities</h1>
+	<h1>Lineram Section 3.3 "7600" - Sprite Priorities</h1>
 	<f3-data>
-		<f3-bits>dddd cccc bbbb aaaa</f3-bits>
+		<f3-bits>prio3:4,prio2:4,prio1:4,prio0:4</f3-bits>
 		<dl>
-			<dt>a<dd><i>sprite group 0</i>: <i>priority</i>
-			<dt>b<dd><i>sprite group 1</i>: <i>priority</i>
-			<dt>c<dd><i>sprite group 2</i>: <i>priority</i>
-			<dt>d<dd><i>sprite group 3</i>: <i>priority</i>
+			<dt>prio[n]<dd><i>sprite group n</i>: priority
 		</dl>
 	</f3-data>
 </f3-struct>
@@ -426,11 +423,11 @@
 <f3-struct>
 	<h1>Lineram Section 4.0 "8000" - Playfield 0 Scale</h1>
 	<f3-data>
-		<f3-bits>xxxx xxxx yyyy yyyy</f3-bits>
+		<f3-bits>hscale:8,vscale:8</f3-bits>
 		<dl>
-			<dt>y<dd><i>playfield 0</i>: vertical scale
+			<dt>vscale<dd><i>playfield 0</i>: vertical scale
 				<dl compact><dt>$00<dd><dt>$80<dd><dt>$FF<dd></dl>
-			<dt>x<dd><i>playfield 0</i>: horizontal scale
+			<dt>hscale<dd><i>playfield 0</i>: horizontal scale
 				<dl compact><dt>$00<dd><dt>$80<dd><dt>$FF<dd></dl>
 		</dl>
 	</f3-data>
@@ -439,10 +436,10 @@
 <f3-struct>
 	<h1>Lineram Section 4.1 "8200" - Playfield 1 Scale</h1>
 	<f3-data>
-		<f3-bits>xxxx xxxx YYYY YYYY</f3-bits>
+		<f3-bits>hscale:8,vscale:8</f3-bits>
 		<dl>
-			<dt>y<dd><i>playfield 3</i>*: vertical scale<br>*bug: playfields 1 and 3 have their vertical scales swapped
-			<dt>x<dd><i>playfield 1</i>: horizontal scale
+			<dt>vscale<dd><i>playfield 3</i>*: vertical scale<br>*bug: playfields 1 and 3 have their vertical scales swapped
+			<dt>hscale<dd><i>playfield 1</i>: horizontal scale
 		</dl>
 	</f3-data>
 </f3-struct>
@@ -450,10 +447,10 @@
 <f3-struct>
 	<h1>Lineram Section 4.2 "8400" - Playfield 2 Scale</h1>
 	<f3-data>
-		<f3-bits>xxxx xxxx yyyy yyyy</f3-bits>
+		<f3-bits>hscale:8,vscale:8</f3-bits>
 		<dl>
-			<dt>y<dd><i>playfield 2</i>: vertical scale
-			<dt>x<dd><i>playfield 2</i>: horizontal scale
+			<dt>vscale<dd><i>playfield 2</i>: vertical scale
+			<dt>hscale<dd><i>playfield 2</i>: horizontal scale
 		</dl>
 	</f3-data>
 </f3-struct>
@@ -461,20 +458,20 @@
 <f3-struct>
 	<h1>Lineram Section 4.3 "8600" - Playfield 3 Scale</h1>
 	<f3-data>
-		<f3-bits>xxxx xxxx YYYY YYYY</f3-bits>
+		<f3-bits>hscale:8,vscale:8</f3-bits>
 		<dl>
-			<dt>y<dd><i>playfield 1</i>*: vertical scale
-			<dt>x<dd><i>playfield 3</i>: horizontal scale
+			<dt>vscale<dd><i>playfield 1</i>*: vertical scale
+			<dt>hscale<dd><i>playfield 3</i>: horizontal scale
 		</dl>
 	</f3-data>
 </f3-struct>
 
 <f3-struct>
-	<h1>Lineram Section 5.0 "9000" - Playfield 0 Palette Add</h1>
+	<h1>Lineram Section 5.0 "9000" - Playfield 0 Palette Adjust</h1>
 	<f3-data>
-		<f3-bits>.... ..cc cccc cccc</f3-bits>
+		<f3-bits>.:6,palette:10</f3-bits>
 		<dl>
-			<dt>c<dd><i>playfield 0</i>: offset added to the palette of all tiles
+			<dt>palette<dd><i>playfield 0</i>: added to the palette of all tiles
 		</dl>
 	</f3-data>
 </f3-struct>
@@ -495,11 +492,11 @@
 </f3-struct>
 
 <f3-struct>
-	<h1>Lineram Section 6.0 "A000" - Playfield 0 Local Scroll X</h1>
+	<h1>Lineram Section 6.0 "A000" - Playfield 0 X Scroll Adjust</h1>
 	<f3-data>
-		<f3-bits>xxxx xxxx xxxx xxxx</f3-bits>
+		<f3-bits>xscroll:16</f3-bits>
 		<dl>
-			<dt>s<dd><i>playfield 0</i>: local scroll x (same format as global scroll)
+			<dt>xscroll<dd><i>playfield 0</i>: x scroll adjust (same format as global scroll)
 		</dl>
 	</f3-data>
 </f3-struct>
@@ -507,14 +504,14 @@
 <f3-struct>
 	<h1>Lineram Section 7.0 "B000" - Playfield 0 Blending</h1>
 	<f3-data>
-		<f3-bits>BBEI cccc iiii pppp<br>.... 3210 3210 ....</f3-bits>
+		<f3-bits>bm:2,E,I,c3,c2,c1,c0,i3,i2,i1,i0,prio:4</f3-bits>
 		<dl>
-			<dt>p<dd><i>playfield 0</i>: <i>priority</i> (0-15)
-			<dt>i[4]<dd><i>playfield 0</i>: <i>clip plane modes</i>
-			<dt>c[4]<dd><i>playfield 0</i>: <i>clip plane enables</i>
-			<dt>I<dd><i>playfield 0</i>: <i>clip invert</i>
-			<dt>E<dd><i>playfield 0</i>: <i>enable</i>
-			<dt>B<dd><i>playfield 0</i>: <i>blend mode</i><dl compact><dt>0<dd>both<dt>1<dd>left<dt>2<dd>right<dt>3<dd>neither</dl>
+			<dt>prio<dd><i>playfield 0</i>: priority (0-15)
+			<dt>i[n]<dd><i>playfield 0</i>: clip plane n mode
+			<dt>c[n]<dd><i>playfield 0</i>: clip plane n enable
+			<dt>I<dd><i>playfield 0</i>: clip invert
+			<dt>E<dd><i>playfield 0</i>: enable
+			<dt>bm<dd><i>playfield 0</i>: blend mode<dl compact><dt>0<dd>both<dt>1<dd>left<dt>2<dd>right<dt>3<dd>neither</dl>
 		</dl>
 	</f3-data>
 </f3-struct>
@@ -526,7 +523,7 @@
 
 <script>
 	for (let e of document.querySelectorAll('f3-bits')) {
-		if (/,/.test(e.textContent)) {
+		if (/,|:/.test(e.textContent)) {
 			let n = e.textContent.split(",")
 			let l = 0
 			let d = n.map(m=>{
@@ -534,7 +531,7 @@
 				console.log(m)
 				let c = (+m[1])||1
 				l += c
-				return `<td${/^(⋯|-|0|1)$/.test(m[0])?" class=x":""} colspan=${c}>${m[0]}`
+				return `<td${/^(⋯|-|0|1|\.)$/.test(m[0])?" class=x":""} colspan=${c}>${m[0]}`
 			})
 			e.outerHTML = `<table class=bits><tr style="counter-reset:bnum ${l}">${"<th>".repeat(l)}<tr>${d.join("")}</table>`
 		} else {
