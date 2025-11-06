@@ -179,7 +179,17 @@
 
 <table class=bits><tr><th><th><th><th><th><th><th><th><th><th><th><th><th><th><th><th><tr><td colspan=2>B<td>E<td>I<td>c<td class=c>c<td class=c>c<td class=c>c<td>i<td>i<td>i<td>i<td colspan=4>p</table>
 <table class=bits><tr><th><th><th><th><th><th><th><th><th><th><th><th><th><th><th><th><tr>hccc cccv tttt tttt</table>
-
+	
+<h1>Clipping</h1>
+<p>there are four global clipping intervals, each consisting of a left and right value. each layer (with sprite groups sharing clip settings) has the following clip settings:
+<dl>
+	<dt>layer enable<dd>(idk if this counts as clipping but it's near the others)
+	<dt>global clip invert<dd>invert all clipping
+	<dt>clip plane enable<dd>1 = enabled
+	<dt>clip plane mode<dd>0 = hide inside, 1 = hide outside
+</dl>
+(todo)
+	
 <p>to help you get your bearings, here is an overview of the layout of graphics ram: (todo: baby mode table)</p>
 
 <p>There are four playfields consisting of a 32x32 or 64x32 grid of 16x16px tiles.</p>
@@ -247,25 +257,23 @@
 </f3-struct>
 
 <f3-struct>
-	<h1>Pivot Texture Row</h1>
+	<h1>Pivot Texture</h1>
 	<f3-addr>
 		<h1>Address (Text Mode)</h1>
-		<f3-bits>&ctdot;,0,1,1,1,1,chr:8,row:3,-:2</f3-bits>
+		<f3-bits>&ctdot;,0,1,1,1,1,chr:8,-:5</f3-bits>
 		<dl>
 			<dt>chr<dd>character id (0-255)
-			<dt>row<dd>row of texture (0-7)
 		</dl>
 		<h1>Address (Pixel Mode)</h1>
-		<f3-bits>&ctdot;,1,b,x:6,y:5,row:3,-:2</f3-bits>
+		<f3-bits>&ctdot;,1,b,x:6,y:5,-:5</f3-bits>
 		<dl>
 			<dt>b<dd>pivot pixel bank (set in lineram)
 			<dt>x<dd>tile x index (0-63)
 			<dt>y<dd>tile y index (0-31; top and bottom halves of the pivot layer use same textures in pixel mode)
-			<dt>row<dd>row of texture (0-7)
 		</dl>
 	</f3-addr>
 	<f3-data>
-		<h1>Data</h1>
+		<h1>Data (×8)</h1>
 		<f3-bits>b:4,b:4,b:4,b:4,b:4,b:4,b:4,b:4</f3-bits>
 		<dl>
 			<dt>b<dd>data for 1 pixel (todo: what order are these in?)
@@ -278,7 +286,7 @@
 <f3-struct>
 	<h1>common layer properties</h1>
 	<dl>
-		<dt>display enable<dd><dl compact><dt>0<dd>off<dt>1<dd>on</dl>(todo: hm does disabling turn off the updating of y position based on scale?)
+		<dt>display enable<dd><dl compact><dt>0<dd>off<dt>1<dd>on</dl>(todo: hm does disabling turn off the updating of y position based on zoom?)
 		<dt>priority<dd>0-15. higher = above other things. two layers with the same priority can cause a conflict.
 		<dt>clip invert<dd><dl compact><dt>0<dd>normal<dt>1<dd>inverted</dl>
 		<dt>clip plane enable ×4<dd>one per clip plane<dl compact><dt>0<dd>off<dt>1<dd>on</dl>
@@ -292,16 +300,16 @@
 <p>note: lineram section 0 is missing its first 2 subsections (0.0 "4000" and 0.1 "4200"), so per-line y scroll adjust and alternate tilemap are only available on playfields 2 and 3.</p>
 
 <f3-struct>
-	<h1>Lineram Section 0.2 "4400" - Playfield 2 Y Scroll Adjust, Misc.</h1>
+	<h1>Lineram Section 0.2 "4400" - "Colscroll", Alt Tilemap, Clip Bits</h1>
 	<f3-data>
-		<f3-bits>R1,L1,R0,L0,?:2,a,yscroll:9</f3-bits>
+		<f3-bits>1<sub>R</sub>,1<sub>L</sub>,0<sub>R</sub>,0<sub>L</sub>,?:2,a,yscroll:9</f3-bits>
 		<dl>
 			<dt>yscroll<dd><i>playfield 2</i>: y scroll adjust (todo: format?)
-			<dt>a<dd><i>playfield 2</i>: data location<dl compact><dt>0<dd>normal<dt>1<dd>alternate (tilemap number+2)</dl>
-			<dt>L0<dd>clip plane 0 left (upper bit)
-			<dt>R0<dd>clip plane 0 right (upper bit)
-			<dt>L1<dd>clip plane 1 left (upper bit)
-			<dt>R1<dd>clip plane 1 right (upper bit)
+			<dt>a<dd><i>playfield 2</i>: tile data location<dl compact><dt>0<dd>normal<dt>1<dd>alternate (tilemap number+2)</dl>
+			<dt>0<sub>L</sub><dd>clip plane 0 left (upper bit)
+			<dt>0<sub>R</sub><dd>clip plane 0 right (upper bit)
+			<dt>1<sub>L</sub><dd>clip plane 1 left (upper bit)
+			<dt>1<sub>R</sub><dd>clip plane 1 right (upper bit)
 		</dl>
 	</f3-data>
 </f3-struct>
@@ -440,47 +448,49 @@
 </f3-struct>
 
 <f3-struct>
-	<h1>Lineram Section 4.0 "8000" - Playfield 0 Scale</h1>
+	<h1>Lineram Section 4.0 "8000" - Playfield 0 Zoom</h1>
 	<f3-data>
-		<f3-bits>hscale:8,vscale:8</f3-bits>
+		<f3-bits>hzoom:8,vzoom:8</f3-bits>
 		<dl>
-			<dt>vscale<dd><i>playfield 0</i>: vertical scale
-				<dl compact><dt>$00<dd>0%<dt>$40<dd>50%<dt>$80<dd>100%<dt>$C0<dd>150%<dt>$FF<dd>199%</dl>
-			<dt>hscale<dd><i>playfield 0</i>: horizontal scale
-				<dl compact><dt>$00<dd>100%<dt>$40<dd>75%<dt>$80<dd>50%<dt>$C0<dd>25%<dt>$FF<dd>0.4%</dl>
+			<dt>vzoom<dd><i>playfield 0</i>: vertical zoom<br>
+				factor = 1 / (zoom/128)
+				<dl compact><dt>$00<dd>∞×<dt>$40<dd>2×<dt>$80<dd>1×<dt>$C0<dd>0.667×<dt>$FF<dd>0.502×</dl>
+			<dt>hzoom<dd><i>playfield 0</i>: horizontal zoom<br>
+				factor = 1 / (1 - zoom/256)
+				<dl compact><dt>$00<dd>1×<dt>$40<dd>1.333×<dt>$80<dd>2×<dt>$C0<dd>4×<dt>$FF<dd>256×</dl>
 		</dl>
 	</f3-data>
 </f3-struct>
 
 <f3-struct>
-	<h1>Lineram Section 4.1 "8200" - Playfield 1 Scale</h1>
+	<h1>Lineram Section 4.1 "8200" - Playfield 1 Zoom</h1>
 	<f3-data>
-		<f3-bits>hscale:8,vscale:8</f3-bits>
+		<f3-bits>hzoom:8,vzoom:8</f3-bits>
 		<dl>
-			<dt>vscale<dd><i>playfield 3</i>*: vertical scale<br>*bug: playfields 1 and 3 have their vertical scales swapped
-			<dt>hscale<dd><i>playfield 1</i>: horizontal scale
+			<dt>vzoom<dd><i>playfield 3</i>*: vertical zoom<br>*bug: playfields 1 and 3 have their vertical zooms swapped
+			<dt>hzoom<dd><i>playfield 1</i>: horizontal zoom
 		</dl>
 	</f3-data>
 </f3-struct>
 
 <f3-struct>
-	<h1>Lineram Section 4.2 "8400" - Playfield 2 Scale</h1>
+	<h1>Lineram Section 4.2 "8400" - Playfield 2 Zoom</h1>
 	<f3-data>
-		<f3-bits>hscale:8,vscale:8</f3-bits>
+		<f3-bits>hzoom:8,vzoom:8</f3-bits>
 		<dl>
-			<dt>vscale<dd><i>playfield 2</i>: vertical scale
-			<dt>hscale<dd><i>playfield 2</i>: horizontal scale
+			<dt>vzoom<dd><i>playfield 2</i>: vertical zoom
+			<dt>hzoom<dd><i>playfield 2</i>: horizontal zoom
 		</dl>
 	</f3-data>
 </f3-struct>
 
 <f3-struct>
-	<h1>Lineram Section 4.3 "8600" - Playfield 3 Scale</h1>
+	<h1>Lineram Section 4.3 "8600" - Playfield 3 Zoom</h1>
 	<f3-data>
-		<f3-bits>hscale:8,vscale:8</f3-bits>
+		<f3-bits>hzoom:8,vzoom:8</f3-bits>
 		<dl>
-			<dt>vscale<dd><i>playfield 1</i>*: vertical scale
-			<dt>hscale<dd><i>playfield 3</i>: horizontal scale
+			<dt>vzoom<dd><i>playfield 1</i>*: vertical zoom
+			<dt>hzoom<dd><i>playfield 3</i>: horizontal zoom
 		</dl>
 	</f3-data>
 </f3-struct>
@@ -488,7 +498,7 @@
 <f3-struct>
 	<h1>Lineram Section 5.0 "9000" - Playfield 0 Palette Adjust</h1>
 	<f3-data>
-		<f3-bits>.:6,palette:10</f3-bits>
+		<f3-bits>.:10,palette:6</f3-bits>
 		<dl>
 			<dt>palette<dd><i>playfield 0</i>: added to the palette of all tiles
 		</dl>
@@ -511,7 +521,7 @@
 </f3-struct>
 
 <f3-struct>
-	<h1>Lineram Section 6.0 "A000" - Playfield 0 X Scroll Adjust</h1>
+	<h1>Lineram Section 6.0 "A000" - "Rowscroll"</h1>
 	<f3-data>
 		<f3-bits>xscroll:16</f3-bits>
 		<dl>

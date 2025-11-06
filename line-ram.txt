@@ -144,8 +144,8 @@ alpha = clamp((15-value)/8, 0, 1)  ($F = 0%, $B = 50%, $7+ = 100%)
  x - {playfield 3} x scale
 
 "9000" (5.0)
-[.... ..cc cccc cccc]
- c - {playfield 0} palette add (palette index) todo: how many bits? cant be more than 9
+[.... .... ..cc cccc]
+ c - {playfield 0} palette add (palette index) yes it's only 6 bits
 "9200" (5.1)
 - same for {playfield 1}
 "9400" (5.2)
