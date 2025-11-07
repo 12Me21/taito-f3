@@ -111,6 +111,7 @@ alpha = clamp((15-value)/8, 0, 1)  ($F = 0%, $B = 50%, $7+ = 100%)
 [BBEI cccc iiii pppp]
  - {mystery layer} see b000
  - todo: check blend mode
+ - B: 0=both, 1,2,3= ??? half something they all seem to be the same half (right?) but
 "7200" (3.1)
 [B?EI cccc iiii pppp]
  B - {pivot} blend mode: 0 = both, 1 = left
