@@ -110,6 +110,11 @@
 	abbr {
 		font-variant-caps: small-caps;
 	}
+	f3-struct dt b {
+		font-size: 14px;
+		font-weight: normal;
+		color: teal;
+	}
 </style>
 
 <style>
@@ -222,9 +227,9 @@ a general note: unless otherwise stated, there is no "cost" to using any feature
 		<h1>Data</h1>
 		<f3-bits>h,v,chr2:2,bpp:2,bs,pal:9,chr:16</f3-bits>
 		<dl>
-			<dt>chr<dd>character id (lower bits)
-			<dt>pal<dd>palette id (0-511)
-			<dt>bs<dd>blend select
+			<dt>chr <b>0[16]</b><dd>character id (lower bits)
+			<dt>pal <b>16[9]</b><dd>palette id (0-511)
+			<dt>bs <b>25[1]</b><dd>blend select
 			<dt>bpp<dd>texture bit planes (bits per pixel select)
 				<dl compact>
 					<dt>0<dd>4bpp
