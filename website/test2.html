@@ -12,12 +12,9 @@
 	h1 {
 		font-variant: lining-nums;
 	}
-	f3-bits, f3-struct dt, table.bits td {
+
+	dl.bits > dt, table.bits td {
 		font-family: mspm, times new roman;
-	}
-	f3-struct dt {
-		font-size: 1.125em;
-		//line-height: 22px;
 	}
 	f3-struct, f3-addr, f3-data {
 		display: flex;
@@ -27,56 +24,9 @@
 	f3-struct {
 		margin-bottom: 1em;
 	}
-	f3-bits {
-		border: 2px inset;
-		display: inline-block;
-		padding: 0 0.5ch;
-		white-space: pre-wrap;
-		align-self: flex-start;
-	}
-	f3-bits >* {
-		font-weight: normal;
-	}
-	f3-bits b:nth-child(2n) {
-		color: red;
-	}
 	f3-struct {
 		border-left: solid black;
 		padding: 0.5em 0 0.5em 1em;
-	}
-	f3-struct dt {
-		margin-right: 6px;
-		justify-self: right;
-		grid-column: 1 / 2;
-	}
-	f3-struct dt::after {
-
-	}
-	f3-struct dt + dt::after {
-		content: none;
-	}
-	f3-struct dt + dt {
-		margin-right: 8px;
-	}
-	f3-struct dl {
-		display: grid;
-		grid: auto-flow / max-content max-content 1fr;
-		margin-left: 1em;
-		margin-top: 0.25em;
-		margin-bottom: 0em;
-	}
-	f3-struct f3-data > dl:not(:last-child) {
-		margin-bottom: 0.25em; /*hack*/
-	}
-	f3-struct f3-addr dl {
-		margin-bottom: 0.5em;
-	}
-	f3-struct dl>* {
-		align-self: baseline;
-	}
-	f3-struct dd {
-		margin: 0;
-		grid-column: 3 / 4;
 	}
 	f3-struct h1 {
 		//font-style: italic;
@@ -101,6 +51,9 @@
 		display: flex;
 		flex-wrap: wrap;
 	}
+	dl[compact] > dd {
+		margin: 0;
+	}
 	dl[compact] > dd:not(:last-child) {
 		margin-right: 1em;
 	}
@@ -114,14 +67,48 @@
 	abbr {
 		font-variant-caps: small-caps;
 	}
-	f3-struct dt + dt {
+</style>
+
+<style>
+	dl.bits {
+		display: grid;
+		grid: auto-flow / max-content max-content 1fr;
+		margin-left: 1em;
+		margin-top: 0.25em;
+		margin-bottom: 0em;
+	}
+	dl.bits > * {
+		align-self: baseline;
+	}
+	dl.bits > dt {
+		font-size: 18px;
+		margin-right: 4px;
+		justify-self: right;
+		grid-column: 1 / 2;
+	}
+	dl.bits > dt + dt {
 		grid-column: 2 / 3;
 		font-size: 14px;
 		font-weight: normal;
 		color: #468;
+		margin-right: 4px;
 	}
-	f3-struct dt + dt::before { content: "{"; }
-	f3-struct dt + dt::after { content: "}"; }
+	dl.bits > dt:not(dt+dt)::after {
+		content: ":";
+	}
+	dl.bits > dt + dt::before { content: "—{"; }
+	dl.bits > dt + dt::after { content: "}—"; }
+	dl.bits > dd {
+		margin: 0;
+		grid-column: 3 / 4;
+	}
+
+	f3-struct f3-addr > dl {
+		margin-bottom: 0.5em;
+	}
+	f3-struct f3-data > dl:not(:last-child) {
+		margin-bottom: 0.25em; /*hack*/
+	}
 </style>
 
 <style>
@@ -220,7 +207,7 @@ a general note: unless otherwise stated, there is no "cost" to using any feature
 		<f3-bits>&ctdot;,0,0,1,0,pf:3,y:5,x:5,-:2</f3-bits>
 		<h1>Address (extend mode)</h1>
 		<f3-bits>&ctdot;,0,0,1,pf:3,y:5,x:6,-:2</f3-bits>
-		<dl>
+		<dl class=bits>
 			<dt>pf<dd>playfield id
 				<dl>
 					<dt>0,1,2,3<dd>regular playfield data
@@ -233,7 +220,7 @@ a general note: unless otherwise stated, there is no "cost" to using any feature
 	<f3-data>
 		<h1>Data</h1>
 		<f3-bits>h,v,chr2:2,bpp:2,bs,palette:9,character:16</f3-bits>
-		<dl>
+		<dl class=bits>
 			<dt>character<dt>0:16<dd>character id (lower bits)
 			<dt>palette<dt>16:9<dd>palette id (0-511)
 			<dt>bs<dt>25:1<dd>blend select
