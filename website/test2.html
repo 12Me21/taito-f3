@@ -94,10 +94,9 @@
 		margin-right: 4px;
 	}
 	dl.bits > dt:not(dt+dt)::after {
-		content: ":";
 	}
-	dl.bits > dt + dt::before { content: "—{"; }
-	dl.bits > dt + dt::after { content: "}—"; }
+	dl.bits > dt + dt::before { color: black; content: "{"; }
+	dl.bits > dt + dt::after { color: black; content: "} —"; }
 	dl.bits > dd {
 		margin: 0;
 		grid-column: 3 / 4;
@@ -222,7 +221,7 @@ a general note: unless otherwise stated, there is no "cost" to using any feature
 		<f3-bits>h,v,chr2:2,bpp:2,bs,palette:9,character:16</f3-bits>
 		<dl class=bits>
 			<dt>character<dt>0:16<dd>character id (lower bits)
-			<dt>palette<dt>16:9<dd>palette id (0-511)
+			<dt>palette<dt>16:9<dd>palette id (0&ctdot;511)
 			<dt>bs<dt>25:1<dd>blend select
 			<dt>bpp<dt>26:2<dd>texture bit planes (bits per pixel select)
 				<dl compact>
