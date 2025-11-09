@@ -85,27 +85,33 @@
 		margin-right: 6px;
 		justify-self: right;
 		grid-column: 2 / 3;
+		margin-bottom: 2px;
 	}
 	dl.bits > dt + dt {
 		grid-column: 1 / 2;
 		font-size: 14px;
 		font-weight: normal;
 		color: #468;
-		margin-right: 6px;
+		margin-right: 2px;
 	}
 	dl.bits > dt:not(dt+dt) {
 		display: flex;
 		justify-self: stretch;
+		//text-shadow: 0.5px 0.5px 1px #4688;
 	}
 	dl.bits > dt:not(dt+dt)::after {
+		text-shadow: none;
+		color: #468;
 		content: ":";
 	}
 	dl.bits > dt:not(dt+dt)::before {
 		content: " ";
 		flex: 1;
-		background: linear-gradient(to bottom, white 0 50%, gray 50% 51%, white 0 100%);
 		white-space: pre;
 		margin-right: 2px;
+		margin-left: 2px;
+		border-bottom: 1px dotted #468;
+		height: 11px;
 	}
 	dl.bits > dt + dt::before { color: black; content: "{"; }
 	dl.bits > dt + dt::after { color: black; content: "}"; }
