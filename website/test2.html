@@ -45,18 +45,22 @@
 		padding: 0.5em 0 0.5em 1em;
 	}
 	f3-struct dt {
-		margin-right: 0.5em;
+		margin-right: 6px;
 		justify-self: right;
 		grid-column: 1 / 2;
 	}
 	f3-struct dt::after {
-		padding-left: 1px;
-		content: ":";
-		font-weight: normal;
+
+	}
+	f3-struct dt + dt::after {
+		content: none;
+	}
+	f3-struct dt + dt {
+		margin-right: 8px;
 	}
 	f3-struct dl {
 		display: grid;
-		grid: auto-flow / max-content 1fr;
+		grid: auto-flow / max-content max-content 1fr;
 		margin-left: 1em;
 		margin-top: 0.25em;
 		margin-bottom: 0em;
@@ -72,7 +76,7 @@
 	}
 	f3-struct dd {
 		margin: 0;
-		grid-column: 2 / 3;
+		grid-column: 3 / 4;
 	}
 	f3-struct h1 {
 		//font-style: italic;
@@ -110,11 +114,14 @@
 	abbr {
 		font-variant-caps: small-caps;
 	}
-	f3-struct dt b {
+	f3-struct dt + dt {
+		grid-column: 2 / 3;
 		font-size: 14px;
 		font-weight: normal;
-		color: teal;
+		color: #468;
 	}
+	f3-struct dt + dt::before { content: "{"; }
+	f3-struct dt + dt::after { content: "}"; }
 </style>
 
 <style>
@@ -225,21 +232,21 @@ a general note: unless otherwise stated, there is no "cost" to using any feature
 	</f3-addr>
 	<f3-data>
 		<h1>Data</h1>
-		<f3-bits>h,v,chr2:2,bpp:2,bs,pal:9,chr:16</f3-bits>
+		<f3-bits>h,v,chr2:2,bpp:2,bs,palette:9,character:16</f3-bits>
 		<dl>
-			<dt>chr <b>0[16]</b><dd>character id (lower bits)
-			<dt>pal <b>16[9]</b><dd>palette id (0-511)
-			<dt>bs <b>25[1]</b><dd>blend select
-			<dt>bpp<dd>texture bit planes (bits per pixel select)
+			<dt>character<dt>0:16<dd>character id (lower bits)
+			<dt>palette<dt>16:9<dd>palette id (0-511)
+			<dt>bs<dt>25:1<dd>blend select
+			<dt>bpp<dt>26:2<dd>texture bit planes (bits per pixel select)
 				<dl compact>
 					<dt>0<dd>4bpp
 					<dt>1<dd>5bpp
 					<dt>2<dd>?
 					<dt>3<dd>6bpp
 				</dl>
-			<dt>chr2<dd>character id (upper bits)
-			<dt>v<dd><dl compact><dt>1<dd>vertical flip</dl>
-			<dt>h<dd><dl compact><dt>1<dd>horizontal flip</dl>
+			<dt>chr2<dt>28:2<dd>character id (upper bits)
+			<dt>v<dt>30:1<dd><dl compact><dt>1<dd>vertical flip</dl>
+			<dt>h<dt>31:1<dd><dl compact><dt>1<dd>horizontal flip</dl>
 		</dl>
 	</f3-data>
 </f3-struct>
