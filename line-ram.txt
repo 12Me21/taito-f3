@@ -99,8 +99,9 @@ alpha = clamp((15-value)/8, 0, 1)  ($F = 0%, $B = 50%, $7+ = 100%)
  m - mosaic strength (samples every (16-m) screen pixels)
  s - {sprites} enable mosaic
  p - {mystery layer} enable mosaic
- g - ??? (claimed to be  something with pivot  garbage?)
- S - {playfield 3?} {mystery layer} ? shadow mode? maybe only if adjacent in priority levels (e.g. sprites are at 5, mystery layer at 6)
+ g - ?? changes the behavior of shadow mode somehow
+ S - shadow mode: if 2 layers are placed at neighboring priorities (e.g. 5 and 6), the upper one's palette has its lower bit set IF the lower layer has a nontransparent pixel there (todo: check if this bit varies depending on the bpp setting). note that the bg color layer (as well as prio conflicts), do not count as opaque pixels for the purposes of shadow
+
  B - horizontal blur (FDA): 0 = enable, 1 = disable
  f - FDA mode. 0 = 15bit color format mode, 1 = normal mode, 2 = double resolution mode (no blending), 3 = invalid? (repeat first pixel all the way across)
 "6600" (2.3)
