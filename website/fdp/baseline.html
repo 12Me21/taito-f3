@@ -1,0 +1,70 @@
+<!doctype html>
+
+<script src=f3-bits.js></script>
+<link rel=stylesheet href=./style2.css>
+
+basic theory of operation:
+
+<p>for every <i>screen-pixel</i>, the <abbr>fdp</abbr> outputs two <i>half-pixels</i> (each consisting of a <i>color id</i> and an <i>alpha</i> value).&nbsp; these are then converted to <abbr>rgb</abbr> colors, and blended into a single output by the <abbr>fda</abbr>.
+
+<h2>Graphics Layers</h2>
+<p>the <abbr>fdp</abbr> has eleven different graphics <i>layers</i> which can be used as the source for each half-pixel:
+<ul>
+	<li>background color layer
+	<li>pivot layer
+	<li>sprite layers (4)
+	<li>tilemap layers (4)
+	<li>highcolor layer
+</ul>
+
+<p>graphics settings are stored in <i>lineram</i>.&nbsp; effectively, each setting is an array of 256 values, one for each scanline.
+
+<p>most layers have these settings:
+<dl>
+	<dt>enable<dd>whether the layer is visible
+	<dt>clip interval enables (4)<dd>which of the four clip intervals to enable
+	<dt>clip interval modes (4)<dd><dl compact><dt>0<dd>hide inside<dt>1<dd>hide outside</dl>
+	<dt>clip invert<dd>inverts the final clip mask
+	<dt>priority<dd>which of the 16 priority levels to use (higher number = above other things)
+	<dt>blend mode<dd>which half-pixel(s) to contribute to (neither/left/right/both)
+	<dt>alpha select<dd>which set of <i>alpha values</i> to use (0/1)
+	<dt>mosaic<dd>horizontal "pixellate" effect
+</dl>
+
+	idea: each layer can be described as:
+	- description of the fixed data (e.g. tilemap data or the sprite framebuffer)
+	- the lineram settings (
+
+<h3>Clipping</h3>
+<p>there are four clip intervals, each of which has a left and right value (ranging 0-511).&nbsp; selecting multiple of these will union their visible areas together (todo explain all this better. but i think it goes here because it's a like  top-level feature that applies across layers)
+
+<h3>Background Color Layer</h3>
+<p>a solid color, used if nothing else is present in that half-pixel, or if a <i>priority conflict</i> occurs.&nbsp; this is a pseudo-layer which lacks most of the common settings.
+<ul>
+	<li>alpha select
+	<li>color id 
+</ul>
+
+<h3>Pivot Layer</h3>
+<p>(we're not sure what the name means). the pivot layer is a 64×64 grid of 8×8 tiles, with textures defined in <abbr>ram</abbr>. it can be used for displaying text or pixel graphics.
+<ul>
+	<li>per-tile palette and flipping
+	<li>global scroll
+	<li>per-scanline "pivot port" (unknown feature)
+	<li>per-scanline pixel/text mode
+</ul>
+
+<h3>Sprite Layers</h3>
+<p>the <abbr>fdp</abbr> renders up to ~900 16×16 sprites per frame to a single framebuffer.&nbsp; sprites are divided into four groups by the upper bits of their palette, each of which can have some different blend settings.&nbsp; so, we say there are four "sprite layers", though they share a framebuffer and some graphics settings.
+	/
+	this is then used as the source for four graphics layers (pixels are assigned to a layer depending on the 2 uppermost bits of their palette). each sprite layer has its own blend settings (though some settings are shared)
+<ul>
+	<li>
+</ul>
+
+<dl>
+	<dt>background color<dd>a solid color, used if nothing else is found for that half-pixel, or if a <i>priority conflict</i> occurs.
+	<dt>pivot layer<dd>a 64×64 grid of 8×8 tiles, with textures defined in <abbr>ram</abbr>.&nbsp; can be used for displaying text or bitmap graphics.
+	<dt>sprite groups (4)<dd>
+	<dt>playfields (4)<dd>32×32 (or 64×32) grid of 16×16 tiles. can be scaled vertically from 50% to infinity, and horizontally from 100% to 25600%.
+</dl>

@@ -1,0 +1,216 @@
+@font-face {
+	font-family: 'mspm';
+	src: url("../short2.otf?4");
+}
+body {
+	font-family: mspm, georgia;
+	font-variant: tabular-nums;
+}
+h1 {
+	font-variant: lining-nums;
+}
+
+dl.bits > dt, table.bits td {
+	font-family: mspm, times new roman;
+}
+f3-struct, f3-addr, f3-data {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+}
+f3-struct {
+	margin-bottom: 1em;
+}
+f3-struct {
+	border-left: solid black;
+	padding: 0.5em 0 0.5em 1em;
+}
+f3-struct h1 {
+	//font-style: italic;
+	margin: 0;
+	font-size: 1.5em;
+	margin-bottom: 0.5em;
+	margin-left: -0.25em;
+}
+f3-struct f3-addr h1, f3-struct f3-data h1 {
+	font-size: 1.2em;
+	margin: 0;
+}
+f3-struct dl dl {
+	margin-left: 0;
+	margin-top: 0;
+	margin-bottom: 0;
+}
+f3-struct dl dl dt {
+	font-size: unset;
+}
+dl[compact] {
+	display: flex;
+	flex-wrap: wrap;
+}
+dl[compact] > dd {
+	margin: 0;
+}
+dl[compact] > dd:not(:last-child) {
+	margin-right: 1em;
+}
+dl[compact] > dt {
+	margin-right: 0em;
+}
+dl[compact] > dt::after {
+	padding: 0 1px;
+	content: "=";
+}
+abbr {
+	font-variant-caps: small-caps;
+}
+
+body {
+	background-repeat: repeat-y;
+	background-image: repeating-linear-gradient(135deg, black 0 5px, yellow 0 10px);
+	background-size: 24px 100%;
+	margin-left: 32px;
+}
+
+body > * {
+	max-width: 7in;
+}
+
+todo {
+	background-image: repeating-linear-gradient(135deg, white 0 5px, #FF8 0 10px);
+	border: 1px solid black;
+	border-radius: 4px;
+	padding: 0 2px;
+}
+todo::before {
+	content: "TODO: ";
+}
+
+
+
+dl.bits {
+	display: grid;
+	grid: auto-flow dense / max-content max-content 1fr;
+	margin-left: 1em;
+	margin-top: 0.25em;
+	margin-bottom: 0em;
+}
+dl.bits > * {
+	align-self: baseline;
+}
+dl.bits > dt {
+	font-size: 18px;
+	margin-right: 6px;
+	justify-self: right;
+	grid-column: 2 / 3;
+	margin-bottom: 2px;
+}
+dl.bits > dt + dt {
+	grid-column: 1 / 2;
+	font-size: 14px;
+	font-weight: normal;
+	color: #468;
+	margin-right: 2px;
+}
+dl.bits > dt:not(dt+dt) {
+	display: flex;
+	justify-self: stretch;
+	//text-shadow: 0.5px 0.5px 1px #4688;
+}
+dl.bits > dt:not(dt+dt)::after {
+	text-shadow: none;
+	color: #468;
+	content: ":";
+}
+dl.bits > dt:not(dt+dt)::before {
+	content: " ";
+	flex: 1;
+	white-space: pre;
+	margin-right: 2px;
+	margin-left: 2px;
+	border-bottom: 1px dotted #468;
+	height: 11px;
+}
+dl.bits > dt + dt::before { color: black; content: "{"; }
+dl.bits > dt + dt::after { color: black; content: "}"; }
+dl.bits > dd {
+	margin: 0;
+	grid-column: 3 / 4;
+}
+
+f3-struct f3-addr > dl {
+	margin-bottom: 0.5em;
+}
+f3-struct f3-data > dl:not(:last-child) {
+	margin-bottom: 0.25em; /*hack*/
+}
+
+
+
+table.bits {
+	table-layout: fixed;
+	border-spacing: 0;
+	border: 2px groove;
+	counter-reset: bnum 16;
+}
+table.bits tr>* {
+	width: 18px;
+	max-width: 18px;
+	text-align: center;
+	text-shadow: 1px 0 white;
+}
+table.bits th {
+	font-family: courier, monospace;
+	font-size: 9.5px;
+	padding: 0;
+	font-weight: normal;
+	border-right: 1px inset;
+}
+table.bits th::after {
+	content: counter(bnum);
+	counter-increment: bnum -1;
+	color: gray;
+}
+table.bits td {
+	padding: 1px 0;
+	border-top: 1px solid #DDD;
+	padding-top: 0;
+}
+table.bits th:nth-child(4n) { border-right: 1px outset; }
+table.bits th:nth-child(4n+1) { border-left: 1px outset; }
+table.bits tr>:last-child { border-right: none; }
+table.bits tr>:first-child { border-left: none; }
+table.bits td:nth-child(2n) { background: linear-gradient(to top, white, #DDD); }
+table.bits td:nth-child(2n+1) { background: linear-gradient(to bottom, white, #DDD); }
+table.bits td:nth-child(n) {
+	background: linear-gradient(to right, white, #DDD);
+	background: linear-gradient(to right, white, #DDD calc((8px + 100%) / 2));
+	background: linear-gradient(110deg, white, #E7E7E7 calc(8px + 20%) calc(100% - 8px - 15%), #ccc);
+}
+
+table.bits td.space { background: linear-gradient(to bottom right, white, #DDD); }
+/*table.bits td.x { background: #DDD; }*/
+table.bits td.x {
+	font-variant: tabular-nums;
+	background: #ddd;
+}
+table.bits td.x:last-child { background: #eee; }
+
+@supports (font-variant-position: sub) {
+	sub, sup {
+		font-size: unset;
+		vertical-align: unset;
+	}
+	sub { font-variant-position: sub; }
+	sup { font-variant-position: super; }
+}
+@supports not (font-variant-position: sub) {
+	sub, sup {
+		font-size: 81.25%;
+		line-height: 0;
+		position: relative;
+		vertical-align: baseline;
+	}
+	sub { bottom: -0.25em; }
+	sup { top: -0.5em; /* todo: check this */ }
+}

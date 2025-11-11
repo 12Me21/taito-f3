@@ -1,0 +1,285 @@
+<!doctype html>
+
+<script src=f3-bits.js></script>
+<link rel=stylesheet href=./style2.css>
+
+<h1>Line-<abbr>Ram</abbr></h1>
+
+<p>"lineram" is a list of per-scanline graphics settings.&nbsp; in principle it's very simple: every graphics setting is actually an array of 256 values, one for each scanline.&nbsp; the complexity comes from features which let you apply the same settings to many scanlines without having to write to all of them (though most games do this anyway).
+
+<f3-struct>
+	<h1>common layer properties</h1>
+	<dl>
+		<dt>display enable<dd><dl compact><dt>0<dd>off<dt>1<dd>on</dl>(todo: hm does disabling turn off the updating of y position based on zoom?)
+		<dt>priority<dd>0-15. higher = above other things. two layers with the same priority can cause a conflict.
+		<dt>clip invert<dd><dl compact><dt>0<dd>normal<dt>1<dd>inverted</dl>
+		<dt>clip plane enable ×4<dd>one per clip plane<dl compact><dt>0<dd>off<dt>1<dd>on</dl>
+		<dt>clip plane mode ×4<dd>one per clip plane<dl compact><dt>0<dd>hide inside<dt>1<dd>hide outside</dl>
+		<dt>blend mode<dd>which half-pixel(s) to contribute to. encoding varies by layer
+		<dt>blend select<dd>which of the 2 possible blend values will be used for a given half-pixel
+		<dt>mosaic enable<dd><dl compact><dt>0<dd>off<dt>1<dd>on</dl>
+	</dl>
+</f3-struct>
+
+<p>note: section 0 is missing its first 2 subsections (0.0 "4000" and 0.1 "4200"), so per-line y scroll adjust and alternate tilemap are only available on playfields 2 and 3.</p>
+
+<f3-struct>
+	<h1>Section 0.2 "4400" - “Colscroll”, Alt Tilemap, Clip Bits</h1>
+	<f3-data>
+		<f3-bits>1<sub>R</sub>,1<sub>L</sub>,0<sub>R</sub>,0<sub>L</sub>,?:2,alt,yscroll:9</f3-bits>
+		<dl>
+			<dt>yscroll<dd><i>playfield 2</i>: y scroll adjust <todo>data format</todo>
+			<dt>alt<dd><i>playfield 2</i>: tile data location<dl compact><dt>0<dd>normal<dt>1<dd>alternate (tilemap number+2)</dl>
+			<dt>0<sub>L</sub><dd>clip plane 0 left (upper bit)
+			<dt>0<sub>R</sub><dd>clip plane 0 right (upper bit)
+			<dt>1<sub>L</sub><dd>clip plane 1 left (upper bit)
+			<dt>1<sub>R</sub><dd>clip plane 1 right (upper bit)
+		</dl>
+	</f3-data>
+</f3-struct>
+
+<f3-struct>
+	<h1>Section 0.3 "4600"</h1>
+	<div>(same as 0.3, but for playfield 3 and clip planes 2 and 3)</div>
+</f3-struct>
+
+<f3-struct>
+	<h1>Section 1.0 "5000" - Clip Plane Values</h1>
+	<f3-data>
+		<f3-bits>right:8,left:8</f3-bits>
+		<dl>
+			<dt>left<dd><i>clip plane 0</i> left (lower bits)<br>
+				<todo>data format</todo>
+			<dt>right<dd><i>clip plane 0</i> right (lower bits)
+		</dl>
+	</f3-data>
+</f3-struct>
+
+<f3-struct>
+	<h1>Section 1.1 "5200"</h1>
+	<div>(same as 1.0, but for clip plane 1)</div>
+</f3-struct>
+
+<f3-struct>
+	<h1>Section 1.2 "5400"</h1>
+	<div>(same as 1.0, but for clip plane 2)</div>
+</f3-struct>
+
+<f3-struct>
+	<h1>Section 1.3 "5600"</h1>
+	<div>(same as 1.0, but for clip plane 3)</div>
+</f3-struct>
+
+<f3-struct>
+	<h1>Section 2.0 "6000" - Misc Blending, Pivot Mode</h1>
+	<f3-data>
+		<f3-bits>B,?,P,?,o,b,p,h,s<sub>3</sub>:2,s<sub>2</sub>:2,s<sub>1</sub>:2,s<sub>0</sub>:2</f3-bits>
+		<dl>
+			<dt>s<sub>n</sub><dd><i>sprite group n</i>: blend mode (note 0 and 3 are swapped)<dl compact><dt>0<dd>neither<dt>1<dd>left<dt>2<dd>right<dt>3<dd>both</dl>
+			<dt>h<dd><i>highcolor layer</i>: blend value select
+			<dt>p<dd><i>pivot</i>: blend value select
+			<dt>b<dd><i>background color</i>: blend value select
+			<dt>o<dd>tilemap infinite vertical stretch?
+			<dt>P<dd><i>pivot</i>: mode<dl compact><dt>0<dd>text<dt>1<dd>pixel</dl>
+			<dt>B<dd><i>pivot</i>: pixel data location<dl compact><dt>0<dd>$620000 (conflicts with lineram)<dt>1<dd>$630000</dl>
+		</dl>
+	</f3-data>
+</f3-struct>
+
+<f3-struct>
+	<h1>Section 2.1 "6200" - Blend Alpha Values</h1>
+	<f3-data>
+		<f3-bits>left1:4,left0:4,right1:4,right0:4</f3-bits>
+		<dl>
+			<dt>right0<dd>right half-pixel, blend select = 0<br>alpha = clamp((15-value)/8, 0, 1)<dl compact><dt>$0-$7<dd>100%<dt>$B<dd>50%<dt>$F<dd>0%</dl>
+			<dt>right1<dd>right half-pixel, blend select = 1
+			<dt>left0<dd>left half-pixel, blend select = 0
+			<dt>left1<dd>left half-pixel, blend select = 1
+		</dl>
+	</f3-data>
+</f3-struct>
+	
+<f3-struct>
+	<h1>Section 2.2 "6400" - Mosaic and <abbr>Fda</abbr> Settings</h1>
+	<f3-data>
+		<f3-bits>fda:2,b,?,S,g,h,s,mosaic:4,p<sub>3</sub>,p<sub>2</sub>,p<sub>1</sub>,p<sub>0</sub></f3-bits>
+		<dl>
+			<dt>p<sub>n</sub><dd><i>playfield n</i>: mosaic enable
+			<dt>mosaic<dd>mosaic strength: samples every [16&minus;m] pixels
+			<dt>s<dd><i>sprites</i>: mosaic enable
+			<dt>h<dd><i>hicolor layer</i>: mosaic enable
+			<dt>g<dd>shadow mode alternate: if shadow mode is enabled, changes its behavior <todo>figure this out</todo>
+			<dt>S<dd>"shadow mode": if 2 layers have <u>neighboring priorities</u> and the lower one is non-empty, the upper layer's palette is altered: 4th bit of the color index (i.e. the 0th bit of the palette id) is set to 1 - todo: this may be different depending on the bpp setting<br>
+				notes: this effect is done separately for every half pixel (this effect is probably implemented inside the priority cell array, unlike everything else). note: the background color layer (as well as priority conflicts) count as empty pixels
+			<dt>b<dd><i><abbr>fda</abbr></i>: horizontal blur<dl compact><dt>0<dd>blurred<dt>1<dd>normal</dl>
+			<dt>fda<dd><i><abbr>fda</abbr></i> mode<dl><dt>0<dd>15-bit <abbr>rgb</abbr> format (legacy mode)<dt>1<dd>normal mode<dt>2<dd>no blending, display half-pixels separately (debug mode?)<dt>3<dd>invalid? first pixel repeats all the way across</dl>
+		</dl>
+	</f3-data>
+</f3-struct>
+
+<f3-struct>
+	<h1>Section 2.3 "6600" - Background Color</h1>
+	<f3-data>
+		<f3-bits>.:3,color:13</f3-bits>
+		<dl>
+			<dt>color<dd><i>background color</i>: <i>color index</i>
+		</dl>
+	</f3-data>
+</f3-struct>
+
+<f3-struct>
+	<h1>Section 3.0 "7000" - Highcolor Layer Blending</h1>
+	<f3-data>
+		<f3-bits>bm:2,E,I,c<sub>3</sub>,c<sub>2</sub>,c<sub>1</sub>,c<sub>0</sub>,i<sub>3</sub>,i<sub>2</sub>,i<sub>1</sub>,i<sub>0</sub>,prio:4</f3-bits>
+		<dl>
+			<dt>prio<dd><i>highcolor layer</i>: priority (0-15)
+			<dt>i<sub>n</sub><dd><i>highcolor layer</i>: clip plane n mode
+			<dt>c<sub>n</sub><dd><i>highcolor layer</i>: clip plane n enable
+			<dt>I<dd><i>highcolor layer</i>: clip invert
+			<dt>E<dd><i>highcolor layer</i>: enable
+			<dt>bm<dd><i>highcolor layer</i>: blend mode<dl compact><dt>0<dd>both<dt>1<dd>right?<dt>2<dd>right?<dt>3<dd>right?</dl><todo>figure out what 1,2,3 do</todo>
+		</dl>
+	</f3-data>
+</f3-struct>
+
+<f3-struct>
+	<h1>Section 3.1 "7200" - Pivot Layer Blending</h1>
+	<f3-data>
+		<f3-bits>bm,?,E,I,c<sub>3</sub>,c<sub>2</sub>,c<sub>1</sub>,c<sub>0</sub>,i<sub>3</sub>,i<sub>2</sub>,i<sub>1</sub>,i<sub>0</sub>,prio:4</f3-bits>
+		<dl>
+			<dt>prio<dd><i>pivot</i>: priority (0-15)
+			<dt>i<sub>n</sub><dd><i>pivot</i>: clip plane n mode
+			<dt>c<sub>n</sub><dd><i>pivot</i>: clip plane n enable
+			<dt>I<dd><i>pivot</i>: clip invert
+			<dt>E<dd><i>pivot</i>: enable
+			<dt>bm<dd><i>pivot</i>: blend mode (note different interpretation than elsewhere)<dl compact><dt>0<dd>both<dt>1<dd>left</dl>
+		</dl>
+	</f3-data>
+</f3-struct>
+
+<f3-struct>
+	<h1>Section 3.2 "7400" - Sprite Blending</h1>
+	<f3-data>
+		<f3-bits>s<sub>3</sub>,s<sub>2</sub>,s<sub>1</sub>,s<sub>0</sub>,?,?,E,I,c<sub>3</sub>,c<sub>2</sub>,c<sub>1</sub>,c<sub>0</sub>,i<sub>3</sub>,i<sub>2</sub>,i<sub>1</sub>,i<sub>0</sub></f3-bits>
+		<dl>
+			<dt>i<sub>n</sub><dd><i>sprites</i>: clip plane n mode
+			<dt>c<sub>n</sub><dd><i>sprites</i>: clip plane n enable
+			<dt>I<dd><i>sprites</i>: clip invert
+			<dt>E<dd><i>sprites</i>: enable
+			<dt>s<sub>n</sub><dd><i>sprite group n</i>: <i>blend select</i>
+		</dl>
+	</f3-data>
+</f3-struct>
+
+<f3-struct>
+	<h1>Section 3.3 "7600" - Sprite Priorities</h1>
+	<f3-data>
+		<f3-bits>prio<sub>3</sub>:4,prio<sub>2</sub>:4,prio<sub>1</sub>:4,prio<sub>0</sub>:4</f3-bits>
+		<dl>
+			<dt>prio<sub>n</sub><dd><i>sprite group n</i>: priority
+		</dl>
+	</f3-data>
+</f3-struct>
+
+<f3-struct>
+	<h1>Section 4.0 "8000" - Playfield 0 Zoom</h1>
+	<f3-data>
+		<f3-bits>hzoom:8,vzoom:8</f3-bits>
+		<dl>
+			<dt>vzoom<dd><i>playfield 0</i>: vertical zoom<br>
+				factor = 1 / (zoom/128)
+				<dl compact><dt>$00<dd>∞×<dt>$40<dd>2×<dt>$80<dd>1×<dt>$C0<dd>0.667×<dt>$FF<dd>0.502×</dl>
+			<dt>hzoom<dd><i>playfield 0</i>: horizontal zoom<br>
+				factor = 1 / (1 - zoom/256)
+				<dl compact><dt>$00<dd>1×<dt>$40<dd>1.333×<dt>$80<dd>2×<dt>$C0<dd>4×<dt>$FF<dd>256×</dl>
+		</dl>
+	</f3-data>
+</f3-struct>
+
+<f3-struct>
+	<h1>Section 4.1 "8200" - Playfield 1 Zoom</h1>
+	<f3-data>
+		<f3-bits>hzoom:8,vzoom:8</f3-bits>
+		<dl>
+			<dt>vzoom<dd><i>playfield 3</i>*: vertical zoom<br>*bug: playfields 1 and 3 have their vertical zooms swapped
+			<dt>hzoom<dd><i>playfield 1</i>: horizontal zoom
+		</dl>
+	</f3-data>
+</f3-struct>
+
+<f3-struct>
+	<h1>Section 4.2 "8400" - Playfield 2 Zoom</h1>
+	<f3-data>
+		<f3-bits>hzoom:8,vzoom:8</f3-bits>
+		<dl>
+			<dt>vzoom<dd><i>playfield 2</i>: vertical zoom
+			<dt>hzoom<dd><i>playfield 2</i>: horizontal zoom
+		</dl>
+	</f3-data>
+</f3-struct>
+
+<f3-struct>
+	<h1>Section 4.3 "8600" - Playfield 3 Zoom</h1>
+	<f3-data>
+		<f3-bits>hzoom:8,vzoom:8</f3-bits>
+		<dl>
+			<dt>vzoom<dd><i>playfield 1</i>*: vertical zoom
+			<dt>hzoom<dd><i>playfield 3</i>: horizontal zoom
+		</dl>
+	</f3-data>
+</f3-struct>
+
+<f3-struct>
+	<h1>Section 5.0 "9000" - Playfield 0 Palette Adjust</h1>
+	<f3-data>
+		<f3-bits>.:10,palette:6</f3-bits>
+		<dl>
+			<dt>palette<dd><i>playfield 0</i>: added to the palette of all tiles
+		</dl>
+	</f3-data>
+</f3-struct>
+
+<f3-struct>
+	<h1>Section 5.1 "9200"</h1>
+	<div>(same as 5.0, but for playfield 1)</div>
+</f3-struct>
+
+<f3-struct>
+	<h1>Section 5.2 "9400"</h1>
+	<div>(same as 5.0, but for playfield 2)</div>
+</f3-struct>
+
+<f3-struct>
+	<h1>Section 5.3 "9600"</h1>
+	<div>(same as 5.0, but for playfield 3)</div>
+</f3-struct>
+
+<f3-struct>
+	<h1>Section 6.0 "A000" - "Rowscroll"</h1>
+	<f3-data>
+		<f3-bits>xscroll:16</f3-bits>
+		<dl>
+			<dt>xscroll<dd><i>playfield 0</i>: x scroll adjust (same format as global scroll)
+		</dl>
+	</f3-data>
+</f3-struct>
+
+<f3-struct>
+	<h1>Section 7.0 "B000" - Playfield 0 Blending</h1>
+	<f3-data>
+		<f3-bits>bm:2,E,I,c<sub>3</sub>,c<sub>2</sub>,c<sub>1</sub>,c<sub>0</sub>,i<sub>3</sub>,i<sub>2</sub>,i<sub>1</sub>,i<sub>0</sub>,prio:4</f3-bits>
+		<dl>
+			<dt>prio<dd><i>playfield 0</i>: priority (0-15)
+			<dt>i<sub>n</sub><dd><i>playfield 0</i>: clip plane n mode
+			<dt>c<sub>n</sub><dd><i>playfield 0</i>: clip plane n enable
+			<dt>I<dd><i>playfield 0</i>: clip invert
+			<dt>E<dd><i>playfield 0</i>: enable
+			<dt>bm<dd><i>playfield 0</i>: blend mode<dl compact><dt>0<dd>both<dt>1<dd>left<dt>2<dd>right<dt>3<dd>neither</dl>
+		</dl>
+	</f3-data>
+</f3-struct>
+
+<f3-struct>
+	<h1>Section 7.2 "B200"</h1>
+	<div>(same as 7.0, but for playfield 1)</div>
+</f3-struct>
