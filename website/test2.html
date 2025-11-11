@@ -74,6 +74,20 @@
 		background-size: 24px 100%;
 		margin-left: 32px;
 	}
+	
+	body > * {
+		max-width: 7in;
+	}
+	
+	todo {
+		background-image: repeating-linear-gradient(135deg, white 0 5px, #FF8 0 10px);
+		border: 1px solid black;
+		border-radius: 4px;
+		padding: 0 2px;
+	}
+	todo::before {
+		content: "TODO: ";
+	}
 </style>
 
 <style>
@@ -306,7 +320,7 @@ a general note: unless otherwise stated, there is no "cost" to using any feature
 		<h1>Data (×8)</h1>
 		<f3-bits>b:4,b:4,b:4,b:4,b:4,b:4,b:4,b:4</f3-bits>
 		<dl>
-			<dt>b<dd>data for 1 pixel (todo: what order are these in?)
+			<dt>b<dd>data for 1 pixel <todo>describe the bit order better - maybe we need a separate page for bitmap formats because they are all different</todo>
 		</dl>
 	</f3-data>
 </f3-struct>
@@ -330,12 +344,12 @@ a general note: unless otherwise stated, there is no "cost" to using any feature
 <p>note: lineram section 0 is missing its first 2 subsections (0.0 "4000" and 0.1 "4200"), so per-line y scroll adjust and alternate tilemap are only available on playfields 2 and 3.</p>
 
 <f3-struct>
-	<h1>Lineram Section 0.2 "4400" - "Colscroll", Alt Tilemap, Clip Bits</h1>
+	<h1>Lineram Section 0.2 "4400" - “Colscroll”, Alt Tilemap, Clip Bits</h1>
 	<f3-data>
-		<f3-bits>1<sub>R</sub>,1<sub>L</sub>,0<sub>R</sub>,0<sub>L</sub>,?:2,a,yscroll:9</f3-bits>
+		<f3-bits>1<sub>R</sub>,1<sub>L</sub>,0<sub>R</sub>,0<sub>L</sub>,?:2,alt,yscroll:9</f3-bits>
 		<dl>
-			<dt>yscroll<dd><i>playfield 2</i>: y scroll adjust (todo: format?)
-			<dt>a<dd><i>playfield 2</i>: tile data location<dl compact><dt>0<dd>normal<dt>1<dd>alternate (tilemap number+2)</dl>
+			<dt>yscroll<dd><i>playfield 2</i>: y scroll adjust <todo>data format</todo>
+			<dt>alt<dd><i>playfield 2</i>: tile data location<dl compact><dt>0<dd>normal<dt>1<dd>alternate (tilemap number+2)</dl>
 			<dt>0<sub>L</sub><dd>clip plane 0 left (upper bit)
 			<dt>0<sub>R</sub><dd>clip plane 0 right (upper bit)
 			<dt>1<sub>L</sub><dd>clip plane 1 left (upper bit)
@@ -354,7 +368,8 @@ a general note: unless otherwise stated, there is no "cost" to using any feature
 	<f3-data>
 		<f3-bits>right:8,left:8</f3-bits>
 		<dl>
-			<dt>left<dd><i>clip plane 0</i> left (lower bits)
+			<dt>left<dd><i>clip plane 0</i> left (lower bits)<br>
+				<todo>data format</todo>
 			<dt>right<dd><i>clip plane 0</i> right (lower bits)
 		</dl>
 	</f3-data>
@@ -407,13 +422,15 @@ a general note: unless otherwise stated, there is no "cost" to using any feature
 <f3-struct>
 	<h1>Lineram Section 2.2 "6400" - Mosaic and <abbr>Fda</abbr> Settings</h1>
 	<f3-data>
-		<f3-bits>fda:2,b,?,S,?,h,s,mosaic:4,p3,p2,p1,p0</f3-bits>
+		<f3-bits>fda:2,b,?,S,g,h,s,mosaic:4,p<sub>3</sub>,p<sub>2</sub>,p<sub>1</sub>,p<sub>0</sub></f3-bits>
 		<dl>
-			<dt>p<sub>n</sub><dd><i>playfield n</i>: <i>mosaic enable</i>
+			<dt>p<sub>n</sub><dd><i>playfield n</i>: mosaic enable
 			<dt>mosaic<dd>mosaic strength: samples every [16&minus;m] pixels
-			<dt>s<dd><i>sprites</i>: <i>mosaic enable</i>
-			<dt>h<dd><i>hicolor layer</i>: <i>mosaic enable</i>
-			<dt>S<dd>?? shadow mode?
+			<dt>s<dd><i>sprites</i>: mosaic enable
+			<dt>h<dd><i>hicolor layer</i>: mosaic enable
+			<dt>g<dd>shadow mode alternate: if shadow mode is enabled, changes its behavior <todo>figure this out</todo>
+			<dt>S<dd>"shadow mode": if 2 layers have <u>neighboring priorities</u> and the lower one is non-empty, the upper layer's palette is altered: 4th bit of the color index (i.e. the 0th bit of the palette id) is set to 1 - todo: this may be different depending on the bpp setting<br>
+				notes: this effect is done separately for every half pixel (this effect is probably implemented inside the priority cell array, unlike everything else). note: the background color layer (as well as priority conflicts) count as empty pixels
 			<dt>b<dd><i><abbr>fda</abbr></i>: horizontal blur<dl compact><dt>0<dd>blurred<dt>1<dd>normal</dl>
 			<dt>fda<dd><i><abbr>fda</abbr></i> mode<dl><dt>0<dd>15-bit <abbr>rgb</abbr> format (legacy mode)<dt>1<dd>normal mode<dt>2<dd>no blending, display half-pixels separately (debug mode?)<dt>3<dd>invalid? first pixel repeats all the way across</dl>
 		</dl>
@@ -434,7 +451,14 @@ a general note: unless otherwise stated, there is no "cost" to using any feature
 	<h1>Lineram Section 3.0 "7000" - Highcolor Layer Blending</h1>
 	<f3-data>
 		<f3-bits>bm:2,E,I,c<sub>3</sub>,c<sub>2</sub>,c<sub>1</sub>,c<sub>0</sub>,i<sub>3</sub>,i<sub>2</sub>,i<sub>1</sub>,i<sub>0</sub>,prio:4</f3-bits>
-		(same as section 7.0, but for the highcolor layer)
+		<dl>
+			<dt>prio<dd><i>highcolor layer</i>: priority (0-15)
+			<dt>i<sub>n</sub><dd><i>highcolor layer</i>: clip plane n mode
+			<dt>c<sub>n</sub><dd><i>highcolor layer</i>: clip plane n enable
+			<dt>I<dd><i>highcolor layer</i>: clip invert
+			<dt>E<dd><i>highcolor layer</i>: enable
+			<dt>bm<dd><i>highcolor layer</i>: blend mode<dl compact><dt>0<dd>both<dt>1<dd>right?<dt>2<dd>right?<dt>3<dd>right?</dl><todo>figure out what 1,2,3 do</todo>
+		</dl>
 	</f3-data>
 </f3-struct>
 
