@@ -5,69 +5,90 @@
 
 <h1>Line-<abbr>Ram</abbr></h1>
 
-<p>"lineram" is a list of per-scanline graphics settings.&nbsp; in principle it's very simple: every graphics setting is actually an array of 256 values, one for each scanline.&nbsp; the complexity comes from features which let you apply the same settings to many scanlines without having to write to all of them (though most games do this anyway).
+<p>"lineram" is a list of per-scanline graphics settings.&nbsp; in principle it's very simple: every graphics setting is actually an array of 256 values, one for each scanline.&nbsp; the complexity comes from features which let you apply the same settings to many scanlines without having to write to all of them (though most games do this anyway).</p>
 
 <f3-struct>
-	<h1>common layer properties</h1>
-	<dl>
-		<dt>display enable<dd><dl compact><dt>0<dd>off<dt>1<dd>on</dl>(todo: hm does disabling turn off the updating of y position based on zoom?)
-		<dt>priority<dd>0-15. higher = above other things. two layers with the same priority can cause a conflict.
-		<dt>clip invert<dd><dl compact><dt>0<dd>normal<dt>1<dd>inverted</dl>
-		<dt>clip plane enable ×4<dd>one per clip plane<dl compact><dt>0<dd>off<dt>1<dd>on</dl>
-		<dt>clip plane mode ×4<dd>one per clip plane<dl compact><dt>0<dd>hide inside<dt>1<dd>hide outside</dl>
-		<dt>blend mode<dd>which half-pixel(s) to contribute to. encoding varies by layer
-		<dt>blend select<dd>which of the 2 possible blend values will be used for a given half-pixel
-		<dt>mosaic enable<dd><dl compact><dt>0<dd>off<dt>1<dd>on</dl>
-	</dl>
+	<h1>Lineram Section Latches</h1>
+	<f3-addr>
+		<h1>Address</h1>
+		<f3-bits>&ctdot;,0,1,0,0,0,0,0,sec:3,scanline:8,-</f3-bits>
+		<dl class=bits>
+			<dt>sec<dd>section number
+			<dt>scanline<dd>scanline number
+		</dl>
+	</f3-addr>
+	<f3-data>
+		<h1>Data</h1>
+		<f3-bits>.:2,map:4,.:2,a<sub>3</sub>,a<sub>2</sub>,a<sub>1</sub>,a<sub>0</sub>,l<sub>3</sub>,l<sub>2</sub>,l<sub>1</sub>,l<sub>0</sub></f3-bits>
+		<dl class=bits>
+			<dt>map<dd>section data location: maps this section to address $620000 + $1000*m
+			<dt>a<sub>n</sub><dd>subsection n: alternate bank. 1 = add $800 to the address of this subsection (note: does nothing if latch is 0)
+			<dt>l<sub>n</sub><dd>subsection n: latch. 1 = read parameter from lineram, 0 = reuse previous value (this persists across frames. i.e. if 0 on the first scanline, uses value from the last scanline of the previous frame)
+		</dl>
+	</f3-data>
 </f3-struct>
+
+<f3-struct>
+	<h1>Lineram Subsection Values</h1>
+	<f3-addr>
+		<h1>Address</h1>
+		<f3-bits>*,0,1,0,map:4,a,sub:2,scanline:8,-</f3-bits>
+		<dl class=bits>
+			<dt>map<dd>section mapping (from the section's latches)
+			<dt>a<dd>subsection bank (from the section's latches)
+			<dt>sub<dd>subsection number
+			<dt>scanline<dd>scanline number
+		</dl>
+	</f3-addr>
+<f3-struct>
 
 <p>note: section 0 is missing its first 2 subsections (0.0 "4000" and 0.1 "4200"), so per-line y scroll adjust and alternate tilemap are only available on playfields 2 and 3.</p>
 
 <f3-struct>
-	<h1>Section 0.2 "4400" - “Colscroll”, Alt Tilemap, Clip Bits</h1>
+	<h1>Section 0.2 "4400"</h1>
 	<f3-data>
 		<f3-bits>1<sub>R</sub>,1<sub>L</sub>,0<sub>R</sub>,0<sub>L</sub>,?:2,alt,yscroll:9</f3-bits>
 		<dl>
-			<dt>yscroll<dd><i>playfield 2</i>: y scroll adjust <todo>data format</todo>
-			<dt>alt<dd><i>playfield 2</i>: tile data location<dl compact><dt>0<dd>normal<dt>1<dd>alternate (tilemap number+2)</dl>
-			<dt>0<sub>L</sub><dd>clip plane 0 left (upper bit)
-			<dt>0<sub>R</sub><dd>clip plane 0 right (upper bit)
-			<dt>1<sub>L</sub><dd>clip plane 1 left (upper bit)
-			<dt>1<sub>R</sub><dd>clip plane 1 right (upper bit)
+			<dt>yscroll<dd>Playfield 2: Scroll Adjust Y <todo>data format</todo>
+			<dt>alt<dd>Playfield 2: Alt Tilemap Mode
+			<dt>0<sub>L</sub><dd>Clip Interval 0: Left (upper bit)
+			<dt>0<sub>R</sub><dd>Clip Interval 0: Right (upper bit)
+			<dt>1<sub>L</sub><dd>Clip Interval 1: Left (upper bit)
+			<dt>1<sub>R</sub><dd>Clip Interval 1: Right (upper bit)
 		</dl>
 	</f3-data>
 </f3-struct>
 
 <f3-struct>
 	<h1>Section 0.3 "4600"</h1>
-	<div>(same as 0.3, but for playfield 3 and clip planes 2 and 3)</div>
+	<div>(same as 0.3, but for Playfield 3 and Clip Intervals 2 and 3)</div>
 </f3-struct>
 
 <f3-struct>
-	<h1>Section 1.0 "5000" - Clip Plane Values</h1>
+	<h1>Section 1.0 "5000" - Clip Interval Values</h1>
 	<f3-data>
 		<f3-bits>right:8,left:8</f3-bits>
 		<dl>
-			<dt>left<dd><i>clip plane 0</i> left (lower bits)<br>
+			<dt>left<dd>Clip Interval 0: Left (lower bits)<br>
 				<todo>data format</todo>
-			<dt>right<dd><i>clip plane 0</i> right (lower bits)
+			<dt>right<dd>Clip Interval 0: Right (lower bits)
 		</dl>
 	</f3-data>
 </f3-struct>
 
 <f3-struct>
 	<h1>Section 1.1 "5200"</h1>
-	<div>(same as 1.0, but for clip plane 1)</div>
+	<div>(same as 1.0, but for Clip Interval 1)</div>
 </f3-struct>
 
 <f3-struct>
 	<h1>Section 1.2 "5400"</h1>
-	<div>(same as 1.0, but for clip plane 2)</div>
+	<div>(same as 1.0, but for Clip Interval 2)</div>
 </f3-struct>
 
 <f3-struct>
 	<h1>Section 1.3 "5600"</h1>
-	<div>(same as 1.0, but for clip plane 3)</div>
+	<div>(same as 1.0, but for Clip Interval 3)</div>
 </f3-struct>
 
 <f3-struct>
@@ -75,13 +96,13 @@
 	<f3-data>
 		<f3-bits>B,?,P,?,o,b,p,h,s<sub>3</sub>:2,s<sub>2</sub>:2,s<sub>1</sub>:2,s<sub>0</sub>:2</f3-bits>
 		<dl>
-			<dt>s<sub>n</sub><dd><i>sprite group n</i>: blend mode (note 0 and 3 are swapped)<dl compact><dt>0<dd>neither<dt>1<dd>left<dt>2<dd>right<dt>3<dd>both</dl>
-			<dt>h<dd><i>highcolor layer</i>: blend value select
-			<dt>p<dd><i>pivot</i>: blend value select
-			<dt>b<dd><i>background color</i>: blend value select
+			<dt>s<sub>n</sub><dd>Sprite Group n: Blend Mode<dl compact><dt>0<dd>neither<dt>1<dd>left<dt>2<dd>right<dt>3<dd>both</dl>
+			<dt>h<dd>Highcolor Layer: Alpha Select
+			<dt>p<dd>Pivot Layer: Alpha Select
+			<dt>b<dd>Background Color: Alpha Select
 			<dt>o<dd>tilemap infinite vertical stretch?
-			<dt>P<dd><i>pivot</i>: mode<dl compact><dt>0<dd>text<dt>1<dd>pixel</dl>
-			<dt>B<dd><i>pivot</i>: pixel data location<dl compact><dt>0<dd>$620000 (conflicts with lineram)<dt>1<dd>$630000</dl>
+			<dt>P<dd>Pivot Layer: Mode<dl compact><dt>0<dd>text<dt>1<dd>pixel</dl>
+			<dt>B<dd>Pivot Layer: Pixel Data Bank<dl compact><dt>0<dd>$620000 (conflicts with lineram)<dt>1<dd>$630000</dl>
 		</dl>
 	</f3-data>
 </f3-struct>

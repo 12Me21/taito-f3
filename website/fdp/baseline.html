@@ -8,11 +8,11 @@ basic theory of operation:
 <p>for every <i>screen-pixel</i>, the <abbr>fdp</abbr> outputs two <i>half-pixels</i> (each consisting of a <i>color id</i> and an <i>alpha</i> value).&nbsp; these are then converted to <abbr>rgb</abbr> colors, and blended into a single output by the <abbr>fda</abbr>.
 
 <h2>Graphics Layers</h2>
-<p>the <abbr>fdp</abbr> has eleven different graphics <i>layers</i> which can be used as the source for each half-pixel:
+<p>the <abbr>fdp</abbr> has eight different graphics <i>layers</i> which can be used as the source for each half-pixel:
 <ul>
 	<li>background color layer
 	<li>pivot layer
-	<li>sprite layers (4)
+	<li>sprite layer
 	<li>tilemap layers (4)
 	<li>highcolor layer
 </ul>
@@ -52,9 +52,8 @@ basic theory of operation:
 	<li>per-scanline "pivot port" (unknown feature)
 </ul>
 
-<h3>Sprite Layers</h3>
-<p>the <abbr>fdp</abbr> renders up to ~900 16×16 sprites per frame to a single bitmap framebuffer.&nbsp; this is then used as the source for four graphics layers (each pixel is assigned to a layer depending on the 2 uppermost bits of its palette). each sprite layer has its own blend settings (though some settings are shared)
-(the sprite rendering system will be discussed elsewhere)
+<h3>Sprite Layer</h3>
+<p>the <abbr>fdp</abbr> renders up to ~900 16×16 sprites per frame to a single bitmap framebuffer.
 
 <h3>Tilemap Layers</h3>
 <p>each tilemap is a 32×32 (or 64×32) grid of 16×16 tiles.
