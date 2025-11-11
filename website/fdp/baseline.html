@@ -28,7 +28,6 @@ basic theory of operation:
 	<dt>priority<dd>which of the 16 priority levels to use (higher number = above other things)
 	<dt>blend mode<dd>which half-pixel(s) to contribute to (neither/left/right/both)
 	<dt>alpha select<dd>which set of <i>alpha values</i> to use (0/1)
-	<dt>mosaic<dd>horizontal "pixellate" effect
 </dl>
 
 	idea: each layer can be described as:
@@ -47,20 +46,23 @@ basic theory of operation:
 
 <h3>Pivot Layer</h3>
 <p>(we're not sure what the name means). the pivot layer is a 64×64 grid of 8×8 tiles, with textures defined in <abbr>ram</abbr>. it can be used for displaying text or pixel graphics.
-<ul>
+<dl>
 	<li>per-tile palette and flipping
 	<li>global scroll
 	<li>per-scanline "pivot port" (unknown feature)
-	<li>per-scanline pixel/text mode
 </ul>
 
 <h3>Sprite Layers</h3>
-<p>the <abbr>fdp</abbr> renders up to ~900 16×16 sprites per frame to a single framebuffer.&nbsp; sprites are divided into four groups by the upper bits of their palette, each of which can have some different blend settings.&nbsp; so, we say there are four "sprite layers", though they share a framebuffer and some graphics settings.
-	/
-	this is then used as the source for four graphics layers (pixels are assigned to a layer depending on the 2 uppermost bits of their palette). each sprite layer has its own blend settings (though some settings are shared)
-<ul>
-	<li>
-</ul>
+<p>the <abbr>fdp</abbr> renders up to ~900 16×16 sprites per frame to a single bitmap framebuffer.&nbsp; this is then used as the source for four graphics layers (each pixel is assigned to a layer depending on the 2 uppermost bits of its palette). each sprite layer has its own blend settings (though some settings are shared)
+(the sprite rendering system will be discussed elsewhere)
+
+<h3>Tilemap Layers</h3>
+<p>each tilemap is a 32×32 (or 64×32) grid of 16×16 tiles.
+<dl>
+	<dt>"extend mode" (global)<dd>select between 32×32 or 64×32 size (no tradeoffs)
+	<dt>scroll (global)<dd>
+	<dt>scroll (lineram)<dd>(layers 2 and 3 only)
+</dl>
 
 <dl>
 	<dt>background color<dd>a solid color, used if nothing else is found for that half-pixel, or if a <i>priority conflict</i> occurs.
