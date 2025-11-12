@@ -21,7 +21,7 @@ terms:
 "priority" - blending priority (determines which 2 layers are chosen for blending etc) not to be confused with sprite priority, which only matters while rendering to the framebuffer, and is mapped to priority by lineram 7600
 "blend mode" - which pixels a layer contributes to (left/right/both/neither)
 "blend value" / "blend alpha value" - ranges from $7 (100%) to $F (0%). $B is 50%. represents an alpha value. there are 4 of these, 2 for the left half-pixel and 2 for the right half-pixel
-"blend select"/"blend value select" = "alpha select" - setting which determines which of the sets of alpha values will be used for a given layer
+"alpha select" ="blend select"/"blend value select" - setting which determines which of the sets of alpha values will be used for a given layer
 "half-pixel" - one of two pixels that is sent to the FDA for each screen pixel
 
 note: think of it this way: priority and half-pixel are the 2 axes of the priority cell array

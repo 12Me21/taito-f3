@@ -27,6 +27,7 @@ dl.bits > dt, table.bits td {
 	margin-bottom: 1em;
 	border-left: solid black;
 	padding: 0.5em 0 0.5em 1em;
+	background: aliceblue;
 }
 .f3-struct h1 {
 	margin: 0;
@@ -113,7 +114,7 @@ dl[compact] > dt {
 	margin-right: 0em;
 }
 dl[compact] > dt::after {
-	padding: 0 1px;
+	padding: 0 2px;
 	content: "=";
 }
 abbr {
@@ -145,7 +146,7 @@ todo::before {
 
 dl.bits {
 	display: grid;
-	grid: auto-flow dense / max-content max-content 1fr;
+	grid: auto-flow / max-content 1fr;
 	margin-left: 1em;
 	margin-top: 0.25em;
 	margin-bottom: 0em;
@@ -157,27 +158,20 @@ dl.bits > dt {
 	font-size: 18px;
 	margin-right: 6px;
 	justify-self: right;
-	grid-column: 2 / 3;
+	grid-column: 1 / 2;
 	margin-bottom: 2px;
 }
-dl.bits > dt + dt {
-	grid-column: 1 / 2;
-	font-size: 14px;
-	font-weight: normal;
-	color: #468;
-	margin-right: 2px;
-}
-dl.bits > dt:not(dt+dt) {
+dl.bits > dt {
 	display: flex;
 	justify-self: stretch;
 	//text-shadow: 0.5px 0.5px 1px #4688;
 }
-dl.bits > dt:not(dt+dt)::after {
+dl.bits > dt::after {
 	text-shadow: none;
 	color: #468;
 	content: ":";
 }
-dl.bits > dt:not(dt+dt)::before {
+dl.bits > dt::before {
 	content: " ";
 	flex: 1;
 	white-space: pre;
@@ -186,11 +180,9 @@ dl.bits > dt:not(dt+dt)::before {
 	border-bottom: 1px dotted #468;
 	height: 11px;
 }
-dl.bits > dt + dt::before { color: black; content: "{"; }
-dl.bits > dt + dt::after { color: black; content: "}"; }
 dl.bits > dd {
 	margin: 0;
-	grid-column: 3 / 4;
+	grid-column: 2 / 3;
 }
 
 f3-struct f3-addr > dl {
@@ -207,6 +199,7 @@ table.bits {
 	border-spacing: 0;
 	border: 2px groove;
 	counter-reset: bnum 16;
+	background: white;
 }
 table.bits tr>* {
 	width: 18px;
@@ -220,11 +213,20 @@ table.bits th {
 	padding: 0;
 	font-weight: normal;
 	border-right: 1px inset;
+	-webkit-text-fill-color: #bbb;
+}
+table.bits th.f {
+	-webkit-text-fill-color: black;
+	color: black;
+}
+table.bits th.x {
+	-webkit-text-fill-color: white;
+	color: black;
 }
 table.bits th::after {
-	content: counter(bnum);
-	counter-increment: bnum -1;
-	color: gray;
+//	content: counter(bnum);
+//	counter-increment: bnum -1;
+//	color: gray;
 }
 table.bits td {
 	padding: 1px 0;
