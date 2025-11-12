@@ -6,6 +6,12 @@ body {
 	font-family: mspm, georgia;
 	font-variant: tabular-nums;
 }
+var {
+	font-style: italic;
+	/* hack until we get a proper italic font */
+	display: inline-block;
+	transform: translateX(-0.0625em);
+}
 h1 {
 	font-variant: lining-nums;
 }
@@ -13,6 +19,37 @@ h1 {
 dl.bits > dt, table.bits td {
 	font-family: mspm, times new roman;
 }
+.f3-struct {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	margin: 0;
+	margin-bottom: 1em;
+	border-left: solid black;
+	padding: 0.5em 0 0.5em 1em;
+}
+.f3-struct h1 {
+	margin: 0;
+	font-size: 1.5em;
+	margin-bottom: 0.5em;
+	margin-left: -0.25em;
+}
+.f3-struct h2 {
+	font-size: 1.2em;
+	margin: 0;
+}
+.f3-struct dl dl {
+	margin-left: 0;
+	margin-top: 0;
+	margin-bottom: 0;
+}
+.f3-struct dl dl dt {
+	font-size: unset;
+}
+.f3-struct dl:not(:last-child) {
+	margin-bottom: 0.25em; /*hack*/
+}
+
 f3-struct, f3-addr, f3-data {
 	display: flex;
 	flex-direction: column;
@@ -44,6 +81,24 @@ f3-struct dl dl {
 f3-struct dl dl dt {
 	font-size: unset;
 }
+
+dl {
+	display: grid;
+	grid: auto-flow / max-content 1fr;
+}
+dt {
+	grid-column: 1 / 2;	
+	justify-self: right;
+}
+dt::after {
+	content: " = ";
+	white-space: pre;
+}
+dd {
+	margin-left: 0;
+	grid-column: 2 / 3;
+}
+
 dl[compact] {
 	display: flex;
 	flex-wrap: wrap;
