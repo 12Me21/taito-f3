@@ -142,7 +142,7 @@
 		<dt>S<dt>11:1<dd>"shadow mode": if 2 layers have <u>neighboring priorities</u> and the lower one is non-empty, the upper layer's palette is altered: 4th bit of the color index (i.e. the 0th bit of the palette id) is set to 1 - todo: this may be different depending on the bpp setting<br>
 			notes: this effect is done separately for every half pixel (this effect is probably implemented inside the priority cell array, unlike everything else). note: the background color layer (as well as priority conflicts) count as empty pixels
 		<dt>b<dt>13:1<dd><abbr>Fda</abbr>: Horizontal Blur<dl compact><dt>0<dd>blurred<dt>1<dd>normal</dl>
-		<dt>fda<dt>14:2<dd><abbr>Fda</abbr>: Mode<dl><dt>0<dd>legacy color mode (15-bit <abbr>rgb</abbr>)<dt>1<dd>normal mode<dt>2<dd>no blending, display half-pixels separately (debug mode?)<dt>3<dd>invalid? first pixel repeats all the way across</dl>
+		<dt>fda<dt>14:2<dd><abbr>Fda</abbr>: Mode<dl><dt>0<dd>legacy color mode (15-bit <abbr>rgb</abbr>)<dt>1<dd>normal mode<dt>2<dd>no blending, display half-pixels separately (debug mode?)<dt>3<dd>invalid? first pixel repeats all the way across (but alpha still functions as normal)</dl>
 	</dl>
 </figure>
 

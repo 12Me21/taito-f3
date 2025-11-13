@@ -10,7 +10,8 @@ var {
 	font-style: italic;
 	/* hack until we get a proper italic font */
 	display: inline-block;
-	transform: translateX(-0.0625em);
+	margin-left: -0.0625em;
+	margin-right: 0.0625em;
 }
 h1 {
 	font-variant: lining-nums;
@@ -18,6 +19,8 @@ h1 {
 
 dl.bits > dt, table.bits td {
 	font-family: mspm, times new roman;
+	color: blue;
+	text-shadow: 1px 0 white;
 }
 .f3-struct {
 	display: flex;
@@ -205,7 +208,6 @@ table.bits tr>* {
 	width: 18px;
 	max-width: 18px;
 	text-align: center;
-	text-shadow: 1px 0 white;
 }
 table.bits th {
 	font-family: courier, monospace;
@@ -232,6 +234,7 @@ table.bits td {
 	padding: 1px 0;
 	border-top: 1px solid #DDD;
 	padding-top: 0;
+	color: blue;
 }
 table.bits th:nth-child(4n) { border-right: 1px outset; }
 table.bits th:nth-child(4n+1) { border-left: 1px outset; }
@@ -249,9 +252,12 @@ table.bits td.space { background: linear-gradient(to bottom right, white, #DDD);
 /*table.bits td.x { background: #DDD; }*/
 table.bits td.x {
 	font-variant: tabular-nums;
-	background: #ddd;
+	background: #e3e3e3;
+	/*background-image: repeating-linear-gradient(135deg, #ccc 0px, #fff 5px);*/
+	text-shadow: none;
+	color: black;
 }
-table.bits td.x:last-child { background: #eee; }
+table.bits td.x:last-child {  }
 
 @supports (font-variant-position: sub) {
 	sub, sup {

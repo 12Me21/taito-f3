@@ -49,7 +49,7 @@ data: varies by subsection
 - unused?
 "4400" (0.2)
 [RLrl ??Ts ssss ssss]
- s - {playfield 2} local scroll offset ("colscroll"), in screen pixels
+ s - {playfield 2} local scroll offset ("colscroll"), in integer texture pixels
  T - {playfield 2}, 1 = use alternate tilemap
  l - {clip plane 0} left, high bit
  r - {clip plane 0} right, high bit
@@ -78,7 +78,7 @@ data: varies by subsection
  m - {mystery layer} blend value select
  A - {pivot} blend value select
  N - {background color} blend value select
- o - {playfields} {mystery layer} ?? tilemap infinite vertical stretch?
+ o - {playfields} {mystery layer} reset y source index 
  p - {pivot} 1 = pixel, 0 = text
  B - {pivot pixel} data location: 0 = $620000 (collides with lineram), 1 = $630000
 "6200" (2.1)
@@ -103,7 +103,7 @@ alpha = clamp((15-value)/8, 0, 1)  ($F = 0%, $B = 50%, $7+ = 100%)
  S - shadow mode: if 2 layers are placed at neighboring priorities (e.g. 5 and 6), the upper one's palette has its lower bit set IF the lower layer has a nontransparent pixel there (todo: check if this bit varies depending on the bpp setting). note that the bg color layer (as well as prio conflicts), do not count as opaque pixels for the purposes of shadow
 
  B - horizontal blur (FDA): 0 = enable, 1 = disable
- f - FDA mode. 0 = 15bit color format mode, 1 = normal mode, 2 = double resolution mode (no blending), 3 = invalid? (repeat first pixel all the way across)
+ f - FDA mode. 0 = 15bit color format mode, 1 = normal mode, 2 = double resolution mode (no blending), 3 = invalid? (repeat first pixel all the way across, no blending) note that alpha functions normally in all modes (multiplying the brightness)
 "6600" (2.3)
 [...b bbbb bbbb bbbb]
  b - {background color} color (palette index)

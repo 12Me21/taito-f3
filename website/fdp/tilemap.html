@@ -1,0 +1,151 @@
+<!doctype html>
+<script src=f3-bits.js></script>
+<link rel=stylesheet href=./style2.css>
+
+<h1>Tilemaps</h1>
+
+<p>there are four tilemap layers, numbered 0 to 3.&nbsp;
+	each is a 32×32 (or 64×32 if Extend Mode is enabled) grid of 16×16 tiles, each represented by a 32-bit value.
+	
+<p>special features:
+	
+<dl>
+	<dt>Global Scroll (scroll registers)<dd>x and y scroll
+	<dt>Extend Mode (scroll registers)<dd>tilemap size: 32×32 or 64×32. (there's no downside to using the larger size; i'm not sure why this setting exists)
+	<dt>Scroll Adjust (lineram)<dd>note: <u>vertical</u> scroll adjust is only available on tilemaps 2 and 3
+	<dt>Tile Data Bank (lineram)<dd>note: only available on tilemaps 2 and 3
+	
+</dl>
+
+<figure class=f3-struct>
+	<h1>Tilemap Tile</h1>
+	<h2>Address (normal)</h2>
+	<f3-bits>&ctdot;,0,0,1,0,num:3,y:5,x:5,-:2</f3-bits>
+	<h2>Address (extend mode)</h2>
+	<f3-bits>&ctdot;,0,0,1,num:3,y:5,x:6,-:2</f3-bits>
+	<dl class=bits>
+		<dt>num<dd>tilemap number (0-5)
+			<dl>
+				<dt>0,1,2,3<dd>regular tilemap data
+				<dt>4,5<dd>alternate data for tilemaps 2 and 3
+			</dl>
+		<dt>y<dd>y index (0-31)
+		<dt>x<dd>x index (0-31 or 0-63)
+	</dl>
+	<h2>Data</h2>
+	<f3-bits>h,v,tex2:2,bpp:2,as,palette:9,texture:16</f3-bits>
+	<dl class=bits>
+		<dt>texture<dd>texture id (lower bits)
+		<dt>palette<dd>palette id (0-511)
+		<dt>as<dd>Alpha Select<br>(note how this is stored per-tile rather than per-scanline)
+		<dt>bpp<dd>texture bit planes (bits per pixel select)<todo>better wording for bpp</todo>
+			<dl compact>
+				<dt>0<dd>16-color (4bpp)
+				<dt>1<dd>32-color (5bpp)
+				<dt>2<dd>?
+  				<dt>3<dd>64-color (6bpp)
+			</dl>
+		<dt>tex2<dd>texture id (upper bits)
+		<dt>v<dd><dl compact><dt>1<dd>vertical flip</dl>
+		<dt>h<dd><dl compact><dt>1<dd>horizontal flip</dl>
+	</dl>
+</figure>
+
+<figure class=f3-struct>
+	<h1>Global Scroll X</h1>
+	<h2>Address</h2>
+	<f3-bits>&ctdot;,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,num:2,-</f3-bits>
+	<dl class=bits>
+		<dt>num<dd>tilemap number (0-3)
+	</dl>
+	<h2>Data</h2>
+	<f3-bits>ipart:10,fpart:6</f3-bits>
+	<dl class=bits>
+		<dt>ipart<dd>integer part (0-1024)
+		<dt>fpart<dd>negative fractional part (1 = -1/64, etc.)
+	</dl>
+</figure>
+
+<figure class=f3-struct>
+	<h1>Global Scroll Y</h1>
+	<h2>Address</h2>
+	<f3-bits>&ctdot;,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,num:2,-</f3-bits>
+	<dl class=bits>
+		<dt>num<dd>tilemap number (0-3)
+	</dl>
+	<h2>Data</h2>
+	<f3-bits>ipart:9,fpart:7</f3-bits>
+	<dl class=bits>
+		<dt>ipart<dd>integer part (0-511)
+		<dt>fpart<dd>fractional part (divide by 128, i assume?) <todo>is this negative like x scroll?</todo>
+	</dl>
+</figure>
+
+<p>note: registers 0.0 and 0.1 don't exist
+<figure class=f3-struct>
+	<h1>Lineram Registers 0.<var>N</var> "4400" "4600"</h1>
+	<f3-bits>#:6,alt,yscroll:9</f3-bits>
+	<dl class=bits>
+		<dt>yscroll<dd>Tilemap <var>N</var>: Scroll Adjust Y <todo>data format</todo>
+		<dt>alt<dd>Tilemap <var>N</var>: Alt Tilemap<dl compact><dt>0<dd>normal<dt>1<dd>use alternate tile data</dl>
+	</dl>
+</figure>
+
+<figure class=f3-struct>
+	<h1>Lineram Register 2.0 "6000"</h1>
+	<f3-bits>#:4,o,#:11</f3-bits>
+	<dl class=bits>
+		<dt>o<dd>Tilemaps: infinite vertical stretch?
+	</dl>
+</figure>
+
+<figure class=f3-struct>
+	<h1>Lineram Register 2.2 "6400"</h1>
+	<f3-bits>#:12,p<sub>3</sub>,p<sub>2</sub>,p<sub>1</sub>,p<sub>0</sub></f3-bits>
+	<dl class=bits>
+		<dt>p<sub>N</sub><dd>Tilemap <var>N</var>: Mosaic Enable
+	</dl>
+</figure>
+
+<figure class=f3-struct>
+	<h1>Lineram Registers 4.<var>N</var> "8000" "8200" "8400" "8600"</h1>
+	<f3-bits>hzoom:8,vzoom:8</f3-bits>
+	<dl class=bits>
+		<dt>vzoom<dd>Tilemap <var>N</var>*: Vertical Zoom<br>
+			*bug: tilemaps 1 and 3 have their vertical zooms swapped<br>
+			scale factor = 1 / (vzoom/128)
+			<dl compact><dt>$00<dd>∞×<dt>$40<dd>2×<dt>$80<dd>1×<dt>$C0<dd>0.667×<dt>$FF<dd>0.502×</dl>
+		<dt>hzoom<dd>Tilemap <var>N</var>: Horizontal Zoom<br>
+			scale factor = 1 / (1 - hzoom/256)
+			<dl compact><dt>$00<dd>1×<dt>$40<dd>1.333×<dt>$80<dd>2×<dt>$C0<dd>4×<dt>$FF<dd>256×</dl>
+	</dl>
+</figure>
+
+<figure class=f3-struct>
+	<h1>Lineram Registers 5.<var>N</var> "9000" "9200" "9400" "9600"</h1>
+	<f3-bits>#:10,palette:6</f3-bits>
+	<dl class=bits>
+		<dt>palette<dd>Tilemap <var>N</var>: Palette Adjust (added to the palette of all tiles)
+	</dl>
+</figure>
+
+<figure class=f3-struct>
+	<h1>Lineram Registers 6.<var>N</var> "A000" "A200" "A400" "A600"</h1>
+	<f3-bits>xscroll:16</f3-bits>
+	<dl class=bits>
+		<dt>xscroll<dd>Tilemap <var>N</var>: Scroll Adjust X<br>(same format as global scroll)
+	</dl>
+</figure>
+
+<figure class=f3-struct>
+	<h1>Lineram Registers 7.<var>N</var> "B000" "B200" "B400" "B600"</h1>
+	<f3-bits>bm:2,E,I,c<sub>3</sub>,c<sub>2</sub>,c<sub>1</sub>,c<sub>0</sub>,i<sub>3</sub>,i<sub>2</sub>,i<sub>1</sub>,i<sub>0</sub>,prio:4</f3-bits>
+	<dl class=bits>
+		<dt>prio<dd>Tilemap <var>N</var>: Priority (0-15)
+		<dt>i<sub>n</sub><dd>Tilemap <var>N</var>: Clip Plane <var>n</var> Mode
+		<dt>c<sub>n</sub><dd>Tilemap <var>N</var>: Clip Plane <var>n</var> Enable
+		<dt>I<dd>Tilemap <var>N</var>: Clip Invert
+		<dt>E<dd>Tilemap <var>N</var>: Enable
+		<dt>bm<dd>Tilemap <var>N</var>: Blend Mode<dl compact><dt>0<dd>both<dt>1<dd>left<dt>2<dd>right<dt>3<dd>neither</dl>
+	</dl>
+</figure>
