@@ -1,0 +1,93 @@
+<!doctype html>
+
+<link rel=stylesheet href=./style2.css>
+<script src=f3-bits.js></script>
+
+<h1>Sprites</h2>
+
+<p>the <abbr>fdp</abbr> renders up to ~900 16×16 sprites per frame to a single bitmap framebuffer.
+	
+<h2>The Sprite Layer</h2>
+<p>the sprite framebuffer is used as the source for the Sprite Layer.
+<p>sprites are split into four Groups, depending on the 2 uppermost bits of their palette, and some layer settings can be set per-group (Priority, Blend Mode, and Alpha Select). it's sorta like having 4 separate layers, but note that they can never blend with each other because they share a single framebuffer.
+
+<h2>Sprite Rendering</h2>
+<p>sprites are rendered from the Sprite List, which contains 4 banks of 1024 entries each. each entry can render one sprite and/or be a command that sets graphics parameters. on each frame, the fdp iterates over the entries in the current bank.
+
+<p>there are 2 scroll values, which we call Global and Subglobal. these can be changed at any time, and you can choose which ones (global only, global+subglobal, or neither) to use for each sprite.
+	
+<p>individual sprites can be tiled into larger objects by using the Tessellation Controls. (todo)
+	
+<figure class="f3-struct">
+	<h1>Sprite List Entry</h1>
+	<h2>Address</h2>
+	<f3-bits>&ctdot;,0,0,0,bank:2,index:10,f:3,-</f3-bits>
+	<dl class=bits>
+		<dt>bank<dd>bank (set by command)
+		<dt>index<dd>sprite id
+		<dt>field<dd>field number
+	</dl>
+	<h2>Field 0</h2>
+	<f3-bits>texture:16</f3-bits>
+	<dl class=bits>
+		<dt>texture<dd>texture id (lower bits)
+	</dl>
+	<h2>Field 1</h2>
+	<f3-bits>yzoom:8,xzoom:8</f3-bits>
+	<dl class=bits>
+		<dt>xzoom<dd>horizontal zoom<br>
+			scale = 1 - zoom/256
+			<dl compact><dt>$00<dd>1×<dt>$40<dd>0.75×<dt>$80<dd>0.5×<dt>$C0<dd>0.25×<dt>$FF<dd>0.004×</dl>
+			<dt>yzoom<dd>vertical zoom (same format)
+	</dl>
+	<h2>Field 2</h2>
+	<f3-bits>i:2,s:2,x:12</f3-bits>
+	<dl class=bits>
+		<dt>x<dd>x position (signed int, pixels)
+		<dt>s<dd>set scrolls from position value (happens first)
+			<dl compact><dt>0<dd>neither<dt>1<dd>local<dt>2<dd>global<dt>3<dd>both</dl>
+			<dt>i<dd>adjust position
+				<dl compact><dt>0 or 2<dd>add both scrolls<dt>1<dd>add global scroll<dt>3<dd>none</dl>
+	</dl>
+	<h2>Field 3</h2>
+	<f3-bits>c,.:3,y:12</f3-bits>
+	<dl class=bits>
+		<dt>y<dd>y position (signed int, pixels)
+		<dt>c<dd><dl compact><dt>1<dd>command mode</dl>
+	</dl>
+	<h2>Field 4</h2>
+	<f3-bits>x:2,?,y,M,p,v,h,pal:8</f3-bits>
+	<dl class=bits>
+		<dt>pal<dd>palette id (0-255)
+		<dt>h<dd>horizontal flip
+		<dt>v<dd>vertical flip
+		<dt>p<dd>palette lock<dl compact><dt>1<dd>reuse previous palette<dt>0<dd>use new palette</dl>
+		<dt>M<dd>"multi" - <u>this bit affects the next sprite not the current one</u><dl compact><dt>0<dd>read zoom value, and update block origin from given position<dt>1<dd>don't</dl>
+		<dt>y<dd>y tessellation control (where to place sprite)<dl compact><dt>0<dd>at block origin (if M was 0, this will be the given position)<dt>1<dd>south of prev sprite</dl>
+		<dt>x<dd>x tessellation control (where to place sprite)<dl compact><dt>0<dd>at the given position<dt>1<dd>same as prev sprite<dt>2* or 3<dd>right of prev sprite</dl>*2 is the same as 3, but the first row is rendered at the wrong position for some reason
+	</dl>
+	<h2>Field 5 (always, affects current sprite)</h2>
+	<f3-bits>.:8,fmt:4,?,?,tex2:2</f3-bits>
+	<dl class=bits>
+		<dt>tex2<dd>texture id (upper bits) - this might be more than 2 bits
+		<dt>fmt<dd>bitmap format - affects the order of pixels loaded from rom?
+	</dl>
+	<h2>Field 5 (additional effects in command mode, sets persistent settings)</h2>
+	<f3-bits>?,?,k,j,?,b<sub>1</sub>,g,f,?,a:3,?,?,t,b<sub>0</sub></f3-bits>
+	<dl class=bits>
+		<dt>b<sub>0</sub><dd>lower bit of bank
+		<dt>t<dd>? supposedly disables clearing framebuffer but seems to be something else
+		<dt>a<dd>? affects visiblity of sprites or something
+		<dt>f<dd>sets palettes to 0(?), and then adds some garbage pixels around the sprites which do a palette offset? not sure where these come from, they seem consistent?
+		<dt>g<dd>similar to f but different
+		<dt>b<sub>1</sub><dd>upper bit of bank
+		<dt>j<dd>changes video signal (causes us to lose sync, but definitely still outputting a picture)
+		<dt>k<dd>flipscreen
+	</dl>
+	<h2>Field 6</h2>
+	<f3-bits>j,.:5,dest:10</f3-bits>
+	<dl class=bits>
+		<dt>dest<dd>jump destination (next sprite index to process)
+		<dt>j<dd><dl compact><dt>1<dd>jump<dt>0<dd>increment index normally</dl>
+	</dl>
+</figure>

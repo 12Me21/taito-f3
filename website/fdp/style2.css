@@ -1,3 +1,7 @@
+:root {
+	-webkit-text-size-adjust: none;
+}
+
 @font-face {
 	font-family: 'mspm';
 	src: url("../short2.otf?4");
