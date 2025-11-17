@@ -1,0 +1,9 @@
+<!doctype html>
+
+<link rel=stylesheet href=./style2.css>
+<script src=f3-bits.js></script>
+
+<h1>Pivot Layer</h1>
+
+<p>
+	the pivot layer is a 64x64 grid of 8x8 tiles, which gets its textures from RAM instead of ROM. it can either be in "text mode" (where the texture is looked up based on the tile's id) or "pixel mode" (where each cell has a unique texture, whose address depends on its position in the grid, effectively giving you a 512x256 bitmap, though the pixels are in a weird order)
