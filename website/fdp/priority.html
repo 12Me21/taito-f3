@@ -1,0 +1,23 @@
+<!--
+
+alright, so, to understand blending we only need to think about a single screen pixel at a time. (todo explain this better; this is VERY IMPORTANT. the screen pixel is our entire world!)
+
+each of the eight graphics layers provides the following data for its pixel:
+- color id (13-bit number)
+- alpha select (1-bit)
+- priority (4-bit)
+- blend mode (2-bit)
+
+these are then inserted into The Priority Table. (if the color is not opaque; need to explain that better. do we pretend a "non-empty" bit exists (which is i suspect how the hardware works) or just pretend color 0 means empty?)
+it has 2 columns, and 16 rows. each cell stores a color id, alpha select, and maybe an invalid bit.
+the priority value and blend mode are used to select which cell(s) are filled.
+priority selects the row, and blend mode selects whether we fill column A, B, or both (or neither, effectively disabling the layer)
+if the same cell is filled from multiple sources, this causes a Priority Conflict. this causes it to appear like the background color layer, if used (todo explain this better)
+
+then, after the table has been filled, the fdp picks the frontmost(?) cell in each column.
+these 2 colors will be sent out of the fdp, to be converted to rgb and then blended by the fda.
+but first, we need to choose the associated alpha values to send. this is where the alpha select bit is used. 
+there are 4 alpha values. 2 for half-pixel A and 2 for half-pixel B. each half-pixel's alpha select determines which one is used. (needs rewriting a lot)
+
+then we should have examples
+-->
