@@ -7,6 +7,7 @@ each of the eight graphics layers provides the following data for its pixel:
 - alpha select (1-bit)
 - priority (4-bit)
 - blend mode (2-bit)
+this is where all the different layers join together, after this point they can be considered just opaque streams of pixels. (reword this, its important)
 
 these are then inserted into The Priority Table. (if the color is not opaque; need to explain that better. do we pretend a "non-empty" bit exists (which is i suspect how the hardware works) or just pretend color 0 means empty?)
 it has 2 columns, and 16 rows. each cell stores a color id, alpha select, and maybe an invalid bit.
