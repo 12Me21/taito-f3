@@ -19,7 +19,7 @@
 
 <p>there are 2 scroll values, which we call Global and Subglobal. these can be changed at any time, and you can choose which ones (global only, global+subglobal, or neither) to use for each sprite.
 	
-<p>individual sprites can be tiled into larger objects by using the Tessellation Controls. (todo)
+<p>individual sprites can be tiled into larger blocks by using the Tessellation Controls. (todo)
 	
 <p>note that sprite rendering is not affected by lineram
 	
@@ -49,8 +49,8 @@
 	<f3-bits>i:2,s:2,x:12</f3-bits>
 	<dl class=bits>
 		<dt>x<dd>x position (signed int, pixels)
-		<dt>s<dd>set scrolls from position value (happens first)
-			<dl compact><dt>0<dd>neither<dt>1<dd>local<dt>2<dd>global<dt>3<dd>both</dl>
+		<dt>s<dd>set scroll values from given position (happens first)
+			<dl compact><dt>0<dd>neither<dt>1<dd>subglobal<dt>2<dd>global<dt>3<dd>both</dl>
 			<dt>i<dd>adjust position
 				<dl compact><dt>0 or 2<dd>add both scrolls<dt>1<dd>add global scroll<dt>3<dd>none</dl>
 	</dl>
@@ -67,27 +67,27 @@
 		<dt>h<dd>horizontal flip
 		<dt>v<dd>vertical flip
 		<dt>p<dd>palette lock<dl compact><dt>1<dd>reuse previous palette<dt>0<dd>use new palette</dl>
-		<dt>M<dd>"multi" - <u>this bit affects the next sprite not the current one</u><dl compact><dt>0<dd>read zoom value, and update block origin from given position<dt>1<dd>don't</dl>
-		<dt>y<dd>y tessellation control (where to place sprite)<dl compact><dt>0<dd>at block origin (if M was 0, this will be the given position)<dt>1<dd>below previous sprite</dl>
-		<dt>x<dd>x tessellation control (where to place sprite)<dl compact><dt>0<dd>at the given position<dt>1<dd>same as prev sprite<dt>2* or 3<dd>right of previous sprite</dl>*2 is the same as 3, but the first row is rendered at the wrong position for some reason
+		<dt>M<dd>"multi" - <u>this bit affects the next sprite, not the current one</u><dl compact><dt>0<dd>read zoom value, and update block origin from given position<dt>1<dd>don't</dl>
+		<dt>y<dd>y tessellation control (where to place sprite)<dl><dt>0<dd>at block origin (if M was 0, this will be the given position)<dt>1<dd>below previous sprite</dl>
+		<dt>x<dd>x tessellation control (where to place sprite)<dl><dt>0<dd>at the given position<dt>1<dd>same as prev sprite<dt>2*,3<dd>right of previous sprite</dl>*2 is the same as 3, but the first row is rendered at the wrong position for some reason
 	</dl>
 	<h2>Field 5 (always, affects current sprite)</h2>
 	<f3-bits>.:8,fmt:4,?,?,tex2:2</f3-bits>
 	<dl class=bits>
 		<dt>tex2<dd>texture id (upper bits) - this might be more than 2 bits
-		<dt>fmt<dd>bitmap format - affects the order of pixels loaded from rom?
+		<dt>fmt<dd>bitmap format - <todo>affects the order of pixels loaded from rom?</todo>
 	</dl>
 	<h2>Field 5 (additional effects in command mode, sets persistent settings)</h2>
 	<f3-bits>?,?,k,j,?,b<sub>1</sub>,g,f,?,a:3,?,?,t,b<sub>0</sub></f3-bits>
 	<dl class=bits>
-		<dt>b<sub>0</sub><dd>lower bit of bank
-		<dt>t<dd>? supposedly disables clearing framebuffer but seems to be something else
-		<dt>a<dd>? affects visiblity of sprites or something
-		<dt>f<dd>sets palettes to 0(?), and then adds some garbage pixels around the sprites which do a palette offset? not sure where these come from, they seem consistent?
-		<dt>g<dd>similar to f but different
-		<dt>b<sub>1</sub><dd>upper bit of bank
-		<dt>j<dd>changes video signal (causes us to lose sync, but definitely still outputting a picture)
-		<dt>k<dd>flipscreen
+		<dt>b<sub>0</sub><dd>spriteram bank number (lower bit)
+		<dt>t<dd><todo>supposedly disables clearing framebuffer but seems to be something else</todo>
+		<dt>a<dd><todo>affects visiblity of sprites or something</todo>
+		<dt>f<dd><todo>sets palettes to 0(?), and then adds some garbage pixels around the sprites which do a palette offset? not sure where these come from, they seem consistent?</todo>
+		<dt>g<dd><todo>similar to f but different</todo>
+		<dt>b<sub>1</sub><dd>spriteram bank number (upper bit)
+		<dt>j<dd><todo>changes video signal (causes us to lose sync, but definitely still outputting a picture)</todo>
+		<dt>k<dd>1 = flipscreen
 	</dl>
 	<h2>Field 6</h2>
 	<f3-bits>j,.:5,dest:10</f3-bits>

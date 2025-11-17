@@ -81,3 +81,17 @@ so basically these bits affect the current sprite:
 $00F3
 and when command mode is enabled, these bits will set persistent settings:
 $3773
+
+
+
+
+ok so when reading sprite textures, we get
+24 bits of data per address. corresponding to 4 pixels at 6bpp. each texture is 256 pixels so that's 256/4 = 64 addresses per texture.
+thus, 6 bits of the graphics bus address are used for addressing within a texture, and the remaining 18 are the texture id.
+
+vs tiles:
+48 bits per address = 8 pixels, 32 addresses per texture.
+5 bits within the texture, 19 bits for the texture id (EXCEPT, bit 0 of the graphics bus address is not used for tile textures, for some reason) so actually 18 bits (which we know for sure to be true, since there's no bits left in the tile struct)
+
+HOWEVER
+technically we don't actually know if the graphics bus address is only 24 bits. our cartridge only latches that many,

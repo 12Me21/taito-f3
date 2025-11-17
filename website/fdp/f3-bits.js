@@ -13,7 +13,7 @@ defer(e=>{
 				let [name, len] = def.split(":")
 				len = +len || 1
 				let hide = /^(#)$/.test(name)
-				let special = /^(⋯|-|0|1|[.])$/.test(name)
+				let special = /^(⋯|-|0|1|[.]|[?])$/.test(name)
 				let cont = /^(⋯)$/.test(name)
 				
 				for (let i=0; i<len; i++) {
