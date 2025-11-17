@@ -109,7 +109,7 @@
 	<h1>Subsection 2.0 "6000" - Misc Blending, Pivot Mode</h1>
 	<f3-bits>B,?,P,?,o,b,p,h,s<sub>3</sub>:2,s<sub>2</sub>:2,s<sub>1</sub>:2,s<sub>0</sub>:2</f3-bits>
 	<dl class=bits>
-		<dt>s<sub>n</sub><dd>Sprite Layer, Group <var>n</var>: Blend Mode<dl compact><dt>0<dd>neither<dt>1<dd>left<dt>2<dd>right<dt>3<dd>both</dl>
+		<dt>s<sub>n</sub><dd>Sprite Layer, Group <var>n</var>: Blend Mode<dl compact><dt>0<dd>neither<dt>1<dd>A<dt>2<dd>B<dt>3<dd>both</dl>
 		<dt>h<dd>Highcolor Layer: Alpha Select
 		<dt>p<dd>Pivot Layer: Alpha Select
 		<dt>b<dd>Background Color: Alpha Select
@@ -121,12 +121,13 @@
 
 <figure class=f3-struct>
 	<h1>Subsection 2.1 "6200" - Blend Alpha Values</h1>
-	<f3-bits>left1:4,left0:4,right1:4,right0:4</f3-bits>
+	<f3-bits>A1:4,A0:4,B1:4,B0:4</f3-bits>
+	<todo>confirm the order of these</todo>
 	<dl class=bits>
-		<dt>right0<dd>right half-pixel, blend select = 0<br>alpha = clamp((15-value)/8, 0, 1)<dl compact><dt>$0-$7<dd>100%<dt>$B<dd>50%<dt>$F<dd>0%</dl>
-		<dt>right1<dd>right half-pixel, blend select = 1
-		<dt>left0<dd>left half-pixel, blend select = 0
-		<dt>left1<dd>left half-pixel, blend select = 1
+		<dt>B0<dd>half-pixel B, blend select = 0<br>alpha = clamp((15-value)/8, 0, 1)<dl compact><dt>$0-$7<dd>100%<dt>$B<dd>50%<dt>$F<dd>0%</dl>
+		<dt>B1<dd>half-pixel B, blend select = 1
+		<dt>A0<dd>half-pixel A, blend select = 0
+		<dt>A1<dd>half-pixel A, blend select = 1
 	</dl>
 </figure>
 
@@ -163,7 +164,7 @@
 		<dt>c<sub>n</sub><dt>8+n:1<dd>Highcolor Layer: Clip Plane n Enable
 		<dt>I<dt>12:1<dd>Highcolor Layer: Clip Invert
 		<dt>E<dt>13:1<dd>Highcolor Layer: Enable
-		<dt>bm<dt>14:2<dd>Highcolor Layer: Blend Mode<dl compact><dt>0<dd>both<dt>1<dd>right?<dt>2<dd>right?<dt>3<dd>right?</dl><todo>figure out what 1,2,3 do</todo>
+		<dt>bm<dt>14:2<dd>Highcolor Layer: Blend Mode<dl compact><dt>0<dd>both<dt>1<dd>B?<dt>2<dd>B?<dt>3<dd>B?</dl><todo>figure out what 1,2,3 do</todo>
 	</dl>
 </figure>
 
@@ -176,7 +177,7 @@
 		<dt>c<sub>n</sub><dd><i>pivot</i>: clip plane n enable
 		<dt>I<dd><i>pivot</i>: clip invert
 		<dt>E<dd><i>pivot</i>: enable
-		<dt>bm<dd><i>pivot</i>: blend mode (note different interpretation than elsewhere)<dl compact><dt>0<dd>both<dt>1<dd>left</dl>
+		<dt>bm<dd><i>pivot</i>: blend mode (note different interpretation than elsewhere)<dl compact><dt>0<dd>both<dt>1<dd>A</dl>
 	</dl>
 </figure>
 
@@ -280,7 +281,7 @@
 		<dt>c<sub>n</sub><dd><i>tilemap 0</i>: clip plane n enable
 		<dt>I<dd><i>tilemap 0</i>: clip invert
 		<dt>E<dd><i>tilemap 0</i>: enable
-		<dt>bm<dd>Tilemap 0: Blend Mode<dl compact><dt>0<dd>both<dt>1<dd>left<dt>2<dd>right<dt>3<dd>neither</dl>
+		<dt>bm<dd>Tilemap 0: Blend Mode<dl compact><dt>0<dd>both<dt>1<dd>A<dt>2<dd>B<dt>3<dd>neither</dl>
 	</dl>
 </figure>
 

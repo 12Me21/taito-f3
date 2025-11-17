@@ -7,7 +7,7 @@ terms:
  - highcolor layer
 
 "tilemap" / "tilemap layer n" ="playfield"
-"clip plane" / "clip interval" - one of the four clipping intervals. each interval has a "left" and "right" value
+"clip plane" / "clip interval" / "clip window" - one of the four clipping intervals. each interval has a "left" and "right" value
 "sprite group" ="sprite priority group" - sprites are split into 4 groups based on the upper 2 bits of their palette (00,40,80,C0). these can have different blend settings
 "mosaic" - horizontal pixelization effect
 "background color [layer]" - color drawn behind everything else (used if nothing else is displayed there)
@@ -19,10 +19,11 @@ terms:
 "color ram" / "palette ram" - the map of color numbers to rgb colors
 
 "priority" - blending priority (determines which 2 layers are chosen for blending etc) not to be confused with sprite priority, which only matters while rendering to the framebuffer, and is mapped to priority by lineram 7600
-"blend mode" - which pixels a layer contributes to (left/right/both/neither)
+"blend mode" - which pixels a layer contributes to (left/right/both/neither)  this is like  "priority stack-up contribution"
 "blend value" / "blend alpha value" - ranges from $7 (100%) to $F (0%). $B is 50%. represents an alpha value. there are 4 of these, 2 for the left half-pixel and 2 for the right half-pixel
 "alpha select" ="blend select"/"blend value select" - setting which determines which of the sets of alpha values will be used for a given layer
 "half-pixel" - one of two pixels that is sent to the FDA for each screen pixel
+"A and B" / "left and right" - what we call each of the half-pixels. 
 
 note: think of it this way: priority and half-pixel are the 2 axes of the priority cell array
 
@@ -72,3 +73,9 @@ pivot layer: pixel data address. say this 5 times fast.
 "offset" - do we use this? or is it always redundant.  "scroll horizontal offset" is just "horizontal scroll"
 
 "nth bit" / "bit n" - the lsb is the 0th bit. e.g. "bit 4" is the same as the mask 0x10
+
+"up/down" (and the like) - the y/vertical axis
+"left/right" (etc.) - the x/horizontal axis
+"front/back" "/behind" (etc.) - the z/priority/draw-order pseudo-axis
+
+TODO: - need terms to differentiate rendering sprites to the framebuffer vs rendering the framebuffer to the screen (e.g. "rendering" vs "displaying" or something)

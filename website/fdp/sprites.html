@@ -7,9 +7,12 @@
 
 <p>the <abbr>fdp</abbr> renders up to ~900 16×16 sprites per frame to a single bitmap framebuffer.
 	
+<p>sprites are split into four Groups, depending on the 2 uppermost bits of their palette. sprites in higher group numbers render in front of lower ones. within a group, later sprites render above earlier ones. (i think?)<br>
+	<todo>we have to explain sprite groups in the beginning part, because they matter during rendering (for drawing priority) and displaying (for per-group lineram settings), while in general most aspects of sprites do NOT apply to both</todo>
+	
 <h2>The Sprite Layer</h2>
 <p>the sprite framebuffer is used as the source for the Sprite Layer.
-<p>sprites are split into four Groups, depending on the 2 uppermost bits of their palette, and some layer settings can be set per-group (Priority, Blend Mode, and Alpha Select). it's sorta like having 4 separate layers, but note that they can never blend with each other because they share a single framebuffer.
+<p>some of the sprite layer's common layer settings can be set per-group (Priority, Blend Mode, and Alpha Select). it's sorta like having 4 separate layers, but note that they can never blend with each other because they share a single framebuffer.
 
 <h2>Sprite Rendering</h2>
 <p>sprites are rendered from the Sprite List, which contains 4 banks of 1024 entries each. each entry can render one sprite and/or be a command that sets graphics parameters. on each frame, the fdp iterates over the entries in the current bank.
@@ -17,6 +20,8 @@
 <p>there are 2 scroll values, which we call Global and Subglobal. these can be changed at any time, and you can choose which ones (global only, global+subglobal, or neither) to use for each sprite.
 	
 <p>individual sprites can be tiled into larger objects by using the Tessellation Controls. (todo)
+	
+<p>note that sprite rendering is not affected by lineram
 	
 <figure class="f3-struct">
 	<h1>Sprite List Entry</h1>
@@ -63,8 +68,8 @@
 		<dt>v<dd>vertical flip
 		<dt>p<dd>palette lock<dl compact><dt>1<dd>reuse previous palette<dt>0<dd>use new palette</dl>
 		<dt>M<dd>"multi" - <u>this bit affects the next sprite not the current one</u><dl compact><dt>0<dd>read zoom value, and update block origin from given position<dt>1<dd>don't</dl>
-		<dt>y<dd>y tessellation control (where to place sprite)<dl compact><dt>0<dd>at block origin (if M was 0, this will be the given position)<dt>1<dd>south of prev sprite</dl>
-		<dt>x<dd>x tessellation control (where to place sprite)<dl compact><dt>0<dd>at the given position<dt>1<dd>same as prev sprite<dt>2* or 3<dd>right of prev sprite</dl>*2 is the same as 3, but the first row is rendered at the wrong position for some reason
+		<dt>y<dd>y tessellation control (where to place sprite)<dl compact><dt>0<dd>at block origin (if M was 0, this will be the given position)<dt>1<dd>below previous sprite</dl>
+		<dt>x<dd>x tessellation control (where to place sprite)<dl compact><dt>0<dd>at the given position<dt>1<dd>same as prev sprite<dt>2* or 3<dd>right of previous sprite</dl>*2 is the same as 3, but the first row is rendered at the wrong position for some reason
 	</dl>
 	<h2>Field 5 (always, affects current sprite)</h2>
 	<f3-bits>.:8,fmt:4,?,?,tex2:2</f3-bits>
