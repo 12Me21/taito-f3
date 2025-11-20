@@ -1,36 +1,43 @@
 <!doctype html>
 <script src=f3-bits.js></script>
+<link rel=stylesheet href=../style.css>
 <link rel=stylesheet href=./style2.css>
 
+<a href=home.html>Back</a>
 <h1>Tilemaps</h1>
 
 <p>there are four tilemap layers, numbered 0 to 3.&nbsp;
 	each is a 32×32 (or 64×32 if Extend Mode is enabled) grid of 16×16 tiles, each represented by a 32-bit value.
 	
-<p>special features:
-	
-<dl>
-	<dt>Global Scroll (scroll registers)<dd>x and y scroll
-	<dt>Extend Mode (scroll registers)<dd>tilemap size: 32×32 or 64×32. (there's no downside to using the larger size; i'm not sure why this setting exists)
-	<dt>Scroll Adjust (lineram)<dd>note: <u>vertical</u> scroll adjust is only available on tilemaps 2 and 3
-	<dt>Tile Data Bank (lineram)<dd>note: only available on tilemaps 2 and 3
-	
-</dl>
+<h2>Scroll Register Settings</h2>
+<h3>Global Scroll X</h3>
+<h3>Global Scroll Y</h3>
+<h3>Playfield Extend Mode (shared)</h3>
+
+<h2>Lineram Settings</h2>
+<h3>Scroll Adjust X</h3>
+<h3>Scroll Adjust Y (tilemaps 2 and 3 only)</h3>
+<h3>Alternate Tile Data (tilemaps 2 and 3 only)</h3>
+<h3>Playfield Y Scroll Sync (shared)</h3>
+<h3>Zoom X</h3>
+<h3>Zoom Y</h3>
+<h3>Palette Adjust</h3>
 
 <figure class=f3-struct>
-	<h1>Tilemap Tile</h1>
+	<h1>Tilemap Tiles</h1> <!-- note this is plural since we are describing multiple tiles -->
 	<h2>Address (normal)</h2>
 	<f3-bits>&ctdot;,0,0,1,0,num:3,y:5,x:5,-:2</f3-bits>
 	<h2>Address (extend mode)</h2>
 	<f3-bits>&ctdot;,0,0,1,num:3,y:5,x:6,-:2</f3-bits>
 	<dl class=bits>
-		<dt>num<dd>tilemap number (0-5)
+		<dt>num<dd>tile data number (0-5)
 			<dl>
-				<dt>0,1,2,3<dd>regular tilemap data
-				<dt>4,5<dd>alternate data for tilemaps 2 and 3
+				<dt>0-3<dd>Tilemap 0-3: normal data
+				<dt>4<dd>Tilemap 2: alternate data
+				<dt>5<dd>Tilemap 3: alternate data
 			</dl>
-		<dt>y<dd>y index (0-31)
-		<dt>x<dd>x index (0-31 or 0-63)
+		<dt>y<dd>tile y index (0-31)
+		<dt>x<dd>tile x index (0-31 or 0-63)
 	</dl>
 	<h2>Data</h2>
 	<f3-bits>h,v,tex2:2,bpp:2,as,palette:9,texture:16</f3-bits>
@@ -39,7 +46,7 @@
 		<dt>palette<dd>palette id (0-511)
 		<dt>as<dd>Alpha Select<br>(note how this is stored per-tile rather than per-scanline)
 		<dt>bpp<dd>texture bit planes (bits per pixel select)<todo>better wording for bpp</todo>
-			<dl compact>
+			<dl>
 				<dt>0<dd>16-color (4bpp)
 				<dt>1<dd>32-color (5bpp)
 				<dt>2<dd>?
@@ -52,42 +59,54 @@
 </figure>
 
 <figure class=f3-struct>
-	<h1>Global Scroll X</h1>
+	<h1>X Scroll Registers</h1>
 	<h2>Address</h2>
 	<f3-bits>&ctdot;,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,num:2,-</f3-bits>
 	<dl class=bits>
-		<dt>num<dd>tilemap number (0-3)
+		<dt>num<dd>tilemap number <var>N</var> (0-3)
 	</dl>
 	<h2>Data</h2>
 	<f3-bits>ipart:10,fpart:6</f3-bits>
 	<dl class=bits>
-		<dt>ipart<dd>integer part (0-1024)
-		<dt>fpart<dd>negative fractional part (1 = -1/64, etc.)
+		<dt>ipart<dd>Tilemap <var>N</var>: Scroll X (integer part; 0-1023)
+		<dt>fpart<dd>Tilemap <var>N</var>: Scroll X (negative fractional part; 1 = &minus;1/64, etc.)
 	</dl>
 </figure>
 
 <figure class=f3-struct>
-	<h1>Global Scroll Y</h1>
+	<h1>Y Scroll Registers</h1>
 	<h2>Address</h2>
 	<f3-bits>&ctdot;,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,num:2,-</f3-bits>
 	<dl class=bits>
-		<dt>num<dd>tilemap number (0-3)
+		<dt>num<dd>tilemap number <var>N</var> (0-3)
 	</dl>
 	<h2>Data</h2>
 	<f3-bits>ipart:9,fpart:7</f3-bits>
 	<dl class=bits>
-		<dt>ipart<dd>integer part (0-511)
-		<dt>fpart<dd>fractional part (divide by 128, i assume?) <todo>is this negative like x scroll?</todo>
+		<dt>ipart<dd>Tilemap <var>N</var>: Scroll Y (integer part; 0-511)
+		<dt>fpart<dd>Tilemap <var>N</var>: Scroll Y (fractional part; (divide by 128, i assume?) <todo>is this negative like x scroll?</todo>
 	</dl>
 </figure>
 
-<p>note: registers 0.0 and 0.1 don't exist
+<figure class=f3-struct>
+	<h1>Extend Mode</h1>
+	<h2>Address</h2>
+	<f3-bits>&ctdot;,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,-</f3-bits>
+	<h2>Data</h2>
+	<f3-bits>#:8,ex,#:7</f3-bits>
+	<dl class=bits>
+		<dt>ex<dd>Tilemaps: Extend Mode
+			<dl><dt>0<dd>32×32 tilemaps<dt>1<dd>64×32 tilemaps</dl>
+	</dl>
+</figure>
+
 <figure class=f3-struct>
 	<h1>Lineram Registers 0.<var>N</var> "4400" "4600"</h1>
+	note: for tilemaps 2 and 3 only
 	<f3-bits>#:6,alt,yscroll:9</f3-bits>
 	<dl class=bits>
 		<dt>yscroll<dd>Tilemap <var>N</var>: Scroll Adjust Y <todo>data format</todo>
-		<dt>alt<dd>Tilemap <var>N</var>: Alt Tilemap<dl compact><dt>0<dd>normal<dt>1<dd>use alternate tile data</dl>
+		<dt>alt<dd>Tilemap <var>N</var>: Alternate Tile Data<dl><dt>0<dd>normal<dt>1<dd>use alternate tile data</dl>
 	</dl>
 </figure>
 
@@ -95,7 +114,8 @@
 	<h1>Lineram Register 2.0 "6000"</h1>
 	<f3-bits>#:4,y,#:11</f3-bits>
 	<dl class=bits>
-		<dt>y<dd>Tilemaps: 1 = initialize y scroll accumulators from global scroll registers<br>(basically: you should set this on the first scanline, or the playfields' y positions will be unstable)
+		<dt>y<dd>Tilemaps: Scroll Sync
+			<dl><dt>1<dd>initialize y scroll accumulators from the y scroll registers</dl>(basically: you should set this on the first scanline, or the playfields' y positions will be unstable)
 	</dl>
 </figure>
 
@@ -113,11 +133,11 @@
 	<dl class=bits>
 		<dt>vzoom<dd>Tilemap <var>N</var>*: Vertical Zoom<br>
 			*bug: tilemaps 1 and 3 have their vertical zooms swapped<br>
-			scale factor = 1 / (vzoom/128)
-			<dl compact><dt>$00<dd>∞×<dt>$40<dd>2×<dt>$80<dd>1×<dt>$C0<dd>0.667×<dt>$FF<dd>0.502×</dl>
+			scale factor = 1 / (vzoom/128)<br>
+			<dl><dt>$00<dd>∞×<dt>$40<dd>2.0×<dt>$80<dd>1.0×<dt>$C0<dd>0.667×<dt>$FF<dd>0.502×</dl>
 		<dt>hzoom<dd>Tilemap <var>N</var>: Horizontal Zoom<br>
 			scale factor = 1 / (1 - hzoom/256)
-			<dl compact><dt>$00<dd>1×<dt>$40<dd>1.333×<dt>$80<dd>2×<dt>$C0<dd>4×<dt>$FF<dd>256×</dl>
+			<dl><dt>$00<dd>1.0×<dt>$40<dd>1.333×<dt>$80<dd>2.0×<dt>$C0<dd>4.0×<dt>$FF<dd>256.0×</dl>
 	</dl>
 </figure>
 

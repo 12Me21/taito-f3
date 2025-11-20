@@ -27,24 +27,36 @@ dl.bits > dt, table.bits td {
 	text-shadow: 1px 0 white;
 }
 .f3-struct {
+	max-width: 7in;
 	display: flex;
 	flex-direction: column;
 	align-items: flex-start;
-	margin: 0;
 	margin-bottom: 1em;
 	border-left: solid black;
-	padding: 0.5em 0 0.5em 1em;
+	padding: 8px 0 8px 16px;
 	background: aliceblue;
+	box-shadow: 0 0 1px #0008;
 }
 .f3-struct h1 {
 	margin: 0;
 	font-size: 1.5em;
 	margin-bottom: 0.5em;
 	margin-left: -0.25em;
+	font-family: unset;
+	
+	display: block;
+	align-self: stretch;
+	margin-left: -16px;
+	margin-top: -8px;
+	padding: 4px 8px;
+	background: steelblue;
+	color: white;
+	/*font-family: serif;*/
 }
 .f3-struct h2 {
 	font-size: 1.2em;
 	margin: 0;
+	font-family: unset;
 }
 .f3-struct dl dl {
 	margin-left: 0;
@@ -56,38 +68,6 @@ dl.bits > dt, table.bits td {
 }
 .f3-struct dl:not(:last-child) {
 	margin-bottom: 0.25em; /*hack*/
-}
-
-f3-struct, f3-addr, f3-data {
-	display: flex;
-	flex-direction: column;
-	align-items: flex-start;
-}
-f3-struct {
-	margin-bottom: 1em;
-}
-f3-struct {
-	border-left: solid black;
-	padding: 0.5em 0 0.5em 1em;
-}
-f3-struct h1 {
-	//font-style: italic;
-	margin: 0;
-	font-size: 1.5em;
-	margin-bottom: 0.5em;
-	margin-left: -0.25em;
-}
-f3-struct f3-addr h1, f3-struct f3-data h1 {
-	font-size: 1.2em;
-	margin: 0;
-}
-f3-struct dl dl {
-	margin-left: 0;
-	margin-top: 0;
-	margin-bottom: 0;
-}
-f3-struct dl dl dt {
-	font-size: unset;
 }
 
 dl {
@@ -129,14 +109,10 @@ abbr {
 }
 
 body {
-	background-repeat: repeat-y;
+/*	background-repeat: repeat-y;
 	background-image: repeating-linear-gradient(135deg, black 0 5px, yellow 0 10px);
 	background-size: 24px 100%;
-	margin-left: 32px;
-}
-
-body > * {
-	max-width: 7in;
+	margin-left: 32px;*/
 }
 
 todo {

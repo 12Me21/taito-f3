@@ -41,7 +41,7 @@ body {
 	/*font-variant-numeric: oldstyle-nums;*/
 	/*text-shadow: white 1px 0px, white -1px 0px, white 0px -1px, white 0px 1px; i wish*/
 }
-p {
+p, dl {
 	//background: #DEE1DEAA;
 	max-width: 7in;
 	//text-align: justify;
@@ -50,18 +50,18 @@ p {
 h1, h2, h3, th {
 	font-family: serif;
 }
-h1 {
+body > h1 {
 	background: beige;
 	margin: 12px -8px 21px;
 	padding: 8px 8px;
 	box-shadow: 0 0 5px black;
 	color: #E21;
 }
-h1 img + span {
+body > h1 img + span {
 	display: inline-block;
 	vertical-align: middle;
 }
-h1 img {
+body > h1 img {
 	margin-right: 10px;
 	vertical-align: middle;
 }
@@ -78,13 +78,11 @@ figure {
 	//margin: 16px 24px 0px 32px;
 	margin: 16px 8px 0px 16px;
 }
-figure > * {
+figure > table.pinout {
+	display: inline-table;
 	margin-right: 8px;
 	margin-bottom: 16px;
 	vertical-align: top;
-}
-figure > table {
-	display: inline-table;
 }
 
 table.port {
