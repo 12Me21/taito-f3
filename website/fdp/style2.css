@@ -4,7 +4,8 @@
 
 @font-face {
 	font-family: 'mspm';
-	src: url("../short2.otf?4");
+	src: url("../short3.otf?a");
+	font-feature-settings: 'hwid' 1;
 }
 body {
 	font-family: mspm, georgia;

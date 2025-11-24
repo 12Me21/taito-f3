@@ -6,6 +6,8 @@
 basic theory of operation:
 
 <p>for every <i>screen-pixel</i>, the <abbr>fdp</abbr> outputs two <i>half-pixels</i> (each consisting of a <i>color id</i> and an <i>alpha</i> value).&nbsp; these are then converted to <abbr>rgb</abbr> colors, and blended into a single output by the <abbr>fda</abbr>.
+	
+<p><todo>(say something like: the fdp is controlled by writing to its external RAM, as well as a few write-only internal registers</todo>
 
 <h2>Graphics Layers</h2>
 <p>the <abbr>fdp</abbr> has eight different graphics <i>layers</i> which can be used as the source for each half-pixel:
