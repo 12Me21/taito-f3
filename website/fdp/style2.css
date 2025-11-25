@@ -4,22 +4,21 @@
 
 @font-face {
 	font-family: 'mspm';
-	src: url("../short3.otf?d");
-	font-feature-settings: 'hwid' 1;
+	src: url("../short3.otf?g");
 }
 body {
 	font-family: mspm, georgia;
-	font-variant: tabular-nums;
 }
 var {
-	font-style: italic;
 	/* hack until we get a proper italic font */
+	font-style: italic;
 	display: inline-block;
 	margin-left: -0.0625em;
 	margin-right: 0.0625em;
 }
-h1 {
-	font-variant: lining-nums;
+h1::first-letter {
+	font-feature-settings: 'pwid';
+	/*text-transform: full-width;*/
 }
 
 dl.bits > dt, table.bits td {
@@ -72,6 +71,7 @@ dl.bits > dt, table.bits td {
 }
 
 dl {
+	font-variant: tabular-nums;
 	display: grid;
 	grid: auto-flow / max-content 1fr;
 }

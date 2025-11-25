@@ -1,9 +1,73 @@
 <!doctype html>
 
+<link rel=stylesheet href=../style.css>
 <link rel=stylesheet href=./style2.css>
 <script src=f3-bits.js></script>
 
 <h1>Pivot Layer</h1>
 
 <p>
-	the pivot layer is a 64x64 grid of 8x8 tiles, which gets its textures from RAM instead of ROM. it can either be in "text mode" (where the texture is looked up based on the tile's id) or "pixel mode" (where each cell has a unique texture, whose address depends on its position in the grid, effectively giving you a 512x256 bitmap, though the pixels are in a weird order)
+	The pivot layer is a 64×64 grid of 8×8 tiles, which gets its textures from <abbr>ram</abbr> instead of <abbr>rom</abbr>.&nbsp;
+	It can either be in "text mode" (where the texture is looked up based on the tile's id) or "pixel mode" (where each cell has a unique texture, whose address depends on its position in the grid, effectively giving you a 512×256 bitmap, though the pixels are in a weird order)<todo>note the bottom half uses the same textures as the top half, but different attributes</todo>
+	
+<figure class=f3-struct>
+	<h1>Pivot Tiles</h1>
+	<h2>Address</h2>
+	<f3-bits>&ctdot;,0,1,1,1,0,y:6,x:6,-</f3-bits>
+	<dl class=bits>
+		<dt>y<dd>tile y index (0-63)
+		<dt>x<dd>tile x index (0-63)
+	</dl>
+	<h2>Data</h2>
+	<f3-bits>h,pal:6,v,tex:8</f3-bits>
+	<dl class=bits>
+		<dt>tex<dd>texture id (0-255) (only used in text mode)
+		<dt>v<dd><dl compact><dt>1<dd>vertical flip</dl>
+		<dt>pal<dd>palette id (0-63)
+		<dt>h<dd><dl compact><dt>1<dd>horizontal flip</dl>
+	</dl>
+</figure>
+
+<figure class=f3-struct>
+	<h1>Pivot Textures</h1>
+	<h2>Address (Text Mode)</h2>
+	<f3-bits>&ctdot;,0,1,1,1,1,chr:8,-:5</f3-bits>
+	<dl class=bits>
+		<dt>chr<dd>character id (0-255)
+	</dl>
+	<h2>Address (Pixel Mode)</h2>
+	<f3-bits>&ctdot;,1,b,x:6,y:5,-:5</f3-bits>
+	<dl class=bits>
+		<dt>b<dd>pivot pixel data bank (set in lineram)
+		<dt>x<dd>tile x index (0-63)
+		<dt>y<dd>tile y index (0-31; top and bottom halves of the pivot layer use same textures in pixel mode)
+	</dl>
+	<h2>Data (×8)</h2>
+	<f3-bits>b:4,b:4,b:4,b:4,b:4,b:4,b:4,b:4</f3-bits>
+	<dl class=bits>
+		<dt>b<dd>data for 1 pixel <todo>describe the bit order better - maybe we need a separate page for bitmap formats because they are all different</todo>
+	</dl>
+</figure>
+
+<figure class=f3-struct>
+	<h1>Lineram Register 2.0 "6000"</h1>
+	<f3-bits>B,#,P,#,#,#,p,#,#:8</f3-bits>
+	<dl class=bits>
+		<dt>p<dd>Pivot Layer: Alpha Select
+		<dt>P<dd>Pivot Layer: Tile Mode<dl><dt>0<dd>text mode<dt>1<dd>pixel mode</dl>
+		<dt>B<dd>Pivot Layer: Pixel Data Bank<dl><dt>0<dd>$620000 (conflicts with lineram)<dt>1<dd>$630000</dl>
+	</dl>
+</figure>
+
+<figure class=f3-struct>
+	<h1>Lineram Register 3.1 "7200"</h1>
+	<f3-bits>bm,?,E,I,c<sub>3</sub>,c<sub>2</sub>,c<sub>1</sub>,c<sub>0</sub>,i<sub>3</sub>,i<sub>2</sub>,i<sub>1</sub>,i<sub>0</sub>,prio:4</f3-bits>
+	<dl class=bits>
+		<dt>prio<dd>Pivot: Priority (0-15)
+		<dt>i<sub>n</sub><dd>Pivot: Clip Plane <var>n</var> Mode
+		<dt>c<sub>n</sub><dd>Pivot: Clip Plane <var>n</var> Enable
+		<dt>I<dd>Pivot: Clip Invert
+		<dt>E<dd>Pivot: Enable
+		<dt>bm<dd>Pivot: Blend Mode (note different interpretation than elsewhere)<dl><dt>0<dd>A+B<dt>1<dd>A</dl>
+	</dl>
+</figure>
