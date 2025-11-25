@@ -1,27 +1,74 @@
 <!doctype html>
 
+<link rel=stylesheet href=../style.css>
 <link rel=stylesheet href=./style2.css>
 <script src=f3-bits.js></script>
 
 <h1>Sprites</h1>
 
-<p>the <abbr>fdp</abbr> renders up to ~900 16×16 sprites per frame to a single bitmap framebuffer.
+<p>The <abbr>fdp</abbr> renders up to ~900 sprites per frame to a single bitmap framebuffer.&nbsp;
+	Each sprite uses a 16×16 texture from <abbr>rom</abbr>, with up to 63 colors (plus transparent).
 	
-<p>sprites are split into four Groups, depending on the 2 uppermost bits of their palette. sprites in higher group numbers render in front of lower ones. within a group, later sprites render above earlier ones. (i think?)<br>
+<p>Sprites are split into four "groups", depending on the 2 uppermost bits of their palette.&nbsp;
+	Sprites in higher group numbers render in front of lower ones.&nbsp;
+	Within a group, later sprites render above earlier ones. <todo>i think?</todo>
 	<todo>we have to explain sprite groups in the beginning part, because they matter during rendering (for drawing priority) and displaying (for per-group lineram settings), while in general most aspects of sprites do NOT apply to both</todo>
 	
 <h2>The Sprite Layer</h2>
-<p>the sprite framebuffer is used as the source for the Sprite Layer.
-<p>some of the sprite layer's common layer settings can be set per-group (Priority, Blend Mode, and Alpha Select). it's sorta like having 4 separate layers, but note that they can never blend with each other because they share a single framebuffer.
+<p>The sprite framebuffer is used as the source for the Sprite Layer.
+<p>Some of the sprite layer's common layer settings can be set per-group (Priority, Blend Mode, and Alpha Select).&nbsp;
+	In some ways, it acts like 4 separate sprite layers, but note that sprites can never blend with each other because they share a single framebuffer.
+	
+<figure class=f3-struct>
+	<h1>Lineram Register 2.0 "6000"</h1>
+	<f3-bits>#:8,s<sub>3</sub>:2,s<sub>2</sub>:2,s<sub>1</sub>:2,s<sub>0</sub>:2</f3-bits>
+	<dl class=bits>
+		<dt>s<sub>N</sub><dd>Sprite Layer, Group <var>N</var>: Blend Mode
+			<dl><dt>0<dd>none<dt>1<dd>A<dt>2<dd>B<dt>3<dd>A+B</dl>
+	</dl>
+</figure>
 
+<figure class=f3-struct>
+	<h1>Lineram Register 2.2 "6400"</h1>
+	<f3-bits>#:7,s,#:4,#:4</f3-bits>
+	<dl class=bits>
+		<dt>s<dd>Sprite Layer: Mosaic Enable
+	</dl>
+</figure>
+
+<figure class=f3-struct>
+	<h1>Lineram Register 3.2 "7400"</h1>
+	<f3-bits>s<sub>3</sub>,s<sub>2</sub>,s<sub>1</sub>,s<sub>0</sub>,?,?,E,I,c<sub>3</sub>,c<sub>2</sub>,c<sub>1</sub>,c<sub>0</sub>,i<sub>3</sub>,i<sub>2</sub>,i<sub>1</sub>,i<sub>0</sub></f3-bits>
+	<dl class=bits>
+		<dt>i<sub>n</sub><dd>Sprite Layer: Clip Plane <var>n</var> Mode
+		<dt>c<sub>n</sub><dd>Sprite Layer: Clip Plane <var>n</var> Enable
+		<dt>I<dd>Sprite Layer: Clip Invert
+		<dt>E<dd>Sprite Layer: Enable
+		<dt>s<sub>N</sub><dd>Sprite Layer, Group <var>N</var>: Alpha Select
+	</dl>
+</figure>
+
+<figure class=f3-struct>
+	<h1>Lineram Register 3.3 "7600"</h1>
+	<f3-bits>prio<sub>3</sub>:4,prio<sub>2</sub>:4,prio<sub>1</sub>:4,prio<sub>0</sub>:4</f3-bits>
+	<dl class=bits>
+		<dt>prio<sub>N</sub><dd>Sprite Layer, Group <var>N</var>: Priority (0-15)
+	</dl>
+</figure>
+	
 <h2>Sprite Rendering</h2>
-<p>sprites are rendered from the Sprite List, which contains 4 banks of 1024 entries each. each entry can render one sprite and/or be a command that sets graphics parameters. on each frame, the fdp iterates over the entries in the current bank.
+<p>Sprites are rendered from the Sprite List, which contains 4 banks of 1024 entries each.&nbsp;
+	Each entry can render one sprite and/or be a command that sets graphics parameters.&nbsp;
+	On each frame, the fdp iterates over the entries in the current bank of the sprite list.
 
-<p>there are 2 scroll values, which we call Global and Subglobal. these can be changed at any time, and you can choose which ones (global only, global+subglobal, or neither) to use for each sprite.
+<p>There are two scroll values, which we call "global" and "subglobal".&nbsp;
+	These can be changed at any time, and you can choose which ones (global only, global+subglobal, or neither) to use for each sprite.
 	
-<p>individual sprites can be tiled into larger blocks by using the Tessellation Controls. (todo)
+<p>Individual sprites can be tiled into larger blocks by using the Tessellation Controls. (todo)
 	
-<p>note that sprite rendering is not affected by lineram
+<p>Note that sprite rendering itself is not affected by any lineram settings.
+	
+	<todo>explain command mode better. note the consequences of setting it on a visible sprite (field 5's value is used for 2 things at once)</todo>
 	
 <figure class="f3-struct">
 	<h1>Sprite List Entry</h1>
@@ -41,8 +88,8 @@
 	<f3-bits>yzoom:8,xzoom:8</f3-bits>
 	<dl class=bits>
 		<dt>xzoom<dd>horizontal zoom<br>
-			scale = 1 - zoom/256
-			<dl compact><dt>$00<dd>1×<dt>$40<dd>0.75×<dt>$80<dd>0.5×<dt>$C0<dd>0.25×<dt>$FF<dd>0.004×</dl>
+			scale factor = 1 - zoom/256
+			<dl><dt>$00<dd>1×<dt>$40<dd>0.75×<dt>$80<dd>0.5×<dt>$C0<dd>0.25×<dt>$FF<dd>0.004×</dl>
 			<dt>yzoom<dd>vertical zoom (same format)
 	</dl>
 	<h2>Field 2</h2>
@@ -50,15 +97,15 @@
 	<dl class=bits>
 		<dt>x<dd>x position (signed int, pixels)
 		<dt>s<dd>set scroll values from given position (happens first)
-			<dl compact><dt>0<dd>neither<dt>1<dd>subglobal<dt>2<dd>global<dt>3<dd>both</dl>
+			<dl><dt>0<dd>neither<dt>1<dd>subglobal<dt>2<dd>global<dt>3<dd>both</dl>
 			<dt>i<dd>adjust position
-				<dl compact><dt>0 or 2<dd>add both scrolls<dt>1<dd>add global scroll<dt>3<dd>none</dl>
+				<dl><dt>0 or 2<dd>add both scrolls<dt>1<dd>add global scroll<dt>3<dd>none</dl>
 	</dl>
 	<h2>Field 3</h2>
 	<f3-bits>c,.:3,y:12</f3-bits>
 	<dl class=bits>
 		<dt>y<dd>y position (signed int, pixels)
-		<dt>c<dd><dl compact><dt>1<dd>command mode</dl>
+		<dt>c<dd><dl compact><dt>1<dd>command mode_(see field 5)</dl>
 	</dl>
 	<h2>Field 4</h2>
 	<f3-bits>x:2,?,y,M,p,v,h,pal:8</f3-bits>
