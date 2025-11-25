@@ -4,7 +4,7 @@
 
 @font-face {
 	font-family: 'mspm';
-	src: url("../short3.otf?a");
+	src: url("../short3.otf?d");
 	font-feature-settings: 'hwid' 1;
 }
 body {
@@ -257,4 +257,19 @@ table.bits td.x:last-child {  }
 	}
 	sub { bottom: -0.25em; }
 	sup { top: -0.5em; /* todo: check this */ }
+}
+
+p {
+	padding: 8px 8px 8px 8px;
+	margin: 8px;
+	background: aliceblue;
+	box-shadow: 0 0 1px #0008;
+}
+
+body > h1 {
+	background: steelblue;
+	color: white;
+	//text-shadow: 4px 0px blue, 0px 0px 1px black;
+	//font-weight: normal;
+	font-family: unset;
 }

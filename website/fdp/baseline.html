@@ -5,23 +5,25 @@
 
 basic theory of operation:
 
-<p>for every <i>screen-pixel</i>, the <abbr>fdp</abbr> outputs two <i>half-pixels</i> (each consisting of a <i>color id</i> and an <i>alpha</i> value).&nbsp; these are then converted to <abbr>rgb</abbr> colors, and blended into a single output by the <abbr>fda</abbr>.
+<p>For every <i>screen-pixel</i>, the <abbr>fdp</abbr> outputs two <i>half-pixels</i> (each consisting of a <i>color id</i> and an <i>alpha</i> value).&nbsp;
+	These are then converted to <abbr>rgb</abbr> colors, and blended into a single output by the <abbr>fda</abbr>.
 	
 <p><todo>(say something like: the fdp is controlled by writing to its external RAM, as well as a few write-only internal registers</todo>
 
 <h2>Graphics Layers</h2>
-<p>the <abbr>fdp</abbr> has eight different graphics <i>layers</i> which can be used as the source for each half-pixel:
+<p>The <abbr>fdp</abbr> has eight different graphics <i>layers</i> which can be used as the source for each half-pixel:
 <ul>
-	<li>tilemap layers (4)
-	<li>sprite layer
-	<li>pivot layer
-	<li>highcolor layer
-	<li>background color layer
+	<li>Tilemap Layers (4)
+	<li>Sprite Layer
+	<li>Pivot Layer
+	<li>Highcolor Layer
+	<li>Background Color Layer
 </ul>
 
-<p>graphics settings are stored in <i>lineram</i>.&nbsp; effectively, each setting is an array of 256 values, one for each scanline.
+<p>Graphics settings are stored in <i>lineram</i>.&nbsp;
+	Effectively, each setting is an array of 256 values, one for each scanline.
 
-<p>most layers have these settings:
+<p>Most layers have these settings:
 <dl>
 	<dt>Enable<dd>whether the layer is visible
 	<dt>Clip Plane enables (4)<dd>which of the four clip intervals to enable

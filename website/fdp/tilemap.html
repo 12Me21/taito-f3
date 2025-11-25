@@ -6,23 +6,12 @@
 <a href=home.html>Back</a>
 <h1>Tilemaps</h1>
 
-<p>there are four tilemap layers, numbered 0 to 3.&nbsp;
-	each is a 32×32 (or 64×32 if Extend Mode is enabled) grid of 16×16 tiles, each represented by a 32-bit value.
+<p>There are four tilemap layers, numbered 0 to 3.&nbsp;
+	Each is a 32×32 (or 64×32 if Extend Mode is enabled) grid of tiles, represented by an array of 32-bit values.
 	
-<h2>Scroll Register Settings</h2>
-<h3>Global Scroll X</h3>
-<h3>Global Scroll Y</h3>
-<h3>Playfield Extend Mode (shared)</h3>
-
-<h2>Lineram Settings</h2>
-<h3>Scroll Adjust X</h3>
-<h3>Scroll Adjust Y (tilemaps 2 and 3 only)</h3>
-<h3>Alternate Tile Data (tilemaps 2 and 3 only)</h3>
-<h3>Playfield Y Scroll Sync (shared)</h3>
-<h3>Zoom X</h3>
-<h3>Zoom Y</h3>
-<h3>Palette Adjust</h3>
-
+<p>Each tile references a 16×16px texture, defined in <abbr>rom</abbr>, with up to 64 colors per tile.&nbsp;
+	Tilemaps can be scaled on both axes, with a range of 50.2% to infinity vertically, and 100% to 25600% horizontally.
+	
 <figure class=f3-struct>
 	<h1>Tilemap Tiles</h1> <!-- note this is plural since we are describing multiple tiles -->
 	<h2>Address (normal)</h2>
@@ -89,7 +78,7 @@
 </figure>
 
 <figure class=f3-struct>
-	<h1>Extend Mode</h1>
+	<h1>Extend Mode Register</h1>
 	<h2>Address</h2>
 	<f3-bits>&ctdot;,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,-</f3-bits>
 	<h2>Data</h2>
@@ -166,6 +155,21 @@
 		<dt>c<sub>n</sub><dd>Tilemap <var>N</var>: Clip Plane <var>n</var> Enable
 		<dt>I<dd>Tilemap <var>N</var>: Clip Invert
 		<dt>E<dd>Tilemap <var>N</var>: Enable
-		<dt>bm<dd>Tilemap <var>N</var>: Blend Mode<dl compact><dt>0<dd>both<dt>1<dd>A<dt>2<dd>B<dt>3<dd>neither</dl>
+		<dt>bm<dd>Tilemap <var>N</var>: Blend Mode<dl><dt>0<dd>A+B<dt>1<dd>A<dt>2<dd>B<dt>3<dd>none</dl>
 	</dl>
 </figure>
+
+<h2>Scroll Register Settings</h2>
+<h3>Global Scroll X</h3>
+<h3>Global Scroll Y</h3>
+<h3>Playfield Extend Mode (shared)</h3>
+
+<h2>Lineram Settings</h2>
+<h3>Scroll Adjust X</h3>
+<h3>Scroll Adjust Y (tilemaps 2 and 3 only)</h3>
+<h3>Alternate Tile Data (tilemaps 2 and 3 only)</h3>
+<h3>Playfield Y Scroll Sync (shared)</h3>
+<h3>Zoom X</h3>
+<h3>Zoom Y</h3>
+<h3>Palette Adjust</h3>
+
