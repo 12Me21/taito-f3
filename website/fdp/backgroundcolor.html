@@ -1,0 +1,26 @@
+<!doctype html>
+
+<link rel=stylesheet href=../style.css>
+<link rel=stylesheet href=./style2.css>
+<script src=f3-bits.js></script>
+
+<h1>The Background Color</h1>
+
+<p>The background color is a pseudo-layer, which is used if nothing else contributes to a half-pixel (or if there is a priority conflict).&nbsp;It lacks most of the settings of regular layers, and has its priority hardcoded to 0.
+	
+<figure class=f3-struct>
+	<h1>Lineram Register 2.0 "6000"</h1>
+	<f3-bits>#:5,b,#:2,#:8</f3-bits>
+	<dl class=bits>
+		<dt>b<dd>Background Color: Alpha Select
+	</dl>
+</figure>
+
+<figure class=f3-struct>
+	<h1>Lineram Register 2.3 "6600"</h1>
+	<f3-bits>#:3,color:13</f3-bits>
+	<dl class=bits>
+		<dt>color<dd>Background Color: Color Id (0-8191)
+	</dl>
+</figure>
+
