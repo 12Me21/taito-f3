@@ -7,7 +7,7 @@ terms:
  - highcolor layer
 
 "tilemap" / "tilemap layer n" ="playfield"
-"clip plane" / "clip interval" / "clip window" - one of the four clipping intervals. each interval has a "left" and "right" value
+"clip plane" / "clip interval" / "clip window" - one of the four clipping intervals. each interval has a "left" and "right" value. i think we say a layer "subscribes to" a clip interval if that interval is enabled but we havent used this language lately.
 "sprite group" ="sprite priority group" - sprites are split into 4 groups based on the upper 2 bits of their palette (00,40,80,C0). these can have different blend settings
 "mosaic" - horizontal pixelization effect
 "background color [layer]" - color drawn behind everything else (used if nothing else is displayed there)

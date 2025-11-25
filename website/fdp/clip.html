@@ -1,9 +1,41 @@
 <!doctype html>
 
+<link rel=stylesheet href=../style.css>
 <link rel=stylesheet href=./style2.css>
+<script src=f3-bits.js></script>
 
 <h1>Clip Intervals</h1>
 
-<p>there are four Clip Intervals, each of which consists of a Left and Right value (ranging 0-511) [data ref: lineram subsection 1.0 to 1.3, 0.2, 0.3], which equates to an interval of [left−47, right−48) (in screen pixels)
-(for example: left=47 and right=50 ⇒ [0,2) i.e. the first two columns of the screen)
-<p>each layer can use any combination of these intervals or their complements, and the visible parts are unioned together to produce a final mask (which can then be inverted as well)
+<p>
+	There are four Clip Intervals, each of which consists of a Left and Right value (ranging 0-511), which equates to an interval of [left−47, right−48) in screen pixels.<br>
+	For example: left=47 and right=50 ⇒ [0,2) i.e. the first two columns of the screen
+<p>
+	Each layer can use any combination of these intervals or their complements, and the visible parts are unioned together to produce a final mask (which can then be inverted as well)
+	<todo>explain the per-layer clip settings</todo>
+
+<figure class=f3-struct>
+	<h1>Lineram Register 0.2 "4400"</h1>
+	<f3-bits>1<sub>R</sub>,1<sub>L</sub>,0<sub>R</sub>,0<sub>L</sub>,#:2,#,#:9</f3-bits>
+	<dl class=bits>
+		<dt>0<sub>L</sub><dd>Clip Interval 0: Left (upper bit)
+		<dt>0<sub>R</sub><dd>Clip Interval 0: Right (upper bit)
+		<dt>1<sub>L</sub><dd>Clip Interval 1: Left (upper bit)
+		<dt>1<sub>R</sub><dd>Clip Interval 1: Right (upper bit)
+	</dl>
+</figure>
+
+<figure class=f3-struct>
+	<h1>Lineram Register 0.3 "4600"</h1>
+	(Same as 0.2, but for clip intervals 2 and 3)
+</figure>
+
+<figure class=f3-struct>
+	<h1>Lineram Registers 1.<var>N</var> "5000"</h1>
+	<f3-bits>right:8,left:8</f3-bits>
+	<dl class=bits>
+		<dt>left<dd>Clip Interval <var>N</var>: Left (lower bits)
+		<dt>right<dd>Clip Interval <var>N</var>: Right (lower bits)
+	</dl>
+</figure>
+
+<p><todo>direct reader to see each layer's page for information on the location of its clip settings</todo>
