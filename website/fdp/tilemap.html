@@ -12,6 +12,8 @@
 <p>Each tile references a 16×16px texture, defined in <abbr>rom</abbr>, with up to 63 colors (plus transparent) per tile.&nbsp;
 	Tilemaps can be scaled on both axes, with a range of 50.2% to infinity vertically, and 100% to 25600% horizontally.
 	
+	<todo>describe how scrolling works (e.g. units and such) and how it is affected by scaling. give formulas for positions etc.</todo>
+	
 <figure class=f3-struct>
 	<h1>Tilemap Tiles</h1> <!-- note this is plural since we are describing multiple tiles -->
 	<h2>Address (normal)</h2>
@@ -48,7 +50,7 @@
 </figure>
 
 <figure class=f3-struct>
-	<h1>X Scroll Registers</h1>
+	<h1>Scroll Registers 0-3</h1>
 	<h2>Address</h2>
 	<f3-bits>&ctdot;,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,num:2,-</f3-bits>
 	<dl class=bits>
@@ -63,7 +65,7 @@
 </figure>
 
 <figure class=f3-struct>
-	<h1>Y Scroll Registers</h1>
+	<h1>Scroll Registers 4-7</h1>
 	<h2>Address</h2>
 	<f3-bits>&ctdot;,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,num:2,-</f3-bits>
 	<dl class=bits>
@@ -78,7 +80,7 @@
 </figure>
 
 <figure class=f3-struct>
-	<h1>Extend Mode Register</h1>
+	<h1>Scroll Register 15</h1>
 	<h2>Address</h2>
 	<f3-bits>&ctdot;,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,-</f3-bits>
 	<h2>Data</h2>
