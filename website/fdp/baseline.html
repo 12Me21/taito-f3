@@ -76,10 +76,17 @@ basic theory of operation:
 
 pipeline order:
 - [per-layer rendering]
-- mosaic
-- clip
+×8 ↓ color, alpha select, blend mode, priority, clip settings, mosaic enable
+- mosaic ← mosaic strength
+×8 ↓ color, alpha select, blend mode, priority, clip settings
+- clip ← clip windows
+×8 ↓ color, alpha select, blend mode, priority
 - priority sorting
-- shadow
-- alpha
-- color lookup
-- fda effects
+ - shadow effect ← shadow settings
+×2 ↓ color, alpha select
+- alpha lookup ← alpha values
+×2 ↓ color, alpha value
+- color lookup ← color ram
+×2 ↓ rgb color, alpha value
+- fda ← fda mode, blur enable
+×1 ↓ rgb color (blended)
