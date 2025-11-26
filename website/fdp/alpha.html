@@ -1,0 +1,33 @@
+<!doctype html>
+
+<link rel=stylesheet href=../style.css>
+<link rel=stylesheet href=./style2.css>
+<script src=f3-bits.js></script>
+
+<h1>Alpha</h1>
+
+<p>The fdp uses a strange system choose alpha values. each half-pixel has a "alpha palette" of two alpha values that can be used for it.&nbsp;
+	You can think of it like this: a color (i.e. as contributed by a layer, and stored in the priority table) consists of 14 bits of data: a 13-bit index into the color palette, and a 1-bit index into the "alpha palette", which we call "alpha select".<todo></todo> alpha values range from 0% to 100%, in steps of 12.5%.
+
+<figure class=f3-struct>
+	<h1>Lineram Register 2.1 "6200"</h1>
+	<f3-bits>A1:4,A0:4,B1:4,B0:4</f3-bits>
+	<todo>confirm the order of these</todo>
+	<dl class=bits>
+		<dt>B0<dd>half-pixel B, alpha value 0<br>alpha = (15-value)/8, clamped to [0,1]
+			<dl>
+				<dt>$0-$7<dd>100%
+				<dt>$8<dd>87.5%
+				<dt>$9<dd>75%
+				<dt>$A<dd>62.5%
+				<dt>$B<dd>50%
+				<dt>$C<dd>37.5%
+				<dt>$D<dd>25%
+				<dt>$E<dd>12.5%
+				<dt>$F<dd>0%
+			</dl>
+		<dt>B1<dd>half-pixel B, alpha value 1
+		<dt>A0<dd>half-pixel A, alpha value 0
+		<dt>A1<dd>half-pixel A, alpha value 1
+	</dl>
+</figure>
