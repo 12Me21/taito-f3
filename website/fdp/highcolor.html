@@ -1,0 +1,42 @@
+<!doctype html>
+
+<link rel=stylesheet href=../style.css>
+<link rel=stylesheet href=./style2.css>
+<script src=f3-bits.js></script>
+
+<h1>The Highcolor Layer</h1>
+
+<p>The highcolor layer is a special layer which reuses data from the four tilemap layers (it can be used at the same time as the tilemaps, and even blend with them, but it is not useful to do so). Effectively, it is a 32x32 (or 64x32 in extend mode) tile layer, where each tile is a 4×16 texture in <abbr>rom</abbr> with up to 8191 <todo>test this, but it's definitely a lot. in theory, 16 bits per pixel</todo> colors (plus transparency). it cannot be scrolled or scaled horizontally.
+	
+<p>as far as we know, no games have used this feature, but i have tested it enough to know that it works.
+	<todo>explain fully how the texture data is sourced. it's annoyingly low level, but kinda necessary in order to understand how all the tilemap settings affect the highcolor layer.</todo>
+	
+<figure class=f3-struct>
+	<h1>Lineram Register 2.0 "6000"</h1>
+	<f3-bits>#,#,#,#,#,#,#,h,#:8</f3-bits>
+	<dl class=bits>
+		<dt>h<dd>Highcolor Layer: Alpha Select
+	</dl>
+</figure>
+
+<figure class=f3-struct>
+	<h1>Lineram Register 2.2 "6400"</h1>
+	<f3-bits>#:2,#,#,#,#,h,#,#:4,#:4</f3-bits>
+	<dl class=bits>
+		<dt>h<dd>Highcolor Layer: Mosaic Enable
+	</dl>
+</figure>
+
+<figure class=f3-struct>
+	<h1>Lineram Register 3.0 "7000"</h1>
+	<f3-bits>bm:2,E,I,c<sub>3</sub>,c<sub>2</sub>,c<sub>1</sub>,c<sub>0</sub>,i<sub>3</sub>,i<sub>2</sub>,i<sub>1</sub>,i<sub>0</sub>,prio:4</f3-bits>
+	<dl class=bits>
+		<dt>prio<dd>Highcolor Layer: Priority (0-15)
+		<dt>i<sub>n</sub><dd>Highcolor Layer: Clip Plane n Mode
+		<dt>c<sub>n</sub><dd>Highcolor Layer: Clip Plane n Enable
+		<dt>I<dd>Highcolor Layer: Clip Invert
+		<dt>E<dd>Highcolor Layer: Enable
+		<dt>bm<dd>Highcolor Layer: Blend Mode
+			<dl><dt>0<dd>both<dt>1<dd>B?<dt>2<dd>B?<dt>3<dd>B?</dl><todo>figure out what 1,2,3 do</todo>
+	</dl>
+</figure>
