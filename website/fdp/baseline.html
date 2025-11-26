@@ -73,3 +73,13 @@ basic theory of operation:
 	<dt>sprite groups (4)<dd>
 	<dt>playfields (4)<dd>32×32 (or 64×32) grid of 16×16 tiles. can be scaled vertically from 50% to infinity, and horizontally from 100% to 25600%.
 </dl>
+
+pipeline order:
+- [per-layer rendering]
+- mosaic
+- clip
+- priority sorting
+- shadow
+- alpha
+- color lookup
+- fda effects
