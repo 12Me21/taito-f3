@@ -12,6 +12,7 @@
 <p>Sprites are split into four "groups", depending on the 2 uppermost bits of their palette.&nbsp;
 	Sprites in higher group numbers render in front of lower ones.&nbsp;
 	Within a group, later sprites render above earlier ones. <todo>i think?</todo>
+	Note: this is a separate priority system from the one used later. e.g. (give an example like, 2 sprites with a tilemap between them in priority, but with reversed draw order so the back one clips the upper one)
 	<todo>we have to explain sprite groups in the beginning part, because they matter during rendering (for drawing priority) and displaying (for per-group lineram settings), while in general most aspects of sprites do NOT apply to both</todo>
 	
 <h2>The Sprite Layer</h2>
