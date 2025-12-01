@@ -30,6 +30,8 @@ note: think of it this way: priority and half-pixel are the 2 axes of the priori
 "priority cell" - (this is only a theory, but so far it's been useful for explaining things) believe the way the fdp handles priority is that each layer's color gets placed into an array of 2×16 "cells", corresponding to the 16 priority levels and 2 half-pixels. each cell contains: 13-bit color index, transparency flag, alpha select bit, and maybe an "invalid" flag. for each screen pixel, the fdp picks the highest non-empty cell in each column and sends their color to the fda (along with the corresponding alpha value)
 
 "empty"/"transparent" vs "full"/"opaque" - (needs work) when talking about layer contributions  transparent means  when searching for the 2 half-pixels to send to the fda, we ignore those cells.  i dont like transparent/opaque because they sound like an alpha thing  like F=transparent 7=opaque.  so i think "empty priority cell" is maybe correct  egh.. 
+i think i have settled for now on:
+"present/absent"/(adj: "presence") ="empty/non-empty" - when talking about layer contributions, a pixel is "present" if a layer contributes a non-transparent pixel.
 
 "sprite" - ambiguous?
 "sprite list" / "sprite ram" - the list in graphics ram which the sprites are rendered from
