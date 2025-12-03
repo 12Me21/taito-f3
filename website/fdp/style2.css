@@ -282,3 +282,11 @@ figure {
 	background: aliceblue;
 	box-shadow: 0 0 1px #0008;
 }
+
+.mathbox {
+	border: 1px solid;
+	background: white;
+	padding: 3px;
+	margin: 3px;
+	display: inline-block;
+}

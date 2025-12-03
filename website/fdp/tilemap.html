@@ -59,8 +59,10 @@
 	<h2>Data</h2>
 	<f3-bits>ipart:10,fpart:6</f3-bits>
 	<dl class=bits>
-		<dt>ipart<dd>Tilemap <var>N</var>: Scroll X (integer part; 0-1023)
-		<dt>fpart<dd>Tilemap <var>N</var>: Scroll X (negative fractional part; 1 = &minus;1/64, etc.)
+		<dt>ipart<dd>Tilemap <var>N</var>: Scroll X (integer part; 0-1024)<br>
+			in units of: <div class=mathbox><math><mrow><mi>texture pixels</mi></mrow></math></div><br>
+		<dt>fpart<dd>Tilemap <var>N</var>: Scroll X (negative fractional part)<br>
+			in units of: <div class=mathbox><math><mrow><mo>&minus;</mo><mfrac><mrow><mi>texture pixels</mi></mrow><mn>64</mn></mfrac></mrow></math></div><br>
 	</dl>
 </figure>
 
@@ -74,8 +76,11 @@
 	<h2>Data</h2>
 	<f3-bits>ipart:9,fpart:7</f3-bits>
 	<dl class=bits>
-		<dt>ipart<dd>Tilemap <var>N</var>: Scroll Y (integer part; 0-511)
-		<dt>fpart<dd>Tilemap <var>N</var>: Scroll Y (fractional part; (divide by 128, i assume?) <todo>is this negative like x scroll?</todo>
+		<dt>ipart<dd>Tilemap <var>N</var>: Scroll Y (integer part; 0-511)<br>
+			in units of: <div class=mathbox><math><mrow><mi>texture pixels</mi></mrow></math></div>
+		<dt>fpart<dd>Tilemap <var>N</var>: Scroll Y (fractional part)<br>
+			in units of: <div class=mathbox><math><mrow><mfrac><mi>texture pixels</mi><mn>128</mn></mfrac></div>
+			<br><todo>is this negative like x scroll?</todo>
 	</dl>
 </figure>
 
@@ -97,7 +102,8 @@
 	<h2>Data</h2>
 	<f3-bits>#:6,alt,yscroll:9</f3-bits>
 	<dl class=bits>
-		<dt>yscroll<dd>Tilemap <var>N</var>: Scroll Adjust Y (integer, in texture pixels) <todo>data format</todo>
+		<dt>yscroll<dd>Tilemap <var>N</var>: Scroll Adjust Y (integer)<br>
+			in units of: <div class=mathbox><math><mrow><mi>texture pixels</mi></mrow></math></div><br>
 		<dt>alt<dd>Tilemap <var>N</var>: Alternate Tile Data<dl><dt>0<dd>normal<dt>1<dd>use alternate tile data</dl>
 	</dl>
 </figure>
@@ -128,10 +134,13 @@
 	<dl class=bits>
 		<dt>vzoom<dd>Tilemap <var>N</var>*: Vertical Zoom<br>
 			*bug: tilemaps 1 and 3 have their vertical zooms swapped<br>
+			in units of: <div class=mathbox><math><mrow><mn>128</mn><mo>&InvisibleTimes;</mo><mo>(</mo><mfrac><mi>texture pixels</mi><mi>screen pixels</mi></mfrac><mo>)</mo></mrow></math></div><br>
 			scale factor = 1 / (vzoom/128)<br>
 			<dl><dt>$00<dd>∞×<dt>$40<dd>2.0×<dt>$80<dd>1.0×<dt>$C0<dd>0.667×<dt>$FF<dd>0.502×</dl>
 		<dt>hzoom<dd>Tilemap <var>N</var>: Horizontal Zoom<br>
-			scale factor = 1 / (1 - hzoom/256)
+			in units of:
+			<div class=mathbox><math><mrow><mn>256</mn><mo>&InvisibleTimes;</mo><mo>(</mo><mn>1</mn><mo>&minus;</mo><mfrac><mi>texture pixels</mi><mi>screen pixels</mi></mfrac><mo>)</mo></mrow></math></div><br>
+			i.e. scale factor = 1 / (1 - hzoom/256)
 			<dl><dt>$00<dd>1.0×<dt>$40<dd>1.333×<dt>$80<dd>2.0×<dt>$C0<dd>4.0×<dt>$FF<dd>256.0×</dl>
 	</dl>
 </figure>
