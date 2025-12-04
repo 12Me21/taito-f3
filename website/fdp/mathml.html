@@ -1,0 +1,58 @@
+<!doctype html>
+<script src=f3-bits.js></script>
+<link rel=stylesheet href=../style.css>
+<link rel=stylesheet href=./style2.css>
+
+the source of a scanline, in texture pixels is given by:
+
+ytpx(scanline) + y_scroll_adjust[scanline]
+
+where ytpx(scanline) = {
+y_global_scroll / 128, if scroll_sync[scanline] is set
+ytpx(scanline-1) + y_zoom[scanline] / 128, otherwise 
+
+
+the source of a scanline, in texture pixels is given by:
+
+<math>
+	<mrow><mi>ytpx</mi><mo>(</mo>scanline</mi><mo>)</mo><mo>+</mo><mi>y_scroll_adjust</mi><mo>[</mo><mi>scanline</mi><mo>]</mo></mrow>
+</math>
+
+where
+<math>
+	<mrow><mi>ytpx</mi><mo>(</mo><mi>scanline</mi><mo>)</mo><mo>=</mo></mrow>
+	<mrow>
+		<mo>{</mo>
+		<mtable columnalign="left left" rowspacing=".2em" columnspacing="1em" displaystyle="false">
+			<mtr>
+				<mtd><mi>y_global_scroll</mi><mo>/</mo><mn>128</mn><mtext>,</mtext></mtd>
+				<mtd><mtext>if </mtext><mi>scroll_sync</mi><mo>[</mo><mi>scanline</mi><mo>]</mo><mtext> is set</mtext></mtd>
+			</mtr>
+			<mtr>
+				<mtd>ytpx(scanline-1) + y_zoom[scanline] / 128,</mtd>
+				<mtd>otherwise</mtd>
+			</mtr>
+		</mtable>
+	</mrow>
+</math>
+
+<p>the source coordinate for a given scanline <var>y</var> can thus be calculated using:
+
+	<math display=block>
+		<mi>global_scroll</mi>
+		<mo>+</mo>
+		<mi>scroll_adjust</mi><mo>[</mo><mi>y</mi><mo>]</mo>
+		<mo>+</mo>
+		<mrow>
+			<munderover>
+				<mo>&sum;</mo>
+				<mrow><mi>n</mi><mo>=</mo><msub><mi>y</mi><mi>sync</mi></msub></mrow>
+				<mrow><mi>y</mi><mo>-</mo><mn>1</mn></mrow>
+			</munderover>
+			<mrow>
+				<mi>zoom</mi><mo>[</mo><mi>n</mi><mo>]</mo>
+			</mrow>
+		</mrow>
+	</math>
+
+where <var>y<sub>sync</sub></var> is the most recent scanline on which the scroll sync bit was set (usually scanline 0)
