@@ -42,24 +42,24 @@ where
 		<mrow>
 			<mo>&LeftFloor;</mo>
 			<mrow>
-				<mfrac><mi>global_scroll_y</mi><mn>128</mn></mfrac>
+				<mfrac><mi>g</mi><mn>128</mn></mfrac>
 			</mrow>
 			<mo>+</mo>
 			<mrow>
-				<mi>scroll_adjust_y</mi><mo>[</mo><mi>y</mi><mo>]</mo>
+				<mi>a</mi><mo>[</mo><mi>y</mi><mo>]</mo>
 			</mrow>
 		<mo>+</mo>
 		<mrow>
 			<munderover>
 				<mo>&sum;</mo>
-				<mrow><mi>k</mi><mo>=</mo><msub><mi>y</mi><mi>sync</mi></msub></mrow>
+				<mrow><mi>k</mi><mo>=</mo><msub><mi>y</mi><mi>s</mi></msub></mrow>
 				<mrow><mi>y</mi><mo>-</mo><mn>1</mn></mrow>
 			</munderover>
-			<mfrac><mrow><mi>zoom_y</mi><mo>[</mo><mi>k</mi><mo>]</mo></mrow><mn>128</mn></mfrac>			
+			<mfrac><mrow><mi>z</mi><mo>[</mo><mi>k</mi><mo>]</mo></mrow><mn>128</mn></mfrac>			
 		</mrow>
 		<mo>&RightFloor;</mo>
 		</mrow>
 	</math>
-
-	where <var>y<sub>sync</sub></var> is the most recent scanline on which the scroll sync bit was set (usually scanline 0).<br>
+	
+	Where <var>g</var> is Global Scroll Y, <var>a</var> is Scroll Adjust Y, <var>z</var> is Zoom Y, and <var>y<sub>s</sub></var> is the most recent scanline on which Scroll Sync was set (usually scanline 0).<br>
 	Note that this assumes <var>y</var> ≥ <var>y<sub>sync</sub></var>.
