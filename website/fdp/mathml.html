@@ -36,12 +36,18 @@ where
 	</mrow>
 </math>
 
-<p>The source coordinate for a given scanline <var>y</var> can thus be calculated using:
+<p>The source row within the tilemap, for a given scanline <var>y</var>, can thus be calculated using:
 
 	<math display=block>
-		<mi>global_scroll_y</mi>
-		<mo>+</mo>
-		<mi>scroll_adjust_y</mi><mo>[</mo><mi>y</mi><mo>]</mo>
+		<mrow>
+			<mo>&LeftFloor;</mo>
+			<mrow>
+				<mfrac><mi>global_scroll_y</mi><mn>128</mn></mfrac>
+			</mrow>
+			<mo>+</mo>
+			<mrow>
+				<mi>scroll_adjust_y</mi><mo>[</mo><mi>y</mi><mo>]</mo>
+			</mrow>
 		<mo>+</mo>
 		<mrow>
 			<munderover>
@@ -49,11 +55,11 @@ where
 				<mrow><mi>k</mi><mo>=</mo><msub><mi>y</mi><mi>sync</mi></msub></mrow>
 				<mrow><mi>y</mi><mo>-</mo><mn>1</mn></mrow>
 			</munderover>
-			<mrow>
-				<mi>zoom_y</mi><mo>[</mo><mi>k</mi><mo>]</mo>
-			</mrow>
+			<mfrac><mrow><mi>zoom_y</mi><mo>[</mo><mi>k</mi><mo>]</mo></mrow><mn>128</mn></mfrac>			
+		</mrow>
+		<mo>&RightFloor;</mo>
 		</mrow>
 	</math>
 
 	where <var>y<sub>sync</sub></var> is the most recent scanline on which the scroll sync bit was set (usually scanline 0).<br>
-	Note that this breaks down if <var>y</var> < <var>y<sub>sync</sub></var>.
+	Note that this assumes <var>y</var> ≥ <var>y<sub>sync</sub></var>.
