@@ -40,26 +40,43 @@ where
 
 	<math display=block>
 		<mrow>
-			<mo>&LeftFloor;</mo>
 			<mrow>
-				<mfrac><mi>g</mi><mn>128</mn></mfrac>
+				<mi>global</mi>
 			</mrow>
 			<mo>+</mo>
 			<mrow>
-				<mi>a</mi><mo>[</mo><mi>y</mi><mo>]</mo>
+				<mi>adjust</mi><mo>[</mo><mi>y</mi><mo>]</mo>
 			</mrow>
-		<mo>+</mo>
-		<mrow>
-			<munderover>
-				<mo>&sum;</mo>
-				<mrow><mi>k</mi><mo>=</mo><msub><mi>y</mi><mi>s</mi></msub></mrow>
-				<mrow><mi>y</mi><mo>-</mo><mn>1</mn></mrow>
-			</munderover>
-			<mfrac><mrow><mi>z</mi><mo>[</mo><mi>k</mi><mo>]</mo></mrow><mn>128</mn></mfrac>			
-		</mrow>
-		<mo>&RightFloor;</mo>
+			<mo>+</mo>
+			<mrow>
+				<msubsup>
+					<mo>&int;</mo>
+					<mrow><msub><mi>y</mi><mi>sync</mi></msub></mrow>
+					<mrow><mi>y</mi></mrow>
+				</msubsup>
+				<mrow><mi>zoom</mi><mo>[</mo><mi>n</mi><mo>]</mo></mrow>
+				<mspace width=thickmathspace></mspace>
+				<mrow><mi>d</mi><mi>n</mi></mrow>
+			</mrow>
 		</mrow>
 	</math>
+	<details><summary>[Show] why is this an integral instead of a summation?</summary>
+		Yes, it could be a Riemann sum with Δn = 1 screen pixel:
+		<math display=block>
+			<mrow>
+				<munderover>
+					<mo>&sum;</mo>
+					<mrow><mi>n</mi><mo>=</mo><msub><mi>y</mi><mi>sync</mi></msub></mrow>
+					<mrow><mi>y</mi></mrow>
+				</munderover>
+				<mrow><mi>zoom</mi><mo>[</mo><mi>n</mi><mo>]</mo></mrow>
+				<mo>&times;</mo>
+				<mi>1</mi><mtext>&nbsp;screen pixel</mtext>
+			</mrow>
+		</math>
+		
+	</details>
 	
-	Where <var>g</var> is Global Scroll Y, <var>a</var> is Scroll Adjust Y, <var>z</var> is Zoom Y, and <var>y<sub>s</sub></var> is the most recent scanline on which Scroll Sync was set (usually scanline 0).<br>
+	Where <var>global</var> is the playfield's Global Scroll Y, <var>adjust</var> is its Scroll Adjust Y values, <var>zoom</var> is its Zoom Y values, and <var>y<sub>sync</sub></var> is the most recent scanline on which Scroll Sync was set (usually scanline 0).<br>
 	Note that this assumes <var>y</var> ≥ <var>y<sub>sync</sub></var>.
+	<br><todo>find a way to notate in the zoom field description that this has a scale factor of 128, as with global scroll</todo>
