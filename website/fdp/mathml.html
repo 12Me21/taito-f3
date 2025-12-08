@@ -36,8 +36,7 @@ where
 	</mrow>
 </math>
 
-<p>The source row within the tilemap, for a given scanline <var>y</var>, can thus be calculated using:
-
+<p>The source position within the tilemap, for a given screen position <var>y</var>, can thus be calculated using:
 	<math display=block>
 		<mrow>
 			<mrow>
@@ -45,16 +44,16 @@ where
 			</mrow>
 			<mo>+</mo>
 			<mrow>
-				<mi>adjust</mi><mo>[</mo><mi>y</mi><mo>]</mo>
+				<mi>adjust</mi><mo stretchy=false>(</mo><mi>y</mi><mo stretchy=false>)</mo>
 			</mrow>
 			<mo>+</mo>
 			<mrow>
 				<msubsup>
 					<mo>&int;</mo>
-					<mrow><msub><mi>y</mi><mi>sync</mi></msub></mrow>
+					<mrow style=width:1em;><msub><mi>y</mi><mi>sync</mi></msub></mrow>
 					<mrow><mi>y</mi></mrow>
 				</msubsup>
-				<mrow><mi>zoom</mi><mo>[</mo><mi>n</mi><mo>]</mo></mrow>
+				<mrow><mi>zoom</mi><mo stretchy=false>(</mo><mi>n</mi><mo stretchy=false>)</mo></mrow>
 				<mspace width=thickmathspace></mspace>
 				<mrow><mi>d</mi><mi>n</mi></mrow>
 			</mrow>
@@ -67,16 +66,16 @@ where
 				<munderover>
 					<mo>&sum;</mo>
 					<mrow><mi>n</mi><mo>=</mo><msub><mi>y</mi><mi>sync</mi></msub></mrow>
-					<mrow><mi>y</mi></mrow>
+					<mrow><mi>y</mi><mo>&minus;</mo><mn>1</mn></mrow>
 				</munderover>
 				<mrow><mi>zoom</mi><mo>[</mo><mi>n</mi><mo>]</mo></mrow>
-				<mo>&times;</mo>
-				<mi>1</mi><mtext>&nbsp;screen pixel</mtext>
+				<mo>&sdot;</mo>
+				<mi>1</mi><mspace width=thinmathspace /><mi mathvariant=normal>screen pixel</mi>
 			</mrow>
 		</math>
 		
 	</details>
 	
-	Where <var>global</var> is the playfield's Global Scroll Y, <var>adjust</var> is its Scroll Adjust Y values, <var>zoom</var> is its Zoom Y values, and <var>y<sub>sync</sub></var> is the most recent scanline on which Scroll Sync was set (usually scanline 0).<br>
+	Where <var>global</var> is the playfield's Global Scroll Y, <var>adjust</var>(n) is its Scroll Adjust Y on scanline y, <var>zoom</var>(y) is its Zoom Y on scanline y, and <var>y<sub>sync</sub></var> is the most recent scanline on which Scroll Sync was set (usually scanline 0).<br>
 	Note that this assumes <var>y</var> ≥ <var>y<sub>sync</sub></var>.
 	<br><todo>find a way to notate in the zoom field description that this has a scale factor of 128, as with global scroll</todo>
