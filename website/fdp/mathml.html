@@ -39,13 +39,13 @@ where
 <p>The source position within the tilemap, for a given screen position <var>y</var>, can thus be calculated using:
 	<math display=block>
 		<mrow>
-			<msub>
-				<mi>scroll</mi>
+			<mrow>
 				<mi>Global Scroll Y</mi>
-			</msub>
+			</mrow>
 			<mo>+</mo>
 			<mrow>
-				<msub><mrow><mi>line</mi><mo stretchy=false>[</mo><mi>y</mi><mo stretchy=false>]</mo></mrow><mi>Scroll Adjust Y</mi></msub>
+				<mi>Scroll Adjust Y</mi>
+				<mo>(</mo><mi>y</mi><mo>)</mo>
 			</mrow>
 			<mo>+</mo>
 			<mrow>
@@ -54,7 +54,10 @@ where
 					<mrow style=width:1em;><msub><mi>y</mi><mi>sync</mi></msub></mrow>
 					<mrow><mi>y</mi></mrow>
 				</msubsup>
-				<msub><mrow><mi>line</mi><mo stretchy=false>[</mo><mo>&lfloor;</mo><mi>n</mi><mo>&rfloor;</mo><mo stretchy=false>]</mo></mrow><mi>Zoom Y</mi></msub>
+				<mrow>
+					<mi>Zoom Y</mi>
+					<mo>(</mo><mi>n</mi><mo>)</mo>
+				</mrow>
 				<mspace width=thickmathspace></mspace>
 				<mrow><mi>d</mi><mi>n</mi></mrow>
 			</mrow>
@@ -77,6 +80,6 @@ where
 		
 	</details>
 	
-	Where <var>global</var> is the playfield's Global Scroll Y, <var>adjust</var>(n) is its Scroll Adjust Y on scanline y, <var>zoom</var>(y) is its Zoom Y on scanline y, and <var>y<sub>sync</sub></var> is the most recent scanline on which Scroll Sync was set (usually scanline 0).<br>
+	Where <var>global</var> is the tilemap's Global Scroll Y, <var>adjust</var>(n) is its Scroll Adjust Y on scanline n, <var>zoom</var>(n) is its Zoom Y on scanline n, and <var>y<sub>sync</sub></var> is the most recent scanline on which Scroll Sync was set (usually scanline 0).<br>
 	Note that this assumes <var>y</var> ≥ <var>y<sub>sync</sub></var>.
 	<br><todo>find a way to notate in the zoom field description that this has a scale factor of 128, as with global scroll</todo>

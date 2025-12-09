@@ -90,3 +90,9 @@ ugh whatever
 
 "scroll values" - for sprites, the 2 scroll offsets. called "global" and "subglobal". (there IS a hierarchy to them, so these names are maybe ok)
 todo: we need a better way to say like  "position" when discussing sprite rendering. there are many "positions" (e.g.  the raw 12-bit values read from sprite ram, vs after having scroll applied, v.s. the final rendered position.) which we have to distinguish between. maybe use my description with pos0-pos2  idk.  or maybe some concept of a "cursor" which is where the sprite ends up rendered. different tesselation controls will reposition the cursor differently (possibly setting one of its components depending on whatever)
+
+
+dimensions:
+"screen x position" (units: "screen x pixels")
+"screen y position" (units: "screen y pixels" = "scanlines")
+note that x and y screen position are not commensurable (and x and y screen pixels do not have a consistent conversion factor), but we commonly say "screen position" or "screen pixels" when it's unnecessary to disambiguate.
