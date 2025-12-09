@@ -93,6 +93,14 @@ todo: we need a better way to say like  "position" when discussing sprite render
 
 
 dimensions:
-"screen x position" (units: "screen x pixels")
-"screen y position" (units: "screen y pixels" = "scanlines")
-note that x and y screen position are not commensurable (and x and y screen pixels do not have a consistent conversion factor), but we commonly say "screen position" or "screen pixels" when it's unnecessary to disambiguate.
+"screen position"
+ comprised of:
+  "screen x position" (units: "screen x pixels")
+  "screen y position" (units: "screen y pixels" = "scanlines")
+ note that for convenience we often omit the "x" or "y" when it can be inferred from context. e.g. "the screen is 432 screen pixels wide"
+ screen x/y position are technically incommensurable
+
+"texture position"
+ comprised of
+  "texture x position" (units: "texture x pixels")
+  "texture y position" (units: "texture x pixels")
