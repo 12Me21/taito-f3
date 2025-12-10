@@ -91,16 +91,15 @@ ugh whatever
 "scroll values" - for sprites, the 2 scroll offsets. called "global" and "subglobal". (there IS a hierarchy to them, so these names are maybe ok)
 todo: we need a better way to say like  "position" when discussing sprite rendering. there are many "positions" (e.g.  the raw 12-bit values read from sprite ram, vs after having scroll applied, v.s. the final rendered position.) which we have to distinguish between. maybe use my description with pos0-pos2  idk.  or maybe some concept of a "cursor" which is where the sprite ends up rendered. different tesselation controls will reposition the cursor differently (possibly setting one of its components depending on whatever)
 
+units: 
+"screen x pixels"
+"screen y pixels" = "scanlines"
+when it is not necessary to distinguish these, we may write "screen pixels"
 
-dimensions:
-"screen position"
- comprised of:
-  "screen x position" (units: "screen x pixels")
-  "screen y position" (units: "screen y pixels" = "scanlines")
- note that for convenience we often omit the "x" or "y" when it can be inferred from context. e.g. "the screen is 432 screen pixels wide"
- screen x/y position are technically incommensurable
+"texture x pixels"
+"texture y pixels"
+same as above, for "texture pixels"
 
-"texture position"
- comprised of
-  "texture x position" (units: "texture x pixels")
-  "texture y position" (units: "texture x pixels")
+when we say "texture position" or "screen position", this is an affine quantity, assumed to be in texture pixels or screen pixels relative to the origin (TODO: what is the origin of the screen?)
+
+"scanline" as an affine quantity is the scanline (in screen y pixels, technically) relative to scanline 0

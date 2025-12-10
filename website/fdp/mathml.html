@@ -36,7 +36,7 @@ where
 	</mrow>
 </math>
 
-<p>The source position within the tilemap, for a given screen position <var>y</var>, can thus be calculated using:
+<p>Thus, to convert a screen y position (in screen pixels) <var>y</var> to a source y position within a tilemap (in texture pixels), we can use:
 	<math display=block>
 		<mrow>
 			<mrow>
@@ -80,6 +80,6 @@ where
 		
 	</details>
 	
-	Where <var>global</var> is the tilemap's Global Scroll Y, <var>adjust</var>(n) is its Scroll Adjust Y on scanline n, <var>zoom</var>(n) is its Zoom Y on scanline n, and <var>y<sub>sync</sub></var> is the most recent scanline on which Scroll Sync was set (usually scanline 0).<br>
+	Where:<br><var>global</var> is the tilemap's Global Scroll Y<br><var>adjust</var>(n) is its Scroll Adjust Y at a given screen y position<br><var>zoom</var>(n) is its Zoom Y at a given screen y position<br><var>y<sub>sync</sub></var> is the most recent scanline on which Scroll Sync was set (usually scanline 0).<br>
 	Note that this assumes <var>y</var> ≥ <var>y<sub>sync</sub></var>.
 	<br><todo>find a way to notate in the zoom field description that this has a scale factor of 128, as with global scroll</todo>
