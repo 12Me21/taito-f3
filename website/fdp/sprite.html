@@ -83,20 +83,22 @@
 	<h2>Field 0</h2>
 	<f3-bits>texture:16</f3-bits>
 	<dl class=bits>
-		<dt>texture<dd>texture id (lower bits)
+		<dt>texture<dd>Texture Id (lower bits)
 	</dl>
 	<h2>Field 1</h2>
 	<f3-bits>yzoom:8,xzoom:8</f3-bits>
 	<dl class=bits>
 		<dt>xzoom<dd>horizontal zoom<br>
-			scale factor = 1 - zoom/256
+			in units of: <div class=mathbox><math><mrow><mn>256</mn><mo>&InvisibleTimes;</mo><mo>(</mo><mn>1</mn><mo>&minus;</mo><mfrac><mi>screen pixels</mi><mi>texture pixels</mi></mfrac><mo>)</mo></mrow></math></div>range: 0.004 - 1&thinsp;spx/tpx<br>
+			i.e. scale factor = 1 - zoom/256
 			<dl><dt>$00<dd>1×<dt>$40<dd>0.75×<dt>$80<dd>0.5×<dt>$C0<dd>0.25×<dt>$FF<dd>0.004×</dl>
 			<dt>yzoom<dd>vertical zoom (same format)
 	</dl>
 	<h2>Field 2</h2>
 	<f3-bits>i:2,s:2,x:12</f3-bits>
 	<dl class=bits>
-		<dt>x<dd>x position (signed int, pixels)
+		<dt>x<dd>x position<br>
+			in units of:<div class=mathbox><math><mrow><mi>screen pixels</mi></mrow></math></div><br>
 		<dt>s<dd>set scroll values from given position (happens first)
 			<dl><dt>0<dd>neither<dt>1<dd>subglobal<dt>2<dd>global<dt>3<dd>both</dl>
 			<dt>i<dd>adjust position
@@ -105,13 +107,14 @@
 	<h2>Field 3</h2>
 	<f3-bits>c,.:3,y:12</f3-bits>
 	<dl class=bits>
-		<dt>y<dd>y position (signed int, pixels)
+		<dt>y<dd>y position<br>
+			in units of:<div class=mathbox><math><mrow><mi>screen pixels</mi></mrow></math></div><br>
 		<dt>c<dd><dl compact><dt>1<dd>command mode_(see field 5)</dl>
 	</dl>
 	<h2>Field 4</h2>
 	<f3-bits>x:2,?,y,M,p,v,h,pal:8</f3-bits>
 	<dl class=bits>
-		<dt>pal<dd>palette id (0-255)
+		<dt>pal<dd>Palette Id (0-255)<br>
 		<dt>h<dd>horizontal flip
 		<dt>v<dd>vertical flip
 		<dt>p<dd>palette lock<dl compact><dt>1<dd>reuse previous palette<dt>0<dd>use new palette</dl>

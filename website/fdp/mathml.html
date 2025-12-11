@@ -40,11 +40,11 @@ where
 	<math display=block>
 		<mrow>
 			<mrow>
-				<mi>Global Scroll Y</mi>
+				<mi>global</mi>
 			</mrow>
 			<mo>+</mo>
 			<mrow>
-				<mi>Scroll Adjust Y</mi>
+				<mi>adjust</mi>
 				<mo>(</mo><mi>y</mi><mo>)</mo>
 			</mrow>
 			<mo>+</mo>
@@ -55,7 +55,7 @@ where
 					<mrow><mi>y</mi></mrow>
 				</msubsup>
 				<mrow>
-					<mi>Zoom Y</mi>
+					<mi>zoom</mi>
 					<mo>(</mo><mi>n</mi><mo>)</mo>
 				</mrow>
 				<mspace width=thickmathspace></mspace>
@@ -83,3 +83,17 @@ where
 	Where:<br><var>global</var> is the tilemap's Global Scroll Y<br><var>adjust</var>(n) is its Scroll Adjust Y at a given screen y position<br><var>zoom</var>(n) is its Zoom Y at a given screen y position<br><var>y<sub>sync</sub></var> is the most recent scanline on which Scroll Sync was set (usually scanline 0).<br>
 	Note that this assumes <var>y</var> ≥ <var>y<sub>sync</sub></var>.
 	<br><todo>find a way to notate in the zoom field description that this has a scale factor of 128, as with global scroll</todo>
+
+	<math  display=block>
+		<mrow>
+				<munderover>
+					<mo movablelimits="false">&int;</mo>
+					<msub><mi>y</mi><mi>sync</mi></msub>
+					<mi>y</mi>
+				</munderover>
+			<mi>zoom</mi>
+			<mo form="prefix" stretchy="false">(</mo>
+			<mi>y</mi>
+			<mo form="postfix" stretchy="false">)</mo>
+		</mrow>
+	</math>

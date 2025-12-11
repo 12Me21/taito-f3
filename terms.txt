@@ -58,6 +58,7 @@ note: taito calls sprites "object"/"OBJ" and tilemaps "screen"/"SCR". i've elect
 
 "x"/"horizontal" - todo: decide when/if to use each of these
 "y"/"vertical" - same
+ALSO: how they behave grammatically; whether we write e.g. "x[-axis] zoom" (adjective) vs "zoom['s] x [component]" (component of)
 
 "data" - when we want to refer to e.g. "tilemap 0" vs "tilemap 0's data". or the location of the pivot layer's pixel data. 
 
