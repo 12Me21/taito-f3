@@ -14,7 +14,8 @@ terms:
 
 "color" - ambiguous
 "color id" ="color index" - a color in the FDP - that is, a 13-bit number, which is later used as an index into color RAM.
-"palette id" - the upper bits of a color index (while the lower bits are supplied by the texture). abstractly, an object's palette selects which set of 16 (or 32, or 64) colors is used for it.
+"palette id" - the upper bits of a color index (while the lower bits are supplied by the texture). abstractly, an object's palette selects which set of 16 (or 32, or 64) colors is used for it. note this is NOT the same as color id × 16, since palette and texture color overlap and are combined with OR, not +. (final color = texture color | palette id << 4, where texture color ranges from 0 to 63)
+"???" (texture color?") - the value of a pixel in a texture (4, 5, or 6 bits). abstractly, this is an index into the object's palette.
 "rgb color" - an actual color, seen and blended by the FDA and output to the screen.
 "color ram" / "palette ram" - the map of color numbers to rgb colors
 
