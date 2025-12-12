@@ -16,7 +16,7 @@ var {
 	margin-left: -0.0625em;
 	margin-right: 0.0625em;
 }
-h1::first-letter {
+h1::first-letter, h2::first-letter /*, p::first-letter*/ {
 	font-feature-settings: 'pwid';
 	/*text-transform: full-width;*/
 }

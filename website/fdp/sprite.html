@@ -74,12 +74,13 @@
 <figure class="f3-struct">
 	<h1>Sprite List Entry</h1>
 	<h2>Address</h2>
-	<f3-bits>&ctdot;,0,0,0,bank:2,index:10,f:3,-</f3-bits>
+	<f3-bits>&ctdot;,0,0,0,bank:2,index:10,w:3,-</f3-bits>
 	<dl class=bits>
 		<dt>bank<dd>bank (set by command)
 		<dt>index<dd>sprite id
-		<dt>field<dd>field number
+		<dt>w<dd>field number
 	</dl>
+	<h2>Data</h2>
 	<h2>Field 0</h2>
 	<f3-bits>texture:16</f3-bits>
 	<dl class=bits>
@@ -88,11 +89,11 @@
 	<h2>Field 1</h2>
 	<f3-bits>yzoom:8,xzoom:8</f3-bits>
 	<dl class=bits>
-		<dt>xzoom<dd>horizontal zoom<br>
+		<dt>xzoom<dd>x zoom<br>
 			in units of: <div class=mathbox><math><mrow><mn>256</mn><mo>&InvisibleTimes;</mo><mo>(</mo><mn>1</mn><mo>&minus;</mo><mfrac><mi>screen pixels</mi><mi>texture pixels</mi></mfrac><mo>)</mo></mrow></math></div>range: 0.004 - 1&thinsp;spx/tpx<br>
 			i.e. scale factor = 1 - zoom/256
 			<dl><dt>$00<dd>1×<dt>$40<dd>0.75×<dt>$80<dd>0.5×<dt>$C0<dd>0.25×<dt>$FF<dd>0.004×</dl>
-			<dt>yzoom<dd>vertical zoom (same format)
+			<dt>yzoom<dd>y zoom (same format)
 	</dl>
 	<h2>Field 2</h2>
 	<f3-bits>i:2,s:2,x:12</f3-bits>
@@ -146,4 +147,6 @@
 		<dt>dest<dd>jump destination (next sprite index to process)
 		<dt>j<dd><dl compact><dt>1<dd>jump<dt>0<dd>increment index normally</dl>
 	</dl>
+	<h2>Field 7</h2>
+	(unused)
 </figure>
