@@ -45,7 +45,7 @@ where
 			<mo>+</mo>
 			<mrow>
 				<mi>adjust</mi>
-				<mo>(</mo><mi>y</mi><mo>)</mo>
+				<mo stretchy=false>(</mo><mo stretchy=false>&lfloor;</mo><mi>y</mi><mo stretchy=false>&rfloor;</mo><mo stretchy=false>)</mo>
 			</mrow>
 			<mo>+</mo>
 			<mrow>
@@ -56,7 +56,7 @@ where
 				</msubsup>
 				<mrow>
 					<mi>zoom</mi>
-					<mo>(</mo><mi>n</mi><mo>)</mo>
+					<mo stretchy=false>(</mo><mo stretchy=false>&lfloor;</mo><mi>n</mi><mo stretchy=false>&rfloor;</mo><mo stretchy=false>)</mo>
 				</mrow>
 				<mspace width=thickmathspace></mspace>
 				<mrow><mi>d</mi><mi>n</mi></mrow>
@@ -98,6 +98,28 @@ where
 		</mrow>
 	</math>
 	
+	<style>
+		sub-sup {
+			display: inline-grid;
+			grid-template: 
+				". sign top" 1em
+				"before sign mid" 1em
+				". sign bot" 1em
+			/ 0px max-content max-content;
+		}
+		sub-sup::before {
+			grid-area: before;
+			content: "";
+		}
+		sub-sup > :nth-child(1) { grid-area: sign; align-self: center; font-size: 3em; }
+		sub-sup > :nth-child(2) { grid-area: bot; font-size: 0.75em; align-self: flex-end;}
+		sub-sup > :nth-child(3) { grid-area: top; font-size: 0.75em; align-self: flex-start; }
+		sub-sup > :nth-child(4) { grid-area: mid; align-self: baseline; }
+	</style>
+<div>
+	 global + adjust(⌊y⌋) + <sub-sup><span>∫</span><span>y<sub>sync</sub></span><span>y</span><span>zoom(⌊n⌋) dn</span></sub-sup>
+</div>
+	
 <p>test
 	<math display=block><mrow>
 		<mrow>
@@ -109,10 +131,19 @@ where
 		</mrow>
 		<mo>(</mo>
 		<mrow>
-			<msub><mi>window</mi><mi>i</mi></msub><mo>⊕</mo>
+			<mrow>
+				<mo>[</mo>
+				<msub><mi>left</mi><mi>i</mi></msub>
+				<mo>,</mo>
+				<msub><mi>right</mi><mi>i</mi></msub>
+				<mo>)</mo>
+			</mrow>
+			<mo>⊕</mo>
 			<mrow>
 				<mo>(</mo><mi>U</mi><mo>·</mo><msub><mrow><mo>&not;</mo><mi>mode</mi></mrow><mi>i</mi></msub><mo>)</mo>
 			</mrow>
+			<mo>·</mo>
+			<msub><mrow><mi>enable</mi></mrow><mi>i</mi></msub>
 		</mrow>
 		<mo>)</mo>
 	</mrow></math>
