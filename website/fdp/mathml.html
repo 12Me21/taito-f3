@@ -3,6 +3,11 @@
 <link rel=stylesheet href=../style.css>
 <link rel=stylesheet href=./style2.css>
 
+ok so the overall flow of this should be
+1: here is some pseudo code for how the y accumulator is updated
+2: from this we can derive a high-level forumla (the integral one)
+
+
 the source of a scanline, in texture pixels is given by:
 
 ytpx(scanline) + y_scroll_adjust[scanline]
@@ -12,25 +17,25 @@ y_global_scroll / 128, if scroll_sync[scanline] is set
 ytpx(scanline-1) + y_zoom[scanline] / 128, otherwise 
 
 
-the source of a scanline, in texture pixels is given by:
+the source of a scanline <var>y</var>, in texture pixels, is given by:
 
 <math>
-	<mrow><mi>ytpx</mi><mo>(</mo>scanline</mi><mo>)</mo><mo>+</mo><mi>y_scroll_adjust</mi><mo>[</mo><mi>scanline</mi><mo>]</mo></mrow>
+	<mrow><mi>acc</mi><mo>(</mo>y</mi><mo>)</mo><mo>+</mo><mi>y_scroll_adjust</mi><mo>[</mo><mi>scanline</mi><mo>]</mo></mrow>
 </math>
 
 where
-<math>
-	<mrow><mi>ytpx</mi><mo>(</mo><mi>scanline</mi><mo>)</mo><mo>=</mo></mrow>
+<math display=block>
+	<mrow><mi>acc</mi><mo>(</mo><mi>y</mi><mo>)</mo><mo>=</mo></mrow>
 	<mrow>
 		<mo>{</mo>
 		<mtable columnalign="left left" rowspacing=".2em" columnspacing="1em" displaystyle="false">
 			<mtr>
-				<mtd><mi>y_global_scroll</mi><mo>/</mo><mn>128</mn><mtext>,</mtext></mtd>
-				<mtd><mtext>if </mtext><mi>scroll_sync</mi><mo>[</mo><mi>scanline</mi><mo>]</mo><mtext> is set</mtext></mtd>
+				<mtd><mi>global</mi><mtext>,</mtext></mtd>
+				<mtd><mtext>&nbsp;if&nbsp;</mtext><mi>sync</mi><mo>[</mo><mi>y</mi><mo>]</mo><mtext>&nbsp;is set</mtext></mtd>
 			</mtr>
 			<mtr>
-				<mtd>ytpx(scanline-1) + y_zoom[scanline] / 128,</mtd>
-				<mtd>otherwise</mtd>
+				<mtd><mi>acc</mi><mo>(</mo><mi>y</mi><mo>-</mo><mn>1</mn><mo>)</mo> + zoom<mo>[</mo><mi>y</mi><mo>-</mo><mn>1</mn><mo>]</mo><mtext>,</mtext></mtd>
+				<mtd>&nbsp;otherwise</mtd>
 			</mtr>
 		</mtable>
 	</mrow>
@@ -83,7 +88,8 @@ where
 	Where:<br><var>global</var> is the tilemap's Global Scroll Y<br><var>adjust</var>(n) is its Scroll Adjust Y at a given screen y position<br><var>zoom</var>(n) is its Zoom Y at a given screen y position<br><var>y<sub>sync</sub></var> is the most recent scanline on which Scroll Sync was set (usually scanline 0).<br>
 	Note that this assumes <var>y</var> ≥ <var>y<sub>sync</sub></var>.
 	<br><todo>find a way to notate in the zoom field description that this has a scale factor of 128, as with global scroll</todo>
-
+	
+<p>
 	<math  display=block>
 		<mrow>
 				<munderover>
