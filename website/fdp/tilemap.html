@@ -17,11 +17,11 @@
 <h2>Y Position</h2>
 	
 <p>
-	Each tilemap has a "Y Source" accumulator, which is in units of texture pixels (with a precision of 1/128).<br>
-	At the beginning of each scanline, if Y Scroll Sync is set (usually on scanline 0), each tilemap's Y Source is set from its Y Global Scroll register.<br>
-	Then, the scanline is rendered.&nbsp; The source row for each tilemap is determined by its Y Source + Y Scroll Adjust.<br>
-	At the end of the scanline, each tilemap's Y Source is incremented by its Y Zoom register.<br>
-	(note that Y Source is not reset automatically, and carries over from the previous frame until Scroll Sync is set)
+	Each tilemap has a "Y Scroll Accumulator", which is in units of texture pixels (with a precision of 1/128).<br>
+	At the beginning of each scanline, if Y Scroll Sync is set (usually on scanline 0), each tilemap's Y Scroll Accumulator is set from its Y Global Scroll register.<br>
+	Then, the scanline is rendered.&nbsp; The source row for each tilemap is determined by its Y Scroll Accumulator + Y Scroll Adjust.<br>
+	At the end of the scanline, each tilemap's Y Scroll Accumulator is incremented by its Y Zoom register.<br>
+	(note that Y Scroll Accumulator is not reset automatically, and carries over from the previous frame until Scroll Sync is set)
 	
 <p>Thus, to calculate the y source position within the tilemap (in texture pixels) for given a scanline <var>y</var>, we can use:
 	<math display=block>
