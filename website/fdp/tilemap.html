@@ -60,8 +60,8 @@
 	<f3-bits>ipart:10,fpart:6</f3-bits>
 	<dl class=bits>
 		<dt>ipart<dd>Tilemap <var>N</var>: X Global Scroll (integer part; 0-1024)<br>
-		<dt>fpart<dd>Tilemap <var>N</var>: X Global Scroll (negative fractional part)<br>
-			<div class=mathbox>X Global Scroll (in texture pixels) = ipart &minus;-2> fpart/64</div>
+		<dt>fpart<dd>Tilemap <var>N</var>: X Global Scroll (negative fractional part; in steps of 1/64)<br>
+			<div class=mathbox>X Global Scroll (in texture pixels) = ipart &minus; fpart/64</div>
 	</dl>
 </figure>
 
@@ -75,10 +75,9 @@
 	<h2>Data</h2>
 	<f3-bits>ipart:9,fpart:7</f3-bits>
 	<dl class=bits>
-		<dt>ipart<dd>Tilemap <var>N</var>: Global Scroll Y (integer part; 0-511)<br>
-			in units of: <div class=mathbox><math><mrow><mi>texture pixels</mi></mrow></math></div>
-		<dt>fpart<dd>Tilemap <var>N</var>: Global Scroll Y (fractional part)<br>
-			in units of: <div class=mathbox><math><mrow><mfrac><mi>texture pixels</mi><mn>128</mn></mfrac></div>
+		<dt>ipart<dd>Tilemap <var>N</var>: Y Global Scroll (integer part; 0-511)<br>
+		<dt>fpart<dd>Tilemap <var>N</var>: Y Global Scroll (fractional part; in steps of 1/128)<br>
+			<div class=mathbox>Y Global Scroll (in texture pixels) = ipart + fpart/128</div>
 			<br><todo>is this negative like x scroll?</todo>
 	</dl>
 </figure>
@@ -101,8 +100,8 @@
 	<h2>Data</h2>
 	<f3-bits>#:6,alt,yscroll:9</f3-bits>
 	<dl class=bits>
-		<dt>yscroll<dd>Tilemap <var>N</var>: Scroll Adjust Y (integer)<br>
-			in units of: <div class=mathbox><math><mrow><mi>texture pixels</mi></mrow></math></div><br>
+		<dt>yscroll<dd>Tilemap <var>N</var>: Y Scroll Adjust (integer; 0-511)<br>
+			<div class=mathbox>Y Scroll Adjust (in texture pixels) = yscroll</div>
 		<dt>alt<dd>Tilemap <var>N</var>: Alternate Tile Data<dl><dt>0<dd>normal<dt>1<dd>use alternate tile data</dl>
 	</dl>
 </figure>

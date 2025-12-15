@@ -52,7 +52,12 @@ note: taito calls sprites "object"/"OBJ" and tilemaps "screen"/"SCR". i've elect
 
 "highcolor layer" ="mystery layer" - (todo: copy my definition i already wrote)
 
-"scroll" - the position of a tilemap. this is controlled by 2 components: the "global scroll" (set by the scroll registers) and a "local scroll" offset per-scanline (we have called the x component "rowscroll" and the y "colscroll", but i think these are misnomers). (also do you ever think about how we only use "scroll" to describe the position of tilemap, not sprites? welll  i guess how i would think of it is, scroll controls the position of an entire group of things, as it does with sprites. while position means the position of the things within that group (so, the coordinates of a tile, or the position of an individual sprite))
+"scroll" - the position of a tilemap. this is controlled by 2 components: the "global scroll" (set by the scroll registers) and a "local scroll" offset per-scanline (we have called the x component "rowscroll" and the y "colscroll", but i think these are misnomers).
+(also do you ever think about how we only use "scroll" to describe the position of tilemap, not sprites? welll  i guess how i would think of it is, scroll controls the position of an entire group of things, as it does with sprites. while position means the position of the things within that group (so, the coordinates of a tile, or the position of an individual sprite))
+"global scroll"
+"local scroll" ="scroll adjust" ="rowscroll"/"colscroll" (todo: which of these is better? i like scroll adjust because local sounds like it overrides global rather than adding to it. like with palette adjust / palette add. what if we call this "scroll add?" no because that sounds like what zoom is. zoom controls how much is added to the y scroll accumulator, and Adjust adjusts its position locally. hmm.. adjust also sounds like it has a persistent effect. hmm..)
+
+"palette adjust" ="palette add" - lineram feature where a value is added to the palette id
 
 "zoom" ="scale" - stretching applied to a tilemap or sprite. for some reason we use "scale" for tilemap and "zoom" for sprites.
 
