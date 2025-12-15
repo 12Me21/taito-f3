@@ -121,6 +121,7 @@ todo {
 	border: 1px solid black;
 	border-radius: 4px;
 	padding: 0 2px;
+	white-space: pre-wrap;
 }
 todo::before {
 	content: "TODO: ";

@@ -57,7 +57,7 @@
 
 	
 <figure class=f3-struct>
-	<h1>Tilemap Tiles</h1> <!-- note this is plural since we are describing multiple tiles -->
+	<h1>Tile Data</h1>
 	<h2>Address (normal)</h2>
 	<f3-bits>&ctdot;,0,0,1,0,num:3,y:5,x:5,-:2</f3-bits>
 	<h2>Address (extend mode)</h2>
@@ -65,7 +65,7 @@
 	<dl class=bits>
 		<dt>num<dd>tile data number (0-5)
 			<dl>
-				<dt>0-3<dd>Tilemap 0-3: normal data
+				<dt><var>N</var> (0-3)<dd>Tilemap <var>N</var>: normal data
 				<dt>4<dd>Tilemap 2: alternate data
 				<dt>5<dd>Tilemap 3: alternate data
 			</dl>
@@ -75,7 +75,8 @@
 	<h2>Data</h2>
 	<f3-bits>h,v,tex2:2,bpp:2,as,palette:9,texture:16</f3-bits>
 	<dl class=bits>
-		<dt>texture<dd>texture id (lower bits)
+		<dt>texture<dd>Texture Id (lower 16 bits)<br>
+			<div class=mathbox>Texture Id = texture | tex2<<16</div><br>
 		<dt>palette<dd>palette id (0-511)
 		<dt>as<dd>Alpha Select<br>(note how this is stored per-tile rather than per-scanline)
 		<dt>bpp<dd>texture bit planes (bits per pixel select)<todo>better wording for bpp</todo>
@@ -85,7 +86,7 @@
 				<dt>2<dd>?
   				<dt>3<dd>6bpp (64-color)
 			</dl>
-		<dt>tex2<dd>texture id (upper bits)
+		<dt>tex2<dd>Texture Id (upper 2 bits)
 		<dt>v<dd><dl compact><dt>1<dd>vertical flip</dl>
 		<dt>h<dd><dl compact><dt>1<dd>horizontal flip</dl>
 	</dl>
@@ -232,3 +233,8 @@
 <h3>Zoom Y</h3>
 <h3>Palette Adjust</h3>
 
+<todo>the mathbox styling is nice but i think we should have like,  consistent styling for:
+	- the formula for the value of an abstract field
+   - other definitions of abstract fields 
+	or i mean like, i want a consistent  "look over here, here is where an abstract field is being defined" box styling. whether it has a math equation or something else.
+</todo>
