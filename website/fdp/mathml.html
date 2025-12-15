@@ -45,7 +45,7 @@ where
 			<mo>+</mo>
 			<mrow>
 				<mi>adjust</mi>
-				<mo stretchy=false>(</mo><mo stretchy=false>&lfloor;</mo><mi>y</mi><mo stretchy=false>&rfloor;</mo><mo stretchy=false>)</mo>
+				<mo stretchy=false>(</mo><mi>y</mi><mo stretchy=false>)</mo>
 			</mrow>
 			<mo>+</mo>
 			<mrow>
@@ -56,7 +56,7 @@ where
 				</msubsup>
 				<mrow>
 					<mi>zoom</mi>
-					<mo stretchy=false>(</mo><mo stretchy=false>&lfloor;</mo><mi>n</mi><mo stretchy=false>&rfloor;</mo><mo stretchy=false>)</mo>
+					<mo stretchy=false>(</mo><mi>n</mi><mo stretchy=false>)</mo>
 				</mrow>
 				<mspace width=thickmathspace></mspace>
 				<mrow><mi>d</mi><mi>n</mi></mrow>
@@ -147,3 +147,14 @@ where
 		</mrow>
 		<mo>)</mo>
 	</mrow></math>
+	ok just make a "complement if [condition]" syntax
+	
+	
+	tilemap texture origin onscreen (spx relative to origin) = ((ipart - fpart/64) tpx + 18 tpx ) * scale (spx/tpx) + 22 spx
+	
+	input: spx offset
+	output: tpx offset
+	
+	(x index - 22 spx) / scale (spx/tpx) - 18 tpx = (ipart - fpart/64) tpx
+	ugh what does that even mean
+	
