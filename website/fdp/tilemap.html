@@ -14,6 +14,48 @@
 	
 	<todo>describe how scrolling works (e.g. units and such) and how it is affected by scaling. give formulas for positions etc.</todo>
 	
+<h2>Y Position</h2>
+	
+<p>
+	Each tilemap has a "Y Source" accumulator, which is in units of texture pixels (with a precision of 1/128).<br>
+	At the beginning of each scanline, if Scroll Sync is set (usually on scanline 0), each tilemap's Y Source is set from its Y Global Scroll register.<br>
+	Then, the scanline is rendered.&nbsp; The source row for each tilemap is determined by its Y Source + Y Scroll Adjust.<br>
+	At the end of the scanline, each tilemap's Y Source is incremented by its Y Zoom register.<br>
+	(note that Y Source is not reset automatically, and carries over from the previous frame until Scroll Sync is set)
+	
+<p>Thus, to calculate the y source position within the tilemap (in texture pixels) for given a scanline <var>y</var>, we can use:
+	<math display=block>
+		<mrow>
+			<mrow>
+				<mi>global</mi>
+			</mrow>
+			<mo>+</mo>
+			<mrow>
+				<mi>adjust</mi>
+				<mo stretchy=false>(</mo><mi>y</mi><mo stretchy=false>)</mo>
+			</mrow>
+			<mo>+</mo>
+			<mrow>
+				<msubsup>
+					<mo>&int;</mo>
+					<mrow style=width:1em;><msub><mi>y</mi><mi>sync</mi></msub></mrow>
+					<mrow><mi>y</mi></mrow>
+				</msubsup>
+				<mrow>
+					<mi>zoom</mi>
+					<mo stretchy=false>(</mo><mi>n</mi><mo stretchy=false>)</mo>
+				</mrow>
+				<mspace width=thickmathspace></mspace>
+				<mrow><mi>d</mi><mi>n</mi></mrow>
+			</mrow>
+		</mrow>
+	</math>
+	
+	Where:<br><var>global</var> is the tilemap's Y Global Scroll<br><var>adjust</var>(n) is its Y Scroll Adjust on a given scanline<br><var>zoom</var>(n) is its Y Zoom on a given scanline<br><var>y<sub>sync</sub></var> is the most recent scanline on which Scroll Sync was set (usually scanline 0).<br>
+	Note that this assumes <var>y</var> ≥ <var>y<sub>sync</sub></var>.
+
+
+	
 <figure class=f3-struct>
 	<h1>Tilemap Tiles</h1> <!-- note this is plural since we are describing multiple tiles -->
 	<h2>Address (normal)</h2>
@@ -130,19 +172,16 @@
 	<h2>Data</h2>
 	<f3-bits>xzoom:8,yzoom:8</f3-bits>
 	<dl class=bits>
-		<dt>yzoom<dd>Tilemap <var>N</var>*: Vertical Zoom<br>
+		<dt>yzoom<dd>Tilemap <var>N</var>*: Y Zoom<br>
 			*bug: tilemaps 1 and 3 have their vertical zooms swapped<br>
-			in units of: <div class=mathbox><math><mrow><mn>128</mn><mo>&InvisibleTimes;</mo><mo>(</mo><mfrac><mi>texture pixels</mi><mi>screen pixels</mi></mfrac><mo>)</mo></mrow></math></div><br>
-			<div class=mathbox><math><mrow><mi>Y Zoom</mi><mtext>&nbsp;in&nbsp;</mtext><mfrac><mi>texture pixels</mi><mi>screen pixels</mi></mfrac><mo>=</mo><mfrac><mn>1</mn><mn>128</mn></mfrac><mo>&InvisibleTimes;</mo><mi>vzoom</mi></mrow></math></div><br>
-
-			scale factor = 1 / (vzoom/128)<br>
+			<div class=mathbox>Y Zoom (in texture pixels per screen pixel) = yzoom / 128</div><br>
+<!--			in units of: <div class=mathbox><math><mrow><mn>128</mn><mo>&InvisibleTimes;</mo><mo>(</mo><mfrac><mi>texture pixels</mi><mi>screen pixels</mi></mfrac><mo>)</mo></mrow></math></div><br>
+			<div class=mathbox><math><mrow><mi>Y Zoom</mi><mtext>&nbsp;in&nbsp;</mtext><mfrac><mi>texture pixels</mi><mi>screen pixels</mi></mfrac><mo>=</mo><mfrac><mn>1</mn><mn>128</mn></mfrac><mo>&InvisibleTimes;</mo><mi>vzoom</mi></mrow></math></div><br>-->
+			Example scale factors: (in screen pixels per texture pixel)
 			<dl><dt>$00<dd>∞×<dt>$40<dd>2.0×<dt>$80<dd>1.0×<dt>$C0<dd>0.667×<dt>$FF<dd>0.502×</dl>
 		<dt>xzoom<dd>Tilemap <var>N</var>: X Zoom<br>
-			<div class=mathbox>X Zoom (in texture pixels per screen pixel) = 1 &minus; raw xzoom / 256</div>
-			<table>
-				<tr><th>raw xzoom<th>X Zoom<th>scale factor
-				<tr><td>$00<
-			</table>
+			<div class=mathbox>X Zoom (in texture pixels per screen pixel) = 1 &minus; xzoom / 256</div><br>
+			Example scale factors: (in screen pixels per texture pixel)
 			<dl><dt>$00<dd>1.0×<dt>$40<dd>1.333×<dt>$80<dd>2.0×<dt>$C0<dd>4.0×<dt>$FF<dd>256.0×</dl>
 	</dl>
 </figure>

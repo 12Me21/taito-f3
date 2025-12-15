@@ -80,7 +80,7 @@ dt {
 	justify-self: right;
 }
 dt::after {
-	content: " = ";
+	content: " → ";
 	white-space: pre;
 }
 dd {

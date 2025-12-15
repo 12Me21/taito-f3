@@ -8,9 +8,9 @@ ok so the overall flow of this should be
 2: from this we can derive a high-level forumla (the integral one)
 
 <p>
-	Each tilemap has a "Y Source" accumulator, which is in units of texture pixels (with a precision of 1/128).
-	at the beginning of each scanline, if Scroll Sync is set (usually on scanline 0), each tilemap's Y Scroll Accumulator is set from its Y Global Scroll register.
-	at the end of the scanline, each tilemap's Y Scroll Accumulator is incremented by its Y Zoom register.
+	Each tilemap has a "Y Source" accumulator, which is in units of texture pixels (with a precision of 1/128).<br>
+	At the beginning of each scanline, if Scroll Sync is set (usually on scanline 0), each tilemap's Y Source is set from its Y Global Scroll register.<br>
+	At the end of the scanline, each tilemap's Y Source is incremented by its Y Zoom register.
 
 the source of a scanline, in texture pixels is given by:
 
