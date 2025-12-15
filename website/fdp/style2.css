@@ -4,7 +4,7 @@
 
 @font-face {
 	font-family: 'mspm';
-	src: url("../short3.otf?h");
+	src: url("../short3.otf?i");
 }
 body {
 	font-family: mspm, georgia;
@@ -80,7 +80,7 @@ dt {
 	justify-self: right;
 }
 dt::after {
-	content: " → ";
+	content: " ↦ ";
 	white-space: pre;
 }
 dd {

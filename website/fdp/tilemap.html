@@ -9,7 +9,7 @@
 <p>There are four tilemap layers, numbered 0 to 3.&nbsp;
 	Each is a 32×32 (or 64×32 if Extend Mode is enabled) grid of tiles, represented by an array of 32-bit values.
 	
-<p>Each tile references a 16×16px texture, defined in <abbr>rom</abbr>, with up to 63 colors (plus transparent) per tile.&nbsp;
+<p>Each tile references a 16×16px texture, defined in <abbr>rom</abbr>, with up to 64 colors (including transparent) per tile.&nbsp;
 	Tilemaps can be scaled on both axes, with a range of 50.2% to infinity vertically, and 100% to 25600% horizontally.
 	
 	<todo>describe how scrolling works (e.g. units and such) and how it is affected by scaling. give formulas for positions etc.</todo>
@@ -18,7 +18,7 @@
 	
 <p>
 	Each tilemap has a "Y Source" accumulator, which is in units of texture pixels (with a precision of 1/128).<br>
-	At the beginning of each scanline, if Scroll Sync is set (usually on scanline 0), each tilemap's Y Source is set from its Y Global Scroll register.<br>
+	At the beginning of each scanline, if Y Scroll Sync is set (usually on scanline 0), each tilemap's Y Source is set from its Y Global Scroll register.<br>
 	Then, the scanline is rendered.&nbsp; The source row for each tilemap is determined by its Y Source + Y Scroll Adjust.<br>
 	At the end of the scanline, each tilemap's Y Source is incremented by its Y Zoom register.<br>
 	(note that Y Source is not reset automatically, and carries over from the previous frame until Scroll Sync is set)
@@ -43,7 +43,7 @@
 				</msubsup>
 				<mrow>
 					<mi>zoom</mi>
-					<mo stretchy=false>(</mo><mi>n</mi><mo stretchy=false>)</mo>
+					<mo stretchy=false>(</mo><mo>&lfloor;</mo><mi>n</mi><mo>&rfloor;</mo><mo stretchy=false>)</mo>
 				</mrow>
 				<mspace width=thickmathspace></mspace>
 				<mrow><mi>d</mi><mi>n</mi></mrow>
@@ -80,10 +80,10 @@
 		<dt>as<dd>Alpha Select<br>(note how this is stored per-tile rather than per-scanline)
 		<dt>bpp<dd>texture bit planes (bits per pixel select)<todo>better wording for bpp</todo>
 			<dl>
-				<dt>0<dd>16-color (4bpp)
-				<dt>1<dd>32-color (5bpp)
+				<dt>0<dd>4bpp (16-color)
+				<dt>1<dd>5bpp (32-color)
 				<dt>2<dd>?
-  				<dt>3<dd>64-color (6bpp)
+  				<dt>3<dd>6bpp (64-color)
 			</dl>
 		<dt>tex2<dd>texture id (upper bits)
 		<dt>v<dd><dl compact><dt>1<dd>vertical flip</dl>
@@ -153,8 +153,8 @@
 	<h2>Data</h2>
 	<f3-bits>#:4,y,#:11</f3-bits>
 	<dl class=bits>
-		<dt>y<dd>Tilemaps: Scroll Sync
-			<dl><dt>1<dd>initialize y scroll accumulators from the y scroll registers</dl>(basically: you should set this on the first scanline, or the playfields' y positions will be unstable)
+		<dt>y<dd>Tilemaps: Y Scroll Sync
+			<dl><dt>1<dd>initialize y scroll accumulators from the y global scroll registers</dl>(basically: you should set this on the first scanline, or the tilemaps' y positions will be unstable)
 	</dl>
 </figure>
 
@@ -200,7 +200,7 @@
 	<h2>Data</h2>
 	<f3-bits>xscroll:16</f3-bits>
 	<dl class=bits>
-		<dt>xscroll<dd>Tilemap <var>N</var>: Scroll Adjust X<br>(same format as global scroll X)
+		<dt>xscroll<dd>Tilemap <var>N</var>: X Scroll Adjust<br>(same format as X Global Scroll)
 	</dl>
 </figure>
 
@@ -221,13 +221,13 @@
 <h2>Scroll Register Settings</h2>
 <h3>Global Scroll X</h3>
 <h3>Global Scroll Y</h3>
-<h3>Playfield Extend Mode (shared)</h3>
+<h3>Tilemap Extend Mode (shared)</h3>
 
 <h2>Lineram Settings</h2>
-<h3>Scroll Adjust X</h3>
-<h3>Scroll Adjust Y (tilemaps 2 and 3 only)</h3>
+<h3>X Scroll Adjust</h3>
+<h3>Y Scroll Adjust (tilemaps 2 and 3 only)</h3>
 <h3>Alternate Tile Data (tilemaps 2 and 3 only)</h3>
-<h3>Playfield Y Scroll Sync (shared)</h3>
+<h3>Y Scroll Sync (shared)</h3>
 <h3>Zoom X</h3>
 <h3>Zoom Y</h3>
 <h3>Palette Adjust</h3>
