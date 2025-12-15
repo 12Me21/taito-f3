@@ -59,10 +59,9 @@
 	<h2>Data</h2>
 	<f3-bits>ipart:10,fpart:6</f3-bits>
 	<dl class=bits>
-		<dt>ipart<dd>Tilemap <var>N</var>: Global Scroll X (integer part; 0-1024)<br>
-			in units of: <div class=mathbox><math><mrow><mi>texture pixels</mi></mrow></math></div><br>
-		<dt>fpart<dd>Tilemap <var>N</var>: Global Scroll X (negative fractional part)<br>
-			in units of: <div class=mathbox><math><mrow><mo>&minus;</mo><mfrac><mrow><mi>texture pixels</mi></mrow><mn>64</mn></mfrac></mrow></math></div><br>
+		<dt>ipart<dd>Tilemap <var>N</var>: X Global Scroll (integer part; 0-1024)<br>
+		<dt>fpart<dd>Tilemap <var>N</var>: X Global Scroll (negative fractional part)<br>
+			<div class=mathbox>X Global Scroll (in texture pixels) = ipart &minus;-2> fpart/64</div>
 	</dl>
 </figure>
 
@@ -130,17 +129,21 @@
 <figure class=f3-struct>
 	<h1>Lineram Registers 4.<var>N</var> "8000" "8200" "8400" "8600"</h1>
 	<h2>Data</h2>
-	<f3-bits>hzoom:8,vzoom:8</f3-bits>
+	<f3-bits>xzoom:8,yzoom:8</f3-bits>
 	<dl class=bits>
-		<dt>vzoom<dd>Tilemap <var>N</var>*: Vertical Zoom<br>
+		<dt>yzoom<dd>Tilemap <var>N</var>*: Vertical Zoom<br>
 			*bug: tilemaps 1 and 3 have their vertical zooms swapped<br>
 			in units of: <div class=mathbox><math><mrow><mn>128</mn><mo>&InvisibleTimes;</mo><mo>(</mo><mfrac><mi>texture pixels</mi><mi>screen pixels</mi></mfrac><mo>)</mo></mrow></math></div><br>
+			<div class=mathbox><math><mrow><mi>Y Zoom</mi><mtext>&nbsp;in&nbsp;</mtext><mfrac><mi>texture pixels</mi><mi>screen pixels</mi></mfrac><mo>=</mo><mfrac><mn>1</mn><mn>128</mn></mfrac><mo>&InvisibleTimes;</mo><mi>vzoom</mi></mrow></math></div><br>
+
 			scale factor = 1 / (vzoom/128)<br>
 			<dl><dt>$00<dd>∞×<dt>$40<dd>2.0×<dt>$80<dd>1.0×<dt>$C0<dd>0.667×<dt>$FF<dd>0.502×</dl>
-		<dt>hzoom<dd>Tilemap <var>N</var>: Horizontal Zoom<br>
-			in units of:
-			<div class=mathbox><math><mrow><mn>256</mn><mo>&InvisibleTimes;</mo><mo>(</mo><mn>1</mn><mo>&minus;</mo><mfrac><mi>texture pixels</mi><mi>screen pixels</mi></mfrac><mo>)</mo></mrow></math></div><br>
-			i.e. scale factor = 1 / (1 - hzoom/256)
+		<dt>xzoom<dd>Tilemap <var>N</var>: X Zoom<br>
+			<div class=mathbox>X Zoom (in texture pixels per screen pixel) = 1 &minus; raw xzoom / 256</div>
+			<table>
+				<tr><th>raw xzoom<th>X Zoom<th>scale factor
+				<tr><td>$00<
+			</table>
 			<dl><dt>$00<dd>1.0×<dt>$40<dd>1.333×<dt>$80<dd>2.0×<dt>$C0<dd>4.0×<dt>$FF<dd>256.0×</dl>
 	</dl>
 </figure>

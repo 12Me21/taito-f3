@@ -1,0 +1,62 @@
+spx/tpx = 1 - zoom/256
+
+in units of 128(tpx/spx)
+
+this is wrong i think.
+
+ok so an example. let's say we have something in units of "thou" that is 1/1000 inches.
+so if i say "7 thou" that is  7 * 1/1000 inches, or 0.007 inches
+
+so uh, if 
+
+well we have written that:
+spx/tpx = 1 / (vzoom/128)
+which we can rearrange into:
+(tpx/spx) = vzoom/128
+128*(tpx/spx) = vzoom
+but like... 
+maybe what we really want is, a value that can be multiplied by vzoom to get a result in tpx/spx (the thing we want)
+i.e. 
+1/128*(tpx/spx)*vzoom
+
+ok let's say vzoom is $40.
+that equates to 2 spx/tpx, or 0.5 tpx/spx
+so. vzoom/128 = tpx/spx.
+
+now let's do hzoom
+more complex,
+spx/tpx = 1 / (1 - hzoom/256)
+1 - tpx/spx = hzoom/256
+agh but like. ok um
+
+we want to say, what are the units of "hzoom"
+given:
+cooked[spx/tpx] = 1 / (1 - hzoom/256)[tpx/spx]
+cooked[tpx/spx] = (1 - hzoom/256)[tpx/spx]
+cooked[tpx/spx] = 1[tpx/spx] - hzoom/256[-tpx/spx]
+ugh  idk
+
+X Zoom, in [texture pixels/screen pixels] = hzoom uhh
+
+ugh no let's just 
+ok what i have is fine, it's just not  "in units of" it's
+
+X Zoom, in [texture pixels/screen pixels] = 1 - hzoom/256
+
+
+ugh no something is still wrong here..
+we need to say this:
+a value of 1 hzoom, the unit of 1 hzoom, is uh
+maybe the conversion factor from whatever units hzoom is, to tpx/spx?
+so.
+but we can't make a conversion factor since hzoom is has both a different slope and a different zero, than tpx/spx.. i guess. like it wouldn't be a "factor".  actually lets check how they handle this with temperature C and F which also are not zeroed
+
+but first ok let's go back to:
+xzoom{tpx/spx} = 1{tpx/spx} − (raw_xzoom{256 tpx/spx} / 256{dimensionless}){tpx/spx}
+
+
+
+1-hzoom/256
+256/256 - hzoom/256
+(hzoom - 256)/-256
+1 - hzoom/256
