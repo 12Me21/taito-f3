@@ -150,11 +150,42 @@ where
 	ok just make a "complement if [condition]" syntax
 	
 	
-	tilemap texture origin onscreen (spx relative to origin) = ((ipart - fpart/64) tpx + 18 tpx ) * scale (spx/tpx) + 22 spx
+	tilemap texture origin onscreen (spx relative to origin) = ((ipart - fpart/64) tpx + 18 tpx ) * inv scale (spx/tpx) + 22 spx
 	
 	input: spx offset
 	output: tpx offset
 	
-	(x index - 22 spx) / scale (spx/tpx) - 18 tpx = (ipart - fpart/64) tpx
+	(x index - 22 spx) * scale (tpx/spx) - 18 tpx = (ipart - fpart/64) tpx
 	ugh what does that even mean
 	
+	uh we need to calculate a correction factor uhhhhh.  
+	well ok first lets say.  what is the number of texture pixels per screen pixel
+	that would be, the scale. (after the unit conversion to tpx/spx)
+	so. for each +1 spx, we must add, +1 spx * scale
+	
+	
+	screen pixel position of texture column X (spx relative to origin) = ((ipart - fpart/64) tpx + 18 tpx ) / scale (tpx/spx) + 22 spx + (X / scale) (spx)
+	
+	(screen pixel position of texture column X (spx relative to origin) - (((ipart - fpart/64) tpx + 18 tpx ) / scale (tpx/spx) + 22 spx))*scale = X
+	
+	(
+	screen pixel position of texture column X * scale -
+	(((ipart - fpart/64) tpx + 18 tpx ) / scale (tpx/spx) + 22 spx) * scale
+	) = X
+	
+	(
+	screen pixel position of texture column X * scale -
+	((ipart - fpart/64) tpx + 18 tpx ) (tpx/spx) -
+	22 spx * scale
+	) = X
+	
+
+	
+	(
+	(screen pixel position of texture column X - 22 spx) * scale -
+	((ipart - fpart/64) tpx + 18 tpx)
+	) = X
+	
+	thusly: 
+	
+	texture x = (screen x - 22 screen pixels) * scale - scroll + 18 texture pixels
