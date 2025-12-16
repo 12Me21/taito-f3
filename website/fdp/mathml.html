@@ -11,6 +11,7 @@ ok so the overall flow of this should be
 	Each tilemap has a "Y Source" accumulator, which is in units of texture pixels (with a precision of 1/128).<br>
 	At the beginning of each scanline, if Scroll Sync is set (usually on scanline 0), each tilemap's Y Source is set from its Y Global Scroll register.<br>
 	At the end of the scanline, each tilemap's Y Source is incremented by its Y Zoom register.
+	
 
 the source of a scanline, in texture pixels is given by:
 
@@ -78,10 +79,10 @@ where
 			<mrow>
 				<munderover>
 					<mo>&sum;</mo>
-					<mrow><mi>n</mi><mo>=</mo><msub><mi>y</mi><mi>sync</mi></msub></mrow>
+					<mrow><mi>j</mi><mo>=</mo><msub><mi>y</mi><mi>sync</mi></msub></mrow>
 					<mrow><mi>y</mi><mo>&minus;</mo><mn>1</mn></mrow>
 				</munderover>
-				<mrow><mi>zoom</mi><mo>[</mo><mi>n</mi><mo>]</mo></mrow>
+				<mrow><mi>zoom</mi><mo>[</mo><mi>j</mi><mo>]</mo></mrow>
 				<mo>&sdot;</mo>
 				<mi>1</mi><mspace width=thinmathspace /><mi mathvariant=normal>screen pixel</mi>
 			</mrow>
