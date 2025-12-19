@@ -245,6 +245,33 @@
 	</dl>
 </figure>
 
+per-tilemap values:
+- name | type | set per:
+- x global scroll | texture pixels | frame
+- y global scroll | texture pixels | frame
+- y scroll accumulator | texture pixels | internal, per-scanline
+- x scroll adjust | texture pixels | scanline
+- y scroll adjust | texture pixels | scanline
+- alternate tile data | boolean | scanline
+- x zoom | texture pixels per screen pixel | scanline
+- y zoom | texture pixels per screen pixel | scanline
+- palette adjust | palette id | scanline
+
+shared values:
+- y scroll sync | boolean | scanline
+- extend mode | boolean | frame
+
+per-tile values:
+- texture id | texture id
+- palette id | palette id
+- alpha select | alpha id (common setting but special, do we list it?)
+- texture bpp | enum?
+- x flip | boolean
+- y flip | boolean
+
+the register descriptors should say the name of the field they affect, and how to map the raw value into something we can use. e.g. how to map blend mode number to one of the enum values, or how to map x zoom to a value in texture pixels per screen pixels.
+then, we should have a list of fields with their types and ranges/precisions and how they are used.  so tired...
+
 <h2>Scroll Register Settings</h2>
 <h3>Global Scroll X</h3>
 <h3>Global Scroll Y</h3>
