@@ -14,9 +14,11 @@
 	
 	<todo>describe how scrolling works (e.g. units and such) and how it is affected by scaling. give formulas for positions etc.</todo>
 	
-<h2>X Position</h2>
+<h2>Scrolling and Scaling</h2>
 <p>
-	To convert a screen position <var>x</var> into a tilemap source position:
+	We can calculate which pixel of the tilemap will be displayed at a given position on-screen.<br>
+	
+	For the X axis, we use:
 	<math display=block>
 		<mrow>
 		<mi>Xglobal</mi>
@@ -39,16 +41,15 @@
 	<var>Xadjust</var> is its X Scroll Adjust (in texture pixels) on a given scanline<br>
 	<var>Xzoom</var> is its X Zoom (in texture pixels per screen pixel) on a given scanline<br>
 	
-<h2>Y Position</h2>
-	
 <p>
+	The Y axis is more complicated, because the offset of each row depends on the rows above.<br>
 	Each tilemap has a "Y Scroll Accumulator", which is in units of texture pixels (with a precision of 1/128).<br>
 	At the beginning of each scanline, if Y Scroll Sync is set (usually on scanline 0), each tilemap's Y Scroll Accumulator is set from its Y Global Scroll register.<br>
 	Then, the scanline is rendered.&nbsp; The source row for each tilemap is determined by its Y Scroll Accumulator + Y Scroll Adjust.<br>
 	At the end of the scanline, each tilemap's Y Scroll Accumulator is incremented by its Y Zoom register.<br>
 	(note that Y Scroll Accumulator is not reset automatically, and carries over from the previous frame until Scroll Sync is set)
 	
-<p>Thus, to calculate the y source position within the tilemap (in texture pixels) for given a scanline <var>y</var>, we can use:
+<p>Thus, to calculate the y source position, we can use:
 	<math display=block>
 		<mrow>
 			<mrow>
