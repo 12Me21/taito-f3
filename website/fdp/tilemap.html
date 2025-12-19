@@ -19,23 +19,25 @@
 	To convert a screen position <var>x</var> into a tilemap source position:
 	<math display=block>
 		<mrow>
-		<mn>18</mn>
-		<mo>+</mo>
-		<mi>global</mi>
+		<mi>Xglobal</mi>
 		<mo>+</mo>
 		<msub>
-			<mi>adjust</mi>
+			<mi>Xadjust</mi>
 			<mi>y</mi>
 		</msub>
 		<mo>+</mo>
-		<mo stretchy=false>(</mo><mi>x</mi><mo>+</mo><mn>22</mn><mo>-</mo><mn>4</mn><mo>&sdot;</mo><mi>tnum</mi><mo stretchy=false>)</mo><mo>&sdot;</mo><msub><mi>zoom</mi><mi>y</mi></msub>
+		<mn>18</mn>
+		<mo>+</mo>
+		<mo stretchy=false>(</mo><mi>x</mi><mo>+</mo><mn>22</mn><mo>-</mo><mn>4</mn><mo>&sdot;</mo><mi>tnum</mi><mo stretchy=false>)</mo><mo>&sdot;</mo><msub><mi>Xzoom</mi><mi>y</mi></msub>
 		</mrow>
 	</math>
 	Where:<br>
-	<var>global</var> is the tilemap's X Global Scroll<br>
-	<var>adjust</var> is its X Scroll Adjust on a given scanline<br>
-	<var>zoom</var> is its X Zoom on a given scanline<br>
+	<var>x</var> is the current x screen position (in screen pixels)<br>
+	<var>y</var> is the current scanline<br>
 	<var>tnum</var> is the tilemap number<br>
+	<var>Xglobal</var> is the tilemap's X Global Scroll (in texture pixels)<br>
+	<var>Xadjust</var> is its X Scroll Adjust (in texture pixels) on a given scanline<br>
+	<var>Xzoom</var> is its X Zoom (in texture pixels per screen pixel) on a given scanline<br>
 	
 <h2>Y Position</h2>
 	
@@ -50,11 +52,11 @@
 	<math display=block>
 		<mrow>
 			<mrow>
-				<mi>global</mi>
+				<mi>Yglobal</mi>
 			</mrow>
 			<mo>+</mo>
 			<msub>
-				<mi>adjust</mi>
+				<mi>Yadjust</mi>
 				<mi>y</mi>
 			</mrow>
 			<mo>+</mo>
@@ -64,18 +66,21 @@
 					<mrow><mi>j</mi><mo>=</mo><mi>sync</mi></mrow>
 					<mrow><mi>y</mi><mo>&minus;</mo><mn>1</mn></mrow>
 				</munderover>
-				<msub><mi>zoom</mi><mi>j</mi></mrow>
+				<msub><mi>Yzoom</mi><mi>j</mi></mrow>
 				<mo>&sdot;</mo>
 				<mi>1</mi><mspace width=thinmathspace /><mi mathvariant=normal>screen pixel</mi>
 			</mrow>
 		</mrow>
 	</math>
 	
-	Where:<br><var>global</var> is the tilemap's Y Global Scroll<br><var>adjust</var> is its Y Scroll Adjust on a given scanline<br><var>zoom</var> is its Y Zoom on a given scanline<br><var>sync</var> is the most recent scanline on which Scroll Sync was set (usually scanline 0).<br>
+	Where:<br>
+	<var>y</var> is the current scanline<br>
+	<var>Yglobal</var> is the tilemap's Y Global Scroll (in texture pixels)<br>
+	<var>Yadjust</var> is its Y Scroll Adjust (in texture pixels) on a given scanline<br>
+	<var>Yzoom</var> is its Y Zoom (in texture pixels per screen pixel) on a given scanline<br>
+	<var>sync</var> is the most recent scanline on which Scroll Sync was set (usually scanline 0).<br>
 	Note that this assumes <var>y</var> ≥ <var>sync</var>.
-
-
-	
+	<!--&sum;&thinsp;<sub>j&thinsp;&isin;&thinsp;[sync,y)</sub>(Yzoom<sub>j</sub>)-->
 <figure class=f3-struct>
 	<h1>Tile Data</h1>
 	<h2>Address (normal)</h2>
