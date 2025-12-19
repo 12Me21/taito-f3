@@ -14,6 +14,29 @@
 	
 	<todo>describe how scrolling works (e.g. units and such) and how it is affected by scaling. give formulas for positions etc.</todo>
 	
+<h2>X Position</h2>
+<p>
+	To convert a screen position <var>x</var> into a tilemap source position:
+	<math display=block>
+		<mrow>
+		<mn>18</mn>
+		<mo>+</mo>
+		<mi>global</mi>
+		<mo>+</mo>
+		<msub>
+			<mi>adjust</mi>
+			<mi>y</mi>
+		</msub>
+		<mo>+</mo>
+		<mo stretchy=false>(</mo><mi>x</mi><mo>+</mo><mn>22</mn><mo>-</mo><mn>4</mn><mo>&sdot;</mo><mi>tnum</mi><mo stretchy=false>)</mo><mo>&sdot;</mo><msub><mi>zoom</mi><mi>y</mi></msub>
+		</mrow>
+	</math>
+	Where:<br>
+	<var>global</var> is the tilemap's X Global Scroll<br>
+	<var>adjust</var> is its X Scroll Adjust on a given scanline<br>
+	<var>zoom</var> is its X Zoom on a given scanline<br>
+	<var>tnum</var> is the tilemap number<br>
+	
 <h2>Y Position</h2>
 	
 <p>
