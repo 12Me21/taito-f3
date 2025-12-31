@@ -110,3 +110,8 @@ same as above, for "texture pixels"
 when we say "texture position" or "screen position", this is an affine quantity, assumed to be in texture pixels or screen pixels relative to the origin (TODO: what is the origin of the screen?)
 
 "scanline" as an affine quantity is the scanline (in screen y pixels, technically) relative to scanline 0
+
+lets name the different registers:
+- line registers (set from line ram, per scanline)
+- sprite registers (set from sprite ram, per sprite)
+- global registers / scroll registers ? (set via memory-mapped writes)

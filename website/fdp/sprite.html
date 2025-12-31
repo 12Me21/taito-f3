@@ -21,7 +21,7 @@
 	In some ways, it acts like 4 separate sprite layers, but note that sprites can never blend with each other because they share a single framebuffer.
 	
 <figure class=f3-struct>
-	<h1>Lineram Register 2.0 "6000"</h1>
+	<h1>Line Register 2.0 "6000"</h1>
 	<f3-bits>#:8,s<sub>3</sub>:2,s<sub>2</sub>:2,s<sub>1</sub>:2,s<sub>0</sub>:2</f3-bits>
 	<dl class=bits>
 		<dt>s<sub>N</sub><dd>Sprite Layer, Group <var>N</var>: Blend Mode
@@ -30,7 +30,7 @@
 </figure>
 
 <figure class=f3-struct>
-	<h1>Lineram Register 2.2 "6400"</h1>
+	<h1>Line Register 2.2 "6400"</h1>
 	<f3-bits>#:7,s,#:4,#:4</f3-bits>
 	<dl class=bits>
 		<dt>s<dd>Sprite Layer: Mosaic Enable
@@ -38,7 +38,7 @@
 </figure>
 
 <figure class=f3-struct>
-	<h1>Lineram Register 3.2 "7400"</h1>
+	<h1>Line Register 3.2 "7400"</h1>
 	<f3-bits>s<sub>3</sub>,s<sub>2</sub>,s<sub>1</sub>,s<sub>0</sub>,?,?,E,I,c<sub>3</sub>,c<sub>2</sub>,c<sub>1</sub>,c<sub>0</sub>,i<sub>3</sub>,i<sub>2</sub>,i<sub>1</sub>,i<sub>0</sub></f3-bits>
 	<dl class=bits>
 		<dt>i<sub>n</sub><dd>Sprite Layer: Clip Plane <var>n</var> Mode
@@ -50,7 +50,7 @@
 </figure>
 
 <figure class=f3-struct>
-	<h1>Lineram Register 3.3 "7600"</h1>
+	<h1>Line Register 3.3 "7600"</h1>
 	<f3-bits>prio<sub>3</sub>:4,prio<sub>2</sub>:4,prio<sub>1</sub>:4,prio<sub>0</sub>:4</f3-bits>
 	<dl class=bits>
 		<dt>prio<sub>N</sub><dd>Sprite Layer, Group <var>N</var>: Priority (0-15)
