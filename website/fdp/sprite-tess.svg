@@ -1,35 +1,38 @@
-<svg xmlns='http://www.w3.org/2000/svg' viewBox='-100 -100 400 400' width='400' height='400'>
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='-20 -24 160 164' width='160' height='164'>
 	squares
 	<g>
-		<rect x='64' y='64' width='32' height='32' fill='black'/>
-		<text x='80' y='80' font-size='14' text-anchor='middle' dominant-baseline='middle' fill='white'>prev</text>
+		<rect x='56' y='56' width='32' height='32' fill='black'/>
+		<text x='72' y='72' font-size='14' text-anchor='middle' dominant-baseline='middle' fill='white'>prev</text>
 		
-		<rect x='64' y='96' width='32' height='32' fill='#80ff80'/>
-		<rect x='0' y='0' width='32' height='32' fill='#80ff80'/>
-		<rect x='64' y='0' width='32' height='32' fill='#ffff80'/>
-		<rect x='96' y='0' width='32' height='32' fill='#80ff80'/>
+		<rect x='0' y='0' width='32' height='32' fill='#FBC'/>
+		<rect x='56' y='0' width='32' height='32' fill='#FDA'/>
+		<rect x='88' y='0' width='32' height='32' fill='#FF8'/>
+		<rect x='0' y='88' width='32' height='32' fill='#BFA'/>
+		<rect x='56' y='88' width='32' height='32' fill='#CEF'/>
+		<rect x='88' y='88' width='32' height='32' fill='#DBF'/>
 	</g>
 	x labels
 	<text x='16' y='-6' font-size='20' text-anchor='middle' dominant-baseline='auto' fill='green'>0</text>
-	<text x='80' y='-6' font-size='20' text-anchor='middle' dominant-baseline='auto' fill='green'>1</text>
-	<text x='112' y='-6' font-size='20' text-anchor='middle' dominant-baseline='auto' fill='green'>2</text>
+	<text x='72' y='-6' font-size='20' text-anchor='middle' dominant-baseline='auto' fill='green'>1</text>
+	<text x='104' y='-6' font-size='20' text-anchor='middle' dominant-baseline='auto' fill='green'>2</text>
 	y labels
 	<text x='-6' y='16' font-size='20' text-anchor='end' dominant-baseline='central' fill='green'>0</text>
-	<text x='-6' y='112' font-size='20' text-anchor='end' dominant-baseline='central' fill='green'>1</text>
+	<text x='-6' y='104' font-size='20' text-anchor='end' dominant-baseline='central' fill='green'>1</text>
 	<g stroke-width='2' stroke='black' fill='none'>
 		gridlines
 		<g stroke='silver'>
-			<path d='M32,0 v32 v32 v32 v32 v12'/>
-			<path d='M64,0 v32 v32 v32 v32 v12'/>
-			<path d='M96,0 v32 v32 v32 v32 v12'/>
-			<path d='M128,0 v32 v32 v32 v32 v12'/>
-			<path d='M0,32 h32 h32 h32 h32 h12'/>
-			<path d='M0,64 h32 h32 h32 h32 h12'/>
-			<path d='M0,96 h32 h32 h32 h32 h12'/>
-			<path d='M0,128 h32 h32 h32 h32 h12'/>
+			<path d='M-12,32 H0 h32 h8 l4,-4 v8 l4,-4 h8 h32 h32 h12'/>
+			<path d='M-12,56 H0 h32 h8 l4,-4 v8 l4,-4 h8 h32 h32 h12'/>
+			<path d='M-12,88 H0 h32 h8 l4,-4 v8 l4,-4 h8 h32 h32 h12'/>
+			<path d='M-12,120 H0 h32 h8 l4,-4 v8 l4,-4 h8 h32 h32 h12'/>
+			
+			<path d='M32,-12 V0 v32 v8 l4,4 h-8 l4,4 v8 v32 v32 v12'/>
+			<path d='M56,-12 V0 v32 v8 l4,4 h-8 l4,4 v8 v32 v32 v12'/>
+			<path d='M88,-12 V0 v32 v8 l4,4 h-8 l4,4 v8 v32 v32 v12'/>
+			<path d='M120,-12 V0 v32 v8 l4,4 h-8 l4,4 v8 v32 v32 v12'/>
 		</g>
 		axes
-		<path d='M-12,0 H0 h32 h10 l6,-6 v+12 l6,-6 h10 h32 h32 h12'/>
-		<path d='M0,-12 V0 v32 v10 l6,+6 h-12 l6,+6 v10 v32 v32 v12'/>
+		<path d='M-12,0 H0 h32 h6 l6,-6 v+12 l6,-6 h6 h32 h32 h12'/>
+		<path d='M0,-12 V0 v32 v6 l6,+6 h-12 l6,+6 v6 v32 v32 v12'/>
 	</g>
 </svg>
