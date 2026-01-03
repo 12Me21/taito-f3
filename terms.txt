@@ -36,7 +36,7 @@ i think i have settled for now on:
 
 "sprite" - ambiguous?
 "sprite list" / "sprite ram" - the list in graphics ram which the sprites are rendered from
-"sprite [list] entry" - one item in the sprite list, consisting of 8 words todo: do we call these "words" or "fields"?
+"sprite [list] entry" - one item in the sprite list, consisting of 8 words todo: do we call these "words" or "fields"?. this can be a visible sprite and/or a command and/or setting the scroll position (but usually games only do one of these at a time)
 
 "tile" - the thing that a tilemap/pivot layer is composed of, represented by 32/16 bits in graphics ram
 

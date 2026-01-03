@@ -12,15 +12,15 @@
 		<rect x='88' y='88' width='32' height='32' fill='#DBF'/>
 	</g>
 	x labels
-	<text x='16' y='-6' font-size='20' text-anchor='middle' dominant-baseline='auto' fill='green'>0</text>
-	<text x='72' y='-6' font-size='20' text-anchor='middle' dominant-baseline='auto' fill='green'>1</text>
-	<text x='104' y='-6' font-size='20' text-anchor='middle' dominant-baseline='auto' fill='green'>2</text>
+	<text x='6' y='-6' font-size='20' text-anchor='left' dominant-baseline='auto' fill='green'>0</text>
+	<text x='62' y='-6' font-size='20' text-anchor='left' dominant-baseline='auto' fill='green'>1</text>
+	<text x='94' y='-6' font-size='20' text-anchor='left' dominant-baseline='auto' fill='green'>2</text>
 	y labels
-	<text x='-6' y='16' font-size='20' text-anchor='end' dominant-baseline='central' fill='green'>0</text>
-	<text x='-6' y='104' font-size='20' text-anchor='end' dominant-baseline='central' fill='green'>1</text>
+	<text x='-6' y='6' font-size='20' text-anchor='end' dominant-baseline='hanging' fill='green'>0</text>
+	<text x='-6' y='94' font-size='20' text-anchor='end' dominant-baseline='hanging' fill='green'>1</text>
 	<g stroke-width='2' stroke='black' fill='none'>
 		gridlines
-		<g stroke='silver'>
+		<g stroke='#ccc' stroke-width='2'>
 			<path d='M-12,32 H0 h32 h8 l4,-4 v8 l4,-4 h8 h32 h32 h12'/>
 			<path d='M-12,56 H0 h32 h8 l4,-4 v8 l4,-4 h8 h32 h32 h12'/>
 			<path d='M-12,120 H0 h32 h8 l4,-4 v8 l4,-4 h8 h32 h32 h12'/>
@@ -30,14 +30,14 @@
 		</g>
 		dark gridlines
 		<g stroke='#40a040'>
-			<path d='M56,-12 V0 v32 v8 l4,4 h-8 l4,4 v8 v32 v32 v12'/>
-			<path d='M88,-12 V0 v32 v8 l4,4 h-8 l4,4 v8 v32 v32 v12'/>
-			<path d='M-12,88 H0 h32 h8 l4,-4 v8 l4,-4 h8 h32 h32 h12'/>
+			<path d='M56,-16 V0 v32 v8 l4,4 h-8 l4,4 v8 v32 v32 v12'/>
+			<path d='M88,-16 V0 v32 v8 l4,4 h-8 l4,4 v8 v32 v32 v12'/>
+			<path d='M-16,88 H0 h32 h8 l4,-4 v8 l4,-4 h8 h32 h32 h12'/>
 		</g>
 		axes
 		<g stroke='#40a040'>
-			<path d='M-12,0 H0 h32 h6 l6,-6 v+12 l6,-6 h6 h32 h32 h12'/>
-			<path d='M0,-12 V0 v32 v6 l6,+6 h-12 l6,+6 v6 v32 v32 v12'/>
+			<path d='M0,-16 V0 v32 v8 l4,4 h-8 l4,4 v8 v32 v32 v12'/>
+			<path d='M-16,0 H0 h32 h8 l4,-4 v8 l4,-4 h8 h32 h32 h12'/>
 		</g>
 	</g>
 	corners
