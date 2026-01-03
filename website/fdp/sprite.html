@@ -59,7 +59,7 @@
 	
 <h2>Sprite Rendering</h2>
 <p>Sprites are rendered from the Sprite List, which contains 4 banks of 1024 entries each.&nbsp;
-	Each entry can render one sprite and/or be a command that sets graphics parameters.&nbsp;
+	Each entry consists of eight 16-bit values, representing one sprite (and/or a command that sets graphics parameters).&nbsp;
 	On each frame, the fdp iterates over the entries in the current bank of the sprite list.
 
 <p>There are two scroll values, which we call "global" and "subglobal".&nbsp;
@@ -72,64 +72,79 @@
 	<todo>explain command mode better. note the consequences of setting it on a visible sprite (field 5's value is used for 2 things at once)</todo>
 	
 <figure class="f3-struct">
-	<h1>Sprite List Entry</h1>
+	<h1>Sprite Entry</h1>
 	<h2>Address</h2>
 	<f3-bits>&ctdot;,0,0,0,bank:2,index:10,w:3,-</f3-bits>
 	<dl class=bits>
-		<dt>bank<dd>bank (set by command)
-		<dt>index<dd>sprite id
-		<dt>w<dd>field number
+		<dt>bank<dd>bank number (set by command)
+		<dt>index<dd>sprite index
+		<dt>w<dd>field index
 	</dl>
+</figure>
+<figure class="f3-struct">
+	<h1>Sprite Field 0</h1>
 	<h2>Data</h2>
-	<h2>Field 0</h2>
 	<f3-bits>texture:16</f3-bits>
 	<dl class=bits>
 		<dt>texture<dd>Texture Id (lower bits)
 	</dl>
-	<h2>Field 1</h2>
+</figure>
+<figure class="f3-struct">
+	<h1>Sprite Field 1</h1>
+	<h2>Data</h2>
 	<f3-bits>yzoom:8,xzoom:8</f3-bits>
 	<dl class=bits>
-		<dt>xzoom<dd>x zoom<br>
-			in units of: <div class=mathbox><math><mrow><mn>256</mn><mo>&InvisibleTimes;</mo><mo>(</mo><mn>1</mn><mo>&minus;</mo><mfrac><mi>screen pixels</mi><mi>texture pixels</mi></mfrac><mo>)</mo></mrow></math></div>range: 0.004 - 1&thinsp;spx/tpx<br>
-			i.e. scale factor = 1 - zoom/256
+		<dt>xzoom<dd>X Zoom<br>
+			<div class=mathbox>X Zoom (in screen pixels per texture pixel) = 1 &minus; xzoom / 128</div><br>
+			Example scale factors: (in screen pixels per texture pixel)<br>
 			<dl><dt>$00<dd>1×<dt>$40<dd>0.75×<dt>$80<dd>0.5×<dt>$C0<dd>0.25×<dt>$FF<dd>0.004×</dl>
-			<dt>yzoom<dd>y zoom (same format)
+			<dt>yzoom<dd>Y Zoom (same format as X)
 	</dl>
-	<h2>Field 2</h2>
+</figure>
+<figure class="f3-struct">
+	<h1>Sprite Field 2</h1>
+	<h2>Data</h2>
 	<f3-bits>i:2,s:2,x:12</f3-bits>
 	<dl class=bits>
-		<dt>x<dd>x position<br>
-			in units of:<div class=mathbox><math><mrow><mi>screen pixels</mi></mrow></math></div><br>
-		<dt>s<dd>set scroll values from given position (happens first)
-			<dl><dt>0<dd>neither<dt>1<dd>subglobal<dt>2<dd>global<dt>3<dd>both</dl>
-			<dt>i<dd>adjust position
-				<dl><dt>0 or 2<dd>add both scrolls<dt>1<dd>add global scroll<dt>3<dd>none</dl>
+		<dt>x<dd>X Position (in screen pixels)<br>
+		<dt>s<dd>set scroll values from the given position: (happens before adding)
+			<dl><dt>0<dd>neither<dt>1<dd>subglobal<dt>2<dd>global<dt>3<dd>global and subglobal</dl>
+			<dt>i<dd>add scroll values to the position:
+				<dl><dt>0 or 2<dd>global and subglobal<dt>1<dd>global<dt>3<dd>neither</dl>
 	</dl>
-	<h2>Field 3</h2>
+</figure>
+<figure class="f3-struct">
+	<h1>Sprite Field 3</h1>
+	<h2>Data</h2>
 	<f3-bits>c,.:3,y:12</f3-bits>
 	<dl class=bits>
-		<dt>y<dd>y position<br>
-			in units of:<div class=mathbox><math><mrow><mi>screen pixels</mi></mrow></math></div><br>
-		<dt>c<dd><dl compact><dt>1<dd>command mode_(see field 5)</dl>
+		<dt>y<dd>Y Position (same format as X)<br>
+		<dt>c<dd><dl><dt>0<dd>normal<dt>1<dd>command mode (see field 5)</dl>
 	</dl>
-	<h2>Field 4</h2>
+</figure>
+<figure class="f3-struct">
+	<h1>Sprite Field 4</h1>
+	<h2>Data</h2>
 	<f3-bits>x:2,?,y,M,p,v,h,pal:8</f3-bits>
 	<dl class=bits>
 		<dt>pal<dd>Palette Id (0-255)<br>
-		<dt>h<dd>horizontal flip
-		<dt>v<dd>vertical flip
-		<dt>p<dd>palette lock<dl compact><dt>1<dd>reuse previous palette<dt>0<dd>use new palette</dl>
-		<dt>M<dd>"multi" - <u>this bit affects the next sprite, not the current one</u><dl compact><dt>0<dd>read zoom value, and update block origin from given position<dt>1<dd>don't</dl>
+		<dt>h<dd><dl compact><dt>1<dd>horizontal flip</dl>
+		<dt>v<dd><dl compact><dt>1<dd>vertical flip</dl>
+		<dt>p<dd>palette lock<dl><dt>1<dd>reuse palette from previous sprite<dt>0<dd>use new palette</dl>
+		<dt>M<dd>"multi" - <u>this bit affects the next sprite, not the current one</u><dl><dt>0<dd>read zoom value, and update block origin from given position<dt>1<dd>don't</dl>
 		<dt>y<dd>y tessellation control (where to place sprite)<dl><dt>0<dd>at block origin (if M was 0, this will be the given position)<dt>1<dd>below previous sprite</dl>
 		<dt>x<dd>x tessellation control (where to place sprite)<dl><dt>0<dd>at the given position<dt>1<dd>same as prev sprite<dt>2*,3<dd>right of previous sprite</dl>*2 is the same as 3, but the first row is rendered at the wrong position for some reason
 	</dl>
-	<h2>Field 5 (always, affects current sprite)</h2>
+</figure>
+<figure class="f3-struct">
+	<h1>Sprite Field 5</h1>
+	<h2>Data (always, affects current sprite)</h2>
 	<f3-bits>.:8,fmt:4,?,?,tex2:2</f3-bits>
 	<dl class=bits>
-		<dt>tex2<dd>texture id (upper bits) - this might be more than 2 bits
-		<dt>fmt<dd>bitmap format - <todo>affects the order of pixels loaded from rom?</todo>
+		<dt>tex2<dd>Texture Id (upper bits) - this might be more than 2 bits
+		<dt>fmt<dd>bitmap format? - <todo>affects the order of pixels loaded from rom?</todo>
 	</dl>
-	<h2>Field 5 (additional effects in command mode, sets persistent settings)</h2>
+	<h2>Data (additional effects in command mode, sets persistent settings)</h2>
 	<f3-bits>?,?,k,j,?,b<sub>1</sub>,g,f,?,a:3,?,?,t,b<sub>0</sub></f3-bits>
 	<dl class=bits>
 		<dt>b<sub>0</sub><dd>spriteram bank number (lower bit)
@@ -141,12 +156,17 @@
 		<dt>j<dd><todo>changes video signal (causes us to lose sync, but definitely still outputting a picture)</todo>
 		<dt>k<dd>1 = flipscreen
 	</dl>
-	<h2>Field 6</h2>
+</figure>
+<figure class="f3-struct">
+	<h1>Sprite Field 6</h1>
+	<h2>Data</h2>
 	<f3-bits>j,.:5,dest:10</f3-bits>
 	<dl class=bits>
 		<dt>dest<dd>jump destination (next sprite index to process)
-		<dt>j<dd><dl compact><dt>1<dd>jump<dt>0<dd>increment index normally</dl>
+		<dt>j<dd><dl><dt>1<dd>jump<dt>0<dd>increment index normally</dl>
 	</dl>
-	<h2>Field 7</h2>
-	(unused)
+</figure>
+<figure class="f3-struct">
+	<h1>Sprite Field 7</h1>
+	(unused?)
 </figure>

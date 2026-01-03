@@ -6,28 +6,28 @@
 <h1>Line-<abbr>Ram</abbr></h1>
 
 <p>
-	"lineram" is a list of per-scanline graphics settings.&nbsp;
-	almost everything is controlled by lineram, with the exception of: tile data and global scroll for tilemaps/pivot; extend mode; various video signal settings; the sprite data; and textures of course.
+	"Lineram" is a list of per-scanline graphics settings.&nbsp;
+	Almost everything is controlled by lineram, with the exception of: tile data and global scroll for tilemaps/pivot; extend mode; various video signal settings; the sprite data; and textures of course.
 	
 <p>
-	in principle, it's very simple: there are 30 16-bit graphics registers, but each one is actually an array of 256 values (one for each scanline).&nbsp; the complexity comes from features which let you apply the same settings to many scanlines, without having to write the same data many times (though most games do this anyway).
+	In principle, it's very simple: there are 30 16-bit Line Registers, and each one is read from an array of 256 values (one for each scanline).&nbsp;
+	The complexity comes from features which let you apply the same settings to many scanlines, without having to write the same data many times (though most games do that anyway).
 	
 <p>
-	lineram has 8 "sections" (traditionally referred to as 4000,5000,...,A000,B000 because that's where every game maps them).&nbsp;
-	each section can be mapped to one of 16 possible locations within the $62.... block of graphics ram (though, the first two would interfere with other things).
+	Lineram has 8 "sections" (traditionally referred to as 4000,5000,...,A000,B000 because that's where every game maps them).&nbsp;
+	Each section can be mapped to one of 16 possible locations within the $62.... block of graphics ram (though, the first two would interfere with other things).
 	
 <p>
-	each section contains four "subsections" (traditionally named 000,200,400,600).&nbsp;
-	each subsection can occur in one of two positions within its section: either at its base address, or that address plus $800
+	Each section contains four "subsections" (traditionally named 000,200,400,600).&nbsp;
+	Each subsection can occur in one of two positions within its section: either at its base address, or that address plus $800
 	
 <p>
-	each subsection contains a list of 256 words, which control some settings on each scanline.
+	Each subsection contains a list of 256 words, which control some settings on each scanline.
 	
-<p>the mapping of sections and subsections, and latching (reusing the same parameters across multiple scanlines) is controlled by the "latches".
+<p>
+	The mapping of sections and subsections, and latching (reusing the same parameters across multiple scanlines) is controlled by the "latches".&nbsp;
 	at $620000, there is a latch per scanline per section (todo: better language to describe arrays-of-arrays)
 	
-<figure>test</figure>
-
 <figure class=f3-struct>
 	<h1>Lineram Section Latches</h1>
 	<h2>Address</h2>
