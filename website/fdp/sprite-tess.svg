@@ -23,16 +23,30 @@
 		<g stroke='silver'>
 			<path d='M-12,32 H0 h32 h8 l4,-4 v8 l4,-4 h8 h32 h32 h12'/>
 			<path d='M-12,56 H0 h32 h8 l4,-4 v8 l4,-4 h8 h32 h32 h12'/>
-			<path d='M-12,88 H0 h32 h8 l4,-4 v8 l4,-4 h8 h32 h32 h12'/>
 			<path d='M-12,120 H0 h32 h8 l4,-4 v8 l4,-4 h8 h32 h32 h12'/>
 			
 			<path d='M32,-12 V0 v32 v8 l4,4 h-8 l4,4 v8 v32 v32 v12'/>
-			<path d='M56,-12 V0 v32 v8 l4,4 h-8 l4,4 v8 v32 v32 v12'/>
-			<path d='M88,-12 V0 v32 v8 l4,4 h-8 l4,4 v8 v32 v32 v12'/>
 			<path d='M120,-12 V0 v32 v8 l4,4 h-8 l4,4 v8 v32 v32 v12'/>
 		</g>
+		dark gridlines
+		<g stroke='#40a040'>
+			<path d='M56,-12 V0 v32 v8 l4,4 h-8 l4,4 v8 v32 v32 v12'/>
+			<path d='M88,-12 V0 v32 v8 l4,4 h-8 l4,4 v8 v32 v32 v12'/>
+			<path d='M-12,88 H0 h32 h8 l4,-4 v8 l4,-4 h8 h32 h32 h12'/>
+		</g>
 		axes
-		<path d='M-12,0 H0 h32 h6 l6,-6 v+12 l6,-6 h6 h32 h32 h12'/>
-		<path d='M0,-12 V0 v32 v6 l6,+6 h-12 l6,+6 v6 v32 v32 v12'/>
+		<g stroke='#40a040'>
+			<path d='M-12,0 H0 h32 h6 l6,-6 v+12 l6,-6 h6 h32 h32 h12'/>
+			<path d='M0,-12 V0 v32 v6 l6,+6 h-12 l6,+6 v6 v32 v32 v12'/>
+		</g>
+	</g>
+	corners
+	<g fill='#40a040'>
+		<circle cx='0' cy='0' r='3'/>
+		<circle cx='56' cy='0' r='3'/>
+		<circle cx='88' cy='0' r='3'/>
+		<circle cx='0' cy='88' r='3'/>
+		<circle cx='56' cy='88' r='3'/>
+		<circle cx='88' cy='88' r='3'/>
 	</g>
 </svg>
