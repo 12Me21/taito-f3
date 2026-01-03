@@ -1,9 +1,21 @@
-<svg xmlns='http://www.w3.org/2000/svg' viewBox='-20 -20 200 200' width='200' height='200'>
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='-100 -100 400 400' width='400' height='400'>
 	squares
 	<g>
 		<rect x='64' y='64' width='32' height='32' fill='black'/>
 		<text x='80' y='80' font-size='14' text-anchor='middle' dominant-baseline='middle' fill='white'>prev</text>
+		
+		<rect x='64' y='96' width='32' height='32' fill='#80ff80'/>
+		<rect x='0' y='0' width='32' height='32' fill='#80ff80'/>
+		<rect x='64' y='0' width='32' height='32' fill='#ffff80'/>
+		<rect x='96' y='0' width='32' height='32' fill='#80ff80'/>
 	</g>
+	x labels
+	<text x='16' y='-6' font-size='20' text-anchor='middle' dominant-baseline='auto' fill='green'>0</text>
+	<text x='80' y='-6' font-size='20' text-anchor='middle' dominant-baseline='auto' fill='green'>1</text>
+	<text x='112' y='-6' font-size='20' text-anchor='middle' dominant-baseline='auto' fill='green'>2</text>
+	y labels
+	<text x='-6' y='16' font-size='20' text-anchor='end' dominant-baseline='central' fill='green'>0</text>
+	<text x='-6' y='112' font-size='20' text-anchor='end' dominant-baseline='central' fill='green'>1</text>
 	<g stroke-width='2' stroke='black' fill='none'>
 		gridlines
 		<g stroke='silver'>
