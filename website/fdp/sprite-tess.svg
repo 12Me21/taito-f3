@@ -1,7 +1,23 @@
 <svg xmlns='http://www.w3.org/2000/svg' viewBox='-20 -20 200 200' width='200' height='200'>
+	squares
+	<g>
+		<rect x='64' y='64' width='32' height='32' fill='black'/>
+		<text x='80' y='80' font-size='14' text-anchor='middle' dominant-baseline='middle' fill='white'>prev</text>
+	</g>
 	<g stroke-width='2' stroke='black' fill='none'>
+		gridlines
+		<g stroke='silver'>
+			<path d='M32,0 v32 v32 v32 v32 v12'/>
+			<path d='M64,0 v32 v32 v32 v32 v12'/>
+			<path d='M96,0 v32 v32 v32 v32 v12'/>
+			<path d='M128,0 v32 v32 v32 v32 v12'/>
+			<path d='M0,32 h32 h32 h32 h32 h12'/>
+			<path d='M0,64 h32 h32 h32 h32 h12'/>
+			<path d='M0,96 h32 h32 h32 h32 h12'/>
+			<path d='M0,128 h32 h32 h32 h32 h12'/>
+		</g>
 		axes
-		<path d='M-12,0 H0 h32 h8 l6,-6 v+12 l6,-6 h8 h32 h32 h12'/>
-		<path d='M0,-12 V0 v32 v8 l6,+6 h-12 l6,+6 v8 v32 v32 v12'/>
+		<path d='M-12,0 H0 h32 h10 l6,-6 v+12 l6,-6 h10 h32 h32 h12'/>
+		<path d='M0,-12 V0 v32 v10 l6,+6 h-12 l6,+6 v10 v32 v32 v12'/>
 	</g>
 </svg>
