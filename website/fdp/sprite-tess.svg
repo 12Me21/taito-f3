@@ -32,7 +32,7 @@
 	<text x='56' y='-24' font-size='20' class='c b' fill='green'>X Control</text>
 	<text x='6' y='-6' font-size='20' class='l b' fill='green'>0</text>
 	<text x='62' y='-6' font-size='20' class='l b' fill='green'>1</text>
-	<text x='94' y='-6' font-size='20' class='l b' fill='green'>2</text>
+	<text x='94' y='-6' font-size='20' class='l b' fill='green'>3</text>
 	y labels
 	<text font-size='20' class='c t' fill='green' transform='translate(-20,56) rotate(90)'>Y Control</text>
 	<text x='-6' y='6' font-size='20' class='r t' fill='green'>0</text>

@@ -133,13 +133,12 @@
 		<dt>p<dd>palette lock<dl><dt>1<dd>reuse palette from previous sprite<dt>0<dd>use new palette</dl>
 		<dt>M<dd>"multi" - <u>this bit affects the next sprite, not the current one</u><dl><dt>0<dd>read zoom value, and update block origin from given position<dt>1<dd>don't</dl>
 		<dt>y<dd>y tessellation control (where to place sprite)<dl><dt>0<dd>at block origin (if M was 0, this will be the given position)<dt>1<dd>bottom side of previous sprite</dl>
-		<dt>x<dd>x tessellation control (where to place sprite)<dl><dt>0<dd>at the given position<dt>1<dd>same as prev sprite<dt>2*,3<dd>right side of previous sprite</dl>*2 is the same as 3, but the first row is rendered at the wrong position for some reason<br>
+		<dt>x<dd>x tessellation control (where to place sprite)<dl><dt>0<dd>at the given position<dt>1<dd>same as prev sprite<dt>2*,3<dd>right side of previous sprite</dl>*2 is the same as 3, but the first row is rendered at the wrong position (as if it was 0 <todo>i think</todo>) for some reason<br>
 			There are effectively 6 possible combinations of x and y tessellation controls, which position the sprite relative to the previous sprite and/or the given x position and y block origin:<br>
 			<img src=sprite-tess.svg width=175 height=180 style=background:white><br>
-			(if x control is 3, the first row of the sprite renders as if it was 0, then the rest of the sprite renders as if it was 2)<br>
 			Generally (in practice), sprite blocks are always rectangular, and only 3 combinations of x,y tessellation controls are used:<br>
 			(0,0) for the first sprite in the block (along with setting multi=0 on the previous sprite)<br>
-			(2,0) for the first sprite in each subsequent column<br>
+			(3,0) for the first sprite in each subsequent column<br>
 			(1,1) for the rest of the sprites<br>
 			Note that sprites are intended be tessellated in column-major order, because there is no way to position a sprite directly to the right of the previous one.&nbsp;<br>
 			Typical 3x3 sprite block, showing the order of the sprites and their tesselation controls (as color):<br>
