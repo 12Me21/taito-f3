@@ -1,0 +1,72 @@
+<svg xmlns='http://www.w3.org/2000/svg' viewBox='-40 -45 175 180' width='175' height='180'>
+	<style>
+		@font-face {
+			font-family: 'mspm';
+			src: url('../short3.otf?10');
+		}
+		:root {
+			font-family: mspm, serif;
+			background: white;
+		}
+		.l { text-anchor: start; }
+		.c { text-anchor: middle; }
+		.r { text-anchor: end; }
+		.t { dominant-baseline: hanging; }
+		.m { dominant-baseline: central; }
+		.b { dominant-baseline: auto; }
+	</style>	
+	
+	squares
+	<g>
+		<rect x='0' y='0' width='32' height='32' fill='#FBC'/>
+		<rect x='0' y='32' width='32' height='32' fill='#CEF'/>
+		<rect x='0' y='64' width='32' height='32' fill='#CEF'/>
+		<rect x='32' y='0' width='32' height='32' fill='#FF8'/>
+		<rect x='32' y='32' width='32' height='32' fill='#CEF'/>
+		<rect x='32' y='64' width='32' height='32' fill='#CEF'/>
+		<rect x='64' y='0' width='32' height='32' fill='#FF8'/>
+		<rect x='64' y='32' width='32' height='32' fill='#CEF'/>
+		<rect x='64' y='64' width='32' height='32' fill='#CEF'/>
+	</g>
+	<g stroke-width='2' stroke='black' fill='none'>
+		gridlines
+		<g stroke='#ccc'>
+			<path d='M0,-12 V0 v32 v32 v32 v12'/>
+			<path d='M32,-12 V0 v32 v32 v32 v12'/>
+			<path d='M64,-12 V0 v32 v32 v32 v12'/>
+			<path d='M96,-12 V0 v32 v32 v32 v12'/>
+			<path d='M-12,0 H0 h32 h32 h32 h12'/>
+			<path d='M-12,32 H0 h32 h32 h32 h12'/>
+			<path d='M-12,64 H0 h32 h32 h32 h12'/>
+			<path d='M-12,96 H0 h32 h32 h32 h12'/>
+		</g>
+	</g>
+	corners
+	<g fill='#40a040'>
+		<circle cx='0' cy='0' r='3'/>
+		<circle cx='32' cy='0' r='3'/>
+		<circle cx='64' cy='0' r='3'/>
+		<circle cx='0' cy='32' r='3'/>
+		<circle cx='32' cy='32' r='3'/>
+		<circle cx='64' cy='32' r='3'/>
+		<circle cx='0' cy='64' r='3'/>
+		<circle cx='32' cy='64' r='3'/>
+		<circle cx='64' cy='64' r='3'/>
+	</g>
+	arrows
+	<defs>
+		<marker id='arrow' viewBox='-10 -10 20 20' markerWidth='20' markerHeight='20' markerUnits='userSpaceOnUse' orient='auto-start-reverse'>
+			<path d='M0,0 l-6,3 v-6 z' fill='black' stroke='black' stroke-width='2'/>
+		</marker>
+	</defs>
+	<g fill='none' stroke='black' stroke-width='2'>
+		<path marker-end='url(#arrow)' d='M17,16 l 0,32'/>
+		<path marker-end='url(#arrow)' d='M14,48 l 0,32'/>
+		<path marker-end='url(#arrow)' d='M18,80 l 28,-64'/>
+		<path marker-end='url(#arrow)' d='M49,16 l 0,32'/>
+		<path marker-end='url(#arrow)' d='M46,48 l 0,32'/>
+		<path marker-end='url(#arrow)' d='M50,80 l 28,-64'/>
+		<path marker-end='url(#arrow)' d='M81,16 l 0,32'/>
+		<path marker-end='url(#arrow)' d='M78,48 l 0,32'/>
+	</g>
+</svg>

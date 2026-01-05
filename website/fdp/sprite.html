@@ -141,7 +141,11 @@
 			(0,0) for the first sprite in the block (along with setting multi=0 on the previous sprite)<br>
 			(2,0) for the first sprite in each subsequent column<br>
 			(1,1) for the rest of the sprites<br>
-			Note that sprites are intended be tessellated in column-major order, because there is no way to position a sprite directly to the right of the previous one.
+			Note that sprites are intended be tessellated in column-major order, because there is no way to position a sprite directly to the right of the previous one.&nbsp;<br>
+			Typical 3x3 sprite block, showing the order of the sprites and their tesselation controls (as color):<br>
+			<img src=sprite-tess2.svg width=175 height=180 style=background:white><br>
+			Only the first sprite (red) has a positon set in ram.&nbsp;<br>
+			<todo>clean this up and also show the actual sprite ram values for the example</todo>
 	</dl>
 </figure>
 <figure class="f3-struct">
