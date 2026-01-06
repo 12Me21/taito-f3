@@ -62,7 +62,7 @@
 	Each entry consists of eight 16-bit values, representing one sprite (and/or a command that sets graphics parameters).&nbsp;
 	On each frame, the fdp iterates over the entries in the current bank (which can be changed by a command sprite).
 
-<p>Individual sprites can be tiled into larger blocks by using the Tessellation Controls. <todo></todo><br>
+<p>Individual sprites can be tiled into larger blocks by using the Block Controls. <todo></todo><br>
 	
 <p>There are two scroll values, which we call "global" and "subglobal".&nbsp;
 	These can be changed at any time, and you can choose which ones (global only, global+subglobal, or neither) to use for each sprite.
@@ -131,17 +131,17 @@
 		<dt>h<dd><dl compact><dt>1<dd>horizontal flip</dl>
 		<dt>v<dd><dl compact><dt>1<dd>vertical flip</dl>
 		<dt>p<dd>palette lock<dl><dt>1<dd>reuse palette from previous sprite<dt>0<dd>use new palette</dl>
-		<dt>M<dd>"multi" - <u>this bit affects the next sprite, not the current one</u><dl><dt>0<dd>read zoom value, and update block origin from given position<dt>1<dd>don't</dl>
-		<dt>y<dd>y tessellation control (where to place sprite)<dl><dt>0<dd>at block origin (if M was 0, this will be the given position)<dt>1<dd>bottom side of previous sprite</dl>
-		<dt>x<dd>x tessellation control (where to place sprite)<dl><dt>0<dd>at the given position<dt>1<dd>same as prev sprite<dt>2*,3<dd>right side of previous sprite</dl>*2 is the same as 3, but the first row is rendered at the wrong position (as if it was 0 <todo>i think</todo>) for some reason<br>
-			There are effectively 6 possible combinations of x and y tessellation controls, which position the sprite relative to the previous sprite and/or the given x position and y block origin:<br>
+		<dt>M<dd>"Multi" - <u>this bit affects the next sprite, not the current one</u><dl><dt>0<dd>read zoom value, and update block origin from given position<dt>1<dd>don't</dl>
+		<dt>y<dd>Y Block Control - where to place current sprite:<dl><dt>0<dd>at block origin (if Multi was 0, this will be the given position)<dt>1<dd>bottom side of previous sprite</dl>
+		<dt>x<dd>X Block Control - where to place current sprite:<dl><dt>0<dd>at the given position<dt>1<dd>same as previous sprite<dt>2<dd>same as 0 for the first row of the sprite, and 3 for the rest of it<dt>3<dd>right side of previous sprite</dl>
+			There are effectively 6 possible combinations of x and y block controls:<br>
 			<img src=sprite-tess.svg width=175 height=180 style=background:white><br>
-			Generally (in practice), sprite blocks are always rectangular, and only 3 combinations of x,y tessellation controls are used:<br>
+			Note that sprite blocks are intended be in column-major order, because there is no way to position a sprite directly to the right of the previous one.&nbsp;<br>
+			Generally, games only use rectangular sprite blocks, using 3 combinations of block controls:<br>
 			(0,0) for the first sprite in the block (along with setting multi=0 on the previous sprite)<br>
 			(3,0) for the first sprite in each subsequent column<br>
 			(1,1) for the rest of the sprites<br>
-			Note that sprites are intended be tessellated in column-major order, because there is no way to position a sprite directly to the right of the previous one.&nbsp;<br>
-			Typical 3x3 sprite block, showing the order of the sprites and their tesselation controls (as color):<br>
+			Typical 3x3 sprite block, showing the order of the sprites and their block controls (as color):<br>
 			<img src=sprite-tess2.svg width=175 height=180 style=background:white><br>
 			Only the first sprite (red) has a positon set in ram.&nbsp;<br>
 			<todo>clean this up and also show the actual sprite ram values for the example</todo>

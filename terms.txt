@@ -37,6 +37,8 @@ i think i have settled for now on:
 "sprite" - ambiguous?
 "sprite list" / "sprite ram" - the list in graphics ram which the sprites are rendered from
 "sprite [list] entry" - one item in the sprite list, consisting of 8 words todo: do we call these "words" or "fields"?. this can be a visible sprite and/or a command and/or setting the scroll position (but usually games only do one of these at a time)
+"sprite block" - a group of sprites positioned together using the block controls
+"block controls" / "tessellation controls" - controls the position of a sprite relative to the previous sprite and/or the y origin and x given position etc.
 
 "tile" - the thing that a tilemap/pivot layer is composed of, represented by 32/16 bits in graphics ram
 
@@ -113,5 +115,12 @@ when we say "texture position" or "screen position", this is an affine quantity,
 
 lets name the different registers:
 - line registers (set from line ram, per scanline)
-- sprite registers (set from sprite ram, per sprite)
+- sprite registers (set from sprite ram, per sprite) - NO
 - global registers / scroll registers ? (set via memory-mapped writes)
+
+"previous" (avoid "last")
+"current"
+"next"/"following"
+
+"first"
+"last"?
