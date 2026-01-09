@@ -7,12 +7,12 @@
 <h1>Sprites</h1>
 
 <p>The <abbr>fdp</abbr> renders up to ~900 sprites per frame to a single bitmap framebuffer.&nbsp;
-	Each sprite uses a 16×16 texture from <abbr>rom</abbr>, with up to 63 colors (plus transparent).
+	Each sprite uses a 16×16 texture from <abbr>rom</abbr>, with up to 64 colors each (including transparent).
 	
 <p>Sprites are split into four "groups", depending on the 2 uppermost bits of their palette.&nbsp;
 	Sprites in higher group numbers render in front of lower ones.&nbsp;
-	Within a group, later sprites render above earlier ones. <todo>i think?</todo>
-	Note: this is a separate priority system from the one used later. e.g. (give an example like, 2 sprites with a tilemap between them in priority, but with reversed draw order so the back one clips the upper one)
+	Within a group, later sprites render in front of earlier ones. <todo>i think?</todo>
+	Note: this is a separate priority system from the one used later. e.g. <todo>(give an example like, 2 sprites with a tilemap between them in priority, but with reversed draw order so the back one clips the upper one)</todo>
 	<todo>we have to explain sprite groups in the beginning part, because they matter during rendering (for drawing priority) and displaying (for per-group lineram settings), while in general most aspects of sprites do NOT apply to both</todo>
 	
 <h2>The Sprite Layer</h2>
@@ -59,10 +59,10 @@
 	
 <h2>Sprite Rendering</h2>
 <p>Sprites are rendered from Sprite Ram, which contains 4 banks of 1024 entries each.&nbsp;
-	Each entry consists of eight 16-bit values, representing one sprite (and/or a command that sets graphics parameters).&nbsp;
-	On each frame, the fdp iterates over the entries in the current bank (which can be changed by a command sprite).
+	Each entry consists of eight 16-bit values, and represents one sprite (and/or a command that sets graphics parameters, and/or set the scroll positions, and/or jump destination <todo></todo>).&nbsp;
+	On each frame the FDP iterates over the sprite entries, starting at index 0 of the current bank (but the current index and bank can be changed using commands and jumps).
 
-<p>Individual sprites can be tiled into larger blocks by using the Block Controls. <todo></todo><br>
+<p>Individual sprites can be tiled into larger blocks by using the Block Controls.
 	
 <p>There are two scroll values, which we call "global" and "subglobal".&nbsp;
 	These can be changed at any time, and you can choose which ones (global only, global+subglobal, or neither) to use for each sprite.
@@ -70,6 +70,18 @@
 <p>Note that sprite rendering itself is not affected by any lineram settings.
 	
 	<todo>explain command mode better. note the consequences of setting it on a visible sprite (field 5's value is used for 2 things at once)</todo>
+	
+<p>
+	The order of operations when positioning a sprite is:<br>
+	<ol>
+		<li>read the X and Y Positions from the entry in sprite ram
+		<li>set the specified scrolls from this position
+		<li>add the specified scrolls to this position
+		<li>if Multi was 0 on the previous sprite, set the Y Block Origin from the Y Position
+		<li>replace the X and Y Positions with different values, depending on the Block Controls
+		<li>render the sprite (storing the following values for use in positioning the next sprite: the x position of the left side and the right side, and the y position of the bottom side)
+	</ol>
+	<todo>change our styling so that instead of styling &lt;p> we style &lt;section> or something</todo>
 	
 <figure class="f3-struct">
 	<h1>Sprite Ram Entry</h1>
@@ -107,10 +119,10 @@
 	<f3-bits>i:2,s:2,x:12</f3-bits>
 	<dl class=bits>
 		<dt>x<dd>X Position (in screen pixels)<br>
-		<dt>s<dd>set scroll values from the given position: (happens before adding)
+		<dt>s<dd>Set Scrolls: which scroll values to write the given position to:
 			<dl><dt>0<dd>neither<dt>1<dd>subglobal<dt>2<dd>global<dt>3<dd>global and subglobal</dl>
-			<dt>i<dd>add scroll values to the position:
-				<dl><dt>0 or 2<dd>global and subglobal<dt>1<dd>global<dt>3<dd>neither</dl>
+		<dt>i<dd>Enable Scrolls: which scroll values to add to the position
+			<dl><dt>0 or 2<dd>global and subglobal<dt>1<dd>global<dt>3<dd>neither</dl>
 	</dl>
 </figure>
 <figure class="f3-struct">
@@ -131,9 +143,9 @@
 		<dt>h<dd><dl compact><dt>1<dd>horizontal flip</dl>
 		<dt>v<dd><dl compact><dt>1<dd>vertical flip</dl>
 		<dt>p<dd>palette lock<dl><dt>1<dd>reuse palette from previous sprite<dt>0<dd>use new palette</dl>
-		<dt>M<dd>"Multi" - <u>this bit affects the next sprite, not the current one</u><dl><dt>0<dd>read zoom value, and update block origin from given position<dt>1<dd>don't</dl>
-		<dt>y<dd>Y Block Control - where to place current sprite:<dl><dt>0<dd>at block origin (if Multi was 0, this will be the given position)<dt>1<dd>bottom side of previous sprite</dl>
-		<dt>x<dd>X Block Control - where to place current sprite:<dl><dt>0<dd>at the given position<dt>1<dd>same as previous sprite<dt>2<dd>same as 0 for the first row of the sprite, and 3 for the rest of it<dt>3<dd>right side of previous sprite</dl>
+		<dt>M<dd>"Multi" - <u>this bit affects the next sprite, not the current one</u><dl><dt>0<dd>read zoom value, and update y block origin from given position<dt>1<dd>don't</dl>
+		<dt>y<dd>Y Block Control - where to place current sprite (override y position):<dl><dt>0<dd>at y block origin (if Multi was 0, this will be the given position)<dt>1<dd>below previous sprite</dl>
+		<dt>x<dd>X Block Control - where to place current sprite (override x position):<dl><dt>0<dd>at the given position<dt>1<dd>same as previous sprite<dt>2<dd>same as 3, except first row renders at given position<dt>3<dd>right of previous sprite</dl>
 			There are effectively 6 possible combinations of x and y block controls:<br>
 			<img src=sprite-tess.svg width=175 height=180 style=background:white><br>
 			Note that sprite blocks are intended be in column-major order, because there is no way to position a sprite directly to the right of the previous one.&nbsp;<br>

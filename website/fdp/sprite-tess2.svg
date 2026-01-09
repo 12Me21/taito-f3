@@ -30,7 +30,7 @@
 	</g>
 	<g stroke-width='2' stroke='black' fill='none'>
 		gridlines
-		<g stroke='#ccc'>
+		<g stroke='#bbb'>
 			<path d='M0,-12 V0 v32 v32 v32 v12'/>
 			<path d='M32,-12 V0 v32 v32 v32 v12'/>
 			<path d='M64,-12 V0 v32 v32 v32 v12'/>

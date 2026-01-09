@@ -124,3 +124,9 @@ lets name the different registers:
 
 "first"
 "last"?
+
+when discussing storing a value in a register/variable
+we will say
+"write <the value> to <the destination>" (NOT "set the destination to the value")
+this mirrors e.g.
+"add <the value> to <the destination>"
