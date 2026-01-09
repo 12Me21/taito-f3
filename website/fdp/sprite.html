@@ -105,16 +105,17 @@
 		<dt>texture<dd>Texture Id (lower bits)
 	</dl>
 </figure>
+z/128 = 15/16
 <figure class="f3-struct">
 	<h1>Sprite Field 1</h1>
 	<h2>Data</h2>
 	<f3-bits>yzoom:8,xzoom:8</f3-bits>
 	<dl class=bits>
-		<dt>xzoom<dd>X Zoom<br>
-			<div class=mathbox>X Zoom (in screen pixels per texture pixel) = 1 &minus; xzoom / 128</div><br>
-			Example scale factors: (in screen pixels per texture pixel)<br>
-			<dl><dt>$00<dd>1×<dt>$40<dd>0.75×<dt>$80<dd>0.5×<dt>$C0<dd>0.25×<dt>$FF<dd>0.004×</dl>
-			<dt>yzoom<dd>Y Zoom (same format as X)
+		<dt>xzoom<dd>X Zoom<br><div class=mathbox>X Zoom (in screen pixels per texture pixel) = 1 &minus; xzoom/256</div><br>
+			Example sizes:<br>
+			<dl><dt>$00<dd>16px<dt>$40<dd>12px<dt>$80<dd>8px<dt>$C0<dd>4px<dt>$FF<dd>0.0625px</dl>
+		<dt>yzoom<dd>Y Zoom (same format as X)<br>
+			<todo>iirc, one axis is positioned with subpixel precision while the other isn't. they're also downscaled differently (even though the actual zoom values are the same) check which is which</todo>
 	</dl>
 </figure>
 <figure class="f3-struct">
@@ -123,7 +124,7 @@
 	<f3-bits>i:2,s:2,x:12</f3-bits>
 	<dl class=bits>
 		<dt>x<dd>X Position (in screen pixels)<br>
-		<dt>s<dd>Set Scrolls: which scroll values to write the given position to
+		<dt>s<dd>Set Scrolls: which scroll values to write the position to
 			<dl><dt>0<dd>(none)<dt>1<dd>subglobal<dt>2<dd>global<dt>3<dd>global and subglobal</dl>
 		<dt>i<dd>Enable Scrolls: which scroll values to add to the position
 			<dl><dt>0<dd>global and subglobal<dt>1<dd>global<dt>2<dd>global and subglobal (yes, really)<dt>3<dd>(none)</dl>
@@ -135,7 +136,7 @@
 	<f3-bits>c,?:3,y:12</f3-bits>
 	<dl class=bits>
 		<dt>y<dd>Y Position (same format as X)<br>
-		<dt>c<dd><dl><dt>0<dd>normal<dt>1<dd>command mode (see field 5)</dl>
+		<dt>c<dd>"Command":<dl><dt>0<dd>normal<dt>1<dd>write the contents of field 5 to the Sprite Settings register</dl>
 	</dl>
 </figure>
 <figure class="f3-struct">
@@ -143,14 +144,15 @@
 	<h2>Data</h2>
 	<f3-bits>x:2,?,y,M,p,v,h,pal:8</f3-bits>
 	<dl class=bits>
-		<dt>pal<dd>Palette Id (0-255)<br>
+		<dt>pal<dd>Palette Id (256-511) = 256 + pal<br>
 		<dt>h<dd><dl compact><dt>1<dd>horizontal flip</dl>
 		<dt>v<dd><dl compact><dt>1<dd>vertical flip</dl>
 		<dt>p<dd>palette lock<dl><dt>1<dd>reuse palette from previous sprite<dt>0<dd>use new palette</dl>
-		<dt>M<dd>"Multi" - <u>this bit affects the next sprite, not the current one</u><dl><dt>0<dd>read zoom value, and update y block origin from given position<dt>1<dd>don't</dl>
-		<dt>y<dd>Y Block Control - where to place current sprite (override y position):<dl><dt>0<dd>at y block origin (if Multi was 0, this will be the given position)<dt>1<dd>below previous sprite</dl>
-		<dt>x<dd>X Block Control - where to place current sprite (override x position):<dl><dt>0<dd>at the given position<dt>1<dd>same as previous sprite<dt>2<dd>same as 3, except first row renders at given position<dt>3<dd>right of previous sprite</dl>
+		<dt>M<dd>"Multi" - <u>this bit affects the next sprite, not the current one</u><dl><dt>0<dd>write the current position to the Y Block Origin, and read the zoom values<dt>1<dd>don't</dl>
+		<dt>y<dd>Y Block Control - set y position to:<dl><dt>0<dd>Y Block Origin (note: if Multi was 0, this will be the current position)<dt>1<dd>below previous sprite</dl>
+		<dt>x<dd>X Block Control - set x position to:<dl><dt>0<dd>current position<dt>1<dd>same as previous sprite<dt>2<dd>right of previous sprite, except first row renders at current position<dt>3<dd>right of previous sprite</dl>
 			There are effectively 6 possible combinations of x and y block controls:<br>
+			(note: in this chart, the left side is the given x position, and the top side is the y block origin)
 			<img src=sprite-tess.svg width=175 height=180 style=background:white><br>
 			Note that sprite blocks are intended be in column-major order, because there is no way to position a sprite directly to the right of the previous one.&nbsp;<br>
 			Generally, games only use rectangular sprite blocks, using 3 combinations of block controls:<br>
@@ -171,20 +173,7 @@
 		<dt>tex2<dd>Texture Id (upper bits) - this might be more than 2 bits
 		<dt>fmt<dd>bitmap format? - <todo>affects the order of pixels loaded from rom?</todo>
 	</dl>
-	<h2>Data (additional effects in command mode, sets persistent settings)</h2>
-	note: in command mode, some bits in this field are used for two things at once (i.e. command mode should not be set on visible sprites)
-	<todo>explain command mode better. basically it's just  we take field 5 which is already being used for other things, and interpret its bits again for another purpose. basically the command flag is  "copy the contents of field 5 into the sprite settings register"  ahh thats a good way to explain it. then we can have a separate figure for that 'register'!</todo>
-	<f3-bits>?,?,k,j,?,b<sub>0</sub>,g,f,?,a:3,?,?,t,b<sub>1</sub></f3-bits>
-	<dl class=bits>
-		<dt>b<sub>1</sub><dd>spriteram bank number (upper bit)
-		<dt>t<dd><todo>supposedly disables clearing framebuffer but seems to be something else</todo>
-		<dt>a<dd><todo>affects visiblity of sprites or something</todo>
-		<dt>f<dd><todo>sets palettes to 0(?), and then adds some garbage pixels around the sprites which do a palette offset? not sure where these come from, they seem consistent?</todo>
-		<dt>g<dd><todo>similar to f but different</todo>
-		<dt>b<sub>0</sub><dd>spriteram bank number (lower bit)
-		<dt>j<dd><todo>changes video signal (causes us to lose sync, but definitely still outputting a picture)</todo>
-		<dt>k<dd>1 = flipscreen
-	</dl>
+	note: this value of this field is reused to set the sprite settings register.
 </figure>
 <figure class="f3-struct">
 	<h1>Sprite Field 6</h1>
@@ -198,4 +187,21 @@
 <figure class="f3-struct">
 	<h1>Sprite Field 7</h1>
 	(unused?)
+</figure>
+
+<figure class="f3-struct">
+	<h1>Sprite Settings</h1>
+	(set by a "Command" sprite)
+	<h2>Data</h2>
+	<f3-bits>?,?,k,j,?,b<sub>0</sub>,g,f,?,a:3,?,?,t,b<sub>1</sub></f3-bits>
+	<dl class=bits>
+		<dt>b<sub>1</sub><dd>spriteram bank number (upper bit)
+		<dt>t<dd><todo>supposedly disables clearing framebuffer but seems to be something else</todo>
+		<dt>a<dd><todo>affects visiblity of sprites or something</todo>
+		<dt>f<dd><todo>sets palettes to 0(?), and then adds some garbage pixels around the sprites which do a palette offset? not sure where these come from, they seem consistent?</todo>
+		<dt>g<dd><todo>similar to f but different</todo>
+		<dt>b<sub>0</sub><dd>spriteram bank number (lower bit)
+		<dt>j<dd><todo>changes video signal (causes us to lose sync, but definitely still outputting a picture)</todo>
+		<dt>k<dd>1 = flipscreen
+	</dl>
 </figure>

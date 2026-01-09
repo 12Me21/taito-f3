@@ -39,6 +39,8 @@ i think i have settled for now on:
 "sprite [list] entry" - one item in the sprite list, consisting of 8 words todo: do we call these "words" or "fields"?. this can be a visible sprite and/or a command and/or setting the scroll position (but usually games only do one of these at a time)
 "sprite block" - a group of sprites positioned together using the block controls
 "block controls" / "tessellation controls" - controls the position of a sprite relative to the previous sprite and/or the y origin and x given position etc.
+"[y] block origin" - the origin of the current sprite block. technically this only has a y component, but abstractly it is easier to think of it as a point.
+"given position" / "regular position" / "current position" - this is just an abstraction, but basically  during the sprite positioning pipeline, it's the current calculated position of the sprite. starting at the value specified in sprite ram, and then modified by the scrolls and block controls. todo: refine this.
 
 "tile" - the thing that a tilemap/pivot layer is composed of, represented by 32/16 bits in graphics ram
 
