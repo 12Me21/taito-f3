@@ -61,7 +61,8 @@ note: taito calls sprites "object"/"OBJ" and tilemaps "screen"/"SCR". i've elect
 
 "palette adjust" ="palette add" - lineram feature where a value is added to the palette id
 
-"zoom" ="scale" - stretching applied to a tilemap or sprite. for some reason we use "scale" for tilemap and "zoom" for sprites.
+"zoom" - resizing applied to a tilemap or sprite. be careful, because the units can vary (this is necessary for the math to work out; sometimes we keep a value as an inverse scale because it can go to "infinity" (0))
+"scale" - only use this to refer to an intuitive mathematical scale factor. i.e. units of screen pixels per texture pixel. e.g. scale = 2 means an object appears twice as large on screen as its native size.
 
 "x"/"horizontal" - todo: decide when/if to use each of these
 "y"/"vertical" - same
