@@ -72,16 +72,20 @@
 	<todo>explain command mode better. note the consequences of setting it on a visible sprite (field 5's value is used for 2 things at once)</todo>
 	
 <p>
-	The order of operations when positioning a sprite is:<br>
-	<ol>
-		<li>read the X and Y Positions from the entry in sprite ram
-		<li>set the specified scrolls from this position
-		<li>add the specified scrolls to this position
-		<li>if Multi was 0 on the previous sprite, set the Y Block Origin from the Y Position
-		<li>replace the X and Y Positions with different values, depending on the Block Controls
-		<li>render the sprite (storing the following values for use in positioning the next sprite: the x position of the left side and the right side, and the y position of the bottom side)
-	</ol>
-	<todo>change our styling so that instead of styling &lt;p> we style &lt;section> or something</todo>
+	The order of operations when processing a sprite entry is:<br>
+<ol>
+	<li>read position from sprite ram
+	<li>process Set Scrolls (modifying scrolls)
+	<li>process Enable Scrolls (adding scrolls to position)
+	<li>process Multi (setting block origin, reading zoom)
+	<li>process X Block Control and Y Block Control (overriding x and/or y position)
+	<li>(read the palette, texture id, flip etc.)
+	<li>render the sprite
+	<li>save the positions of the left/right/bottom edges of the sprite
+	<li>process Jump (choosing the next sprite index)
+	<li>process commands ? (setting the bank, etc.) <todo>does this take effect at the very end, or sometime during the current sprite entry?</todo>
+</ol>
+<todo>change our styling so that instead of styling &lt;p> we style &lt;section> or something</todo>
 	
 <figure class="f3-struct">
 	<h1>Sprite Ram Entry</h1>
@@ -119,16 +123,16 @@
 	<f3-bits>i:2,s:2,x:12</f3-bits>
 	<dl class=bits>
 		<dt>x<dd>X Position (in screen pixels)<br>
-		<dt>s<dd>Set Scrolls: which scroll values to write the given position to:
-			<dl><dt>0<dd>neither<dt>1<dd>subglobal<dt>2<dd>global<dt>3<dd>global and subglobal</dl>
+		<dt>s<dd>Set Scrolls: which scroll values to write the given position to
+			<dl><dt>0<dd>(none)<dt>1<dd>subglobal<dt>2<dd>global<dt>3<dd>global and subglobal</dl>
 		<dt>i<dd>Enable Scrolls: which scroll values to add to the position
-			<dl><dt>0 or 2<dd>global and subglobal<dt>1<dd>global<dt>3<dd>neither</dl>
+			<dl><dt>0<dd>global and subglobal<dt>1<dd>global<dt>2<dd>global and subglobal (yes, really)<dt>3<dd>(none)</dl>
 	</dl>
 </figure>
 <figure class="f3-struct">
 	<h1>Sprite Field 3</h1>
 	<h2>Data</h2>
-	<f3-bits>c,.:3,y:12</f3-bits>
+	<f3-bits>c,?:3,y:12</f3-bits>
 	<dl class=bits>
 		<dt>y<dd>Y Position (same format as X)<br>
 		<dt>c<dd><dl><dt>0<dd>normal<dt>1<dd>command mode (see field 5)</dl>
@@ -161,13 +165,15 @@
 </figure>
 <figure class="f3-struct">
 	<h1>Sprite Field 5</h1>
-	<h2>Data (always, affects current sprite)</h2>
+	<h2>Data</h2>
 	<f3-bits>.:8,fmt:4,?,?,tex2:2</f3-bits>
 	<dl class=bits>
 		<dt>tex2<dd>Texture Id (upper bits) - this might be more than 2 bits
 		<dt>fmt<dd>bitmap format? - <todo>affects the order of pixels loaded from rom?</todo>
 	</dl>
 	<h2>Data (additional effects in command mode, sets persistent settings)</h2>
+	note: in command mode, some bits in this field are used for two things at once (i.e. command mode should not be set on visible sprites)
+	<todo>explain command mode better. basically it's just  we take field 5 which is already being used for other things, and interpret its bits again for another purpose. basically the command flag is  "copy the contents of field 5 into the sprite settings register"  ahh thats a good way to explain it. then we can have a separate figure for that 'register'!</todo>
 	<f3-bits>?,?,k,j,?,b<sub>0</sub>,g,f,?,a:3,?,?,t,b<sub>1</sub></f3-bits>
 	<dl class=bits>
 		<dt>b<sub>1</sub><dd>spriteram bank number (upper bit)
@@ -185,8 +191,8 @@
 	<h2>Data</h2>
 	<f3-bits>j,.:5,dest:10</f3-bits>
 	<dl class=bits>
-		<dt>dest<dd>jump destination (next sprite index to process)
-		<dt>j<dd><dl><dt>1<dd>jump<dt>0<dd>increment index normally</dl>
+		<dt>dest<dd>jump destination
+		<dt>j<dd>Jump: determines next sprite index:<dl><dt>1<dd>jump to dest<dt>0<dd>current index + 1</dl>
 	</dl>
 </figure>
 <figure class="f3-struct">
