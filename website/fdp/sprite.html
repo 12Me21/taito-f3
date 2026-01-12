@@ -6,7 +6,7 @@
 
 <h1>Sprites</h1>
 
-<p>The <abbr>fdp</abbr> renders up to ~900 sprites per frame to a single bitmap framebuffer.&nbsp;
+<p>The <abbr>fdp</abbr> renders around 880 sprites per frame to a pair of bitmap framebuffers.&nbsp;
 	Each sprite uses a 16×16 texture from <abbr>rom</abbr>, with up to 64 colors each (including transparent).
 	
 <p>Sprites are split into four "groups", depending on the 2 uppermost bits of their palette.&nbsp;
@@ -55,12 +55,13 @@
 	<dl class=bits>
 		<dt>prio<sub>N</sub><dd>Sprite Layer, Group <var>N</var>: Priority (0-15)
 	</dl>
-</figure>
+</figure>≈
 	
 <h2>Sprite Rendering</h2>
 <p>Sprites are rendered from Sprite Ram, which contains 4 banks of 1024 entries each.&nbsp;
 	Each entry consists of eight 16-bit values, and represents one sprite (and/or a command that sets graphics parameters, and/or set the scroll positions, and/or jump destination <todo></todo>).&nbsp;
-	On each frame the FDP iterates over the sprite entries, starting at index 0 of the current bank (but the current index and bank can be changed using commands and jumps).
+	On each frame the FDP iterates over the sprite entries, starting at index 0 of the current bank (but the current index and bank can be changed using commands and jumps).&nbsp;Each entry takes 128 pixel clock cycles to process (thus, we can theoretically render 432×262/128 ≈ 884 sprites per frame.&nbsp; Though in reality the last few are rendered incorrectly).&nbsp; It is assumed that sprites are double-buffered (i.e. the sprites we see were rendered on the previous frame).<todo>too long</todo>
+	most games use banks 0 and 2 as a double buffer (note: unrelated to the framebuffer) i'm not sure whether there is a reason for this or not.
 
 <p>Individual sprites can be tiled into larger blocks by using the Block Controls.
 	
@@ -105,7 +106,7 @@
 		<dt>texture<dd>Texture Id (lower bits)
 	</dl>
 </figure>
-z/128 = 15/16
+
 <figure class="f3-struct">
 	<h1>Sprite Field 1</h1>
 	<h2>Data</h2>
@@ -195,13 +196,13 @@ z/128 = 15/16
 	<h2>Data</h2>
 	<f3-bits>?,?,k,j,?,b<sub>0</sub>,g,f,?,a:3,?,?,t,b<sub>1</sub></f3-bits>
 	<dl class=bits>
-		<dt>b<sub>1</sub><dd>spriteram bank number (upper bit)
+		<dt>b<sub>1</sub><dd>spriteram bank number (upper bit) <todo>it seems like the sprite bank might switch automatically if we never manually set it. like, if i zero out the entire sprite list while in bank 0, it seems to end up in bank 1 sometimes? need more testing.</todo>
 		<dt>t<dd><todo>supposedly disables clearing framebuffer but seems to be something else</todo>
 		<dt>a<dd><todo>affects visiblity of sprites or something</todo>
 		<dt>f<dd><todo>sets palettes to 0(?), and then adds some garbage pixels around the sprites which do a palette offset? not sure where these come from, they seem consistent?</todo>
 		<dt>g<dd><todo>similar to f but different</todo>
 		<dt>b<sub>0</sub><dd>spriteram bank number (lower bit)
-		<dt>j<dd><todo>changes video signal (causes us to lose sync, but definitely still outputting a picture)</todo>
+		<dt>j<dd><todo>if this is 1, the lowest bit of the texture id of all pivot layer tiles is treated as inverted (e.g. 44->45, 45->44), and also it slightly changes the video signal timings, so i can't get a good recording with my setup. seems like this must be set near the start of the frame (sprite index ≤ 16) to take any effect. (and in that case you will see </todo>
 		<dt>k<dd>1 = flipscreen
 	</dl>
 </figure>
