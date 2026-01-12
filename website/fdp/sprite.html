@@ -196,12 +196,12 @@
 	<h2>Data</h2>
 	<f3-bits>?,?,k,j,?,b<sub>0</sub>,g,f,?,a:3,?,?,t,b<sub>1</sub></f3-bits>
 	<dl class=bits>
-		<dt>b<sub>1</sub><dd>spriteram bank number (upper bit) <todo>it seems like the sprite bank might switch automatically if we never manually set it. like, if i zero out the entire sprite list while in bank 0, it seems to end up in bank 1 sometimes? need more testing.</todo>
+		<dt>b<sub>1</sub><dd>spriteram bank number (upper bit)
 		<dt>t<dd><todo>supposedly disables clearing framebuffer but seems to be something else</todo>
 		<dt>a<dd><todo>affects visiblity of sprites or something</todo>
 		<dt>f<dd><todo>sets palettes to 0(?), and then adds some garbage pixels around the sprites which do a palette offset? not sure where these come from, they seem consistent?</todo>
 		<dt>g<dd><todo>similar to f but different</todo>
-		<dt>b<sub>0</sub><dd>spriteram bank number (lower bit)
+		<dt>b<sub>0</sub><dd>spriteram bank number (lower bit) when switching from bank 0 (or 2) to 1 (or 3), the effect is delayed until the next frame. in the other direction, the effect is immediate. also, we always switch back to bank 0 or 2 if we started the frame in bank 1 or 3.<todo>this is weird.</todo> i.e. we can't be in an odd bank for 2 frames in a row.
 		<dt>j<dd><todo>if this is 1, the lowest bit of the texture id of all pivot layer tiles is treated as inverted (e.g. 44->45, 45->44), and also it slightly changes the video signal timings, so i can't get a good recording with my setup. seems like this must be set near the start of the frame (sprite index ≤ 16) to take any effect. (and in that case you will see </todo>
 		<dt>k<dd>1 = flipscreen
 	</dl>
