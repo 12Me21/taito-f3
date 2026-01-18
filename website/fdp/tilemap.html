@@ -99,7 +99,7 @@
 		<dt>x<dd>tile x index (0-31 or 0-63)
 	</dl>
 	<h2>Data</h2>
-	<f3-bits>h,v,tex2:2,bpp:2,as,palette:9,texture:16</f3-bits>
+	<f3-bits>v,h,tex2:2,bpp:2,as,palette:9,texture:16</f3-bits>
 	<dl class=bits>
 		<dt>texture<dd>Texture Id (lower 16 bits)<br>
 			<div class=mathbox>Texture Id = texture | tex2<<16</div><br>
@@ -113,8 +113,8 @@
   				<dt>3<dd>6bpp (64-color)
 			</dl>
 		<dt>tex2<dd>Texture Id (upper 2 bits)
-		<dt>v<dd><dl compact><dt>1<dd>vertical flip</dl>
 		<dt>h<dd><dl compact><dt>1<dd>horizontal flip</dl>
+		<dt>v<dd><dl compact><dt>1<dd>vertical flip</dl>
 	</dl>
 </figure>
 
