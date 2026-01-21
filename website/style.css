@@ -32,14 +32,16 @@ bit-field {
 
 body {
 	margin-bottom: 100px;
-	image-rendering: crisp-edges;
-	background-image: url("./tile32.png");
-	background-size: 116px;
-	background-size: calc(116px * var(--RX,1) / var(--X,1));
 	font-family: /*georgia,*/ serif;
 	font-family: mspm, serif;
 	/*font-variant-numeric: oldstyle-nums;*/
 	/*text-shadow: white 1px 0px, white -1px 0px, white 0px -1px, white 0px 1px; i wish*/
+}
+:root {
+	image-rendering: crisp-edges;
+	background-image: url("./tile32.png");
+	background-size: 116px;
+	background-size: calc(116px * var(--RX,1) / var(--X,1));
 }
 p, dl {
 	//background: #DEE1DEAA;

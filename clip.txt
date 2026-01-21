@@ -1,0 +1,155 @@
+clip examples like
+
+
+(# = included)
+|.....+###-......| normal interval
+|##-....+########| complement interval
+|..... -#####+...| normal interval
+|1110012333222111| running total (starting value = the number of complement intervals
+|###..###########| union
+
+so we start with depth=1 (because we have 1 complement interval)
+then we collect all the points:
+
+and sort them:
+x=2, dir=-1
+x=5, dir=+1
+x=7, dir=+1
+x=9, dir=-1
+then iterate over them:
+
+start = 0
+ranges = []
+depth = 1
+for p in points:
+  if depth>0:
+    if depth+p.dir<=0:
+      ranges += [start, p.x]
+  else:
+    if 
+  depth += p.dir
+
+
+|..+#########-...| normal interval
+|......-##+......| invalid(?) interval (start > end) 
+|0011000001110000| totals
+|..####...###....| union
+
+hm thats probably wrong. let's use a bitmask
+
+x=5, dir=+1, id=0
+x=9, dir=-1, id=0
+x=2, dir=-1, id=1
+x=7, dir=+1, id=1
+x=6, dir=+1, id=2
+x=12, dir=-1, id=2
+
+mask = 0
+points = []
+for c in clips:
+  bit = 1 << c.id
+  dir = 1
+  if c.mode==0:
+    if c.left > 0:
+      points += [{x:c.left, dir:-1, bit:bit}]
+      mask |= bit
+    if c.right < 320:
+      points += [{x:c.right, dir:1, bit:bit}]
+  else:
+    if c.left > 0:
+      points += [{x:c.left, dir:1, bit:bit}]
+    else:
+      mask |= bit
+    if c.right < 320:
+      points += [{x:c.right, dir:-1, bit:bit}]
+
+# (sort points by .x)
+
+ranges = []
+start = 0
+for p in points:
+  old = mask
+  if p.dir == +1: mask |= 1<<p.id # set bit
+  if p.dir == -1: mask &= ~(1<<p.id) # unset bit
+  if old!=0 && mask==0: # end of range
+    ranges += [[start, p.x]]
+  if old==0 && mask!=0: # beginning of range
+    start = p.x
+
+if mask!=0: # close the final range
+  ranges += [start, 320]  
+  
+
+
+# once per scanline:
+
+basemask = 0
+points = []
+for c in clips:
+  bit = 1 << c.id
+  if c.left < 0 && c.right > 0:
+    basemask |= bit
+  if c.left > 0 && c.left < 320:
+    points += [{x:c.left, bit:bit}]
+  if c.right > 0 && c.right < 320:
+    points += [{x:c.right, bit:bit}]
+
+# <sort points by .x>
+
+# then for each layer:
+
+mask = (basemask ^ layer.clip_invert_mask) & layer.clip_enable_mask
+
+ranges = []
+start = 0
+for p in points:
+  old = mask
+  bit = p.bit & layer.clip_enable_mask
+  mask ^= bit
+  if old!=0 && mask==0: # end of range
+    ranges += [[start, p.x]]
+  if old==0 && mask!=0: # beginning of range
+    start = p.x
+
+if mask!=0: # close the final range
+  ranges += [start, 320]
+
+clip windows definitions:
+|####).......| clip window 0
+|..[######)..| clip window 1
+|......[##)..| clip window 2
+
+basemask = 0b001 (which windows cross the origin)
+points = [
+  {x:2, bit:0b010},
+  {x:4, bit:0b001},
+  {x:6, bit:0b100},
+  {x:9, bit:0b010},
+  {x:9, bit:0b100},
+]
+
+example layer:
+|####).......| clip window 0 (enabled)
+|##)......[##| clip window 1 (enabled, inverted)
+|......[##)..| clip window 2 (enabled)
+expected output:
+|####).[#####|
+clip_invert_mask = 0b010
+clip_enable_mask = 0b111 (all)
+mask = 0b011
+start = 0
+iterate over points:
+- {x:2, bit:0b010}
+ - mask 0b011 -> 0b001: nothing
+- {x:4, bit:0b001}
+ - mask 0b001 -> 0b000: ranges += [[0, 4]]
+- {x:6, bit:0b100}
+ - mask 0b000 -> 0b100: start = 6
+- {x:9, bit:0b010}
+ - mask 0b100 -> 0b110: nothing
+- {x:9, bit:0b100}
+ - mask 0b110 -> 0b010: nothing
+- (final step)
+ - mask 0b010: ranges += [[6, END]]
+resulting ranges:
+|####).[#####| (correct)

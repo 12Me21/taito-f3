@@ -36,7 +36,7 @@ defer(e=>{
 				
 				offs += len
 			}
-			e.outerHTML =`<table class=bits><tr>${th.reverse().join("")}<tr>${td.reverse().join("")}</table>`
+			e.outerHTML =`<table class="${e.className} bits"><tr>${th.reverse().join("")}<tr>${td.reverse().join("")}</table>`
 		} else {
 			let n = e.textContent.replace(/ /g,"")
 			e.outerHTML = `<table class=bits><tr style="counter-reset:bnum ${n.length}">${"<th>".repeat(n.length)}<tr>${n.replace(/[01]|([^01])( ?\1)*/g, (m)=>`<td${m[0]<="1"?" class=x":""} colspan=${m.length}>${m[0]}`)}</table>`

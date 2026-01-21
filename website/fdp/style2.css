@@ -26,6 +26,11 @@ dl.bits > dt, table.bits td {
 	color: blue;
 	text-shadow: 1px 0 white;
 }
+dl.bits.address > dt, table.bits.address td {
+	font-family: mspm, times new roman;
+	color: #080;
+	text-shadow: 1px 0 white;
+}
 .f3-struct {
 	max-width: 7in;
 	display: flex;

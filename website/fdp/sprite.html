@@ -93,27 +93,20 @@
 <todo>change our styling so that instead of styling &lt;p> we style &lt;section> or something</todo>
 	
 <figure class="f3-struct">
-	<h1>Sprite Ram Entry</h1>
+	<h1>Sprite Entry</h1>
 	<h2>Address</h2>
-	<f3-bits>&ctdot;,0,0,0,bank:2,index:10,w:3,-</f3-bits>
-	<dl class=bits>
+	<f3-bits class=address>&ctdot;,0,0,0,bank:2,index:10,w:3,-</f3-bits>
+	<dl class='bits address'>
 		<dt>bank<dd>bank number (set by command)
 		<dt>index<dd>sprite index
 		<dt>w<dd>field number
 	</dl>
-</figure>
-<figure class="f3-struct">
-	<h1>Sprite Field 0</h1>
-	<h2>Data</h2>
+	<h2>Data Field 0</h2>
 	<f3-bits>texture:16</f3-bits>
 	<dl class=bits>
 		<dt>texture<dd>Texture Id (lower bits)
 	</dl>
-</figure>
-
-<figure class="f3-struct">
-	<h1>Sprite Field 1</h1>
-	<h2>Data</h2>
+	<h2>Data Field 1</h2>
 	<f3-bits>yzoom:8,xzoom:8</f3-bits>
 	<dl class=bits>
 		<dt>xzoom<dd>X Zoom<br><div class=mathbox>X Zoom (in screen pixels per texture pixel) = 1 &minus; xzoom/256</div><br>
@@ -122,10 +115,7 @@
 		<dt>yzoom<dd>Y Zoom (same format as X)<br>
 			<todo>iirc, one axis is positioned with subpixel precision while the other isn't. they're also downscaled differently (even though the actual zoom values are the same) check which is which</todo>
 	</dl>
-</figure>
-<figure class="f3-struct">
-	<h1>Sprite Field 2</h1>
-	<h2>Data</h2>
+	<h2>Data Field 2</h2>
 	<f3-bits>i:2,s:2,x:12</f3-bits>
 	<dl class=bits>
 		<dt>x<dd>X Position (in screen pixels)<br>
@@ -134,19 +124,13 @@
 		<dt>i<dd>Enable Scrolls: which scroll values to add to the position
 			<dl><dt>0<dd>global and subglobal<dt>1<dd>global<dt>2<dd>global and subglobal (yes, really)<dt>3<dd>(none)</dl>
 	</dl>
-</figure>
-<figure class="f3-struct">
-	<h1>Sprite Field 3</h1>
-	<h2>Data</h2>
+	<h2>Data Field 3</h2>
 	<f3-bits>c,?:3,y:12</f3-bits>
 	<dl class=bits>
 		<dt>y<dd>Y Position (same format as X)<br>
 		<dt>c<dd>"Command":<dl><dt>0<dd>normal<dt>1<dd>write the contents of field 5 to the Sprite Settings register</dl>
 	</dl>
-</figure>
-<figure class="f3-struct">
-	<h1>Sprite Field 4</h1>
-	<h2>Data</h2>
+	<h2>Data Field 4</h2>
 	<f3-bits>x:2,?,y,M,p,v,h,pal:8</f3-bits>
 	<dl class=bits>
 		<dt>pal<dd>Palette Id (256-511) = 256 + pal<br>
@@ -169,33 +153,26 @@
 			Only the first sprite (red) has a positon set in ram.&nbsp;<br>
 			<todo>clean this up and also show the actual sprite ram values for the example</todo>
 	</dl>
-</figure>
-<figure class="f3-struct">
-	<h1>Sprite Field 5</h1>
-	<h2>Data</h2>
+	<h2>Data Field 5</h2>
 	<f3-bits>.:8,fmt:4,?,?,tex2:2</f3-bits>
 	<dl class=bits>
 		<dt>tex2<dd>Texture Id (upper bits) - this might be more than 2 bits
 		<dt>fmt<dd>bitmap format? - <todo>affects the order of pixels loaded from rom?</todo>
 	</dl>
 	note: this value of this field is reused to set the sprite settings register.
-</figure>
-<figure class="f3-struct">
-	<h1>Sprite Field 6</h1>
-	<h2>Data</h2>
+	<!--<h1>Sprite Field <b style="text-transform: full-width; border: 2px solid; padding: 0px 5px;">6</b></h1> <todo></todo>-->
+	<h2>Data Field 6</h2>
 	<f3-bits>j,.:5,dest:10</f3-bits>
 	<dl class=bits>
 		<dt>dest<dd>jump destination
 		<dt>j<dd>Jump: determines next sprite index:<dl><dt>1<dd>jump to dest<dt>0<dd>current index + 1</dl>
 	</dl>
-</figure>
-<figure class="f3-struct">
-	<h1>Sprite Field 7</h1>
+	<h2>Data Field 7</h2>
 	(unused?)
 </figure>
 
 <figure class="f3-struct">
-	<h1>Sprite Settings</h1>
+	<h1>Sprite Settings Register</h1>
 	(set by a "Command" sprite)
 	<h2>Data</h2>
 	<f3-bits>?,?,k,j,?,b<sub>0</sub>,bpp:2,?,a:3,?,?,t,b<sub>1</sub></f3-bits>
