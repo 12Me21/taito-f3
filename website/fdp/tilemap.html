@@ -164,7 +164,7 @@
 </figure>
 
 <figure class=f3-struct>
-	<h1>Lineram Registers 0.<var>N</var> "4400" "4600"</h1>
+	<h1>Line Registers 0.<var>N</var> "4400" "4600"</h1>
 	<div>Note: supported on tilemaps 2 and 3 only.<todo>typeset this better</todo></div>
 	<h2>Data</h2>
 	<f3-bits>#:6,alt,yscroll:9</f3-bits>
@@ -176,7 +176,7 @@
 </figure>
 
 <figure class=f3-struct>
-	<h1>Lineram Register 2.0 "6000"</h1>
+	<h1>Line Register 2.0 "6000"</h1>
 	<h2>Data</h2>
 	<f3-bits>#:4,y,#:11</f3-bits>
 	<dl class=bits>
@@ -186,7 +186,7 @@
 </figure>
 
 <figure class=f3-struct>
-	<h1>Lineram Register 2.2 "6400"</h1>
+	<h1>Line Register 2.2 "6400"</h1>
 	<h2>Data</h2>
 	<f3-bits>#:12,p<sub>3</sub>,p<sub>2</sub>,p<sub>1</sub>,p<sub>0</sub></f3-bits>
 	<dl class=bits>
@@ -195,7 +195,7 @@
 </figure>
 
 <figure class=f3-struct>
-	<h1>Lineram Registers 4.<var>N</var> "8000" "8200" "8400" "8600"</h1>
+	<h1>Line Registers 4.<var>N</var> "8000" "8200" "8400" "8600"</h1>
 	<h2>Data</h2>
 	<f3-bits>xzoom:8,yzoom:8</f3-bits>
 	<dl class=bits>
@@ -214,7 +214,7 @@
 </figure>
 
 <figure class=f3-struct>
-	<h1>Lineram Registers 5.<var>N</var> "9000" "9200" "9400" "9600"</h1>
+	<h1>Line Registers 5.<var>N</var> "9000" "9200" "9400" "9600"</h1>
 	<h2>Data</h2>
 	<f3-bits>#:10,palette:6</f3-bits>
 	<dl class=bits>
@@ -223,7 +223,7 @@
 </figure>
 
 <figure class=f3-struct>
-	<h1>Lineram Registers 6.<var>N</var> "A000" "A200" "A400" "A600"</h1>
+	<h1>Line Registers 6.<var>N</var> "A000" "A200" "A400" "A600"</h1>
 	<h2>Data</h2>
 	<f3-bits>xscroll:16</f3-bits>
 	<dl class=bits>
@@ -232,15 +232,12 @@
 </figure>
 
 <figure class=f3-struct>
-	<h1>Lineram Registers 7.<var>N</var> "B000" "B200" "B400" "B600"</h1>
+	<h1>Line Registers 7.<var>N</var> "B000" "B200" "B400" "B600"</h1>
 	<h2>Data</h2>
-	<f3-bits>bm:2,E,I,c<sub>3</sub>,c<sub>2</sub>,c<sub>1</sub>,c<sub>0</sub>,i<sub>3</sub>,i<sub>2</sub>,i<sub>1</sub>,i<sub>0</sub>,prio:4</f3-bits>
+	<f3-bits>bm:2,clip:10,prio:4</f3-bits>
 	<dl class=bits>
 		<dt>prio<dd>Tilemap <var>N</var>: Priority (0-15)
-		<dt>i<sub>n</sub><dd>Tilemap <var>N</var>: Clip Plane <var>n</var> Mode
-		<dt>c<sub>n</sub><dd>Tilemap <var>N</var>: Clip Plane <var>n</var> Enable
-		<dt>I<dd>Tilemap <var>N</var>: Clip Invert
-		<dt>E<dd>Tilemap <var>N</var>: Enable
+		<dt>clip<dd>Tilemap <var>N</var>: Clip Settings
 		<dt>bm<dd>Tilemap <var>N</var>: Blend Mode<dl><dt>0<dd>A+B<dt>1<dd>A<dt>2<dd>B<dt>3<dd>none</dl>
 	</dl>
 </figure>

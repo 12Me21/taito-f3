@@ -14,7 +14,7 @@
 	<todo>explain fully how the texture data is sourced. it's annoyingly low level, but kinda necessary in order to understand how all the tilemap settings affect the highcolor layer.</todo>
 	
 <figure class=f3-struct>
-	<h1>Lineram Register 2.0 "6000"</h1>
+	<h1>Line Register 2.0 "6000"</h1>
 	<f3-bits>#,#,#,#,#,#,#,h,#:8</f3-bits>
 	<dl class=bits>
 		<dt>h<dd>Highcolor Layer: Alpha Select
@@ -22,7 +22,7 @@
 </figure>
 
 <figure class=f3-struct>
-	<h1>Lineram Register 2.2 "6400"</h1>
+	<h1>Line Register 2.2 "6400"</h1>
 	<f3-bits>#:2,#,#,#,#,h,#,#:4,#:4</f3-bits>
 	<dl class=bits>
 		<dt>h<dd>Highcolor Layer: Mosaic Enable
@@ -30,14 +30,11 @@
 </figure>
 
 <figure class=f3-struct>
-	<h1>Lineram Register 3.0 "7000"</h1>
-	<f3-bits>bm:2,E,I,c<sub>3</sub>,c<sub>2</sub>,c<sub>1</sub>,c<sub>0</sub>,i<sub>3</sub>,i<sub>2</sub>,i<sub>1</sub>,i<sub>0</sub>,prio:4</f3-bits>
+	<h1>Line Register 3.0 "7000"</h1>
+	<f3-bits>bm:2,clip:10,prio:4</f3-bits>
 	<dl class=bits>
 		<dt>prio<dd>Highcolor Layer: Priority (0-15)
-		<dt>i<sub>n</sub><dd>Highcolor Layer: Clip Plane n Mode
-		<dt>c<sub>n</sub><dd>Highcolor Layer: Clip Plane n Enable
-		<dt>I<dd>Highcolor Layer: Clip Invert
-		<dt>E<dd>Highcolor Layer: Enable
+		<dt>clip<dd>Highcolor Layer: Clip Settings
 		<dt>bm<dd>Highcolor Layer: Blend Mode
 			<dl><dt>0<dd>both<dt>1<dd>A<dt>2<dd>B<dt>3<dd>neither</dl><todo>seems to behave differently in FDA mode 2. but it would be really strange for that setting to affect this, so we need to test more to be sure.</todo>
 	</dl>

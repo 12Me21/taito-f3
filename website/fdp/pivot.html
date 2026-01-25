@@ -38,7 +38,7 @@
 	<h2>Address (Pixel Mode)</h2>
 	<f3-bits>&ctdot;,1,b,x:6,y:5,-:5</f3-bits>
 	<dl class=bits>
-		<dt>b<dd>pivot pixel data bank (set in lineram)
+		<dt>b<dd>pixel data bank (set via line register)
 		<dt>x<dd>tile x index (0-63)
 		<dt>y<dd>tile y index (0-31; top and bottom halves of the pivot layer use same textures in pixel mode)
 	</dl>
@@ -50,7 +50,7 @@
 </figure>
 
 <figure class=f3-struct>
-	<h1>Lineram Register 2.0 "6000"</h1>
+	<h1>Line Register 2.0 "6000"</h1>
 	<f3-bits>B,#,P,#,#,#,p,#,#:8</f3-bits>
 	<dl class=bits>
 		<dt>p<dd>Pivot Layer: Alpha Select
@@ -60,14 +60,11 @@
 </figure>
 
 <figure class=f3-struct>
-	<h1>Lineram Register 3.1 "7200"</h1>
-	<f3-bits>bm,?,E,I,c<sub>3</sub>,c<sub>2</sub>,c<sub>1</sub>,c<sub>0</sub>,i<sub>3</sub>,i<sub>2</sub>,i<sub>1</sub>,i<sub>0</sub>,prio:4</f3-bits>
+	<h1>Line Register 3.1 "7200"</h1>
+	<f3-bits>bm,?,clip:10,prio:4</f3-bits>
 	<dl class=bits>
-		<dt>prio<dd>Pivot: Priority (0-15)
-		<dt>i<sub>n</sub><dd>Pivot: Clip Plane <var>n</var> Mode
-		<dt>c<sub>n</sub><dd>Pivot: Clip Plane <var>n</var> Enable
-		<dt>I<dd>Pivot: Clip Invert
-		<dt>E<dd>Pivot: Enable
-		<dt>bm<dd>Pivot: Blend Mode (note different interpretation than elsewhere)<dl><dt>0<dd>A+B<dt>1<dd>A</dl>
+		<dt>prio<dd>Pivot Layer: Priority (0-15)
+		<dt>clip<dd>Pivot Layer: Clip Settings
+		<dt>bm<dd>Pivot Layer: Blend Mode (note different interpretation than elsewhere)<dl><dt>0<dd>A+B<dt>1<dd>A</dl>
 	</dl>
 </figure>
