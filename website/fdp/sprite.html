@@ -9,14 +9,136 @@
 <p>The <abbr>fdp</abbr> renders around 880 sprites per frame to a pair of bitmap framebuffers.&nbsp;
 	Each sprite uses a 16×16 texture from <abbr>rom</abbr>, with up to 64 colors each (including transparent).
 	
-<p>Sprites are split into four "groups", depending on the 2 uppermost bits of their palette.&nbsp;
-	Sprites in higher group numbers render in front of lower ones.&nbsp;
-	Within a group, later sprites render in front of earlier ones. <todo>i think?</todo>
-	Note: this is a separate priority system from the one used later. e.g. <todo>(give an example like, 2 sprites with a tilemap between them in priority, but with reversed draw order so the back one clips the upper one)</todo>
-	<todo>we have to explain sprite groups in the beginning part, because they matter during rendering (for drawing priority) and displaying (for per-group lineram settings), while in general most aspects of sprites do NOT apply to both</todo>
+<h2>Sprite Rendering</h2>
+<p>Sprites are rendered from Sprite Ram, which contains 4 banks of 1024 entries each.&nbsp;
+	Each entry consists of eight 16-bit values, and represents one sprite (and/or a command that sets graphics parameters, and/or set the scroll positions, and/or jump destination <todo></todo>).&nbsp;
+	On each frame the FDP iterates over the sprite entries, starting at index 0 of the current bank (but the current index and bank can be changed using commands and jumps).&nbsp;Each entry takes 128 pixel clock cycles to process (thus, we can theoretically render 432×262/128 ≈ 884 sprites per frame.&nbsp; Though in reality the last few are rendered incorrectly).&nbsp; It is assumed that sprites are double-buffered (i.e. the sprites we see were rendered on the previous frame).<todo>too long</todo>
+	most games use banks 0 and 2 as a double buffer (note: unrelated to the framebuffer) i'm not sure whether there is a reason for this or not.
+	<todo>note the draw priority of sprites (later sprites are drawn over earlier ones)</todo>
 	
+<p>Individual sprites can be tiled into larger blocks by using the Block Controls.
+	
+<p>There are two scroll values, which we call "global" and "subglobal".&nbsp;
+	These can be changed at any time, and you can choose which ones (global only, global+subglobal, or neither) to use for each sprite.
+	
+<p>Note that sprite rendering itself is not affected by any lineram settings.
+	
+	<todo>explain command mode better. note the consequences of setting it on a visible sprite (field 5's value is used for 2 things at once)</todo>
+	
+<p>
+	The order of operations when processing a sprite entry is:<br>
+<ol>
+	<li>read position from sprite ram
+	<li>process Set Scrolls (modifying scrolls)
+	<li>process Enable Scrolls (adding scrolls to position)
+	<li>process Multi (setting block origin, reading zoom)
+	<li>process X Block Control and Y Block Control (overriding x and/or y position)
+	<li>(read the palette, texture id, flip etc.)
+	<li>render the sprite
+	<li>save the positions of the left/right/bottom edges of the sprite
+	<li>process Jump (choosing the next sprite index)
+	<li>process commands ? (setting the bank, etc.) <todo>does this take effect at the very end, or sometime during the current sprite entry?</todo>
+</ol>
+<todo>change our styling so that instead of styling &lt;p> we style &lt;section> or something</todo>
+	
+<figure class="f3-struct">
+	<h1>Sprite Entry</h1>
+	<h2>Address</h2>
+	<f3-bits class=address>&ctdot;,0,0,0,bank:2,index:10,w:3,-</f3-bits>
+	<dl class='bits address'>
+		<dt>bank<dd>bank number (set by command)
+		<dt>index<dd>sprite index
+		<dt>w<dd>field number
+	</dl>
+	<h2>Data[0]</h2>
+	<f3-bits>texture:16</f3-bits>
+	<dl class=bits>
+		<dt>texture<dd>Texture Id (lower bits)
+	</dl>
+	<h2>Data[1]</h2>
+	<f3-bits>yzoom:8,xzoom:8</f3-bits>
+	<dl class=bits>
+		<dt>xzoom<dd>X Zoom<br><div class=mathbox>X Zoom (in screen pixels per texture pixel) = 1 &minus; xzoom/256</div><br>
+			Example sizes:<br>
+			<dl><dt>$00<dd>16px<dt>$40<dd>12px<dt>$80<dd>8px<dt>$C0<dd>4px<dt>$FF<dd>0.0625px</dl>
+		<dt>yzoom<dd>Y Zoom (same format as X)<br>
+			<todo>iirc, one axis is positioned with subpixel precision while the other isn't. they're also downscaled differently (even though the actual zoom values are the same) check which is which</todo>
+	</dl>
+	<h2>Data[2]</h2>
+	<f3-bits>i:2,s:2,x:12</f3-bits>
+	<dl class=bits>
+		<dt>x<dd>X Position (in screen pixels)<br>
+		<dt>s<dd>Set Scrolls: which scroll values to write the position to
+			<dl><dt>0<dd>(none)<dt>1<dd>subglobal<dt>2<dd>global<dt>3<dd>global and subglobal</dl>
+		<dt>i<dd>Enable Scrolls: which scroll values to add to the position
+			<dl><dt>0<dd>global and subglobal<dt>1<dd>global<dt>2<dd>global and subglobal (yes, really)<dt>3<dd>(none)</dl>
+	</dl>
+	<h2>Data[3]</h2>
+	<f3-bits>c,?:3,y:12</f3-bits>
+	<dl class=bits>
+		<dt>y<dd>Y Position (same format as X)<br>
+		<dt>c<dd>"Command":<dl><dt>0<dd>normal<dt>1<dd>write the contents of field 5 to the Sprite Settings register</dl>
+	</dl>
+	<h2>Data[4]</h2>
+	<f3-bits>x:2,?,y,M,p,v,h,pal:8</f3-bits>
+	<dl class=bits>
+		<dt>pal<dd>Palette Id (256-511) = 256 + pal<br>
+		<dt>h<dd><dl compact><dt>1<dd>horizontal flip</dl>
+		<dt>v<dd><dl compact><dt>1<dd>vertical flip</dl>
+		<dt>p<dd>palette lock<dl><dt>1<dd>reuse palette from previous sprite<dt>0<dd>use new palette</dl>
+		<dt>M<dd>"Multi" - <u>this bit affects the next sprite, not the current one</u><dl><dt>0<dd>write the current position to the Y Block Origin, and read the zoom values<dt>1<dd>don't</dl>
+		<dt>y<dd>Y Block Control - set y position to:<dl><dt>0<dd>Y Block Origin (note: if Multi was 0, this will be the current position)<dt>1<dd>below previous sprite</dl>
+		<dt>x<dd>X Block Control - set x position to:<dl><dt>0<dd>current position<dt>1<dd>same as previous sprite<dt>2<dd>right of previous sprite, except first row renders at current position<dt>3<dd>right of previous sprite</dl>
+			There are effectively 6 possible combinations of x and y block controls:<br>
+			(note: in this chart, the left side is the given x position, and the top side is the y block origin)
+			<img src=sprite-tess.svg width=175 height=180 style=background:white><br>
+			Note that sprite blocks are intended be in column-major order, because there is no way to position a sprite directly to the right of the previous one.&nbsp;<br>
+			Generally, games only use rectangular sprite blocks, using 3 combinations of block controls:<br>
+			(0,0) for the first sprite in the block (along with setting multi=0 on the previous sprite)<br>
+			(3,0) for the first sprite in each subsequent column<br>
+			(1,1) for the rest of the sprites<br>
+			Typical 3x3 sprite block, showing the order of the sprites and their block controls (as color):<br>
+			<img src=sprite-tess2.svg width=175 height=180 style=background:white><br>
+			Only the first sprite (red) has a positon set in ram.&nbsp;<br>
+			<todo>clean this up and also show the actual sprite ram values for the example</todo>
+	</dl>
+	<h2>Data[5]</h2>
+	<f3-bits>.:8,fmt:4,?,?,tex2:2</f3-bits>
+	<dl class=bits>
+		<dt>tex2<dd>Texture Id (upper bits) - this might be more than 2 bits
+		<dt>fmt<dd>bitmap format? - <todo>affects the order of pixels loaded from rom?</todo>
+	</dl>
+	note: this value of this field is reused to set the sprite settings register.
+	<!--<h1>Sprite Field <b style="text-transform: full-width; border: 2px solid; padding: 0px 5px;">6</b></h1> <todo></todo>-->
+	<h2>Data[6]</h2>
+	<f3-bits>j,.:5,dest:10</f3-bits>
+	<dl class=bits>
+		<dt>dest<dd>jump destination
+		<dt>j<dd>Jump: determines next sprite index:<dl><dt>1<dd>jump to dest<dt>0<dd>current index + 1</dl>
+	</dl>
+	<h2>Data[7]</h2>
+	(unused?)
+</figure>
+
+<figure class="f3-struct">
+	<h1>Sprite Settings Register</h1>
+	(set by a "Command" sprite)
+	<h2>Data</h2>
+	<f3-bits>?,?,k,j,?,b<sub>0</sub>,bpp:2,?,a:3,?,?,t,b<sub>1</sub></f3-bits>
+	<dl class=bits>
+		<dt>b<sub>1</sub><dd>spriteram bank number (upper bit)
+		<dt>t<dd><todo>supposedly disables clearing framebuffer but seems to be something else</todo>
+		<dt>a<dd><todo>affects visiblity of sprites or something</todo>
+		<dt>bpp<dd>texture bit planes <todo>what is the mapping?</todo>
+		<dt>b<sub>0</sub><dd>spriteram bank number (lower bit) when switching from bank 0 (or 2) to 1 (or 3), the effect is delayed until the next frame. in the other direction, the effect is immediate. also, we always switch back to bank 0 or 2 if we started the frame in bank 1 or 3.<todo>this is weird.</todo> i.e. we can't be in an odd bank for 2 frames in a row.
+		<dt>j<dd><todo>if this is 1, the lowest bit of the texture id of all pivot layer tiles is treated as inverted (e.g. 44->45, 45->44), and also it slightly changes the video signal timings, so i can't get a good recording with my setup. seems like this must be set near the start of the frame (sprite index ≤ 16) to take any effect. (and in that case you will see </todo>
+		<dt>k<dd>1 = flipscreen
+	</dl>
+</figure>
+
 <h2>The Sprite Layer</h2>
 <p>The sprite framebuffer is used as the source for the Sprite Layer.
+<p>Sprites are split into four "groups", depending on the 2 uppermost bits of their palette.&nbsp;
 <p>Some of the sprite layer's common layer settings can be set per-group (Priority, Blend Mode, and Alpha Select).&nbsp;
 	In some ways, it acts like 4 separate sprite layers, but note that sprites can never blend with each other because they share a single framebuffer.
 	
@@ -58,131 +180,5 @@
 	<f3-bits>prio<sub>3</sub>:4,prio<sub>2</sub>:4,prio<sub>1</sub>:4,prio<sub>0</sub>:4</f3-bits>
 	<dl class=bits>
 		<dt>prio<sub>N</sub><dd>Sprite Layer, Group <var>N</var>: Priority (0-15)
-	</dl>
-</figure>≈
-	
-<h2>Sprite Rendering</h2>
-<p>Sprites are rendered from Sprite Ram, which contains 4 banks of 1024 entries each.&nbsp;
-	Each entry consists of eight 16-bit values, and represents one sprite (and/or a command that sets graphics parameters, and/or set the scroll positions, and/or jump destination <todo></todo>).&nbsp;
-	On each frame the FDP iterates over the sprite entries, starting at index 0 of the current bank (but the current index and bank can be changed using commands and jumps).&nbsp;Each entry takes 128 pixel clock cycles to process (thus, we can theoretically render 432×262/128 ≈ 884 sprites per frame.&nbsp; Though in reality the last few are rendered incorrectly).&nbsp; It is assumed that sprites are double-buffered (i.e. the sprites we see were rendered on the previous frame).<todo>too long</todo>
-	most games use banks 0 and 2 as a double buffer (note: unrelated to the framebuffer) i'm not sure whether there is a reason for this or not.
-
-<p>Individual sprites can be tiled into larger blocks by using the Block Controls.
-	
-<p>There are two scroll values, which we call "global" and "subglobal".&nbsp;
-	These can be changed at any time, and you can choose which ones (global only, global+subglobal, or neither) to use for each sprite.
-	
-<p>Note that sprite rendering itself is not affected by any lineram settings.
-	
-	<todo>explain command mode better. note the consequences of setting it on a visible sprite (field 5's value is used for 2 things at once)</todo>
-	
-<p>
-	The order of operations when processing a sprite entry is:<br>
-<ol>
-	<li>read position from sprite ram
-	<li>process Set Scrolls (modifying scrolls)
-	<li>process Enable Scrolls (adding scrolls to position)
-	<li>process Multi (setting block origin, reading zoom)
-	<li>process X Block Control and Y Block Control (overriding x and/or y position)
-	<li>(read the palette, texture id, flip etc.)
-	<li>render the sprite
-	<li>save the positions of the left/right/bottom edges of the sprite
-	<li>process Jump (choosing the next sprite index)
-	<li>process commands ? (setting the bank, etc.) <todo>does this take effect at the very end, or sometime during the current sprite entry?</todo>
-</ol>
-<todo>change our styling so that instead of styling &lt;p> we style &lt;section> or something</todo>
-	
-<figure class="f3-struct">
-	<h1>Sprite Entry</h1>
-	<h2>Address</h2>
-	<f3-bits class=address>&ctdot;,0,0,0,bank:2,index:10,w:3,-</f3-bits>
-	<dl class='bits address'>
-		<dt>bank<dd>bank number (set by command)
-		<dt>index<dd>sprite index
-		<dt>w<dd>field number
-	</dl>
-	<h2>Data Field 0</h2>
-	<f3-bits>texture:16</f3-bits>
-	<dl class=bits>
-		<dt>texture<dd>Texture Id (lower bits)
-	</dl>
-	<h2>Data Field 1</h2>
-	<f3-bits>yzoom:8,xzoom:8</f3-bits>
-	<dl class=bits>
-		<dt>xzoom<dd>X Zoom<br><div class=mathbox>X Zoom (in screen pixels per texture pixel) = 1 &minus; xzoom/256</div><br>
-			Example sizes:<br>
-			<dl><dt>$00<dd>16px<dt>$40<dd>12px<dt>$80<dd>8px<dt>$C0<dd>4px<dt>$FF<dd>0.0625px</dl>
-		<dt>yzoom<dd>Y Zoom (same format as X)<br>
-			<todo>iirc, one axis is positioned with subpixel precision while the other isn't. they're also downscaled differently (even though the actual zoom values are the same) check which is which</todo>
-	</dl>
-	<h2>Data Field 2</h2>
-	<f3-bits>i:2,s:2,x:12</f3-bits>
-	<dl class=bits>
-		<dt>x<dd>X Position (in screen pixels)<br>
-		<dt>s<dd>Set Scrolls: which scroll values to write the position to
-			<dl><dt>0<dd>(none)<dt>1<dd>subglobal<dt>2<dd>global<dt>3<dd>global and subglobal</dl>
-		<dt>i<dd>Enable Scrolls: which scroll values to add to the position
-			<dl><dt>0<dd>global and subglobal<dt>1<dd>global<dt>2<dd>global and subglobal (yes, really)<dt>3<dd>(none)</dl>
-	</dl>
-	<h2>Data Field 3</h2>
-	<f3-bits>c,?:3,y:12</f3-bits>
-	<dl class=bits>
-		<dt>y<dd>Y Position (same format as X)<br>
-		<dt>c<dd>"Command":<dl><dt>0<dd>normal<dt>1<dd>write the contents of field 5 to the Sprite Settings register</dl>
-	</dl>
-	<h2>Data Field 4</h2>
-	<f3-bits>x:2,?,y,M,p,v,h,pal:8</f3-bits>
-	<dl class=bits>
-		<dt>pal<dd>Palette Id (256-511) = 256 + pal<br>
-		<dt>h<dd><dl compact><dt>1<dd>horizontal flip</dl>
-		<dt>v<dd><dl compact><dt>1<dd>vertical flip</dl>
-		<dt>p<dd>palette lock<dl><dt>1<dd>reuse palette from previous sprite<dt>0<dd>use new palette</dl>
-		<dt>M<dd>"Multi" - <u>this bit affects the next sprite, not the current one</u><dl><dt>0<dd>write the current position to the Y Block Origin, and read the zoom values<dt>1<dd>don't</dl>
-		<dt>y<dd>Y Block Control - set y position to:<dl><dt>0<dd>Y Block Origin (note: if Multi was 0, this will be the current position)<dt>1<dd>below previous sprite</dl>
-		<dt>x<dd>X Block Control - set x position to:<dl><dt>0<dd>current position<dt>1<dd>same as previous sprite<dt>2<dd>right of previous sprite, except first row renders at current position<dt>3<dd>right of previous sprite</dl>
-			There are effectively 6 possible combinations of x and y block controls:<br>
-			(note: in this chart, the left side is the given x position, and the top side is the y block origin)
-			<img src=sprite-tess.svg width=175 height=180 style=background:white><br>
-			Note that sprite blocks are intended be in column-major order, because there is no way to position a sprite directly to the right of the previous one.&nbsp;<br>
-			Generally, games only use rectangular sprite blocks, using 3 combinations of block controls:<br>
-			(0,0) for the first sprite in the block (along with setting multi=0 on the previous sprite)<br>
-			(3,0) for the first sprite in each subsequent column<br>
-			(1,1) for the rest of the sprites<br>
-			Typical 3x3 sprite block, showing the order of the sprites and their block controls (as color):<br>
-			<img src=sprite-tess2.svg width=175 height=180 style=background:white><br>
-			Only the first sprite (red) has a positon set in ram.&nbsp;<br>
-			<todo>clean this up and also show the actual sprite ram values for the example</todo>
-	</dl>
-	<h2>Data Field 5</h2>
-	<f3-bits>.:8,fmt:4,?,?,tex2:2</f3-bits>
-	<dl class=bits>
-		<dt>tex2<dd>Texture Id (upper bits) - this might be more than 2 bits
-		<dt>fmt<dd>bitmap format? - <todo>affects the order of pixels loaded from rom?</todo>
-	</dl>
-	note: this value of this field is reused to set the sprite settings register.
-	<!--<h1>Sprite Field <b style="text-transform: full-width; border: 2px solid; padding: 0px 5px;">6</b></h1> <todo></todo>-->
-	<h2>Data Field 6</h2>
-	<f3-bits>j,.:5,dest:10</f3-bits>
-	<dl class=bits>
-		<dt>dest<dd>jump destination
-		<dt>j<dd>Jump: determines next sprite index:<dl><dt>1<dd>jump to dest<dt>0<dd>current index + 1</dl>
-	</dl>
-	<h2>Data Field 7</h2>
-	(unused?)
-</figure>
-
-<figure class="f3-struct">
-	<h1>Sprite Settings Register</h1>
-	(set by a "Command" sprite)
-	<h2>Data</h2>
-	<f3-bits>?,?,k,j,?,b<sub>0</sub>,bpp:2,?,a:3,?,?,t,b<sub>1</sub></f3-bits>
-	<dl class=bits>
-		<dt>b<sub>1</sub><dd>spriteram bank number (upper bit)
-		<dt>t<dd><todo>supposedly disables clearing framebuffer but seems to be something else</todo>
-		<dt>a<dd><todo>affects visiblity of sprites or something</todo>
-		<dt>bpp<dd>texture bit planes <todo>what is the mapping?</todo>
-		<dt>b<sub>0</sub><dd>spriteram bank number (lower bit) when switching from bank 0 (or 2) to 1 (or 3), the effect is delayed until the next frame. in the other direction, the effect is immediate. also, we always switch back to bank 0 or 2 if we started the frame in bank 1 or 3.<todo>this is weird.</todo> i.e. we can't be in an odd bank for 2 frames in a row.
-		<dt>j<dd><todo>if this is 1, the lowest bit of the texture id of all pivot layer tiles is treated as inverted (e.g. 44->45, 45->44), and also it slightly changes the video signal timings, so i can't get a good recording with my setup. seems like this must be set near the start of the frame (sprite index ≤ 16) to take any effect. (and in that case you will see </todo>
-		<dt>k<dd>1 = flipscreen
 	</dl>
 </figure>
