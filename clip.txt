@@ -118,7 +118,6 @@ clip windows definitions:
 |####).......| clip window 0
 |..[######)..| clip window 1
 |......[##)..| clip window 2
-
 basemask = 0b001 (which windows cross the origin)
 points = [
   {x:2, bit:0b010},
@@ -128,14 +127,14 @@ points = [
   {x:9, bit:0b100},
 ]
 
-example layer:
+example layer clip usage:
 |####).......| clip window 0 (enabled)
 |##)......[##| clip window 1 (enabled, inverted)
-|......[##)..| clip window 2 (enabled)
+|............| clip window 2 (disabled)
 expected output:
-|####).[#####|
+|####)....[##|
 clip_invert_mask = 0b010
-clip_enable_mask = 0b111 (all)
+clip_enable_mask = 0b011 (all)
 mask = 0b011
 start = 0
 iterate over points:
@@ -143,13 +142,50 @@ iterate over points:
  - mask 0b011 -> 0b001: nothing
 - {x:4, bit:0b001}
  - mask 0b001 -> 0b000: ranges += [[0, 4]]
-- {x:6, bit:0b100}
- - mask 0b000 -> 0b100: start = 6
+- {x:6, bit:0b100} # (note 0b100 & 0b011 = 0 so this bit is ignored)
+ - mask 0b000 -> 0b000: nothing
 - {x:9, bit:0b010}
- - mask 0b100 -> 0b110: nothing
-- {x:9, bit:0b100}
- - mask 0b110 -> 0b010: nothing
+ - mask 0b000 -> 0b010: start = 9
+- {x:9, bit:0b100} # (ignored)
+ - mask 0b010 -> 0b010: nothing
 - (final step)
- - mask 0b010: ranges += [[6, END]]
+ - mask 0b010: ranges += [[9, END]]
 resulting ranges:
-|####).[#####| (correct)
+|####)....[##| (correct)
+
+
+def layer_calc_ranges(layer, clip):
+  ranges = []
+  if layer.clip_enable_mask==0:
+    if layer.clip_invert_all: ranges += [[0, 320]]
+  else:
+    start = 0
+    mask = clip.basemask
+    mask ^= layer.clip_invert_mask
+    if layer.clip_invert_all: mask = ~mask
+    mask &= layer.clip_enable_mask
+    for p in clip.points:
+      old = mask
+      mask ^= (p.bit & layer.clip_enable_mask)
+      if old!=0 and mask==0:
+        ranges += [[start, p.x]]
+      if old==0 and mask!=0:
+        start = p.x
+    if mask!=0:
+      ranges += [[start, 320]]
+  return ranges
+
+def calc_clip(windows):
+  basemask = 0
+  points = []
+  for w,i in windows:
+    if w.left >= w.right: continue
+    bit = 1 << i
+    if w.left <= 0 && w.right > 0:
+      basemask |= bit
+    if w.left > 0 && w.left < 320:
+      points += [{x:w.left, bit:bit}]
+    if w.right > 0 && w.right < 320:
+      points += [{x:w.right, bit:bit}]
+  # <sort points by .x> # tell the ai to write this part
+  return basemask, points
