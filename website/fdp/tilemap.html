@@ -44,9 +44,8 @@
 <p>
 	The Y axis is more complicated, because the offset of each row depends on the rows above.<br>
 	Each tilemap has a "Y Scroll Accumulator", which is in units of texture pixels (with a precision of 1/128).<br>
-	At the beginning of each scanline, if Y Scroll Sync is set (usually on scanline 0), each tilemap's Y Scroll Accumulator is set from its Y Global Scroll register.<br>
+	At the beginning of each scanline, if Y Scroll Sync is set (usually on scanline 0), each tilemap's Y Scroll Accumulator is set from its Y Global Scroll register. Otherwise, the accumulator is incremented by the Y Zoom Register. (note that this happens at the beginning of the scanline, not the end)<br>
 	Then, the scanline is rendered.&nbsp; The source row for each tilemap is determined by its Y Scroll Accumulator + Y Scroll Adjust.<br>
-	At the end of the scanline, each tilemap's Y Scroll Accumulator is incremented by its Y Zoom register.<br>
 	(note that Y Scroll Accumulator is not reset automatically, and carries over from the previous frame until Scroll Sync is set)
 	
 <p>Thus, to calculate the y source position, we can use:
@@ -65,7 +64,7 @@
 				<munderover>
 					<mo>&sum;</mo>
 					<mrow><mi>j</mi><mo>=</mo><mi>sync</mi></mrow>
-					<mrow><mi>y</mi><mo>&minus;</mo><mn>1</mn></mrow>
+					<mrow><mi>y</mi></mrow>
 				</munderover>
 				<msub><mi>Yzoom</mi><mi>j</mi></mrow>
 				<mo>&sdot;</mo>
@@ -98,11 +97,9 @@
 		<dt>y<dd>tile y index (0-31)
 		<dt>x<dd>tile x index (0-31 or 0-63)
 	</dl>
-	<h2>Data</h2>
-	<f3-bits>v,h,tex2:2,bpp:2,as,palette:9,texture:16</f3-bits>
+	<h2>Data[0]</h2>
+	<f3-bits>v,h,tex2:2,bpp:2,as,palette:9</f3-bits>
 	<dl class=bits>
-		<dt>texture<dd>Texture Id (lower 16 bits)<br>
-			<div class=mathbox>Texture Id = texture | tex2<<16</div><br>
 		<dt>palette<dd>palette id (0-511)
 		<dt>as<dd>Alpha Select<br>(note how this is stored per-tile rather than per-scanline)
 		<dt>bpp<dd>texture bit planes (bits per pixel select)<todo>better wording for bpp</todo>
@@ -115,6 +112,12 @@
 		<dt>tex2<dd>Texture Id (upper 2 bits)
 		<dt>h<dd><dl compact><dt>1<dd>horizontal flip</dl>
 		<dt>v<dd><dl compact><dt>1<dd>vertical flip</dl>
+	</dl>
+	<h2>Data[1]</h2>
+	<f3-bits>texture:16</f3-bits>
+	<dl class=bits>
+		<dt>texture<dd>Texture Id (lower 16 bits)<br>
+			<div class=mathbox>Texture Id = texture | tex2<<16</div><br>
 	</dl>
 </figure>
 

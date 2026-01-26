@@ -15,6 +15,7 @@
 	On each frame the FDP iterates over the sprite entries, starting at index 0 of the current bank (but the current index and bank can be changed using commands and jumps).&nbsp;Each entry takes 128 pixel clock cycles to process (thus, we can theoretically render 432×262/128 ≈ 884 sprites per frame.&nbsp; Though in reality the last few are rendered incorrectly).&nbsp; It is assumed that sprites are double-buffered (i.e. the sprites we see were rendered on the previous frame).<todo>too long</todo>
 	most games use banks 0 and 2 as a double buffer (note: unrelated to the framebuffer) i'm not sure whether there is a reason for this or not.
 	<todo>note the draw priority of sprites (later sprites are drawn over earlier ones)</todo>
+	<todo>bank number is maybe not a correct abstraction. the odd-numbered banks act very differently from the even-numbered ones, needs more testing. see notes.</todo>
 	
 <p>Individual sprites can be tiled into larger blocks by using the Block Controls.
 	
