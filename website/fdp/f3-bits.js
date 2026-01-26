@@ -17,12 +17,22 @@ defer(e=>{
 				let cont = /^(⋯)$/.test(name)
 				
 				for (let i=0; i<len; i++) {
-					if (hide) {
-						th.push(`<th>`)
+					let h
+					if (!hide && i==0 && !cont) {
+						if (offs % 4 == 0)
+							h = "<th class='f div'>"
+						else
+							h = "<th class=f>"
 					} else {
-						let strong = i==0 && !cont
-						th.push((strong ? `<th class=f>` : `<th>`) + (offs+i))
+						if (offs % 4 == 0)
+							h = "<th class=div>"
+						else
+							h = "<th>"
 					}
+					if (!hide)
+						h += ""+offs
+					th.push(h)
+					offs++;
 				}
 				
 				let d = `<td colspan=${len}`
@@ -33,8 +43,6 @@ defer(e=>{
 					d += name
 				
 				td.push(d)
-				
-				offs += len
 			}
 			e.outerHTML =`<table class="${e.className} bits"><tr>${th.reverse().join("")}<tr>${td.reverse().join("")}</table>`
 		} else {

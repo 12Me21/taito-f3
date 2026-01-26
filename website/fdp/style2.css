@@ -224,8 +224,8 @@ table.bits td {
 	padding-top: 0;
 	color: blue;
 }
-table.bits th:nth-child(4n) { border-right: 1px outset; }
-table.bits th:nth-child(4n+1) { border-left: 1px outset; }
+table.bits th.div { border-right: 1px outset; }
+table.bits th.div + th { border-left: 1px outset; }
 table.bits tr>:last-child { border-right: none; }
 table.bits tr>:first-child { border-left: none; }
 table.bits td:nth-child(2n) { background: linear-gradient(to top, white, #DDD); }

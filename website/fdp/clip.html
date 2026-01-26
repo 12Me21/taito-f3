@@ -4,37 +4,64 @@
 <link rel=stylesheet href=./style2.css>
 <script src=f3-bits.js></script>
 
-<h1>Clip Intervals</h1>
+<h1>Clip Windows</h1>
 
 <p>
-	There are four Clip Intervals, each of which consists of a Left and Right value (ranging 0-511), which equates to an interval of [left−47, right−48) in screen pixels.<br>
+	There are four Clip Windows, each of which consists of a Left and Right value (ranging 0-511), which equates to an interval of [left−47, right−48) in screen pixels.<br>
 	For example: left=47 and right=50 ⇒ [0,2) i.e. the first two columns of the screen
 <p>
-	Each layer can use any combination of these intervals or their complements, and the visible parts are unioned together to produce a final mask (which can then be inverted as well)
+	Each layer can use any combination of these windows or their complements, and the visible parts are unioned together to produce a final mask (which can then be inverted as well)
 	<todo>explain the per-layer clip settings</todo>
 
 <figure class=f3-struct>
-	<h1>Lineram Register 0.2 "4400"</h1>
+	<h1>Line Register 0.2 "4400"</h1>
 	<f3-bits>1<sub>R</sub>,1<sub>L</sub>,0<sub>R</sub>,0<sub>L</sub>,#:2,#,#:9</f3-bits>
 	<dl class=bits>
-		<dt>0<sub>L</sub><dd>Clip Interval 0: Left (upper bit)
-		<dt>0<sub>R</sub><dd>Clip Interval 0: Right (upper bit)
-		<dt>1<sub>L</sub><dd>Clip Interval 1: Left (upper bit)
-		<dt>1<sub>R</sub><dd>Clip Interval 1: Right (upper bit)
+		<dt>0<sub>L</sub><dd>Clip Window 0: Left (upper bit)
+		<dt>0<sub>R</sub><dd>Clip Window 0: Right (upper bit)
+		<dt>1<sub>L</sub><dd>Clip Window 1: Left (upper bit)
+		<dt>1<sub>R</sub><dd>Clip Window 1: Right (upper bit)
 	</dl>
 </figure>
 
 <figure class=f3-struct>
-	<h1>Lineram Register 0.3 "4600"</h1>
+	<h1>Line Register 0.3 "4600"</h1>
 	(Same as 0.2, but for clip intervals 2 and 3)
 </figure>
 
 <figure class=f3-struct>
-	<h1>Lineram Registers 1.<var>N</var> "5000"</h1>
+	<h1>Line Registers 1.<var>N</var> "5000"</h1>
 	<f3-bits>right:8,left:8</f3-bits>
 	<dl class=bits>
-		<dt>left<dd>Clip Interval <var>N</var>: Left (lower bits)
-		<dt>right<dd>Clip Interval <var>N</var>: Right (lower bits)
+		<dt>left<dd>Clip Window <var>N</var>: Left (lower bits)
+		<dt>right<dd>Clip Window <var>N</var>: Right (lower bits)
+	</dl>
+</figure>
+
+<figure class=f3-struct>
+	<h1>Common Layer Clip Settings</h1>
+	<f3-bits>E,I,c<sub>3</sub>,c<sub>2</sub>,c<sub>1</sub>,c<sub>0</sub>,i<sub>3</sub>,i<sub>2</sub>,i<sub>1</sub>,i<sub>0</sub></f3-bits>
+	<dl class=bits>
+		<dt>i<sub>n</sub><dd>Clip Window <var>n</var> Mode
+			<dl>
+				<dt>0<dd>outside visible
+				<dt>1<dd>inside visible
+			</dl>
+		<dt>c<sub>n</sub><dd>Clip Window <var>n</var> Enable
+			<dl>
+				<dt>0<dd>enabled
+				<dt>1<dd>disabled
+			</dl>
+		<dt>I<dd>Clip Global Invert
+			<dl>
+				<dt>0<dd>normal
+				<dt>1<dd>inverted
+			</dl>
+		<dt>E<dd>Layer Enable
+			<dl>
+				<dt>0<dd>hidden
+				<dt>1<dd>displayed
+			</dl>
 	</dl>
 </figure>
 
