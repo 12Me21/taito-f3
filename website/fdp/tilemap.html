@@ -84,10 +84,10 @@
 <figure class=f3-struct>
 	<h1>Tile Data</h1>
 	<h2>Address (normal)</h2>
-	<f3-bits>&ctdot;,0,0,1,0,num:3,y:5,x:5,-:2</f3-bits>
+	<f3-bits class=address>&ctdot;,0,0,1,0,num:3,y:5,x:5,-:2</f3-bits>
 	<h2>Address (extend mode)</h2>
-	<f3-bits>&ctdot;,0,0,1,num:3,y:5,x:6,-:2</f3-bits>
-	<dl class=bits>
+	<f3-bits class=address>&ctdot;,0,0,1,num:3,y:5,x:6,-:2</f3-bits>
+	<dl class='bits address'>
 		<dt>num<dd>tile data number (0-5)
 			<dl>
 				<dt><var>N</var> (0-3)<dd>Tilemap <var>N</var>: normal data
@@ -241,7 +241,7 @@
 	<dl class=bits>
 		<dt>prio<dd>Tilemap <var>N</var>: Priority (0-15)
 		<dt>clip<dd>Tilemap <var>N</var>: Clip Settings
-		<dt>bm<dd>Tilemap <var>N</var>: Blend Mode<dl><dt>0<dd>A+B<dt>1<dd>A<dt>2<dd>B<dt>3<dd>none</dl>
+		<dt>bm<dd>Tilemap <var>N</var>: Blend Mode<dl><dt>0<dd>both<dt>1<dd>A<dt>2<dd>B<dt>3<dd>none</dl>
 	</dl>
 </figure>
 

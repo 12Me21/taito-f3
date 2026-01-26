@@ -1,6 +1,7 @@
 <!doctype html>
 
 <script src=f3-bits.js></script>
+<link rel=stylesheet href=../style.css>
 <link rel=stylesheet href=./style2.css>
 
 <h1>Line-<abbr>Ram</abbr></h1>
@@ -52,7 +53,7 @@
 </figure>
 
 <figure class=f3-struct>
-	<h1>Lineram Subsection Values</h1>
+	<h1>Line Register Values</h1>
 	<h2>Address</h2>
 	<f3-bits>*,0,1,0,map:4,a,sub:2,scanline:8,-</f3-bits>
 	<dl class=bits>
@@ -66,7 +67,7 @@
 <p>note: section 0 is missing its first 2 subsections (0.0 "4000" and 0.1 "4200"), so per-line y scroll adjust and alternate tilemap are only available on tilemaps 2 and 3.</p>
 
 <figure class=f3-struct>
-	<h1>Subsection 0.2 "4400"</h1>
+	<h1>Line Register 0.2 "4400"</h1>
 	<f3-bits>1<sub>R</sub>,1<sub>L</sub>,0<sub>R</sub>,0<sub>L</sub>,?:2,alt,yscroll:9</f3-bits>
 	<dl class=bits>
 		<dt>yscroll<dd>Tilemap 2: Scroll Adjust Y <todo>data format</todo>
@@ -79,12 +80,12 @@
 </figure>
 
 <figure class=f3-struct>
-	<h1>Subsection 0.3 "4600"</h1>
+	<h1>Line Register 0.3 "4600"</h1>
 	<div>(same as 0.3, but for Tilemap 3 and Clip Intervals 2 and 3)</div>
 </figure>
 
 <figure class=f3-struct>
-	<h1>Subsection 1.0 "5000" - Clip Interval Values</h1>
+	<h1>Line Register 1.0 "5000" - Clip Interval Values</h1>
 	<f3-bits>right:8,left:8</f3-bits>
 	<dl class=bits>
 		<dt>left<dd>Clip Interval 0: Left (lower bits)<br>
@@ -94,22 +95,22 @@
 </figure>
 
 <figure class=f3-struct>
-	<h1>Subsection 1.1 "5200"</h1>
+	<h1>Line Register 1.1 "5200"</h1>
 	<div>(same as 1.0, but for Clip Interval 1)</div>
 </figure>
 
 <figure class=f3-struct>
-	<h1>Subsection 1.2 "5400"</h1>
+	<h1>Line Register 1.2 "5400"</h1>
 	<div>(same as 1.0, but for Clip Interval 2)</div>
 </figure>
 
 <figure class=f3-struct>
-	<h1>Subsection 1.3 "5600"</h1>
+	<h1>Line Register 1.3 "5600"</h1>
 	<div>(same as 1.0, but for Clip Interval 3)</div>
 </figure>
 
 <figure class=f3-struct>
-	<h1>Subsection 2.0 "6000" - Misc Blending, Pivot Mode</h1>
+	<h1>Line Register 2.0 "6000" - Misc Blending, Pivot Mode</h1>
 	<f3-bits>B,?,P,?,o,b,p,h,s<sub>3</sub>:2,s<sub>2</sub>:2,s<sub>1</sub>:2,s<sub>0</sub>:2</f3-bits>
 	<dl class=bits>
 		<dt>s<sub>n</sub><dd>Sprite Layer, Group <var>n</var>: Blend Mode<dl compact><dt>0<dd>neither<dt>1<dd>A<dt>2<dd>B<dt>3<dd>both</dl>
@@ -123,7 +124,7 @@
 </figure>
 
 <figure class=f3-struct>
-	<h1>Subsection 2.1 "6200" - Blend Alpha Values</h1>
+	<h1>Line Register 2.1 "6200" - Blend Alpha Values</h1>
 	<f3-bits>A1:4,A0:4,B1:4,B0:4</f3-bits>
 	<todo>confirm the order of these</todo>
 	<dl class=bits>
@@ -135,7 +136,7 @@
 </figure>
 
 <figure class=f3-struct>
-	<h1>Subsection 2.2 "6400" - Mosaic and <abbr>Fda</abbr> Settings</h1>
+	<h1>Line Register 2.2 "6400" - Mosaic and <abbr>Fda</abbr> Settings</h1>
 	<f3-bits>fda:2,b,?,S,g,h,s,mosaic:4,p<sub>3</sub>,p<sub>2</sub>,p<sub>1</sub>,p<sub>0</sub></f3-bits>
 	<dl class=bits>
 		<dt>p<sub>n</sub><dt>n:1<dd>Tilemap n: Mosaic Enable
@@ -151,7 +152,7 @@
 </figure>
 
 <figure class=f3-struct>
-	<h1>Subsection 2.3 "6600" - Background Color</h1>
+	<h1>Line Register 2.3 "6600" - Background Color</h1>
 	<f3-bits>.:3,color:13</f3-bits>
 	<dl class=bits>
 		<dt>color<dt>0:13<dd>Background Color Layer: Color Id
@@ -159,7 +160,7 @@
 </figure>
 
 <figure class=f3-struct>
-	<h1>Subsection 3.0 "7000" - Highcolor Layer Blending</h1>
+	<h1>Line Register 3.0 "7000" - Highcolor Layer Blending</h1>
 	<f3-bits>bm:2,E,I,c<sub>3</sub>,c<sub>2</sub>,c<sub>1</sub>,c<sub>0</sub>,i<sub>3</sub>,i<sub>2</sub>,i<sub>1</sub>,i<sub>0</sub>,prio:4</f3-bits>
 	<dl class=bits>
 		<dt>prio<dt>0:4<dd>Highcolor Layer: Priority (0-15)
@@ -172,7 +173,7 @@
 </figure>
 
 <figure class=f3-struct>
-	<h1>Subsection 3.1 "7200" - Pivot Layer Blending</h1>
+	<h1>Line Register 3.1 "7200" - Pivot Layer Blending</h1>
 	<f3-bits>bm,?,E,I,c<sub>3</sub>,c<sub>2</sub>,c<sub>1</sub>,c<sub>0</sub>,i<sub>3</sub>,i<sub>2</sub>,i<sub>1</sub>,i<sub>0</sub>,prio:4</f3-bits>
 	<dl class=bits>
 		<dt>prio<dd><i>pivot</i>: priority (0-15)
@@ -185,7 +186,7 @@
 </figure>
 
 <figure class=f3-struct>
-	<h1>Subsection 3.2 "7400" - Sprite Blending</h1>
+	<h1>Line Register 3.2 "7400" - Sprite Blending</h1>
 	<f3-bits>s<sub>3</sub>,s<sub>2</sub>,s<sub>1</sub>,s<sub>0</sub>,?,?,E,I,c<sub>3</sub>,c<sub>2</sub>,c<sub>1</sub>,c<sub>0</sub>,i<sub>3</sub>,i<sub>2</sub>,i<sub>1</sub>,i<sub>0</sub></f3-bits>
 	<dl class=bits>
 		<dt>i<sub>n</sub><dd>Sprite Layer: clip plane n mode
@@ -197,7 +198,7 @@
 </figure>
 
 <figure class=f3-struct>
-	<h1>Subsection 3.3 "7600" - Sprite Priorities</h1>
+	<h1>Line Register 3.3 "7600" - Sprite Priorities</h1>
 	<f3-bits>prio<sub>3</sub>:4,prio<sub>2</sub>:4,prio<sub>1</sub>:4,prio<sub>0</sub>:4</f3-bits>
 	<dl class=bits>
 		<dt>prio<sub>n</sub><dd>Sprite Layer, Group <var>n</var>: Priority (0-15)
@@ -205,7 +206,7 @@
 </figure>
 
 <figure class=f3-struct>
-	<h1>Subsection 4.0 "8000" - Tilemap 0 Zoom</h1>
+	<h1>Line Register 4.0 "8000" - Tilemap 0 Zoom</h1>
 	<f3-bits>hzoom:8,vzoom:8</f3-bits>
 	<dl class=bits>
 		<dt>vzoom<dd>Tilemap 0: Vertical Zoom<br>
@@ -218,7 +219,7 @@
 </figure>
 
 <figure class=f3-struct>
-	<h1>Subsection 4.1 "8200" - Tilemap 1 Zoom</h1>
+	<h1>Line Register 4.1 "8200" - Tilemap 1 Zoom</h1>
 	<f3-bits>hzoom:8,vzoom:8</f3-bits>
 	<dl class=bits>
 		<dt>vzoom<dd><i>tilemap 3</i>*: vertical zoom<br>*bug: tilemaps 1 and 3 have their vertical zooms swapped
@@ -227,7 +228,7 @@
 </figure>
 
 <figure class=f3-struct>
-	<h1>Subsection 4.2 "8400" - Tilemap 2 Zoom</h1>
+	<h1>Line Register 4.2 "8400" - Tilemap 2 Zoom</h1>
 	<f3-bits>hzoom:8,vzoom:8</f3-bits>
 	<dl class=bits>
 		<dt>vzoom<dd><i>tilemap 2</i>: vertical zoom
@@ -236,7 +237,7 @@
 </figure>
 
 <figure class=f3-struct>
-	<h1>Subsection 4.3 "8600" - Tilemap 3 Zoom</h1>
+	<h1>Line Register 4.3 "8600" - Tilemap 3 Zoom</h1>
 	<f3-bits>hzoom:8,vzoom:8</f3-bits>
 	<dl class=bits>
 		<dt>vzoom<dd><i>tilemap 1</i>*: vertical zoom
@@ -245,7 +246,7 @@
 </figure>
 
 <figure class=f3-struct>
-	<h1>Subsection 5.0 "9000" - "Palette Add"</h1>
+	<h1>Line Register 5.0 "9000" - "Palette Add"</h1>
 	<f3-bits>.:10,palette:6</f3-bits>
 	<dl class=bits>
 		<dt>palette<dd>Tilemap 0: added to the palette of all tiles
@@ -253,22 +254,22 @@
 </figure>
 
 <figure class=f3-struct>
-	<h1>Subsection 5.1 "9200"</h1>
+	<h1>Line Register 5.1 "9200"</h1>
 	<div>(same as 5.0, but for Tilemap 1)</div>
 </figure>
 
 <figure class=f3-struct>
-	<h1>Subsection 5.2 "9400"</h1>
+	<h1>Line Register 5.2 "9400"</h1>
 	<div>(same as 5.0, but for Tilemap 2)</div>
 </figure>
 
 <figure class=f3-struct>
-	<h1>Subsection 5.3 "9600"</h1>
+	<h1>Line Register 5.3 "9600"</h1>
 	<div>(same as 5.0, but for Tilemap 3)</div>
 </figure>
 
 <figure class=f3-struct>
-	<h1>Subsection 6.0 "A000" - "Rowscroll"</h1>
+	<h1>Line Register 6.0 "A000" - "Rowscroll"</h1>
 	<f3-bits>xscroll:16</f3-bits>
 	<dl class=bits>
 		<dt>xscroll<dd>Tilemap 0: x scroll adjust (same format as global scroll)
@@ -276,7 +277,7 @@
 </figure>
 
 <figure class=f3-struct>
-	<h1>Subsection 7.0 "B000" - Tilemap 0 Blending</h1>
+	<h1>Line Register 7.0 "B000" - Tilemap 0 Blending</h1>
 	<f3-bits>bm:2,E,I,c<sub>3</sub>,c<sub>2</sub>,c<sub>1</sub>,c<sub>0</sub>,i<sub>3</sub>,i<sub>2</sub>,i<sub>1</sub>,i<sub>0</sub>,prio:4</f3-bits>
 	<dl class=bits>
 		<dt>prio<dd>Tilemap 0: Priority (0-15)
@@ -289,6 +290,6 @@
 </figure>
 
 <figure class=f3-struct>
-	<h1>Subsection 7.2 "B200"</h1>
+	<h1>Line Register 7.2 "B200"</h1>
 	<div>(same as 7.0, but for tilemap 1)</div>
 </figure>

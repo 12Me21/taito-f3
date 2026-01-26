@@ -139,10 +139,8 @@
 
 <h2>The Sprite Layer</h2>
 <p>The sprite framebuffer is used as the source for the Sprite Layer.
-<p>Sprites are split into four "groups", depending on the 2 uppermost bits of their palette.&nbsp;
-<p>Some of the sprite layer's common layer settings can be set per-group (Priority, Blend Mode, and Alpha Select).&nbsp;
-	In some ways, it acts like 4 separate sprite layers, but note that sprites can never blend with each other because they share a single framebuffer.
-	
+<p>Sprites are divided into four "groups" (based on the 2 uppermost bits of their palette.)&nbsp; In some ways, the sprite layer acts like 4 separate layers, because some settings can be set per-group (Priority, Blend Mode, and Alpha Select).&nbsp; However, note that sprites can never blend with each other because they share a single framebuffer.
+<p>
 	rather:
 	<todo>
 	You could think of it either as four graphics layers which use pixels from a shared framebuffer, or as one layer where some settings can vary based on which Group each pixel is in.</todo>
@@ -151,8 +149,8 @@
 	<h1>Line Register 2.0 "6000"</h1>
 	<f3-bits>#:8,s<sub>3</sub>:2,s<sub>2</sub>:2,s<sub>1</sub>:2,s<sub>0</sub>:2</f3-bits>
 	<dl class=bits>
-		<dt>s<sub>N</sub><dd>Sprite Layer, Group <var>N</var>: Blend Mode
-			<dl><dt>0<dd>none<dt>1<dd>A<dt>2<dd>B<dt>3<dd>A+B</dl>
+		<dt>s<sub>N</sub><dd>Sprite Group <var>N</var>: Blend Mode
+			<dl><dt>0<dd>none<dt>1<dd>A<dt>2<dd>B<dt>3<dd>both</dl>
 	</dl>
 </figure>
 
@@ -169,7 +167,7 @@
 	<f3-bits>s<sub>3</sub>,s<sub>2</sub>,s<sub>1</sub>,s<sub>0</sub>,?,?,clip:10</f3-bits>
 	<dl class=bits>
 		<dt>clip<dd>Sprite Layer: Clip Settings
-		<dt>s<sub>N</sub><dd>Sprite Layer, Group <var>N</var>: Alpha Select
+		<dt>s<sub>N</sub><dd>Sprite Group <var>N</var>: Alpha Select
 	</dl>
 </figure>
 
@@ -177,6 +175,6 @@
 	<h1>Line Register 3.3 "7600"</h1>
 	<f3-bits>prio<sub>3</sub>:4,prio<sub>2</sub>:4,prio<sub>1</sub>:4,prio<sub>0</sub>:4</f3-bits>
 	<dl class=bits>
-		<dt>prio<sub>N</sub><dd>Sprite Layer, Group <var>N</var>: Priority (0-15)
+		<dt>prio<sub>N</sub><dd>Sprite Group <var>N</var>: Priority (0-15)
 	</dl>
 </figure>
