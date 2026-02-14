@@ -317,3 +317,207 @@ todo::before {
 .sitemap {
 	font-size: 1.25em;
 }
+
+var {
+	/* hack until we get a proper italic font */
+	font-style: italic;
+	display: inline-block;
+	margin-left: -0.0625em;
+	margin-right: 0.0625em;
+}
+
+
+dl.bits > dt, table.bits td {
+	font-family: mspm, times new roman;
+	color: blue;
+	text-shadow: 1px 0 white;
+}
+dl.bits.address > dt, table.bits.address td {
+	font-family: mspm, times new roman;
+	color: #080;
+	text-shadow: 1px 0 white;
+}
+.f3-struct {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	margin-bottom: 1em;
+	padding: 8px 8px 8px 16px;
+	background: beige;
+	box-shadow: 0 0 1px #0008;
+}
+.f3-struct h1 {
+	margin: 0;
+	font-size: 1.5em;
+	margin-bottom: 0.5em;
+	margin-left: -0.25em;
+	margin-right: -8px;
+	font-family: unset;
+	
+	display: block;
+	/*align-self: stretch;*/
+	margin-left: -16px;
+	margin-top: -8px;
+	padding: 4px 8px;
+	background: #420;
+	color: white;
+	border: 6px double;
+	/*font-family: serif;*/
+}
+.f3-struct h2 {
+	font-size: 1.2em;
+	margin: 0;
+	font-family: unset;
+}
+.f3-struct dl dl {
+	margin-left: 0;
+	margin-top: 0;
+	margin-bottom: 0;
+}
+.f3-struct dl dl dt {
+	font-size: unset;
+}
+.f3-struct dl:not(:last-child) {
+	margin-bottom: 0.25em; /*hack*/
+}
+
+dl {
+	font-variant: tabular-nums;
+	display: grid;
+	grid: auto-flow / max-content 1fr;
+}
+dt {
+	grid-column: 1 / 2;	
+	justify-self: right;
+}
+dt::after {
+	content: " ↦ ";
+	white-space: pre;
+}
+dd {
+	margin-left: 0;
+	grid-column: 2 / 3;
+}
+
+dl[compact] {
+	display: flex;
+	flex-wrap: wrap;
+}
+dl[compact] > dd {
+	margin: 0;
+}
+dl[compact] > dd:not(:last-child) {
+	margin-right: 1em;
+}
+dl[compact] > dt {
+	margin-right: 0em;
+}
+dl[compact] > dt::after {
+	padding: 0 2px;
+	content: "=";
+}
+
+
+
+dl.bits {
+	display: grid;
+	grid: auto-flow / max-content 1fr;
+	margin-left: 1em;
+	margin-top: 0.25em;
+	margin-bottom: 0em;
+}
+dl.bits > * {
+	align-self: baseline;
+}
+dl.bits > dt {
+	font-size: 18px;
+	margin-right: 6px;
+	justify-self: right;
+	grid-column: 1 / 2;
+	margin-bottom: 2px;
+}
+dl.bits > dt {
+	display: flex;
+	justify-self: stretch;
+	//text-shadow: 0.5px 0.5px 1px #4688;
+}
+dl.bits > dt::after {
+	text-shadow: none;
+	color: #468;
+	content: ":";
+}
+dl.bits > dt::before {
+	content: " ";
+	flex: 1;
+	white-space: pre;
+	margin-right: 2px;
+	margin-left: 2px;
+	border-bottom: 1px dotted #468;
+	height: 11px;
+}
+dl.bits > dd {
+	margin: 0;
+	grid-column: 2 / 3;
+}
+
+.mathbox {
+	border: 1px solid;
+	background: white;
+	padding: 3px;
+	margin: 3px;
+	display: inline-block;
+}
+/* bitfield table */
+table.bits {
+	table-layout: fixed;
+	border-spacing: 0;
+	border: 2px groove;
+	counter-reset: bnum 16;
+	background: white;
+}
+table.bits tr>* {
+	width: 18px;
+	max-width: 18px;
+	text-align: center;
+}
+table.bits th {
+	font-family: courier, monospace;
+	font-size: 9.5px;
+	padding: 0;
+	font-weight: normal;
+	border-right: 1px inset;
+	-webkit-text-fill-color: #bbb;
+}
+table.bits th.f {
+	-webkit-text-fill-color: black;
+	color: black;
+}
+table.bits th.x {
+	-webkit-text-fill-color: white;
+	color: black;
+}
+table.bits td {
+	padding: 1px 0;
+	border-top: 1px solid #DDD;
+	padding-top: 0;
+	color: blue;
+}
+table.bits th.div { border-right: 1px outset; }
+table.bits th.div + th { border-left: 1px outset; }
+table.bits tr>:last-child { border-right: none; }
+table.bits tr>:first-child { border-left: none; }
+table.bits td:nth-child(2n) { background: linear-gradient(to top, white, #DDD); }
+table.bits td:nth-child(2n+1) { background: linear-gradient(to bottom, white, #DDD); }
+table.bits td:nth-child(n) {
+	background: linear-gradient(to right, white, #DDD);
+	background: linear-gradient(to right, white, #DDD calc((8px + 100%) / 2));
+	background: linear-gradient(110deg, white, #E7E7E7 calc(8px + 20%) calc(100% - 8px - 15%), #ccc);
+}
+table.bits td.space { background: linear-gradient(to bottom right, white, #DDD); }
+table.bits td.x {
+	font-variant: tabular-nums;
+	background: #e3e3e3;
+	text-shadow: none;
+	color: black;
+}
+
