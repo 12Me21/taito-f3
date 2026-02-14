@@ -1,24 +1,9 @@
-:root {
-	-webkit-text-size-adjust: none;
-}
-
-@font-face {
-	font-family: 'mspm';
-	src: url("../short3.otf?j");
-}
-body {
-	font-family: mspm, georgia;
-}
 var {
 	/* hack until we get a proper italic font */
 	font-style: italic;
 	display: inline-block;
 	margin-left: -0.0625em;
 	margin-right: 0.0625em;
-}
-h1::first-letter, h2::first-letter /*, p::first-letter*/ {
-	/*font-feature-settings: 'pwid';*/
-	/*text-transform: full-width;*/
 }
 
 dl.bits > dt, table.bits td {
@@ -32,14 +17,12 @@ dl.bits.address > dt, table.bits.address td {
 	text-shadow: 1px 0 white;
 }
 .f3-struct {
-	max-width: 7in;
 	display: flex;
 	flex-direction: column;
 	align-items: flex-start;
 	margin-bottom: 1em;
-	border-left: solid black;
 	padding: 8px 8px 8px 16px;
-	background: aliceblue;
+	background: beige;
 	box-shadow: 0 0 1px #0008;
 }
 .f3-struct h1 {
@@ -51,12 +34,13 @@ dl.bits.address > dt, table.bits.address td {
 	font-family: unset;
 	
 	display: block;
-	align-self: stretch;
+	/*align-self: stretch;*/
 	margin-left: -16px;
 	margin-top: -8px;
 	padding: 4px 8px;
-	background: steelblue;
+	background: #420;
 	color: white;
+	border: 6px double;
 	/*font-family: serif;*/
 }
 .f3-struct h2 {
@@ -115,24 +99,6 @@ abbr {
 	font-variant-caps: small-caps;
 }
 
-body {
-/*	background-repeat: repeat-y;
-	background-image: repeating-linear-gradient(135deg, black 0 5px, yellow 0 10px);
-	background-size: 24px 100%;
-	margin-left: 32px;*/
-}
-
-todo {
-	background-image: repeating-linear-gradient(135deg, white 0 5px, #FF8 0 10px);
-	border: 1px solid black;
-	border-radius: 4px;
-	padding: 0 2px;
-	white-space: pre-wrap;
-}
-todo::before {
-	content: "TODO: ";
-}
-
 
 
 dl.bits {
@@ -176,13 +142,6 @@ dl.bits > dd {
 	grid-column: 2 / 3;
 }
 
-f3-struct f3-addr > dl {
-	margin-bottom: 0.5em;
-}
-f3-struct f3-data > dl:not(:last-child) {
-	margin-bottom: 0.25em; /*hack*/
-}
-
 
 
 table.bits {
@@ -213,11 +172,6 @@ table.bits th.x {
 	-webkit-text-fill-color: white;
 	color: black;
 }
-table.bits th::after {
-//	content: counter(bnum);
-//	counter-increment: bnum -1;
-//	color: gray;
-}
 table.bits td {
 	padding: 1px 0;
 	border-top: 1px solid #DDD;
@@ -246,59 +200,6 @@ table.bits td.x {
 	color: black;
 }
 table.bits td.x:last-child {  }
-
-@supports (font-variant-position: sub) {
-	sub, sup {
-		font-size: unset;
-		vertical-align: unset;
-	}
-	sub { font-variant-position: sub; }
-	sup { font-variant-position: super; }
-}
-@supports not (font-variant-position: sub) {
-	sub, sup {
-		font-size: 81.25%;
-		line-height: 0;
-		position: relative;
-		vertical-align: baseline;
-	}
-	sub { bottom: -0.25em; }
-	sup { top: -0.5em; /* todo: check this */ }
-}
-
-p {
-	padding: 8px 8px 8px 8px;
-	margin: 8px;
-	background: aliceblue;
-	box-shadow: 0 0 1px #0008;
-}
-
-body > h1 {
-	background: steelblue;
-	color: white;
-	//text-shadow: 4px 0px blue, 0px 0px 1px black;
-	//font-weight: normal;
-	font-family: unset;
-}
-
-body > h2 {
-	background: steelblue;
-	margin: 12px -8px 21px;
-	padding: 8px 8px;
-	box-shadow: 0 0 3px black;
-	color: white;
-	font-family: unset;
-}
-
-figure {
-	box-sizing: border-box;
-	max-width: 7in;
-	margin-bottom: 1em;
-	border-left: solid black;
-	padding: 8px 0 8px 16px;
-	background: aliceblue;
-	box-shadow: 0 0 1px #0008;
-}
 
 .mathbox {
 	border: 1px solid;

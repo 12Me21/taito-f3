@@ -1,6 +1,6 @@
 @font-face {
 	font-family: 'mspm';
-	src: url("./short2.otf?4");
+	src: url("./short3.otf?j");
 }
 
 o-l {
@@ -44,8 +44,10 @@ body {
 	background-size: 116px;
 	background-size: calc(116px * var(--RX,1) / var(--X,1));
 	overflow-y: scroll;
+	-webkit-text-size-adjust: none;
 }
-p, dl {
+/* body children */
+p, dl, .f3-struct, ol, ul {
 	//background: #DEE1DEAA;
 	max-width: 7in;
 	//text-align: justify;
@@ -278,4 +280,40 @@ table.pinout {
 	font-family: mspm, serif;
 }
 .table tr:first-child > th:first-child {
+}
+
+/* nicer sub/sup */
+@supports (font-variant-position: sub) {
+	sub, sup {
+		font-size: unset;
+		vertical-align: unset;
+	}
+	sub { font-variant-position: sub; }
+	sup { font-variant-position: super; }
+}
+@supports not (font-variant-position: sub) {
+	sub, sup {
+		font-size: 81.25%;
+		line-height: 0;
+		position: relative;
+		vertical-align: baseline;
+	}
+	sub { bottom: -0.25em; }
+	sup { top: -0.5em; /* todo: check this */ }
+}
+
+/* todo markers */
+todo {
+	background-image: repeating-linear-gradient(135deg, white 0 5px, #FF8 0 10px);
+	border: 1px solid black;
+	border-radius: 4px;
+	padding: 0 2px;
+	white-space: pre-wrap;
+}
+todo::before {
+	content: "TODO: ";
+}
+
+.sitemap {
+	font-size: 1.25em;
 }
