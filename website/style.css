@@ -43,7 +43,7 @@ body {
 	background-image: url("./tile32.png");
 	background-size: 116px;
 	background-size: calc(116px * var(--RX,1) / var(--X,1));
-	overflow: hidden scroll;
+	overflow-y: scroll;
 }
 p, dl {
 	//background: #DEE1DEAA;
