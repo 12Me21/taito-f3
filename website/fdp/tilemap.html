@@ -1,9 +1,13 @@
 <!doctype html>
-<script src=f3-bits.js></script>
+
+<title>Tilemaps</title>
+<link rel=icon sizes=16x16 href=../fav.gif>
 <link rel=stylesheet href=../style.css>
 <link rel=stylesheet href=./style2.css>
+<script src=f3-bits.js></script>
 
 <a href=home.html>Back</a>
+
 <h1>Tilemaps</h1>
 
 <p>There are four tilemap layers, numbered 0 to 3.&nbsp;
@@ -11,8 +15,6 @@
 	
 <p>Each tile references a 16×16px texture, defined in <abbr>rom</abbr>, with up to 64 colors (including transparent) per tile.&nbsp;
 	Tilemaps can be scaled on both axes, with a range of 50.2% to infinity vertically, and 100% to 25600% horizontally.
-	
-	<todo>describe how scrolling works (e.g. units and such) and how it is affected by scaling. give formulas for positions etc.</todo>
 	
 <h2>Scrolling and Scaling</h2>
 <p>
