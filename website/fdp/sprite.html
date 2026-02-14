@@ -14,7 +14,7 @@
 	<li>double-buffered (sprites are displayed 1 frame after being rendered)
 </ul>
 
-<h2>Sprite Rendering</h2>
+<h2>Part 1: Sprite Rendering</h2>
 <p>Sprites are rendered from data in Sprite Ram, to a bitmap framebuffer.&nbsp;
 	Sprite Ram consists of 4 banks of 1024 Sprite Entries.&nbsp;
 	Each entry consists of eight words, and represents one sprite (and/or a command that sets graphics parameters, and/or set the scroll positions, and/or jump destination <todo></todo>).&nbsp;
@@ -143,7 +143,7 @@
 	</dl>
 </figure>
 
-<h2>The Sprite Layer</h2>
+<h2>Part 2: The Sprite Layer</h2>
 <p>The contents of the sprite buffer are drawn to the screen as the Sprite Layer.
 <p>Sprites are divided into four "groups" (based on the 2 uppermost bits of their palette.)&nbsp; In some ways, the sprite layer acts like 4 separate layers, because some settings can be set per-group (Priority, Blend Mode, and Alpha Select).&nbsp; However, note that sprites can never blend with each other because they share a single framebuffer.
 <p>
