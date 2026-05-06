@@ -9,39 +9,55 @@
 <h1>Taito F3 Video Signal</h1>
 
 <p>
-pixel clock = 6.6715 MHz<br>
-432 pixels per scanline (~15.44 KHz)<br>
-262 scanlines per frame (~58.94 Hz)<br>
-	
-	<figure>
-		<img src=./video-timing.gif width=432 height=262 style='border:2px solid blue'>
-		<table>
-			<tr><th>green<td>hsync pulse (sync high)
-			<tr><th>red<td>vsync pulse (sync high)
-			<tr><th>yellow<td>hsync + vsync (sync low)
-			<tr><th>gray<td>color output	
-		</table>
-	</figure>
-	
-<hr>
-"hsync": 32px sync<br>
-"half hsync": 16px , 16px sync<br>
-"begin vsync": sync signal inverted until "end vsync"
+	pixel clock: 6.6715 MHz<br>
+	432 pixels per scanline (~15.44 KHz)<br>
+	262 scanlines per frame (~58.94 Hz)<br>
 
-<table>
-	<tr><th>scanlines<th>signal
-	<tr><th>0<td>hsync , 184px , hsync , 184px
-	<tr><th>1,2<td>half hsync , 184px , half hsync , 184px
-	<tr><th>3<td>half hsync , 184px , half hsync , (begin vsync) , 184px
-	<tr><th>4,5<td>half hsync , 184px , half hsync , 184px
-	<tr><th>6<td>half hsync , 184px , half hsync , (end vsync) , 184px
-	<tr><th>7,8,9<td>half hsync , 184px , half hsync , 184px
-	<tr><th>10<td>half hsync , 400px
-	<tr><th>11-22<td>hsync , 400px
-	<tr><th>23<td>hsync , 64px , 319px , 1px video , 16px
-	<tr><th>24-254<td>hsync , 64px , 320px video , 16px
-	<tr><th>255<td>hsync , 64px , 319px video , 1px , 16px
-	<tr><th>256-261<td>hsync , 400px
-</table>
+<figure>
+	<h3>Diagram:</h3>
+	<table>
+		<tr><th bgcolor='lime'>green<td>hsync pulse (sync high)
+		<tr><th bgcolor='red'>red<td>vsync pulse (sync high)
+		<tr><th bgcolor='yellow'>yellow<td>hsync + vsync (sync low)
+		<tr><th bgcolor='silver'>gray<td>image output	
+	</table>
+	<img src=./video-timing.gif width=432 height=262 style='border:2px solid blue'>
+</figure>
+<figure>
+	<h3>Table:</h3>
+	<div>
+		{long hsync} = [hsync high] 32px [hsync low]<br>
+		{short hsync} = 16px [hsync high] 16px [hsync low]<br>
+	</div>
+	<table>
+		<tr><th>scanlines<th>signal
+		<tr><th>0<td>{long hsync} 184px {long hsync} 184px
+		<tr><th>1,2<td>{short hsync} 184px {short hsync} 184px
+		<tr><th>3<td>{short hsync} 184px {short hsync} [vsync high] 184px
+		<tr><th>4,5<td>{short hsync} 184px {short hsync} 184px
+		<tr><th>6<td>{short hsync} 184px {short hsync} [vsync low] 184px
+		<tr><th>7,8,9<td>{short hsync} 184px {short hsync} 184px
+		<tr><th>10<td>{short hsync} 400px
+		<tr><th>11-22<td>{long hsync} 400px
+		<tr><th>23<td>{long hsync} 64px 319px [image start] 1px [image end] 16px
+		<tr><th>24-254<td>{long hsync} 64px [image start] 320px [image end] 16px
+		<tr><th>255<td>{long hsync} 64px [image start] 319px [image end] 1px 16px
+		<tr><th>256-261<td>{long hsync} 400px
+	</table>
+</figure>
 
+<h2>Notes</h2>
+
+<p>
+	at startup, the f3 will output an invalid video signal (mostly consisting of garbled vblanks) for several frames.
+<p>
+	scanlines 0-9 have two hsync pulses. scanlines 1-10 have shorter hsync pulses. (i.e. these mostly overlap, but not completely)
+<p>
+	scanline 23 has one pixel of image output (most games hide this scanline).&nbsp;
+	scanline 255 is missing 1 pixel (some games hide this scanline)
+	
+<div>
+	<todo>plot the timing of interrupts 2 and 3</todo>
+</div>
+	
 <script src=link.js></script>
