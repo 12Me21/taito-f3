@@ -1,9 +1,13 @@
 <!doctype html>
-<script src=f3-bits.js></script>
+
+<title>Tilemaps</title>
+<link rel=icon sizes=16x16 href=../fav.gif>
 <link rel=stylesheet href=../style.css>
 <link rel=stylesheet href=./style2.css>
+<script src=f3-bits.js></script>
 
 <a href=home.html>Back</a>
+
 <h1>Tilemaps</h1>
 
 <p>There are four tilemap layers, numbered 0 to 3.&nbsp;
@@ -11,8 +15,6 @@
 	
 <p>Each tile references a 16×16px texture, defined in <abbr>rom</abbr>, with up to 64 colors (including transparent) per tile.&nbsp;
 	Tilemaps can be scaled on both axes, with a range of 50.2% to infinity vertically, and 100% to 25600% horizontally.
-	
-	<todo>describe how scrolling works (e.g. units and such) and how it is affected by scaling. give formulas for positions etc.</todo>
 	
 <h2>Scrolling and Scaling</h2>
 <p>
@@ -82,7 +84,7 @@
 	Note that this assumes <var>y</var> ≥ <var>sync</var>.
 	<!--&sum;&thinsp;<sub>j&thinsp;&isin;&thinsp;[sync,y)</sub>(Yzoom<sub>j</sub>)-->
 <figure class=f3-struct>
-	<h1>Tile Data</h1>
+	<h1>Tilemap Tile Data</h1>
 	<h2>Address (normal)</h2>
 	<f3-bits class=address>&ctdot;,0,0,1,0,num:3,y:5,x:5,-:2</f3-bits>
 	<h2>Address (extend mode)</h2>
@@ -122,47 +124,47 @@
 </figure>
 
 <figure class=f3-struct>
-	<h1>Scroll Registers 0-3</h1>
+	<h1>X Scroll Registers</h1>
 	<h2>Address</h2>
-	<f3-bits>&ctdot;,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,num:2,-</f3-bits>
-	<dl class=bits>
+	<f3-bits class=address>&ctdot;,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,num:2,-</f3-bits>
+	<dl class='bits address'>
 		<dt>num<dd>tilemap number <var>N</var> (0-3)
 	</dl>
 	<h2>Data</h2>
 	<f3-bits>ipart:10,fpart:6</f3-bits>
 	<dl class=bits>
-		<dt>ipart<dd>Tilemap <var>N</var>: X Global Scroll (integer part; 0-1024)<br>
 		<dt>fpart<dd>Tilemap <var>N</var>: X Global Scroll (negative fractional part; in steps of 1/64)<br>
+		<dt>ipart<dd>Tilemap <var>N</var>: X Global Scroll (integer part; 0-1024)<br>
 			<div class=mathbox>X Global Scroll (in texture pixels) = ipart &minus; fpart/64</div>
 	</dl>
 </figure>
 
 <figure class=f3-struct>
-	<h1>Scroll Registers 4-7</h1>
+	<h1>Y Scroll Registers</h1>
 	<h2>Address</h2>
-	<f3-bits>&ctdot;,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,num:2,-</f3-bits>
-	<dl class=bits>
+	<f3-bits class=address>&ctdot;,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,num:2,-</f3-bits>
+	<dl class='bits address'>
 		<dt>num<dd>tilemap number <var>N</var> (0-3)
 	</dl>
 	<h2>Data</h2>
 	<f3-bits>ipart:9,fpart:7</f3-bits>
 	<dl class=bits>
+		<dt>fpart<dd>Tilemap <var>N</var>: Y Global Scroll (fractional part; in steps of 1/128)<br><todo>is this negative like x scroll?</todo>
 		<dt>ipart<dd>Tilemap <var>N</var>: Y Global Scroll (integer part; 0-511)<br>
-		<dt>fpart<dd>Tilemap <var>N</var>: Y Global Scroll (fractional part; in steps of 1/128)<br>
 			<div class=mathbox>Y Global Scroll (in texture pixels) = ipart + fpart/128</div>
-			<br><todo>is this negative like x scroll?</todo>
 	</dl>
 </figure>
 
 <figure class=f3-struct>
-	<h1>Scroll Register 15</h1>
+	<h1>Scroll Register 15?</h1>
 	<h2>Address</h2>
-	<f3-bits>&ctdot;,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,-</f3-bits>
+	<f3-bits class=address>&ctdot;,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,-</f3-bits>
 	<h2>Data</h2>
 	<f3-bits>#:8,ex,#:7</f3-bits>
 	<dl class=bits>
 		<dt>ex<dd>Tilemaps: Extend Mode
 			<dl><dt>0<dd>32×32 tilemaps<dt>1<dd>64×32 tilemaps</dl>
+				<todo>what do the other bits do?</todo>
 	</dl>
 </figure>
 
