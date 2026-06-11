@@ -74,17 +74,18 @@ basic theory of operation:
 	<dt>playfields (4)<dd>32×32 (or 64×32) grid of 16×16 tiles. can be scaled vertically from 50% to infinity, and horizontally from 100% to 25600%.
 </dl>
 
+<pre>
 pipeline order:
 - [per-layer rendering]
 ×8 ↓ color, alpha select, blend mode, priority, clip settings, mosaic enable
-- mosaic ← mosaic strength
+- <a href=mosaic.html>mosaic ← mosaic strength</a>
 ×8 ↓ color, alpha select, blend mode, priority, clip settings
-- clip ← clip windows
+- <a href=clip.html>clip ← clip window values</a>
 ×8 ↓ color, alpha select, blend mode, priority
-- priority sorting
+- <a href=priority.html>priority sorting</a>
  - shadow effect ← shadow settings
 ×2 ↓ color, alpha select
-- alpha lookup ← alpha values
+- <a href=alpha.html>alpha lookup ← alpha values</a>
 ×2 ↓ color, alpha value
 - color lookup ← color ram
 ×2 ↓ rgb color, alpha value
