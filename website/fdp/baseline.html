@@ -26,8 +26,8 @@ basic theory of operation:
 <p>Most layers have these settings:
 <dl>
 	<dt>Enable<dd>whether the layer is visible
-	<dt>Clip Plane enables (4)<dd>which of the four clip intervals to enable
-	<dt>clip interval modes (4)<dd><dl compact><dt>0<dd>hide inside<dt>1<dd>hide outside</dl>
+	<dt>Clip Plane enables (4)<dd>which of the four clip windows to enable
+	<dt>clip window modes (4)<dd><dl compact><dt>0<dd>outside visible<dt>1<dd>inside visible</dl>
 	<dt>clip invert<dd>inverts the final clip mask
 	<dt>priority<dd>which of the 16 priority levels to use (higher number = above other things)
 	<dt>blend mode<dd>which half-pixel(s) to contribute to (neither/A/B/both)
@@ -39,7 +39,7 @@ basic theory of operation:
 	- the lineram settings (
 
 <h3>Clipping</h3>
-<p>there are four clip intervals, each of which has a left and right value (ranging 0-511).&nbsp; selecting multiple of these will union their visible areas together (todo explain all this better. but i think it goes here because it's a like  top-level feature that applies across layers)
+<p>there are four clip windows, each of which has a left and right value (ranging 0-511).&nbsp; selecting multiple of these will union their visible areas together (todo explain all this better. but i think it goes here because it's a like  top-level feature that applies across layers)
 
 <h3>Background Color Layer</h3>
 <p>a solid color, used if nothing else is present in that half-pixel, or if a <i>priority conflict</i> occurs.&nbsp; this is a pseudo-layer which lacks most of the common settings.

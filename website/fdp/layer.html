@@ -9,12 +9,12 @@
 	<dl>
 		<dt>Priority<dd>(0-15), higher number = in front of other things
 		<dt>Enable<dd>whether the layer is visible
-		<dt>Clip Enable <var>n</var> (×4)<dd>which of the four clip intervals to enable
+		<dt>Clip Enable <var>n</var> (×4)<dd>which of the four clip windows to enable
 		<dt>Clip Mode <var>n</var> (×4)<dd>
-			if clip interval <var>n</var> is enabled:
+			if clip window <var>n</var> is enabled:
 			<dl>
-				<dt>0<dd>inverted (pixels outside the interval are visible)
-				<dt>1<dd>normal (pixels inside the interval are visible)
+				<dt>0<dd>pixels outside the window are visible
+				<dt>1<dd>pixels inside the window are visible
 			</dl>
 		<dt>Clip Invert<dd>1 = invert the final clip mask
 		<dt>Blend Mode<dd>which half-pixel(s) to contribute to (neither/A/B/both). note that each layer encodes this setting differently for some reason
