@@ -14,7 +14,7 @@
 <ul>
 	<li>Color Id (13-bit number: index into palette ram)
 	<li>Alpha Select (1 bit: index into the alpha palette)
-	<li>Enable (1 bit: zero if the pixel is transparent, clipped out, or otherwise disabled)<br><todo>it's likely that this is signaled as priority = 0, or blend mode = none</todo>
+	<li>Enable (1 bit: zero if the pixel is transparent, clipped out, or otherwise disabled)<br><todo>it's likely that this is signaled as blend mode = none, or maybe priority = 0 (which will either conflict with the bg color layer, or perhaps row 0 doesnt even exist) </todo>
 	<li>Priority Value (4-bit number)
 	<li>Blend Mode (2 bits)
 </ul>
