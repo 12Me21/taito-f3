@@ -3,7 +3,8 @@
 <svg xmlns='http://www.w3.org/2000/svg' viewBox='-10 -45 175 580' width='175' height='580'>
 	<g id="test1">
 		<path d="M0.5,0 h132 v132 h-132 v-132z" stroke-width="1" fill="white" stroke="black"/>
-		<path d="M72.5,72 v60 v12 l-6,6 l-6,-6 v-12 v-60 z" stroke-width="1" fill="white" stroke="black"/>
+		<path d="M72.5,72 v60 v12 h-12 v-12 v-60 z" stroke-width="1" fill="white" stroke="black"/>
+		<path d="M72.5,72 m3,3 " stroke-width="1" fill="none" stroke="black"/>
 	</g>
 	<g id="test2">
 		<path d="M36.5,150.25 h60 l-12,36 h-36 l-12,-36 z" fill="#80ff80" stroke="green" stroke-width="1"/>
@@ -27,6 +28,7 @@
 		}
 		elem.replaceWith(g)
 	}
+	
 	spread(test1, 8, 1)
 	spread(test2, 16, 0.5)
 	spread(test3, 2, 2)
