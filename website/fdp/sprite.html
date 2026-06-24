@@ -21,14 +21,14 @@
 <p>Sprites are rendered from data in Sprite Ram, to a bitmap framebuffer.&nbsp;
 	Sprite Ram consists of 4 banks of 1024 Sprite Entries.&nbsp;
 	Each entry consists of eight words, and represents one sprite (and/or a command that sets graphics parameters, and/or set the scroll positions, and/or jump destination <todo></todo>).&nbsp;
-	On each frame, the FDP iterates over the sprite entries, starting at index 0 of the current bank (but the current index and bank can be changed using commands and jumps).&nbsp;Each entry takes 128 pixel clock cycles to process (thus, we can theoretically render 432×262/128 ≈ 884 sprites per frame.&nbsp; Though in reality the last few are rendered incorrectly).&nbsp; It is assumed that sprites are double-buffered (i.e. the sprites we see were rendered on the previous frame).<todo>too long</todo>
-	most games use banks 0 and 2 as a double buffer (note: unrelated to the framebuffer) i'm not sure whether there is a reason for this or not.
+	On each frame, the <abbr>fdp</abbr> iterates over the sprite entries, starting at index 0 of the current bank (but the current index and bank can be changed using commands and jumps).&nbsp; Each entry takes 128 pixel clock cycles to process (thus, we can theoretically render 432×262/128 ≈ 884 sprites per frame.&nbsp; Though in reality the last few are rendered incorrectly).&nbsp; It is assumed that sprites are double-buffered (i.e. the sprites we see were rendered on the previous frame).<todo>too long</todo>
+	Most games use banks 0 and 2 as a double buffer (note: unrelated to the framebuffer). i'm not sure whether there is a reason for this or not.
 	<todo>note the draw priority of sprites (later sprites are drawn over earlier ones)</todo>
 	<todo>bank number is maybe not a correct abstraction. the odd-numbered banks act very differently from the even-numbered ones, needs more testing. see notes.</todo>
 	
 <p>Individual sprites can be tiled into larger blocks by using the Block Controls.
 	
-<p>There are two scroll values, which we call "global" and "subglobal".&nbsp;
+<p>There are two scroll values, which we call <i>global</i> and <i>subglobal</i>.&nbsp;
 	These can be changed at any time, and you can choose which ones (global only, global+subglobal, or neither) to use for each sprite.
 	
 <p>Note that sprite rendering itself is not affected by any lineram settings.
@@ -102,14 +102,14 @@
 			There are effectively 6 possible combinations of x and y block controls:<br>
 			(note: in this chart, the left side is the given x position, and the top side is the y block origin)
 			<img src=sprite-tess.svg width=175 height=180 style=background:white><br>
-			Note that sprite blocks are intended be in column-major order, because there is no way to position a sprite directly to the right of the previous one.&nbsp;<br>
+			Note that sprite blocks are intended to be in column-major order, because there is no way to position a sprite directly to the right of the previous one.&nbsp;<br>
 			Generally, games only use rectangular sprite blocks, using 3 combinations of block controls:<br>
 			(0,0) for the first sprite in the block (along with setting multi=0 on the previous sprite)<br>
 			(3,0) for the first sprite in each subsequent column<br>
 			(1,1) for the rest of the sprites<br>
 			Typical 3x3 sprite block, showing the order of the sprites and their block controls (as color):<br>
 			<img src=sprite-tess2.svg width=175 height=180 style=background:white><br>
-			Only the first sprite (red) has a positon set in ram.&nbsp;<br>
+			Only the first sprite (red) has a position set in <abbr>ram</abbr>.&nbsp;<br>
 			<todo>clean this up and also show the actual sprite ram values for the example</todo>
 	</dl>
 	<h2>Data[5]</h2>
@@ -118,7 +118,7 @@
 		<dt>tex2<dd>Texture Id (upper bits) - this might be more than 2 bits
 		<dt>fmt<dd>bitmap format? - <todo>affects the order of pixels loaded from rom?</todo>
 	</dl>
-	note: this value of this field is reused to set the sprite settings register.
+	Note: this field's value is reused to set the Sprite Settings Register.
 	<!--<h1>Sprite Field <b style="text-transform: full-width; border: 2px solid; padding: 0px 5px;">6</b></h1> <todo></todo>-->
 	<h2>Data[6]</h2>
 	<f3-bits>j,.:5,dest:10</f3-bits>
@@ -140,7 +140,7 @@
 		<dt>t<dd><todo>supposedly disables clearing framebuffer but seems to be something else</todo>
 		<dt>a<dd><todo>affects visiblity of sprites or something</todo>
 		<dt>bpp<dd>texture bit planes <todo>what is the mapping?</todo>
-		<dt>b<sub>0</sub><dd>spriteram bank number (lower bit) when switching from bank 0 (or 2) to 1 (or 3), the effect is delayed until the next frame. in the other direction, the effect is immediate. also, we always switch back to bank 0 or 2 if we started the frame in bank 1 or 3.<todo>this is weird.</todo> i.e. we can't be in an odd bank for 2 frames in a row.
+		<dt>b<sub>0</sub><dd>spriteram bank number (lower bit). When switching from bank 0 (or 2) to 1 (or 3), the effect is delayed until the next frame. In the other direction, the effect is immediate. Also, we always switch back to bank 0 or 2 if we started the frame in bank 1 or 3.<todo>this is weird.</todo> I.e. we can't be in an odd bank for 2 frames in a row.
 		<dt>j<dd><todo>if this is 1, the lowest bit of the texture id of all pivot layer tiles is treated as inverted (e.g. 44->45, 45->44), and also it slightly changes the video signal timings, so i can't get a good recording with my setup. seems like this must be set near the start of the frame (sprite index ≤ 16) to take any effect. (and in that case you will see </todo>
 		<dt>k<dd>1 = flipscreen
 	</dl>
