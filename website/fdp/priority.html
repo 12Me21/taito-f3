@@ -20,18 +20,18 @@
 </ul>
 <todo>separate this into the data (color,alpha) vs the selectors (enable,prio,blend mode)</todo>
 <p>
-	The Color Id and Alpha Select may placed into the <i>Priority Table</i>, which has 16 rows (indexed by the Priority Value; higher values are above lower values) and 2 columns (selected by the Blend Mode, if Enable is set).&nbsp;
+	The Color Id and Alpha Select may be placed into the <i>Priority Table</i>, which has 16 rows (indexed by the Priority Value; higher values are above lower values) and 2 columns (selected by the Blend Mode, if Enable is set).&nbsp;
 	<todo>this part is too terse. also we need to make it clear that a value can be placed in multiple columns, or neither, but always one priority row. unless priority is 0.</todo>
 	<todo>also we should describe the format of each priority cell: color id, alpha select, invalid bit, filled bit (i think its likely that these fields are correct since it's 16 bits total)</todo>
 <p>
-	If more than one value is placed in the same cell, it is marked as invalid, and will contribute the background color<todo>and alpha select?</todo> if chosen. (note how this means the order that the layers are processed in doesn't matter)
+	If more than one value is placed in the same cell, it is marked as invalid, and will contribute the background color<todo>and alpha select?</todo> if chosen. (Note how this means the order that the layers are processed in doesn't matter.)
 <p>
-	We call the priority table columns "half-pixels", and refer to them as "A" and "B".&nbsp; <todo>we wait too long to say half pixel. either put it up front or drop the term.</todo>
-	The highest non-empty cell in each column will be chosen to move on to the next step of the pipeline, which takes two "half-pixels" as input.&nbsp;<todo>if no cell is found?  do we go with "background layer always fills priority row 0"? or say that row 0 doesnt exist and that bg color is just a fallback value incase no valid value is found</todo>
+	We call the priority table columns <i>half-pixels</i>, and refer to them as A and B.&nbsp; <todo>we wait too long to say half pixel. either put it up front or drop the term.</todo>
+	The highest non-empty cell in each column will be chosen to move on to the next step of the pipeline, which takes two half-pixels as input.&nbsp;<todo>if no cell is found?  do we go with "background layer always fills priority row 0"? or say that row 0 doesnt exist and that bg color is just a fallback value incase no valid value is found</todo>
 <p>
 	(may not be in scope)
-	after we pick these, we look up their alpha values. (based on the column index and alpha select)<br>
-	then, we send this data (the color index and alpha value) out of the fdp.
+	After we pick these, we look up their alpha values (based on the column index and Alpha Select).<br>
+	Then, we send this data (the color index and alpha value) out of the <abbr>fdp</abbr>.
 </p>
 	<todo>we have to mention shadow mode somewhere. this happens within the priority table, as special circuitry between adjacent layers which is activated if the shadow bit is set.</todo>
 	

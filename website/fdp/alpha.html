@@ -9,15 +9,15 @@
 
 <h1>Alpha</h1>
 
-<p>The fdp uses a strange system choose alpha values. each half-pixel has a "alpha palette" of two alpha values that can be used for it.&nbsp;
-	You can think of it like this: a color (i.e. as contributed by a layer, and stored in the priority table) consists of 14 bits of data: a 13-bit index into the color palette, and a 1-bit index into the "alpha palette", which we call "alpha select".<todo></todo> alpha values range from 0% to 100%, in steps of 12.5%.
+<p>The <abbr>fdp</abbr> uses a somewhat indirect system to choose alpha values.&nbsp; Each half-pixel has an <i>alpha palette</i> of two alpha values that can be used for it.&nbsp;
+	You can think of it like this: a color (i.e. as contributed by a layer, and stored in the priority table) consists of 14 bits of data: a 13-bit index into the color palette, and a 1-bit index into the alpha palette, which we call <i>Alpha Select</i>. Alpha values range from 0% to 100%, in steps of 12.5%.
 
 <figure class=f3-struct>
-	<h1>Lineram Register 2.1 "6200"</h1>
+	<h1>Line Register 2.1 "6200" - Blend Alpha Values</h1>
 	<f3-bits>A1:4,A0:4,B1:4,B0:4</f3-bits>
 	<todo>confirm the order of these</todo>
 	<dl class=bits>
-		<dt>B0<dd>half-pixel B, alpha value 0<br>alpha = (15-value)/8, clamped to [0,1]
+		<dt>B0<dd>half-pixel B, alpha value 0<br><div class=mathbox>Alpha = (15 &minus; value)/8, clamped to [0,1]</div>
 			<dl>
 				<dt>$0-$7<dd>100%
 				<dt>$8<dd>87.5%

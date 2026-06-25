@@ -10,13 +10,13 @@
 <h1>Mosaic Effect</h1>
 
 <p>The mosaic effect is a horizontal "pixelation" (sample-and-hold) filter.&nbsp;
-	The sampling interval can be set from 1 to 16 pixels, and it can be enabled for each layer (except pivot <todo>it's strange that this is the case, but i suspect the "pivot port" system can be used instead</todo>).&nbsp;
-	
+	The sampling interval can be set from 1 to 16 pixels, and it can be enabled for each layer (except pivot <todo>it's strange that this is the case, but i suspect the "pivot port" system can be used instead</todo>).
+
 <p>
-	The columns at which the sampling occurs are fixed<todo>show the math to determine the sampling positions.</todo>, and the effect is reset 2 pixels before the right edge of the screen <todo>also we should check: at the right edge, which line's mosaic parameters are used?</todo>
+	The columns at which the sampling occurs are fixed<todo>show the math to determine the sampling positions.</todo>, and the effect is reset 2 pixels before the right edge of the screen.<todo>also we should check: at the right edge, which line's mosaic parameters are used?</todo>
 
 <figure class=f3-struct>
-	<h1>Lineram Register 2.2 "6400"</h1>
+	<h1>Line Register 2.2 "6400" - Mosaic Pixelation Amount</h1>
 	<f3-bits>#:8,mosaic:4,#:4</f3-bits>
 	<dl class=bits>
 		<dt>mosaic<dd>Mosaic: Pixelation Amount<br>samples every [16&minus;mosaic] pixels<br>
