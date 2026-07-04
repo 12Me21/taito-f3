@@ -12,30 +12,32 @@
 	pixel clock: 6.6715 MHz<br>
 	432 pixels per scanline (~15.44 KHz)<br>
 	262 scanlines per frame (~58.94 Hz)<br>
-
+	Sync signal is (horizontal sync xor vertical sync), active <u>low</u>.
+	
+	
 <figure>
 	<h3>Diagram:</h3>
 	<table>
-		<tr><th bgcolor='lime'>green<td>hsync pulse (sync high)
-		<tr><th bgcolor='red'>red<td>vsync pulse (sync high)
-		<tr><th bgcolor='yellow'>yellow<td>hsync + vsync (sync low)
-		<tr><th bgcolor='silver'>gray<td>image output	
+		<tr><th bgcolor='lime'>green<td>hsync pulse (sync low)
+		<tr><th bgcolor='red'>red<td>vsync pulse (sync low)
+		<tr><th bgcolor='yellow'>yellow<td>hsync + vsync (sync high)
+		<tr><th bgcolor='silver'>gray<td>image output
 	</table>
 	<img src=./video-timing.gif width=432 height=262 style='border:2px solid blue'>
 </figure>
 <figure>
 	<h3>Table:</h3>
 	<div>
-		{long hsync} = [hsync high] 32px [hsync low]<br>
-		{short hsync} = 16px [hsync high] 16px [hsync low]<br>
+		{long hsync} = [hsync start] 32px [hsync end]<br>
+		{short hsync} = 16px [hsync start] 16px [hsync end]<br>
 	</div>
 	<table>
 		<tr><th>scanlines<th>signal
 		<tr><th>0<td>{long hsync} 184px {long hsync} 184px
 		<tr><th>1,2<td>{short hsync} 184px {short hsync} 184px
-		<tr><th>3<td>{short hsync} 184px {short hsync} [vsync high] 184px
+		<tr><th>3<td>{short hsync} 184px {short hsync} [vsync start] 184px
 		<tr><th>4,5<td>{short hsync} 184px {short hsync} 184px
-		<tr><th>6<td>{short hsync} 184px {short hsync} [vsync low] 184px
+		<tr><th>6<td>{short hsync} 184px {short hsync} [vsync end] 184px
 		<tr><th>7,8,9<td>{short hsync} 184px {short hsync} 184px
 		<tr><th>10<td>{short hsync} 400px
 		<tr><th>11-22<td>{long hsync} 400px
