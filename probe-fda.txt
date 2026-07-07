@@ -1,0 +1,36 @@
+vias under fda:
+A1:
+2 spikes during vblank, ~663µs apart, instant rise, fall time 663µs. both preceeded by digital noise (noise pattern seems consistent btwn frames) - see recording. first one starts exactly in the middle of the vsync pulse, second is 10 scanlines earlier. (that is, first noise happens during scanline 256, then spike near the end of that scanline, then second spike right at the end of scanline 4, if my counting is correct)
+A2: similar to A1
+A3: similar to A1
+A4: similar to A1 but with just the first block of noise, no decaying spikes and no second spike
+A5: similar to A1, with both chunks of noise, no decaying spikes. pulled to 1v when not driven
+A6: similar to A5 
+A7: similar to A5
+A8: similar to A5
+
+B1: analog? 0-5v, pattern repeats 2.626µs / 381kHz
+B2: digital? pattern repeats ~1900kHz (5x B1)
+B3: 5v
+B4: 5v
+B5: 5v
+B6: same as B2?
+B7: similar to A5 but inverted and pulled to 5v
+
+C1-C3: similar to B7
+C4: 5v
+^ these four are fda.29-26
+v i think these 2 are audio stuff actually.
+C5: digital 0-2v double pulse: 2.1µs high low high, 27.3µs low = 33.6µs
+C6: digital 0-1v pulse wave 4.2µs high, 29.4µs low = 33.6µs
+
+
+fdp.204
+fdp.203 - fda.95 = picture output enable! (active high)
+fdp.202
+fdp.199 
+fdp.198 - alpha? (cycles high/low every half pixel)
+fdp.197 - low
+fdp.196 - low
+fdp.181 - similar to A5?
+these must be the 4bit alpha, 2bit mode, 1bit blur control
