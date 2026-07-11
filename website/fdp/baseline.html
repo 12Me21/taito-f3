@@ -75,19 +75,20 @@ basic theory of operation:
 </dl>
 
 <pre>
-pipeline order:
+pixel pipeline order:
 - [per-layer rendering]
-×8 ↓ color, alpha select, blend mode, priority, clip settings, mosaic enable
-- <a href=mosaic.html>mosaic ← mosaic strength</a>
-×8 ↓ color, alpha select, blend mode, priority, clip settings
-- <a href=clip.html>clip ← clip window values</a>
-×8 ↓ color, alpha select, blend mode, priority
+×8 ↓ color, alpha select, bpp, layer, blend mode, priority, clip settings, mosaic enable
+- <a href=mosaic.html>mosaic</a> ← mosaic strength
+×8 ↓ color, alpha select, bpp, layer, blend mode, priority, clip settings
+- <a href=clip.html>clip</a> ← clip window values
+×8 ↓ color, alpha select, bpp, layer, blend mode, priority
 - <a href=priority.html>priority sorting</a>
- - shadow effect ← shadow settings
+×2 ↓ color, alpha select, bpp, layer
+- <a href=shadow.html>shadow effect</a> ← shadow mode
 ×2 ↓ color, alpha select
-- <a href=alpha.html>alpha lookup ← alpha values</a>
+- <a href=alpha.html>alpha lookup</a> ← alpha values
 ×2 ↓ color, alpha value
-- color lookup ← color ram
+- color lookup (RAM) ← color ram
 ×2 ↓ rgb color, alpha value
-- fda ← fda mode, blur enable
+- blending (FDA) ← fda mode, blur enable
 ×1 ↓ rgb color (blended)

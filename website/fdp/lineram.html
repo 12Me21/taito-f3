@@ -140,17 +140,15 @@
 
 <figure class=f3-struct>
 	<h1>Line Register 2.2 "6400" - Mosaic and <abbr>Fda</abbr> Settings</h1>
-	<f3-bits>fda:2,b,?,S,g,h,s,mosaic:4,p<sub>3</sub>,p<sub>2</sub>,p<sub>1</sub>,p<sub>0</sub></f3-bits>
+	<f3-bits>fda:2,blur:2,sh:2,h,s,mosaic:4,p<sub>3</sub>,p<sub>2</sub>,p<sub>1</sub>,p<sub>0</sub></f3-bits>
 	<dl class=bits>
 		<dt>p<sub>N</sub><dd>Tilemap <var>N</var>: Mosaic Enable
 		<dt>mosaic<dd>Mosaic: Pixelation Amount<br>samples every [16&minus;m] pixels<todo>we don't have a page for this effect yet</todo>
 		<dt>s<dd>Sprite Layer: Mosaic Enable
 		<dt>h<dd>Highcolor Layer: Mosaic Enable
-		<dt>g<dd>shadow mode alternate: if shadow mode is enabled, changes its behavior <todo>figure this out, and we don't have a page for this effect yet. it goes in the priority page maybe.</todo>
-		<dt>S<dd>"shadow mode": if 2 layers have <u>neighboring priorities</u> and the lower one is non-empty, the upper layer's palette is altered: 4th bit of the color index (i.e. the 0th bit of the palette id) is set to 1 - todo: this may be different depending on the bpp setting<br>
-			notes: this effect is done separately for every half pixel (this effect is probably implemented inside the priority cell array, unlike everything else). note: the background color layer (as well as priority conflicts) count as empty pixels
-		<dt>b<dd><abbr>Fda</abbr>: Horizontal Blur<dl compact><dt>0<dd>blurred<dt>1<dd>normal</dl><todo>page for these fda effects?</todo>
-		<dt>fda<dd><abbr>Fda</abbr>: Mode<dl><dt>0<dd>legacy color mode (15-bit <abbr>rgb</abbr>)<dt>1<dd>normal mode<dt>2<dd>no blending, display half-pixels separately (debug mode?)<dt>3<dd>invalid? first pixel's color repeats all the way across (but alpha still functions as normal)</dl>
+		<dt>sh<dd>Shadow Mode
+		<dt>blur<dd><abbr>Fda</abbr>: Blur Mode<dl compact><dt>0,1<dd>blurred<dt>2,3<dd>normal</dl><todo>page for these fda effects?</todo>(all 4 values produce different signals but they aren't visually distinguishable afaik)
+		<dt>fda<dd><abbr>Fda</abbr>: Mode<dl><dt>0<dd>legacy color mode (15-bit <abbr>rgb</abbr>)<dt>1<dd>normal mode<dt>2<dd>no blending, display half-pixels separately (debug mode?)<dt>3<dd>invalid? first pixel's color repeats all the way across (but alpha still functions)</dl>
 	</dl>
 </figure>
 

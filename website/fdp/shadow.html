@@ -1,0 +1,53 @@
+<!doctype html>
+
+<title>Shadow</title>
+<link rel=icon sizes=16x16 href=../fav.gif>
+<link rel=stylesheet href=../style.css>
+<script src=f3-bits.js></script>
+
+<a href=home.html>Back</a>
+
+<h1>Shadow</h1>
+
+<p>
+	Shadow mode takes effect when there are two layers with neighboring priority values. (within the halfpixel column)<todo>explain this better, maybe we need to define the pipeline elsewhere and then we can just say this stuff</todo>.&nbsp;
+	Anywhere both layers overlap (have nontransparent pixels), the upper layer's color is altered.&nbsp;
+	The effect varies based on the bpp setting of the upper layer's pixel.&nbsp;
+	Generally: in shadow mode 2, it sets the lowest bit in the palette index, and in mode 3, it disables the highest bit in the texture.
+	
+	<!--"shadow mode": if 2 layers have <u>neighboring priorities</u> and the lower one is non-empty, the upper layer's palette is altered: 4th bit of the color index (i.e. the 0th bit of the palette id) is set to 1 - todo: this may be different depending on the bpp setting<br>
+	notes: this effect is done separately for every half pixel (this effect is probably implemented inside the priority cell array, unlike everything else). note: the background color layer (as well as priority conflicts) count as empty pixels-->
+	
+<table border=1>
+	<tr><th>bpp<th>shadow=2<th>shadow=3
+	<tr><th>0 (4bpp)<td>bit4 = 1<td>no effect
+	<tr><th>1 (5bpp)<td>bit5 = 1<td>bit4 = 0
+	<tr><th>2 (invalid/4bpp)<td>no effect<td>bit5 = 0
+	<tr><th>3 (6bpp)<td>bit6 = 1<td>bit5 = 0
+</table>
+<todo>test how this works for pivot and highcolor which don't have traditional bpp settings?</todo>
+<p>
+	Shadow only works between certain combinations of upper/lower layers, though all layers can affect the results via priority conflicts (e.g. normally sprites can't shadow onto tilemaps, but you can shadow a tilemap onto another tilemap, and use conflicting sprites to cut a hole in the lower tilemap, which will cut a hole in the shadow effect)&nbsp;
+	There isn't any clear rule for which layers are compatible:
+
+<table border=1>
+	<tr><th rowspan=2 colspan=2><th colspan=7>bottom
+	<tr><th>tm 0<th>tm 1<th>tm 2<th>tm 3<th>sprite<th>pivot<th>highcolor
+	<tr><th rowspan=7>top<th>tm 0     <td>-<td><td><td><td><td><td>
+	<tr><th>tm 1     <td>yes<td>-<td><td><td><td><td>
+	<tr><th>tm 2     <td>yes<td><td>-<td><td><td><td>
+	<tr><th>tm 3     <td>yes<td>yes<td>yes<td>-<td><td>yes<td>yes
+	<tr><th>sprite   <td>yes<td><td><td><td>-<td><td>
+	<tr><th>pivot    <td>yes<td><td>yes<td><td>yes<td>-<td>
+	<tr><th>highcolor<td>yes<td>yes<td><td><td>yes<td><td>-
+</table>	
+
+<figure class=f3-struct>
+	<h1>Line Register 2.2 "6400"</h1>
+	<f3-bits>#:4,sh:2,#:10</f3-bits>
+	<dl class=bits>
+		<dt>sh<dd>
+			shadow mode:
+			<dl><dt>0,1<dd>(off)<dt>2<dd>normal shadow<dt>3<dd>modified shadow</dl>
+	</dl>
+</figure>

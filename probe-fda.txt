@@ -24,12 +24,11 @@ v i think these 2 are audio stuff actually.
 C5: digital 0-2v double pulse: 2.1µs high low high, 27.3µs low = 33.6µs
 C6: digital 0-1v pulse wave 4.2µs high, 29.4µs low = 33.6µs
 
-
-fdp.204
-fdp.203 - fda.95 = picture output enable! (active high)
-fdp.202
-fdp.199 
-fdp.198 - alpha? (cycles high/low every half pixel)
+fdp.204 - high
+fdp.203 - alpha/enable? high during nonvisible parts
+fdp.202 - blur=1: low, blur=0: high during visible parts
+fdp.199 - low
+fdp.198 - alpha? (cycles high/low every half pixel, low during nonvisible parts)
 fdp.197 - low
 fdp.196 - low
 fdp.181 - similar to A5?
