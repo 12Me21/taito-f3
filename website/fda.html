@@ -8,19 +8,19 @@
 
 <h1><img width=73 height=53 src=fda.gif alt><span>TC0650 FDA<br>&ldquo;F3 Digital to Analog&rdquo;</span></h1>
 
-<p>the FDA handles color blending and output. for each screen pixel, it reads two RGB colors from palette RAM (whose address is controlled by the FDP) and some blending info from the FDP (likely a 4-bit alpha value and a few more bits to control blur, palette mode, additive blending, etc.). it then blends these colors and outputs the result as analog RGB.
-<p>the FDA also allows the CPU to read and write palette RAM, with help from the FDP. (i assume it just connects the CPU data bus to palette RAM data, when instructed to by the FDP or FCM)
+<p>the FDA handles color blending and output. for each screen pixel, it reads two RGB colors from color RAM (whose address is controlled by the FDP) and some blending info from the FDP (likely a 4-bit alpha value and a few more bits to control blur, palette mode, additive blending, etc.). it then blends these colors and outputs the result as analog RGB.
+<p>the FDA also allows the CPU to read and write color RAM, with help from the FDP. (i assume it just connects the CPU data bus to color RAM data, when instructed to by the FDP or FCM)
 
 <h2>Pinout</h2>
 <figure>
 <table class=pinout>
 	<tr><th>1<td>nc?
 	<tr><th>2<td class=gnd>GND
-	<tr><th>3<td colspan=2>fdp.196
-	<tr><th>4<td colspan=2>fdp.197
-	<tr><th>5<td colspan=2>fdp.198
-	<tr><th>6<td colspan=2>fdp.199
-	<tr><th>7<td colspan=2>fdp.202
+	<tr><th>3<td>D0<td rowspan=4>alpha
+	<tr><th>4<td>D1
+	<tr><th>5<td>D2
+	<tr><th>6<td>D3
+	<tr><th>7<td colspan=2>blur control (fdp.202)
 	<tr><th>8<td>D16<td rowspan=7 class=cont1>CPU data<br>(16-bit)
 	<tr><th>9<td>D17
 	<tr><th>10<td>D18
@@ -70,7 +70,7 @@
 <table class=pinout>
 	<tr><th>51<td>nc?
 	<tr><th>52<td>nc?
-	<tr><th>53<td>D7<td rowspan=8>palette RAM 1<br>data
+	<tr><th>53<td>D7<td rowspan=8>color RAM 1<br>data
 	<tr><th>54<td>D6?
 	<tr><th>55<td>D5?
 	<tr><th>56<td>D4?
@@ -78,17 +78,17 @@
 	<tr><th>58<td>D2?
 	<tr><th>59<td>D1?
 	<tr><th>60<td>D0?
-	<tr><th>61<td>D7?<td rowspan=4 class=cont1>palette RAM 2<br>data
+	<tr><th>61<td>D7?<td rowspan=4 class=cont1>color RAM 2<br>data
 	<tr><th>62<td>D6?
 	<tr><th>63<td>D5?
 	<tr><th>64<td>D4?
 	<tr><th>65<td class=gnd>GND
 	<tr><th>66<td class=vcc>VCC
-	<tr><th>67<td>D3?<td rowspan=4 class=cont2>palette RAM 2<br>data
+	<tr><th>67<td>D3?<td rowspan=4 class=cont2>color RAM 2<br>data
 	<tr><th>68<td>D2?
 	<tr><th>69<td>D1?
 	<tr><th>70<td>D0?
-	<tr><th>71<td>D7?<td rowspan=8>palette RAM 3<br>data
+	<tr><th>71<td>D7?<td rowspan=8>color RAM 3<br>data
 	<tr><th>72<td>D6?
 	<tr><th>73<td>D5?
 	<tr><th>74<td>D4?
@@ -104,18 +104,18 @@
 	<tr><th>82<td class=gnd>GND
 	<tr><th>83<td>nc?
 	<tr><th>84<td>nc?
-	<tr><th>85<td colspan=2>palette RAM output enable
-	<tr><th>86<td colspan=2>palette RAM 3 write enable
-	<tr><th>87<td colspan=2>palette RAM 2 write enable
-	<tr><th>88<td colspan=2>palette RAM 1 write enable
+	<tr><th>85<td colspan=2>color RAM output enable
+	<tr><th>86<td colspan=2>color RAM 3 write enable
+	<tr><th>87<td colspan=2>color RAM 2 write enable
+	<tr><th>88<td colspan=2>color RAM 1 write enable
 	<tr><th>89<td colspan=2>CPU reset
 	<tr><th>90<td class=gnd>GND
 	<tr><th>91<td class=vcc>VCC
 	<tr><th>92<td colspan=2>half-pixel clock (13.343 MHz)
 	<tr><th>93<td colspan=2>inverted pixel clock (6.6715 MHz) (jp2)
 	<tr><th>94<td class=vcc>VCC
-	<tr><th>95<td colspan=2>video output enable (from fdp)
-	<tr><th>96<td colspan=2>fdp.204
+	<tr><th>95<td>D0<td rowspan=2>blend/color mode select
+	<tr><th>96<td>D1
 	<tr><th>97<td class=gnd>GND
 	<tr><th>98<td colspan=2>fdp.181
 	<tr><th>99<td class=vcc>VCC
@@ -123,7 +123,7 @@
 </table>
 </figure>
 
-<p>i don't remember which byte of the color is stored in which palette RAM chip. here i've labelled them "1" (IC38), "2" (IC39), "3" (IC40).
+<p>i don't remember which byte of the color is stored in which color RAM chip. here i've labelled them "1" (IC38), "2" (IC39), "3" (IC40).
 	
 <p>note: pins are labeled based on what they're connected to, not necessarily what they do. it's possible some VCC/GND pins configure things, and some NC pins are unused outputs.
 
