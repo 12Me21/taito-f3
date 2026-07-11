@@ -1,0 +1,20 @@
+onto pivot:
+- mode2 = sets bit4
+- mode3 = SETS bit12
+onto sprite:
+- mode2
+ - at bpp=0: sets bit4
+ - at bpp=1: sets bit5
+ - at bpp=2: no effect
+ - at bpp=3: sets bit6
+- mode3 = CLEARS bit12
+
+
+OTHER FINDINGS:
+bpp=2 with sprites DOES have an effect unlike with tilemaps.
+i believe it enables the bit5 bitplane only (it seems like bpp=3 is a combination of the two, as you'd expect)
+ALSO, bpp setting does clear the low palette bits
+palette 3, bpp=0 -> palette 3
+palette 3, bpp=1 -> palette 2
+palette 3, bpp=2 -> palette 1
+palette 3, bpp=3 -> palette 0
