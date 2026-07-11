@@ -14,8 +14,8 @@
 	}
 </style>
 
-<p>the <abbr>FDP</abbr> handles all graphics rendering, except for final palette lookup and alpha blending.
-For each screen pixel, the <abbr>FDP</abbr> outputs two palette indexes. these are used as addresses for palette <abbr>RAM</abbr>, and the resulting colors are sent to the <abbr>FDA</abbr> for blending.
+<p>the <abbr>FDP</abbr> handles all graphics rendering, except for final color lookup and alpha blending.
+For each screen pixel, the <abbr>FDP</abbr> outputs two color indexes. these are used as addresses for color <abbr>RAM</abbr>, and the resulting colors are sent to the <abbr>FDA</abbr> for blending.
 the four <abbr>RAM</abbr> chips to the left of the <abbr>FDP</abbr> are the sprite framebuffer.
 the two <abbr>RAM</abbr> chips above the <abbr>FDP</abbr> are accessible to the <abbr>CPU</abbr>. these store the tilemaps, list of sprites to render, text/pixel data, and line effects
 
@@ -212,7 +212,7 @@ ss lllL xxxx xxxx xxxx
 	<tr><th>179<td>D47
 	<tr><th>180<td colspan=2>? carta.89 and cartc.3 and fdp.207
 	<tr><th>181<td>fda.98
-	<tr><th>182<td>A0<td rowspan=14>color output<br>(palette <abbr>RAM</abbr> address)
+	<tr><th>182<td>A0<td rowspan=14>color output<br>(color <abbr>RAM</abbr> address)
 	<tr><th>183<td>A1
 	<tr><th>184<td>A2
 	<tr><th>185<td>A3
@@ -226,15 +226,15 @@ ss lllL xxxx xxxx xxxx
 	<tr><th>193<td>A10
 	<tr><th>194<td>A11
 	<tr><th>195<td>A12
-	<tr><th>196<td>fda.3
-	<tr><th>197<td>fda.4
-	<tr><th>198<td>fda.5
-	<tr><th>199<td>fda.6
+	<tr><th>196<td>D0<td rowspan=4>alpha output (to <abbr>fda</abbr>)
+	<tr><th>197<td>D1
+	<tr><th>198<td>D2
+	<tr><th>199<td>D3
 	<tr><th>200<td class=gnd>GND
 	<tr><th>201<td class=vcc>VCC
-	<tr><th>202<td>fda.7
-	<tr><th>203<td>fda.95
-	<tr><th>204<td>fda.96
+	<tr><th>202<td colspan=2><abbr>fda</abbr> blur control
+	<tr><th>203<td>D0<td rowspan=2><abbr>fda</abbr> mode
+	<tr><th>204<td>D1
 	<tr><th>205<td>? ic65.13
 	<tr><th>206<td colspan=2>cpu.reset
 	<tr><th>207<td colspan=2>same as fdp.180
