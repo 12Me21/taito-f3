@@ -11,7 +11,7 @@
 
 <p>
 	Shadow mode takes effect when there are two layers with neighboring priority values. (within the halfpixel column)<todo>explain this better, maybe we need to define the pipeline elsewhere and then we can just say this stuff</todo>.&nbsp;
-	Anywhere both layers overlap (have nontransparent pixels), the upper layer's color is altered.&nbsp;
+	Anywhere both layers overlap (have nontransparent pixels), the upper layer's color is altered.&nbsp; <b>this is the only situation where a pixel can have an effect on the output without being the highest priority in its halfpixel</b>.&nbsp;
 	The effect varies based on the bpp setting of the upper layer's pixel.&nbsp;
 	Generally: in shadow mode 2, it sets the lowest bit in the palette index, and in mode 3, it disables the highest bit in the texture.
 	
@@ -48,6 +48,6 @@
 	<dl class=bits>
 		<dt>sh<dd>
 			shadow mode:
-			<dl><dt>0,1<dd>(off)<dt>2<dd>normal shadow<dt>3<dd>modified shadow</dl>
+			<dl><dt>0,1<dd>(off)<dt>2<dd>shadow mode 2<dt>3<dd>shadow mode 3</dl>
 	</dl>
 </figure>
