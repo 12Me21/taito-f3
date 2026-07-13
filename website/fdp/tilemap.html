@@ -84,12 +84,12 @@
 	<!--&sum;&thinsp;<sub>j&thinsp;&isin;&thinsp;[sync,y)</sub>(Yzoom<sub>j</sub>)-->
 <figure class=f3-struct>
 	<h1>Tilemap Tile Data</h1>
-	<h2>Address (normal)</h2>
+	<h2>Address (normal) ($610000+)</h2>
 	<f3-bits class=address>&ctdot;,0,0,1,0,num:3,y:5,x:5,-:2</f3-bits>
-	<h2>Address (extend mode)</h2>
+	<h2>Address (extend mode) ($610000+)</h2>
 	<f3-bits class=address>&ctdot;,0,0,1,num:3,y:5,x:6,-:2</f3-bits>
 	<dl class='bits address'>
-		<dt>num<dd>tile data number (0-5)
+		<dt>num<dd>tilemap number (0-3,4-5)
 			<dl>
 				<dt><var>N</var> (0-3)<dd>Tilemap <var>N</var>: normal data
 				<dt>4<dd>Tilemap 2: alternate data
@@ -98,9 +98,11 @@
 		<dt>y<dd>tile y index (0-31)
 		<dt>x<dd>tile x index (0-31 or 0-63)
 	</dl>
-	<h2>Data[0]</h2>
-	<f3-bits>v,h,tex2:2,bpp:2,as,palette:9</f3-bits>
+	<h2>Data</h2>
+	<f3-bits>v,h,tex2:2,bpp:2,as,palette:9,texture:16</f3-bits>
 	<dl class=bits>
+		<dt>texture<dd>Texture Id (lower 16 bits)<br>
+			<div class=mathbox>Texture Id = texture | tex2<<16</div><br>
 		<dt>palette<dd>palette id (0-511)
 		<dt>as<dd>Alpha Select<br>(note how this is stored per-tile rather than per-scanline)
 		<dt>bpp<dd>texture bit planes (bits per pixel select)<todo>better wording for bpp</todo>
@@ -114,17 +116,11 @@
 		<dt>h<dd><dl compact><dt>1<dd>horizontal flip</dl>
 		<dt>v<dd><dl compact><dt>1<dd>vertical flip</dl>
 	</dl>
-	<h2>Data[1]</h2>
-	<f3-bits>texture:16</f3-bits>
-	<dl class=bits>
-		<dt>texture<dd>Texture Id (lower 16 bits)<br>
-			<div class=mathbox>Texture Id = texture | tex2<<16</div><br>
-	</dl>
 </figure>
 
 <figure class=f3-struct id=scrollreg-0>
-	<h1>X Scroll Registers</h1>
-	<h2>Address</h2>
+	<h1>Scroll Registers 0-3 Tilemap X Scroll</h1>
+	<h2>Address ($660000+)</h2>
 	<f3-bits class=address>&ctdot;,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,num:2,-</f3-bits>
 	<dl class='bits address'>
 		<dt>num<dd>tilemap number <var>N</var> (0-3)
@@ -139,8 +135,8 @@
 </figure>
 
 <figure class=f3-struct id=scrollreg-8>
-	<h1>Y Scroll Registers</h1>
-	<h2>Address</h2>
+	<h1>Scroll Registers 4-7 - Tilemap Y Scroll</h1>
+	<h2>Address ($660004+)</h2>
 	<f3-bits class=address>&ctdot;,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,num:2,-</f3-bits>
 	<dl class='bits address'>
 		<dt>num<dd>tilemap number <var>N</var> (0-3)
@@ -155,12 +151,16 @@
 </figure>
 
 <figure class=f3-struct id=scrollreg-15>
-	<h1>Scroll Register 15?</h1>
-	<h2>Address</h2>
+	<h1>Scroll Register 15 - ?</h1>
+	<h2>Address ($66001F)</h2>
 	<f3-bits class=address>&ctdot;,1,1,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,-</f3-bits>
 	<h2>Data</h2>
-	<f3-bits>#:8,ex,#:7</f3-bits>
+	<f3-bits>#:8,ex,#:5,B,L</f3-bits>
 	<dl class=bits>
+		<dt>L<dd>??: lock?<br>
+		1 = (all further writes to this register are ignored until next reset. clears blank and extend mode)<todo>what? also these don't belong on tilemaps page</todo>
+		<dt>B<dd>??: blank video?<br>
+		1 = (no color signal, invalid sync signal)
 		<dt>ex<dd>Tilemaps: Extend Mode
 			<dl><dt>0<dd>32×32 tilemaps<dt>1<dd>64×32 tilemaps</dl>
 				<todo>what do the other bits do?</todo>

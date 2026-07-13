@@ -15,9 +15,9 @@
 	
 <figure class=f3-struct>
 	<h1>Pivot Tile Data</h1>
-	<h2>Address</h2>
-	<f3-bits>&ctdot;,0,1,1,1,0,y:6,x:6,-</f3-bits>
-	<dl class=bits>
+	<h2>Address ($61C000+)</h2>
+	<f3-bits class=address>&ctdot;,0,1,1,1,0,y:6,x:6,-</f3-bits>
+	<dl class='bits address'>
 		<dt>y<dd>tile y index (0-63)
 		<dt>x<dd>tile x index (0-63)
 	</dl>
@@ -33,14 +33,14 @@
 
 <figure class=f3-struct>
 	<h1>Pivot Textures</h1>
-	<h2>Address (Text Mode)</h2>
-	<f3-bits>&ctdot;,0,1,1,1,1,chr:8,-:5</f3-bits>
-	<dl class=bits>
+	<h2>Address (Text Mode) ($61E000+)</h2>
+	<f3-bits class=address>&ctdot;,0,1,1,1,1,chr:8,-:5</f3-bits>
+	<dl class='bits address'>
 		<dt>chr<dd>character id (0-255)
 	</dl>
-	<h2>Address (Pixel Mode)</h2>
-	<f3-bits>&ctdot;,1,b,x:6,y:5,-:5</f3-bits>
-	<dl class=bits>
+	<h2>Address (Pixel Mode) ($620000+/$630000+)</h2>
+	<f3-bits class=address>&ctdot;,1,b,x:6,y:5,-:5</f3-bits>
+	<dl class='bits address'>
 		<dt>b<dd>pixel data bank (set via line register)
 		<dt>x<dd>tile x index (0-63)
 		<dt>y<dd>tile y index (0-31; top and bottom halves of the pivot layer use same textures in pixel mode)

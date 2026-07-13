@@ -36,7 +36,7 @@
 	
 <figure class=f3-struct>
 	<h1>Lineram Section Latches</h1>
-	<h2>Address</h2>
+	<h2>Address ($620000+)</h2>
 	<f3-bits class=address>&ctdot;,0,1,0,0,0,0,0,section:3,scanline:8,-</f3-bits>
 	<dl class='bits address'>
 		<dt>section<dd>section number (0-7)
@@ -56,7 +56,7 @@
 
 <figure class=f3-struct>
 	<h1>Line Register Values</h1>
-	<h2>Address</h2>
+	<h2>Address ($620000+)</h2>
 	<f3-bits class=address>&ctdot;,0,1,0,map:4,a,sub:2,scanline:8,-</f3-bits>
 	<dl class='bits address'>
 		<dt>map<dd>section mapping (from the section's latches)<br>usually at (section + $4)

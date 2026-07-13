@@ -520,4 +520,6 @@ table.bits td.x {
 	text-shadow: none;
 	color: black;
 }
-
+table.bits.address th {
+	background-color: #efe;
+}
