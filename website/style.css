@@ -521,5 +521,5 @@ table.bits td.x {
 	color: black;
 }
 table.bits.address th {
-	background-color: #efe;
+	background-color: #efe; /* todo: ugly */
 }
