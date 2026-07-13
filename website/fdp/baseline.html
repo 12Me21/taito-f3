@@ -1,7 +1,15 @@
 <!doctype html>
 
+<title>Graphics</title>
+<link rel=icon sizes=16x16 href=../fav.gif>
+<link rel=stylesheet href=../style.css>
 <script src=f3-bits.js></script>
-<link rel=stylesheet href=./style2.css>
+
+<a href=../home.html>Back</a>
+
+<h1>Graphics</h1>
+
+<todo>this page is unfinished and needs to be totally written</todo>
 
 basic theory of operation:
 
@@ -12,13 +20,38 @@ basic theory of operation:
 
 <h2>Graphics Layers</h2>
 <p>The <abbr>fdp</abbr> has eight different graphics <i>layers</i> which can be used as the source for each half-pixel:
+<section class=sitemap>
 <ul>
 	<li><a href="./tilemap.html">Tilemap Layers (4)</a>
 	<li><a href="./sprite.html">Sprite Layer</a>
 	<li><a href="./pivot.html">Pivot Layer</a>
-	<li><a href="./highcolor.html">Highcolor Layer<todo>rename this</todo></a>
-	<li><a href="./backgroundcolor.html">Background Color Layer</a>
+	<li><a href="./highcolor.html">Highcolor Layer</a>
+	<li><a href="./backgroundcolor.html">Background Color</a>
 </ul>
+
+<p>
+	<a href=lineram.html>line registers / lineram page</a>
+
+<p>
+	pixel pipeline order:<br>
+	- [per-layer rendering] ← (common and layer-specific data)<br>
+	×8 ↓ color, alpha select, blend mode, priority, clip settings, mosaic enable<br>
+	- <a href=mosaic.html>Mosaic</a> ← mosaic strength<br>
+	×8 ↓ color, alpha select, blend mode, priority, clip settings<br>
+	- <a href=clip.html>Clipping</a> ← clip window values<br>
+	×8 ↓ color, alpha select, blend mode, priority<br>
+	- <a href=priority.html>Priority Sorting</a><br>
+	×2 ↓ color, alpha select, shadow?<br>
+	- <a href=shadow.html>Shadow Effect</a> ← shadow mode<br>
+	×2 ↓ color, alpha select<br>
+	- <a href=alpha.html>Alpha Lookup</a> ← alpha values<br>
+	×2 ↓ color, alpha value<br>
+	- Color Lookup (RAM) ← color ram<br>
+	×2 ↓ rgb color, alpha value<br>
+	- <a href=blend.html>Blending (FDA)</a> ← fda mode, blur enable<br>
+	×1 ↓ rgb color (blended)<br>
+	- (Output to screen)
+</section>
 
 <p>Graphics settings are stored in <i>lineram</i>.&nbsp;
 	Effectively, each setting is an array of 256 values, one for each scanline.
@@ -50,7 +83,7 @@ basic theory of operation:
 
 <h3>Pivot Layer</h3>
 <p>(we're not sure what the name means). the pivot layer is a 64×64 grid of 8×8 tiles, with textures defined in <abbr>ram</abbr>. it can be used for displaying text or pixel graphics.
-<dl>
+<ul>
 	<li>per-tile palette and flipping
 	<li>global scroll
 	<li>per-scanline "pivot port" (unknown feature)
@@ -73,25 +106,3 @@ basic theory of operation:
 	<dt>sprite groups (4)<dd>
 	<dt>playfields (4)<dd>32×32 (or 64×32) grid of 16×16 tiles. can be scaled vertically from 50% to infinity, and horizontally from 100% to 25600%.
 </dl>
-
-<p>
-	<a href=lineram.html>line registers / lineram page</a>
-
-<pre>
-pixel pipeline order:
-- [per-layer rendering]
-×8 ↓ color, alpha select, bpp, layer, blend mode, priority, clip settings, mosaic enable
-- <a href=mosaic.html>mosaic</a> ← mosaic strength
-×8 ↓ color, alpha select, bpp, layer, blend mode, priority, clip settings
-- <a href=clip.html>clip</a> ← clip window values
-×8 ↓ color, alpha select, bpp, layer, blend mode, priority
-- <a href=priority.html>priority sorting</a>
-×2 ↓ color, alpha select, bpp, layer, shadow layer
-- <a href=shadow.html>shadow effect</a> ← shadow mode
-×2 ↓ color, alpha select
-- <a href=alpha.html>alpha lookup</a> ← alpha values
-×2 ↓ color, alpha value
-- color lookup (RAM) ← color ram
-×2 ↓ rgb color, alpha value
-- <a href=blend.html>blending (FDA)</a> ← fda mode, blur enable
-×1 ↓ rgb color (blended)
