@@ -13,19 +13,52 @@
 	Shadow mode takes effect when there are two layers with neighboring priority values. (within the halfpixel column)<todo>explain this better, maybe we need to define the pipeline elsewhere and then we can just say this stuff</todo>.&nbsp;
 	Anywhere both layers overlap (have nontransparent pixels), the upper layer's color is altered.&nbsp; <b>this is the only situation where a pixel can have an effect on the output without being the highest priority in its halfpixel</b>.&nbsp;
 	The effect varies based on the bpp setting of the upper layer's pixel.&nbsp;
-	Generally: in shadow mode 2, it sets the lowest bit in the palette index, and in mode 3, it disables the highest bit in the texture.
+	Generally: in shadow mode 2, it sets the lowest bit in the palette index to 1, and in mode 3 (never used), it sets most of the palette bits to 0
 	
 	<!--"shadow mode": if 2 layers have <u>neighboring priorities</u> and the lower one is non-empty, the upper layer's palette is altered: 4th bit of the color index (i.e. the 0th bit of the palette id) is set to 1 - todo: this may be different depending on the bpp setting<br>
 	notes: this effect is done separately for every half pixel (this effect is probably implemented inside the priority cell array, unlike everything else). note: the background color layer (as well as priority conflicts) count as empty pixels-->
 	
 <table border=1>
-	<tr><th>bpp<th>shadow=2<th>shadow=3
-	<tr><th>0 (4bpp)<td>bit4 = 1<td>no effect
-	<tr><th>1 (5bpp)<td>bit5 = 1<td>bit4 = 0
-	<tr><th>2 (invalid/4bpp)<td>no effect<td>bit5 = 0
-	<tr><th>3 (6bpp)<td>bit6 = 1<td>bit5 = 0
+	<tr><th>dest layer<th>shadow=2<th>shadow=3
+	<tr><th>pivot<td>bit4 = 1<td>bits 6-11 = 0, bit 12 = 1 (!)
+	<tr><th>bpp=0<td>bit4 = 1<td>bits 6-12 = 0
+	<tr><th>bpp=1<td>bit5 = 1<td>bits 4,6-12 = 0
+	<tr><th>bpp=2<td>no effect<td>bits 5-12 = 0
+	<tr><th>bpp=3<td>bit6 = 1<td>bits 4-12 = 0
 </table>
-<todo>test how this works for pivot and highcolor which don't have traditional bpp settings?</todo>
+<todo>test how this works for highcolor</todo>
+<pre>
+t = texture bit (n)
+p = palette bit (n-4)
+Q = palette bit (n-4) OR'd with texture bit (n)
+0 = always 0
+1 = always 1
+(note that palette and texture bits are never shifted around)
+
+bpp=0
+ shadow=0 [p pppp pppp tttt]
+ shadow=2 [p pppp ppp1 tttt]
+ shadow=3 [0 0000 00pp tttt]
+bpp=1
+ shadow=0 [p pppp pppQ tttt]
+ shadow=2 [p pppp pp1Q tttt]
+ shadow=3 [0 0000 00p0 tttt]
+bpp=2
+ shadow=0 [p pppp ppQp tttt]
+ shadow=2 [p pppp ppQp tttt] (no change)
+ shadow=3 [0 0000 000p tttt]
+bpp=3
+ shadow=0 [p pppp ppQQ tttt]
+ shadow=2 [p pppp p1QQ tttt]
+ shadow=3 [0 0000 0000 tttt]
+
+EXCEPT, with the pivot layer, it's like:
+ shadow=0 [0 00pp pppp tttt]
+ shadow=2 [0 00pp ppp1 tttt]
+ shadow=3 [1 0000 0000 tttt]
+
+note that sprites normally have color bit 12 hardcoded to 1, which is uniquely cleared by shadow mode 3
+</pre>
 <p>
 	Shadow only works between certain combinations of upper/lower layers, though all layers can affect the results via priority conflicts (e.g. normally sprites can't shadow onto tilemaps, but you can shadow a tilemap onto another tilemap, and use conflicting sprites to cut a hole in the lower tilemap, which will cut a hole in the shadow effect)&nbsp;
 	There isn't any clear rule for which layers are compatible:

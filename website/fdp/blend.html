@@ -1,0 +1,38 @@
+<!doctype html>
+
+<title>FDA Settings</title>
+<link rel=icon sizes=16x16 href=../fav.gif>
+<link rel=stylesheet href=../style.css>
+<script src=f3-bits.js></script>
+
+<a href=home.html>Back</a>
+
+<h1><abbr>Fda</abbr> Settings</h1>
+
+<p>
+	These settings are sent to the <abbr>fda</abbr> and control blending and blur etc.
+	<todo>It's likely that the fda mode setting also affects some behavior in the fdp but idk exactly.</todo>
+
+<figure class=f3-struct>
+	<h1>Line Register 2.2 "6400"</h1>
+	<f3-bits>fda:2,blur:2,#:12</f3-bits>
+	<dl class=bits>
+		<dt>blur<dd><abbr>Fda</abbr>: Horizontal Blur<br>
+			In practice:
+			<dl>
+				<dt>0,1<dd>blur disabled
+				<dt>2,3<dd>blur enabled
+			</dl>
+			Technically, this controls an input to the <abbr>fda</abbr>. This signal is normally high, and goes low during visible half-pixels, as configured by this field:
+			<dl>
+				<dt>0<dd>low never
+				<dt>1<dd>low during A half-pixels
+				<dt>2<dd>low during B half-pixels
+				<dt>3<dd>low during both half-pixels
+			</dl>
+			The level during half-pixel A doesn't seem to matter.<br>
+			In <abbr>fda</abbr> modes 2 and 3, the level for half-pixel B is sent for both.
+			<dt>fda<dd><abbr>Fda</abbr>: Mode<dl><dt>0<dd>legacy color mode (15-bit <abbr>rgb</abbr>)<dt>1<dd>normal mode<dt>2<dd>no blending, display half-pixels separately (debug mode?)<dt>3<dd>invalid? first pixel's color repeats all the way across (but alpha still functions)</dl>
+			<todo>Modes 2 and 3 are not used by any games, and may have various strange effects that we haven't tested much</todo>
+	</dl>
+</figure>

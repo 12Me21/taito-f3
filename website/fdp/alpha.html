@@ -14,10 +14,10 @@
 
 <figure class=f3-struct>
 	<h1>Lineram Register 2.1 "6200"</h1>
-	<f3-bits>A1:4,A0:4,B1:4,B0:4</f3-bits>
+	<f3-bits>B1:4,B0:4,A1:4,A0:4</f3-bits>
 	<todo>confirm the order of these</todo>
 	<dl class=bits>
-		<dt>B0<dd>half-pixel B, alpha value 0<br>alpha = (15-value)/8, clamped to [0,1]
+		<dt>A0<dd>half-pixel A, alpha value 0<br>alpha = (15-value)/8, clamped to [0,1]
 			<dl>
 				<dt>$0-$7<dd>100%
 				<dt>$8<dd>87.5%
@@ -29,9 +29,9 @@
 				<dt>$E<dd>12.5%
 				<dt>$F<dd>0%
 			</dl>
-		<dt>B1<dd>half-pixel B, alpha value 1
-		<dt>A0<dd>half-pixel A, alpha value 0
 		<dt>A1<dd>half-pixel A, alpha value 1
+		<dt>B0<dd>half-pixel B, alpha value 0
+		<dt>B1<dd>half-pixel B, alpha value 1
 	</dl>
 </figure>
 

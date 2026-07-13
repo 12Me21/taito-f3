@@ -8,7 +8,9 @@ onto sprite:
  - at bpp=2: no effect
  - at bpp=3: sets bit6
 - mode3 = CLEARS bit12
-
+onto tilemap:
+- mode2 = uhhh probably the normal thing idc
+- mode3 = 
 
 OTHER FINDINGS:
 bpp=2 with sprites DOES have an effect unlike with tilemaps.
@@ -18,3 +20,40 @@ palette 3, bpp=0 -> palette 3
 palette 3, bpp=1 -> palette 2
 palette 3, bpp=2 -> palette 1
 palette 3, bpp=3 -> palette 0
+
+ok also bpp=2 has an effect on tilemaps as well. probably the same as with sprites.  duh
+with shadow on:
+bpp=0 $1C 0001 ....
+bpp=1 $3C 0011 ....
+bpp=2 $2C 0010 ....
+bpp=3 $7C 0111 ....
+with shadow off:
+bpp=0 $0C 0000 ....
+bpp=1 $1C 0001 ....
+bpp=2 $2C 0010 ....
+bpp=3 $3C 0011 ....
+
+a different texture:  uh i hope there arent any transparent pixels in the slice we capture...
+bpp=3, shadow 0:     21 11 21 11 2d 11 0c bpp=3 shd=0 pal=0
+bpp=0, shd=0, pal=0: 
+bpp=0, shd=1, pal=0: 
+bpp=0, shd=2, pal=0: 
+bpp=0, shd=3, pal=0: 
+
+bpp=1, shd=0, pal=0: 
+bpp=1, shd=1, pal=0: 
+bpp=1, shd=2, pal=0: 
+bpp=1, shd=3, pal=0: 
+
+bpp=2, shd=0, pal=0: 
+bpp=2, shd=1, pal=0: 
+bpp=2, shd=2, pal=0: 
+bpp=2, shd=3, pal=0: 01 01 01 01 0d 01 0c bpp=2 shd=3 pal=0
+
+0 01 01
+1 01 01
+2 01 01
+3 01 01
+4 0d 0d
+5 01 01
+6 0c 0c
