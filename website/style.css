@@ -133,13 +133,13 @@ table.pinout {
 .pinout td {
 	border: 1px solid;
 	padding: 0 4px;
+	text-align: left;
 }
 
 .pinout th {
 	min-width: 3ch;
-}
-.pinout tr>* {
 	text-align: center;
+	font-family: courier;
 }
 .pinout .vcc, .pinout  .gnd {
 	border: none;

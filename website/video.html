@@ -48,10 +48,10 @@
 	</table>
 </figure>
 
-<h2>Mistakes</h2>
+<h2>Comparison to <abbr>Ntsc</abbr></h2>
 <p>
 	The F3 outputs a "240p" signal, approximating <abbr>ntsc</abbr> field 2 (vsync starts in the middle of a scanline) rather than the more common field 1.&nbsp;
-	Unlike most "240p" devices, it does try to output the correct equalizing and synchronizing pulses during vblank (i.e. 2 pulses per scanline for 9 scanlines, with the middle 3 being very long pulses), but incorrectly enough that it may do more harm than good.&nbsp;
+	Unlike most "240p" devices, it does try to output the correct equalizing and synchronizing pulses during vblank (i.e. two pulses per scanline for 9 scanlines, with the middle 3 being very long pulses), but incorrectly enough that it may do more harm than good.&nbsp;
 	It also fails to begin every scanline with a sync pulse (there are 7 scanlines where the pulse is delayed by 16 pixels, and 3 where it is delayed by 32 pixels with the previous pulse crossing the start of the scanline)
 	
 <figure>

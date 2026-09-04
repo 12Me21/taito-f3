@@ -87,6 +87,112 @@
 		<th>A<th>B<th>C<th>D<th>E<th>F<th>H<th>J<th>K<th>L<th>M<th>N<th>P<th>R<th>S<th>T<th>U<th>V<th>W<th>X<th>Y<th>Z<th>a<th>b<th>c<th>d<th>e<th>f
 	<tr>
 </table>
+<style>
+	table.port-sideways {
+	table-layout: fixed;
+	font-size: 12px;
+	border: 1px solid;
+	background: beige;
+}
+.port-sideways td {
+	border: 1px solid;
+}
+.port-sideways tr>* {
+	text-align: center;
+}
+.port-sideways th, .port-sideways td {
+	box-sizing:border-box;
+	width: 40px;
+	max-width: 40px;
+	min-width: 40px;
+	//word-wrap: break-word;
+	line-height: 1;
+	padding: 0.5px;
+}
+.port-sideways th {
+	font-family: courier;
+	height: 30px;
+	width: 1em;
+	max-width: unset;
+	min-width: unset;
+	padding: 0 0.5em;
+}
+.port-sideways .narrow td {
+	
+}
+.port-sideways .gap {
+	border: none;
+}
+figure > table.port-sideways {
+	display: inline-table;
+	margin-right: 8px;
+	margin-bottom: 16px;
+	vertical-align: top;
+}
+
+</style>
+<figure>
+<table class=port-sideways>
+	<tr><th>1<td rowspan=2 class=gnd>GND
+	<tr><th>2
+	<tr><th>3<td rowspan=2 class=vcc>+5V (VCC)
+	<tr><th>4
+	<tr><th>5<td class=nc>&minus;5V<br>(nc)
+	<tr><th>6<td class=vcc>+12V
+	<tr><th>7<td class=space>
+	<tr><th>8<td>coin 1 counter
+	<tr><th>9<td>coin 1 lockout
+	<tr><th>10<td>spk +
+	<tr><th>11<td class=nc>nc
+	<tr><th>12<td>video red
+	<tr><th>13<td>video blue
+	<tr><th>14<td class=gnd>GND
+	<tr><th>15<td>test
+	<tr><th>16<td>coin 1
+	<tr><th>17<td>1p<br>start
+	<tr><th>18<td>1p<br>up
+	<tr><th>19<td>1p<br>down
+	<tr><th>20<td>1p<br>left
+	<tr><th>21<td>1p<br>right
+	<tr><th>22<td>1p<br>btn1
+	<tr><th>23<td>1p<br>btn2
+	<tr><th>24<td>1p<br>btn3
+	<tr><th>25<td>1p<br>btn4
+	<tr><th>26<td>1p<br>btn5*
+	<tr><th>27<td rowspan=2 class=gnd>GND
+	<tr><th>28
+</table>
+<table class=port-sideways>
+	<tr><td rowspan=2 class=gnd>GND<th>A
+	<tr><th>B
+	<tr><td rowspan=2 class=vcc>+5V (VCC)<th>C
+	<tr><th>D
+	<tr><td class=nc>&minus;5V<br>(nc)<th>E
+	<tr><td class=vcc>+12V<th>F
+	<tr><td class=space><th>H
+	<tr><td>coin 2 counter<th>J
+	<tr><td>coin 2 lockout<th>K
+	<tr><td>spk &minus;<th>L
+	<tr><td class=nc>nc<th>M
+	<tr><td>video green<th>N
+	<tr><td>video sync<th>P
+	<tr><td>service<th>R
+	<tr><td>tilt<th>S
+	<tr><td>coin 2<th>T
+	<tr><td>2p<br>start<th>U
+	<tr><td>2p<br>up<th>V
+	<tr><td>2p<br>down<th>W
+	<tr><td>2p<br>left<th>X
+	<tr><td>2p<br>right<th>Y
+	<tr><td>2p<br>btn1<th>Z
+	<tr><td>2p<br>btn2<th>a
+	<tr><td>2p<br>btn3<th>b
+	<tr><td>2p<br>btn4<th>c
+	<tr><td class=nc>nc<th>d
+	<tr><td rowspan=2 class=gnd>GND<th>e
+	<tr><th>f
+</table>
+</figure>
 <p>
 	<b>The F3 does not use &minus;5V</b><s-t>.</s-t> (it is completely unconnected)
 <p>

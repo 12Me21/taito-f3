@@ -35,7 +35,7 @@ bpp=3 $3C 0011 ....
 
 a different texture:  uh i hope there arent any transparent pixels in the slice we capture...
 bpp=3, shadow 0:     21 11 21 11 2d 11 0c bpp=3 shd=0 pal=0
-bpp=0, shd=0, pal=0: 
+bpp=0, shd=0, pal=0: 01 01 01 01 0d 01 0c bpp=0 shd=0 pal=0
 bpp=0, shd=1, pal=0: 
 bpp=0, shd=2, pal=0: 
 bpp=0, shd=3, pal=0: 
