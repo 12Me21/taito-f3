@@ -12,8 +12,7 @@
 	pixel clock: 6.6715 MHz<br>
 	432 pixels per scanline (~15.44 KHz)<br>
 	262 scanlines per frame (~58.94 Hz)<br>
-	Sync signal is (horizontal sync xor vertical sync), active <u>low</u>.
-	
+	Sync signal is active <u>low</u>.
 	
 <figure>
 	<h3>Diagram:</h3>
@@ -25,8 +24,9 @@
 	</table>
 	<img src=./video-timing.gif width=432 height=262 style='border:2px solid blue'>
 </figure>
+
 <figure>
-	<h3>Table:</h3>
+<h3>Table:</h3>
 	<div>
 		{long hsync} = [hsync start] 32px [hsync end]<br>
 		{short hsync} = 16px [hsync start] 16px [hsync end]<br>
@@ -47,6 +47,40 @@
 		<tr><th>256-261<td>{long hsync} 400px
 	</table>
 </figure>
+
+<h2>Mistakes</h2>
+<p>
+	The F3 outputs a "240p" signal, approximating <abbr>ntsc</abbr> field 2 (vsync starts in the middle of a scanline) rather than the more common field 1.&nbsp;
+	Unlike most "240p" devices, it does try to output the correct equalizing and synchronizing pulses during vblank (i.e. 2 pulses per scanline for 9 scanlines, with the middle 3 being very long pulses), but incorrectly enough that it may do more harm than good.&nbsp;
+	It also fails to begin every scanline with a sync pulse (there are 7 scanlines where the pulse is delayed by 16 pixels, and 3 where it is delayed by 32 pixels with the previous pulse crossing the start of the scanline)
+	
+<figure>
+	<table>
+		<tr><th rowspan=2>scanline<th colspan=2>F3 sync pulses<th colspan=2><abbr>Ntsc</abbr> field 2 sync pulses
+		<tr><th>pulse 1<th>pulse 2<th>pulse 1<th>pulse 2
+		<tr><th>0       <td>32*    <td>32<sup>[a]</sup><td>32*<td>16
+		<tr><th>1       <td>(16+)16    <td>(16+)16<td>16<td>16
+		<tr><th>2       <td>(16+)16    <td>(16+)16<td>16<td>16
+		<tr><th>3       <td>(16+)16    <td>(16+)16+200<sup>[b]</sup><sup>[c]</sup><td>16<td>184
+		<tr><th>4       <td>(32+)200<sup>[c]</sup>   <td>(32+)200<sup>[c]</sup><td>184<td>184
+		<tr><th>5       <td>(32+)200<sup>[c]</sup>   <td>(32+)200<sup>[c]</sup><td>184<td>184
+		<tr><th>6       <td>(32+)200<sup>[c]</sup>   <td>none<sup>[d]</sup><td>184<td>16
+		<tr><th>7       <td>(16+)16    <td>(16+)16<td>16<td>16
+		<tr><th>8       <td>(16+)16    <td>(16+)16<td>16<td>16
+		<tr><th>9       <td>(16+)16<sup>[e]</sup>    <td>(16+)16<sup>[e]</sup><td>16<td>none
+		<tr><th>10      <td>(16+)16    <td>none<td>32<td>none
+		<tr><th>11+     <td>32       <td>none<td>32<td>none
+	</table>
+</figure>
+<p>
+	* technically this first half-scanline would belong to the preceeding field 1.<br>
+	"(N+)" indicates an erroneous delay before the pulse.<br>
+	<sup>[a]</sup> wrong length synchronizing pulse.<br>
+	<sup>[b]</sup> actually 2 pulses with a barely-detectable gap between them.<br>
+	<sup>[c]</sup> equalizing pulses are too long, and extend past where the (delayed) next pulse should've started.<br>
+	<sup>[d]</sup> missing synchronizing pulse.<br>
+	<sup>[e]</sup> 1 too many scanlines of synchronizing pulses.<br>
+	[b], [c], and [d] are consequences of how vsync is handled: instead of lengthening the sync pulses during vsync, they instead <abbr>xor</abbr> sync with the vsync signal.
 
 <h2>Notes</h2>
 
