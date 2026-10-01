@@ -1,0 +1,3 @@
+notes about pinouts
+
+most of this was determined from studying the pcb traces, and signals.  i was able to determine some basic info (whether a pin is power, input, output, or unconnected) from die photos.
