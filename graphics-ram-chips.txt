@@ -1,0 +1,37 @@
+gram1
+gram2
+
+gram2.rfsh -- 5v
+gram2.a16 -- fdp.33 and gram1
+gram2.a14 -- fdp.35 and gram1 and gram1.d6
+gram2.a12 -- fdp.37 and gram1 and gram1.d4
+gram2.a7 -- fdp.44 and gram1
+gram2.a6 -- fdp.45 and gram1
+gram2.a5 -- fdp.46 and gram1
+gram2.a4 -- fdp.47 and gram1
+gram2.a3 -- fdp.48 and gram1
+gram2.a2 -- fdp.49 and gram1
+gram2.a1 -- fdp.50 and gram1
+gram2.a0 -- fdp.51 and gram1
+gram2.d0 -- fdp.51 ?
+gram2.d1 -- fdp.50
+gram2.d2 -- fdp.49
+gram2.gnd -- gnd
+
+gram2.d3 -- fdp.48
+gram2.d4 -- fdp.47
+gram2.d5 -- fdp.46
+gram2.d6 -- fdp.45
+gram2.d7 -- fdp.44
+gram2.ce1 -- fdp.32 (and gram1.ce1)
+gram2.a10 -- fdp.42 and gram1 and gram1.d0 
+gram2.oe -- fdp.123 (and gram1.oe)
+gram2.a11 -- fdp.39 (and gram1.a11) and gram1.d3
+gram2.a9 -- fdp.41 (and gram1.a9) and gram1.d1
+gram2.a8 -- fdp.40 and gram1 and gram1.d2
+gram2.a13 -- fdp.36 (and gram1.a13) gram1.d5
+gram2.rw -- fdp.31 
+gram2.ce2 -- 5v (and gram1.ce2)
+gram2.a15 -- fdp.34 and gram1 and gram1.d7
+gram2.vdd
+
