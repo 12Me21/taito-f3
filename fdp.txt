@@ -119,7 +119,7 @@ fdp:
 114 VCC
 115 o ic5.28 ic6.28 ic7.28 ic8.28 (fb ram all OE)
 116 o ic9.9 (A3) and fb ram all CAS
-117 h ic9.11 (Y4) = fdp.112
+117 i ic9.11 (Y4) = fdp.112
 118 o cartc.4 and fcm.119 and fcm.128 and pal7.3
 119 GND
 120 o video sync ! pal7.1

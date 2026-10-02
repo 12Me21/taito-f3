@@ -204,7 +204,7 @@ GND c6.2 esp.2 c7.2
 
 
 pal7.1 pal7.2 fdp.120 r12.2
-pal7.3 fdp.108
+pal7.3 fdp.118
 GND r12.1 pal7.4 pal7.5 pal7.6 pal7.7 pal7.8 pal7.9 pal7.10 pal7.11
 pal7.19 fdp.121
 VCC pal7.20
@@ -256,7 +256,7 @@ GND c1.1
 c2.1 fcm.138
 GND c2.2
 
-ic9.8 c4.1 fdp.114
+ic9.8 c4.1 fdp.113
 
 
 ic35
