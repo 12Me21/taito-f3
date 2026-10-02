@@ -61,7 +61,18 @@ probably nc: ic65.1 ic65.2 ic65.3 ic65.4 ic65.5 ic65.6 ic65.8 ic65.9
 # so basically it's like, the cpu AS signal is gated behind fdp 205 and graphics ram chip enable, and once those both happen(?) its value finally propagates through to fcm.109
 # we don't know what this results in, but i would assume the fcm responds by, perhaps, asserting DSACK, to tell the cpu continue the bus transation, once the fdp is "ready"
 
-#
+# ok actually let me look more closely at this umm
+# so inverted cpu AS is connected to both d flip flop "preset" inputs.
+# so when AS goes high, Q1 and Q2 are immediately set high (async from clock)
+# meanwhole, because the data input of the first ff is low, when fdp.205 goes low (i.e. clock1 goes high) Q1 goes low.
+# then, if we recieve a pulse on clock2 (when graphics ram chip enable goes high i.e. disabled) BEFORE the next time AS goes high, Q2 will go low
+# i.e. 
+# for fcm.109 to be set low, the following events need to happen, in order:
+# 1: fdp.205 goes low
+# 2: graphics ram chip enable 1 goes high (becomes disabled)
+# and whenever the cpu stops presenting an address, this resets and fcm.109 goes high.
+
+# i would guess that on the single-board f3 (we could check this), fdp.205 was connected directly to fcm.109, and then later they found that to be unreliable and so added this extra condition where it waits for the graphics ram to be disabled.
 
 idk fdp 205: fdp.205 → ic65.13  
 inverted fdp 205 to ic64 clock 1: ic65.12 → ic64.3
