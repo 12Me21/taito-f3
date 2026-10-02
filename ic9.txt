@@ -1,0 +1,26 @@
+IC9
+SN74LS08N
+4× AND gate
+
+1 i 1A - cpu.as fcm.138
+2 i 1B - ic9.6(2OUT)
+3 o 1OUT - fdp.2 
+4 i 2A - dsack0 or 1
+5 i 2B - dsack0 or 1
+6 o 2OUT - ic9.2(1B)
+7 GND
+8 o 3OUT - fdp.113
+9 i 3A - fdp.116
+10 i 3B - VCC
+11 o 4OUT - fdp.117
+12 i 4A - fdp.112
+13 i 4B - VCC
+14 VCC
+
+gates 1 and 2 are used to compute:
+cpu.dsack0 && cpu.dsack1 && cpu.as → fdp.2
+(all of those signals are active low, so this is to say  if any of these 3 are asserted)
+
+gate 3 is used (with one input tied high) to buffer the output fdp.116 into the input fdp.113
+
+gate 4 does the same but for 112 into 117
