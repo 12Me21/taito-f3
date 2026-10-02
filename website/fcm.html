@@ -24,175 +24,175 @@ CPU address mapping, communication between the CPU and FDP, generating CPU inter
 
 <figure>
 <table class='pinout'>
-	<tr><th>1<td class=gnd>GND
-	<tr><th>2<td>D19<td rowspan=4 class=cont2>CPU data<br>(16-bit)
-	<tr><th>3<td>D18
-	<tr><th>4<td>D17
-	<tr><th>5<td>D16
-	<tr><th>6<td>A19<td rowspan=6>CPU address<br>high
-	<tr><th>7<td>A18
-	<tr><th>8<td>A17
-	<tr><th>9<td>A16
-	<tr><th>10<td class=gnd>GND
-	<tr><th>11<td>A15
-	<tr><th>12<td>A7<td rowspan=8>CPU address<br>low
-	<tr><th>13<td>A6
-	<tr><th>14<td>A5
-	<tr><th>15<td>A4
-	<tr><th>16<td>A3
-	<tr><th>17<td>A2
-	<tr><th>18<td>A1
-	<tr><th>19<td>A0
-	<tr><th>20<td class=vcc>VCC
-	<tr><th>21<td> 
-	<tr><th>22<td> 
-	<tr><th>23<td> 
-	<tr><th>24<td> 
-	<tr><th>25<td> 
-	<tr><th>26<td> 
-	<tr><th>27<td> 
-	<tr><th>28<td> 
-	<tr><th>29<td> 
-	<tr><th>30<td class=gnd>GND
-	<tr><th>31<td> 
-	<tr><th>32<td> 
-	<tr><th>33<td> 
-	<tr><th>34<td> 
-	<tr><th>35<td> 
-	<tr><th>36<td> 
-	<tr><th>37<td> 
-	<tr><th>38<td class=vcc>VCC
-	<tr><th>39<td> 
-	<tr><th>40<td class=vcc>VCC
+	<tr><th>1<th><td class=gnd>GND
+	<tr><th>2<th>io?<td>D19<td rowspan=4 class=cont2>CPU data<br>(16-bit)
+	<tr><th>3<th>io?<td>D18
+	<tr><th>4<th>io?<td>D17
+	<tr><th>5<th>io?<td>D16
+	<tr><th>6<th>i?<td>A19<td rowspan=6>CPU address<br>high
+	<tr><th>7<th>i?<td>A18
+	<tr><th>8<th>i?<td>A17
+	<tr><th>9<th>i?<td>A16
+	<tr><th>10<th><td class=gnd>GND
+	<tr><th>11<th>i?<td>A15
+	<tr><th>12<th>i?<td>A7<td rowspan=8>CPU address<br>low
+	<tr><th>13<th>i?<td>A6
+	<tr><th>14<th>i?<td>A5
+	<tr><th>15<th>i?<td>A4
+	<tr><th>16<th>i?<td>A3
+	<tr><th>17<th>i?<td>A2
+	<tr><th>18<th>i?<td>A1
+	<tr><th>19<th>i?<td>A0
+	<tr><th>20<th><td class=vcc>VCC
+	<tr><th>21<th>nc?<td> 
+	<tr><th>22<th>nc?<td> 
+	<tr><th>23<th>nc?<td> 
+	<tr><th>24<th>nc?<td> 
+	<tr><th>25<th>nc?<td> 
+	<tr><th>26<th>nc?<td> 
+	<tr><th>27<th>nc?<td> 
+	<tr><th>28<th>nc?<td> 
+	<tr><th>29<th>nc?<td> 
+	<tr><th>30<th><td class=gnd>GND
+	<tr><th>31<th>nc?<td> 
+	<tr><th>32<th>nc?<td> 
+	<tr><th>33<th>nc?<td> 
+	<tr><th>34<th>nc?<td> 
+	<tr><th>35<th>nc?<td> 
+	<tr><th>36<th>nc?<td> 
+	<tr><th>37<th>nc?<td> 
+	<tr><th>38<th><td class=vcc>VCC
+	<tr><th>39<th>nc?<td> 
+	<tr><th>40<th><td class=vcc>VCC
 </table>
 
 <table class='pinout'>
-	<tr><th>41<td class=gnd>GND
-	<tr><th>42<td> 
-	<tr><th>43<td> 
-	<tr><th>44<td> 
-	<tr><th>45<td> 
-	<tr><th>46<td> 
-	<tr><th>47<td> 
-	<tr><th>48<td colspan=2>otis.e
-	<tr><th>49<td colspan=2>otis.bclk
-	<tr><th>50<td class=gnd>GND
-	<tr><th>51<td colspan=2>otis.ser1
-	<tr><th>52<td colspan=2>esp.ser0
-	<tr><th>53<td colspan=2>otis.ser2
-	<tr><th>54<td colspan=2>esp.ser1
-	<tr><th>55<td colspan=2>otis.ser3
-	<tr><th>56<td colspan=2>esp.ser2
-	<tr><th>57<td colspan=2>esp.ser3
-	<tr><th>58<td colspan=2>dac.data
-	<tr><th>59<td class=gnd>GND
-	<tr><th>60<td class=vcc>VCC
-	<tr><th>61<td> 
-	<tr><th>62<td>A0<td rowspan=17>ESP RAM<br>data/addr<br>latch
-	<tr><th>63<td>D9
-	<tr><th>64<td>A1
-	<tr><th>65<td>D10
-	<tr><th>66<td>A2
-	<tr><th>67<td>D11
-	<tr><th>68<td>A3
-	<tr><th>69<td>D12
-	<tr><th>70<td class=gnd>GND
-	<tr><th>71<td>A4
-	<tr><th>72<td>D13
-	<tr><th>73<td>A5
-	<tr><th>74<td>D14
-	<tr><th>75<td>A6
-	<tr><th>76<td>D15
-	<tr><th>77<td>A7
-	<tr><th>78<td>D16
-	<tr><th>79<td colspan=2>esp.gate
-	<tr><th>80<td class=vcc>VCC
+	<tr><th>41<th><td class=gnd>GND
+	<tr><th>42<th>nc?<td> 
+	<tr><th>43<th>nc?<td> 
+	<tr><th>44<th>nc?<td> 
+	<tr><th>45<th>nc?<td> 
+	<tr><th>46<th>nc?<td> 
+	<tr><th>47<th>nc?<td> 
+	<tr><th>48<th><td colspan=2>otis.e
+	<tr><th>49<th><td colspan=2>otis.bclk
+	<tr><th>50<th><td class=gnd>GND
+	<tr><th>51<th><td colspan=2>otis.ser1
+	<tr><th>52<th><td colspan=2>esp.ser0
+	<tr><th>53<th><td colspan=2>otis.ser2
+	<tr><th>54<th><td colspan=2>esp.ser1
+	<tr><th>55<th><td colspan=2>otis.ser3
+	<tr><th>56<th><td colspan=2>esp.ser2
+	<tr><th>57<th><td colspan=2>esp.ser3
+	<tr><th>58<th>o?<td colspan=2>dac.data
+	<tr><th>59<th><td class=gnd>GND
+	<tr><th>60<th><td class=vcc>VCC
+	<tr><th>61<th><td> 
+	<tr><th>62<th><td>A0<td rowspan=17>ESP RAM<br>data/addr<br>latch
+	<tr><th>63<th><td>D9
+	<tr><th>64<th><td>A1
+	<tr><th>65<th><td>D10
+	<tr><th>66<th><td>A2
+	<tr><th>67<th><td>D11
+	<tr><th>68<th><td>A3
+	<tr><th>69<th><td>D12
+	<tr><th>70<th><td class=gnd>GND
+	<tr><th>71<th><td>A4
+	<tr><th>72<th><td>D13
+	<tr><th>73<th><td>A5
+	<tr><th>74<th><td>D14
+	<tr><th>75<th><td>A6
+	<tr><th>76<th><td>D15
+	<tr><th>77<th><td>A7
+	<tr><th>78<th><td>D16
+	<tr><th>79<th><td colspan=2>esp.gate
+	<tr><th>80<th><td class=vcc>VCC
 </table>
 
 <table class='pinout'>
-	<tr><th>81<td class=gnd>GND
-	<tr><th>82<td> 
-	<tr><th>83<td> 
-	<tr><th>84<td>fdp.29<td rowspan=6 class=cont1>CPU address to FDP?
-	<tr><th>85<td>fdp.28
-	<tr><th>86<td>fdp.26
-	<tr><th>87<td>fdp.25
-	<tr><th>88<td>fdp.24
-	<tr><th>89<td>fdp.23
-	<tr><th>90<td class=gnd>GND
-	<tr><th>91<td>fdp.22<td rowspan=6 class=cont2>CPU address to FDP?
-	<tr><th>92<td>fdp.21
-	<tr><th>93<td>fdp.20
-	<tr><th>94<td>fdp.19
-	<tr><th>95<td>fdp.18
-	<tr><th>96<td>fdp.17
-	<tr><th>97<td>fda.27<td rowspan=3>FDA something
-	<tr><th>98<td>fda.28
-	<tr><th>99<td>fda.26
-	<tr><th>100<td class=vcc>VCC
-	<tr><th>101<td> 
-	<tr><th>102<td>ic14.cs<td rowspan=4>CPU work RAM<br>chip selects
-	<tr><th>103<td>ic15.cs
-	<tr><th>104<td>ic16.cs
-	<tr><th>105<td>ic17.cs
-	<tr><th>106<td colspan=2>fio.118 (chip select?)
-	<tr><th>107<td colspan=2>cpu.dsack0
-	<tr><th>108<td colspan=2>cpu.dsack1
-	<tr><th>109<td colspan=2>ic64.9
-	<tr><th>110<td class=gnd>GND
-	<tr><th>111<td colspan=2>fdp.16
-	<tr><th>112<td colspan=2>fdp.14
-	<tr><th>113<td colspan=2>fdp.13
-	<tr><th>114<td colspan=2>fdp.12
-	<tr><th>115<td colspan=2>cpu.ipl2
-	<tr><th>116<td colspan=2>cpu.ipl1
-	<tr><th>117<td colspan=2>cpu.ipl0
-	<tr><th>118<td> 
-	<tr><th>119<td colspan=2> cart.C04
-	<tr><th>120<td class=vcc>VCC
+	<tr><th>81<th><td class=gnd>GND
+	<tr><th>82<th><td> 
+	<tr><th>83<th><td> 
+	<tr><th>84<th>io?<td>fdp.29<td rowspan=6 class=cont1>CPU address to FDP?
+	<tr><th>85<th>io?<td>fdp.28
+	<tr><th>86<th>io?<td>fdp.26
+	<tr><th>87<th>io?<td>fdp.25
+	<tr><th>88<th>io?<td>fdp.24
+	<tr><th>89<th>io?<td>fdp.23
+	<tr><th>90<th><td class=gnd>GND
+	<tr><th>91<th>io?<td>fdp.22<td rowspan=6 class=cont2>CPU address to FDP?
+	<tr><th>92<th>io?<td>fdp.21
+	<tr><th>93<th>io?<td>fdp.20
+	<tr><th>94<th>io?<td>fdp.19
+	<tr><th>95<th>io?<td>fdp.18
+	<tr><th>96<th>io?<td>fdp.17
+	<tr><th>97<th>o?<td>fda.27<td rowspan=3>FDA something
+	<tr><th>98<th>o?<td>fda.28
+	<tr><th>99<th>o?<td>fda.26
+	<tr><th>100<th><td class=vcc>VCC
+	<tr><th>101<th><td> 
+	<tr><th>102<th>o?<td>ic14.cs<td rowspan=4>CPU work RAM<br>chip selects
+	<tr><th>103<th>o?<td>ic15.cs
+	<tr><th>104<th>o?<td>ic16.cs
+	<tr><th>105<th>o?<td>ic17.cs
+	<tr><th>106<th>o?<td colspan=2>fio.118 (chip select?)
+	<tr><th>107<th>o?<td colspan=2>cpu.dsack0
+	<tr><th>108<th>o?<td colspan=2>cpu.dsack1
+	<tr><th>109<th>i?<td colspan=2>ic64.9
+	<tr><th>110<th><td class=gnd>GND
+	<tr><th>111<th>io?<td colspan=2>fdp.16
+	<tr><th>112<th>io?<td colspan=2>fdp.14
+	<tr><th>113<th>io?<td colspan=2>fdp.13
+	<tr><th>114<th>io?<td colspan=2>fdp.12
+	<tr><th>115<th>o?<td colspan=2>cpu.ipl2
+	<tr><th>116<th>o?<td colspan=2>cpu.ipl1
+	<tr><th>117<th>o?<td colspan=2>cpu.ipl0
+	<tr><th>118<th><td> 
+	<tr><th>119<th>i?<td colspan=2>fdp.118
+	<tr><th>120<th><td class=vcc>VCC
 </table>
 
 <table class=pinout>
-	<tr><th>121<td class=gnd>GND
-	<tr><th>122<td colspan=2>otis.e
-	<tr><th>123<td colspan=2>otis.serlr
-	<tr><th>124<td> 
-	<tr><th>125<td colspan=2>cpu.avec
-	<tr><th>126<td colspan=2>pal2.22 (interrupt ack)
-	<tr><th>127<td colspan=2>cart.A90
-	<tr><th>128<td colspan=2>cart.C04 
-	<tr><th>129<td> 
-	<tr><th>130<td class=gnd>GND
-	<tr><th>131<td colspan=2>30mhz clock in
-	<tr><th>132<td class=vcc>VCC
-	<tr><th>133<td colspan=2>cpu.reset
-	<tr><th>134<td colspan=2>cpu.siz0
-	<tr><th>135<td colspan=2>cpu.siz1
-	<tr><th>136<td colspan=2>cpu.rw
-	<tr><th>137<td colspan=2>cpu.ds
-	<tr><th>138<td colspan=2>cpu.as
-	<tr><th>139<td class=gnd>GND
-	<tr><th>140<td class=vcc>VCC
-	<tr><th>141<td colspan=2>pal1.22 (addr map C-F)
-	<tr><th>142<td colspan=2>pal1.20 (addr map 6)
-	<tr><th>143<td colspan=2>pal1.19 (addr map 4)
-	<tr><th>144<td>D31<td rowspan=13 class=cont1>CPU data<br>(16-bit)
-	<tr><th>145<td>D30
-	<tr><th>146<td>D29
-	<tr><th>147<td>D28
-	<tr><th>148<td>D27
-	<tr><th>149<td>D26
-	<tr><th>150<td class=gnd>GND
-	<tr><th>151<td>D25
-	<tr><th>152<td>D24
-	<tr><th>153<td>D23
-	<tr><th>154<td>D22
-	<tr><th>155<td>D21
-	<tr><th>156<td>D20
-	<tr><th>157<td> 
-	<tr><th>158<td> 
-	<tr><th>159<td> 
-	<tr><th>160<td class=vcc>VCC
+	<tr><th>121<th><td class=gnd>GND
+	<tr><th>122<th><td colspan=2>otis.e
+	<tr><th>123<th><td colspan=2>otis.serlr
+	<tr><th>124<th><td> 
+	<tr><th>125<th>o?<td colspan=2>cpu.avec
+	<tr><th>126<th>i?<td colspan=2>pal2.22 (interrupt ack)
+	<tr><th>127<th>?<td colspan=2>cart.A90
+	<tr><th>128<th>i?<td colspan=2>fdp.118
+	<tr><th>129<th><td> 
+	<tr><th>130<th><td class=gnd>GND
+	<tr><th>131<th>i?<td colspan=2>30.47618 MHz clock in
+	<tr><th>132<th><td class=vcc>VCC
+	<tr><th>133<th>i?<td colspan=2>cpu.reset
+	<tr><th>134<th>i?<td colspan=2>cpu.siz0
+	<tr><th>135<th>i?<td colspan=2>cpu.siz1
+	<tr><th>136<th>i?<td colspan=2>cpu.rw
+	<tr><th>137<th>i?<td colspan=2>cpu.ds
+	<tr><th>138<th>i?<td colspan=2>cpu.as
+	<tr><th>139<th><td class=gnd>GND
+	<tr><th>140<th><td class=vcc>VCC
+	<tr><th>141<th>i?<td colspan=2>pal1.22 (addr map C-F)
+	<tr><th>142<th>i?<td colspan=2>pal1.20 (addr map 6)
+	<tr><th>143<th>i?<td colspan=2>pal1.19 (addr map 4)
+	<tr><th>144<th>io?<td>D31<td rowspan=13 class=cont1>CPU data<br>(16-bit)
+	<tr><th>145<th>io?<td>D30
+	<tr><th>146<th>io?<td>D29
+	<tr><th>147<th>io?<td>D28
+	<tr><th>148<th>io?<td>D27
+	<tr><th>149<th>io?<td>D26
+	<tr><th>150<th><td class=gnd>GND
+	<tr><th>151<th>io?<td>D25
+	<tr><th>152<th>io?<td>D24
+	<tr><th>153<th>io?<td>D23
+	<tr><th>154<th>io?<td>D22
+	<tr><th>155<th>io?<td>D21
+	<tr><th>156<th>io?<td>D20
+	<tr><th>157<th>nc?<td> 
+	<tr><th>158<th>nc?<td> 
+	<tr><th>159<th>nc?<td> 
+	<tr><th>160<th><td class=vcc>VCC
 </table>
 </figure>
 
