@@ -23,3 +23,13 @@ PALCE16V8Q-15
 18 nc?  sync out unused
 19 fdp.121
 20 VCC
+
+
+pin 19 goes low at the end of vsync (the end of the last long low pulse), for 232 pixels
+
+pin 3 goes high near the end of scanline 255 (that is like, just after the last visible pixel is output), and low near the end of scanline 4 (total duration of 11 scanlines)
+which is when the cpu interrupts happen
+
+presumably some of the macrocells are being used to create a delay with a binary counter or something here
+
+no idea what fdp.121 is actually used for within the fdp of course.
