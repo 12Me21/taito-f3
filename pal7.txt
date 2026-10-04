@@ -33,3 +33,9 @@ which is when the cpu interrupts happen
 presumably some of the macrocells are being used to create a delay with a binary counter or something here
 
 no idea what fdp.121 is actually used for within the fdp of course.
+
+we suspect that it's a signal to start rendering sprites, because in our case it happens around the middle of scanline 6, which is possibly within where i observed sprites to start rendering at.
+
+i.e. this system would allow you to configure how long the fdp waits before rendering sprites (i.e. how much time the cpu has to write to sprite ram) and for the F3 they decided to just hardcode it, rather than e.g. allowing the cpu to configure it.
+
+kinda strange for this to be determined by an external input rather than a register though..  but we have long believed that the sprite system is where the master clock for the frame generation is (bc it has the registers that control flipscreen and "interlaced" mode)  and so, maybe it was too hard to have a control in there for when to start rendering sprites, since  you haven't rendered any sprites yet, and thus the sprite system isn't reading data.  idk.
