@@ -1,3 +1,8 @@
+pal7
+IC33
+D77-07
+PALCE16V8Q-15
+
 1 fdp.120 (pulldown R12) 
 2 fdp.120 (pulldown R12) # pins 1 and 2 are tied together
 3 fdp.118 
@@ -9,12 +14,12 @@
 9 GND
 10 GND
 11 GND - 
-12 nc?
-13 nc?
-14 nc?
-15 nc?
-16 nc?
-17 nc?
-18 nc?
+12 nc?  sync out unused
+13 nc?  sync out unused
+14 nc?  8 high pulses during vblank
+15 nc?  4 high pulses during vblank
+16 nc?  2 high pulses during vblank
+17 nc?  one high pulse during vblank
+18 nc?  sync out unused
 19 fdp.121
 20 VCC
