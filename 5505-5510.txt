@@ -1,0 +1,22 @@
+interconnect
+
+each channel carries a stereo 16bit serial pcm audio signal, at a varying sample rate.
+
+5505 has 4 serial output channels:
+0 - unused
+1 - output to 5510 channel 3
+2 - output to 5510 channel 2
+3 - output to 5510 channel 1
+
+5510 has 4 serial input/output channels:
+0 - output to DAC
+1 - input from 5505 channel 3
+2 - input from 5505 channel 2
+3 - input from 5505 channel 1
+
+otis.6 (ser0) → nc?
+otis.7 (ser1) → esp.15 (serio3)
+otis.8 (ser2) → esp.14 (serio2)
+otis.9 (ser3) → esp.13 (serio1)
+
+esp.13 (serio0) → dac.3 (data)
