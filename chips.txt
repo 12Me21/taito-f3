@@ -851,6 +851,8 @@ TC0660FCM
 
 ensoniq 5701000101 ?
 "SUPER GLU"
+https://dosdays.co.uk/media/ensoniq/es5701%20-%20superGLU.pdf
+(todo: we had a schematic where we got the pin numbers at some point)
 [QFP 100 30x20 0.65mm pitch]
 1-7 LA10-LA4
 8 8M

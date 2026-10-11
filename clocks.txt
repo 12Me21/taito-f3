@@ -1,0 +1,5 @@
+maincpu - 15.23809MHz
+audiocpu - 15.23809MHz
+otis - 15.23809MHz
+esp - 8MHz
+duart - 4MHz
