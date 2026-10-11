@@ -2,6 +2,18 @@ interconnect
 
 each channel carries a stereo 16bit serial pcm audio signal, at a varying sample rate.
 
+OTIS channels:
+0 - unused
+1 - output to ESP channel 0
+2 - output to ESP channel 1
+3 - output to ESP channel 2
+
+ESP channels:
+0 - input from OTIS channel 1
+1 - input from OTIS channel 2
+2 - input from OTIS channel 3
+3 - output to DAC
+
 connections determined by comparing signals using oscilloscope:
 
 otis.6 (ser0) → nc?
@@ -18,20 +30,12 @@ OTIS Host Serial Control register set to $63 [01100011] (todo check all games do
 ESP SERMODE register set to $07F8 [0000011111111000] (todo check all games)
 - normal
 
-
 The protocol is something similar to I2S, which they just call "Sony".
 See 5510 datasheet for information.  3 clock signals: BCLK, WCLK, LRCLK, are shared between all channels
 
-i.e.
+the FCM is replacing a 74x174 4x D flip-flop (see schematics for otis/esp systems like https://archive.org/details/eps-16plus-schematics/page/n9/mode/1up)
+where output channels connect to D, input channels connect to Q, and clk is driven by.. i'm not sure.. perhaps otis's bclk?
 
-OTIS channels:
-0 - unused
-1 - output to ESP channel 0
-2 - output to ESP channel 1
-3 - output to ESP channel 2
+the FCM also replaces a 74x373 8x transparent latch,
+with the D inputs connecting to some of the RA/D (ram address/data) pins of the 5510, and the Q outputs connecting to the ram, or something like that basically. GATE drives the clk input.
 
-ESP channels:
-0 - input from OTIS channel 1
-1 - input from OTIS channel 2
-2 - input from OTIS channel 3
-3 - output to DAC

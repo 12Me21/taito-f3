@@ -17,8 +17,9 @@ text-align: left;
 }
 </style>
 
-<p>the FCM seems to be responsible for various miscellaneous functions.
-CPU address mapping, communication between the CPU and FDP, generating CPU interrupts, address buffering for the ESP's RAM, etc.
+<p>The FCM seems to be responsible for various miscellaneous functions.
+	CPU address mapping, communication between the CPU and FDP, generating CPU interrupts, address buffering for the ESP's RAM, etc.&nbsp;
+	Mostly, it just replaces simple logic ICs.
 
 <h2 id=pinout>Pinout</h2>
 
@@ -74,21 +75,21 @@ CPU address mapping, communication between the CPU and FDP, generating CPU inter
 	<tr><th>45<th>nc?<td> 
 	<tr><th>46<th>nc?<td> 
 	<tr><th>47<th>nc?<td> 
-	<tr><th>48<th><td colspan=2>otis.e
-	<tr><th>49<th><td colspan=2>otis.bclk
+	<tr><th>48<th>i?<td colspan=2>otis.e
+	<tr><th>49<th>i?<td colspan=2>otis.bclk
 	<tr><th>50<th><td class=gnd>GND
-	<tr><th>51<th><td colspan=2>otis.ser1
-	<tr><th>52<th><td colspan=2>esp.ser0
-	<tr><th>53<th><td colspan=2>otis.ser2
-	<tr><th>54<th><td colspan=2>esp.ser1
-	<tr><th>55<th><td colspan=2>otis.ser3
-	<tr><th>56<th><td colspan=2>esp.ser2
-	<tr><th>57<th><td colspan=2>esp.ser3
+	<tr><th>51<th>i?<td colspan=2>otis.ser1
+	<tr><th>52<th>o?<td colspan=2>esp.ser0
+	<tr><th>53<th>i?<td colspan=2>otis.ser2
+	<tr><th>54<th>o?<td colspan=2>esp.ser1
+	<tr><th>55<th>i?<td colspan=2>otis.ser3
+	<tr><th>56<th>o?<td colspan=2>esp.ser2
+	<tr><th>57<th>i?<td colspan=2>esp.ser3
 	<tr><th>58<th>o?<td colspan=2>dac.data
 	<tr><th>59<th><td class=gnd>GND
 	<tr><th>60<th><td class=vcc>VCC
 	<tr><th>61<th><td> 
-	<tr><th>62<th><td>A0<td rowspan=17>ESP RAM<br>data/addr<br>latch
+	<tr><th>62<th><td>A0<td rowspan=17>ESP RAM<br>data/addr<br>latch<br>todo: what did<br>i mean by this
 	<tr><th>63<th><td>D9
 	<tr><th>64<th><td>A1
 	<tr><th>65<th><td>D10
@@ -105,7 +106,7 @@ CPU address mapping, communication between the CPU and FDP, generating CPU inter
 	<tr><th>76<th><td>D15
 	<tr><th>77<th><td>A7
 	<tr><th>78<th><td>D16
-	<tr><th>79<th><td colspan=2>esp.gate
+	<tr><th>79<th>i?<td colspan=2>esp.gate
 	<tr><th>80<th><td class=vcc>VCC
 </table>
 
