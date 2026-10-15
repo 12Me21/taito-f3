@@ -3,3 +3,6 @@ audiocpu - 15.23809MHz
 otis - 15.23809MHz
 esp - 8MHz
 duart - 4MHz
+
+audio bclk - 3.8095225MHz
+audio sample rate - ~29.76189453KHz (bclk/128)

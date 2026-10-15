@@ -117,7 +117,8 @@ https://www.digchip.com/datasheets/download_datasheet.php?id=2086624&part-number
 23 ~WR
 24 ~TC
 
-MC33174 [P]
+MC33174 [P] 
+MC33274 [AP]
 https://www.onsemi.com/pdf/datasheet/mc33171-d.pdf
 quad op-amp (PDIP−14)
 [300 mil DIP 14]
@@ -152,7 +153,7 @@ Dual 16-bit DAC (economy version) (I^2S input format)
 TA8221A [H]
 https://pdf1.alldatasheet.com/datasheet-pdf/download/31459/TOSHIBA/TA8221.html https://qrpparts.com/datasheet/ta8221h.pdf ?
 30W BTLx2CH AUDIO POWER AMPLIFIER
-[?HZIP17-P-2.00 - 2 rows, 2mm apart, of 9 and 8 pins spaced 4mm]
+[?HZIP17-P-2.00 - 2 rows, 2mm apart, of 9 and 8 pins spaced 4mm]  pins are counted in zig-zag order
 1 ~Mute SW
 2 IN1
 3 NF1

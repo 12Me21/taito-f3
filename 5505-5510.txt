@@ -39,3 +39,24 @@ where output channels connect to D, input channels connect to Q, and clk is driv
 the FCM also replaces a 74x373 8x transparent latch,
 with the D inputs connecting to some of the RA/D (ram address/data) pins of the 5510, and the Q outputs connecting to the ram, or something like that basically. GATE drives the clk input.
 
+---
+
+final audio signal going to the DAC:
+
+- DATA changes at BCLK **rising** edge (½ cycle earler than I2S)
+- LRCLK changes at BCLK falling edge, in the middle of the data bit before the MSB of the next sample.
+- the cycle length of LRCLK is 128 BCLK cycles:
+ - 16 bits **high** - left sample
+ - 112 bits low - right sample (only the first 16 bits are real data)
+ - (phase of LRCLK is backwards from I2S; see 5505/5510 datasheets. first sample is LRCLK high = left)
+
+the DAC expects actual I2S input (unlike the otis/esp which sorta do their own thing)  and idk how the data offset doesn't break it, but whatever.
+it expects I2S left/right meanigns, so its output would seem to be backwards from the internal channels.
+from what i can tell, the left/right channels are not swapped again during amplification and output. so, that means the otis left/right channels are backwards and presumably the software takes this into account?
+idk.  
+so ultimately it is like
+LRCLK 
+ - high - right sample
+ - low - left sample
+paired like that
+in the end..
