@@ -52,11 +52,4 @@ final audio signal going to the DAC:
 
 the DAC expects actual I2S input (unlike the otis/esp which sorta do their own thing)  and idk how the data offset doesn't break it, but whatever.
 it expects I2S left/right meanigns, so its output would seem to be backwards from the internal channels.
-from what i can tell, the left/right channels are not swapped again during amplification and output. so, that means the otis left/right channels are backwards and presumably the software takes this into account?
-idk.  
-so ultimately it is like
-LRCLK 
- - high - right sample
- - low - left sample
-paired like that
-in the end..
+I don't have confirmation of the pinout of the stereo audio output connector (labelled "S") so i can't confirm whether the final output uses the otis/esp ordering or the dac ordering.  but probably it is the former, based on hardware recordings i have heard (assuming their stereo was connected and recorded correctly) and based on mame.
