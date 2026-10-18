@@ -131,7 +131,7 @@ figure > table.port-sideways {
 }
 
 </style>
-<figure>
+<!--<figure>
 <table class=port-sideways>
 	<tr><th>1<td rowspan=2 class=gnd>GND
 	<tr><th>2
@@ -192,7 +192,7 @@ figure > table.port-sideways {
 	<tr><td rowspan=2 class=gnd>GND<th>e
 	<tr><th>f
 </table>
-</figure>
+</figure>-->
 <p>
 	<b>The F3 does not use &minus;5V</b><s-t>.</s-t> (it is completely unconnected)
 <p>
@@ -226,14 +226,17 @@ figure > table.port-sideways {
 		<th>1<th>2<th>3<th>4
 	</tr>
 	<tr>
-		<td>left<br>spk +
-		<td>right<br>spk &minus;
-		<td>left<br>spk &minus;
 		<td>right<br>spk +
+		<td>left<br>spk &minus;
+		<td>right<br>spk &minus;
+		<td>left<br>spk +
 	</tr>
 </table>
 <p>
-	Pins 1 (left +) and 2 (right &minus;) also go to the jamma connector for mono audio output<s-t>.</s-t>
+	Pins 1 (right +) and 2 (left &minus;) also go to the jamma connector for mono audio output<s-t>.</s-t>
+<p>
+	Note: It's possible that the left and right channels are backwards here (though otherwise i know this pinout to be correct; it's either RLRL or LRLR).&nbsp;
+	There is some inconsistent information about this.
 
 <h3 id=port-si>Port <span class=portlabel>SI</span>: Serial Interface (MC68681 DUART)</h3>
 <table class=port>

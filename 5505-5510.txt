@@ -46,10 +46,11 @@ final audio signal going to the DAC:
 - DATA changes at BCLK **rising** edge (½ cycle earler than I2S)
 - LRCLK changes at BCLK falling edge, in the middle of the data bit before the MSB of the next sample.
 - the cycle length of LRCLK is 128 BCLK cycles:
- - 16 bits **high** - left sample
- - 112 bits low - right sample (only the first 16 bits are real data)
+ - 16 bits **high** - left* sample
+ - 112 bits low - right* sample (only the first 16 bits are real data)
  - (phase of LRCLK is backwards from I2S; see 5505/5510 datasheets. first sample is LRCLK high = left)
-
-the DAC expects actual I2S input (unlike the otis/esp which sorta do their own thing)  and idk how the data offset doesn't break it, but whatever.
-it expects I2S left/right meanigns, so its output would seem to be backwards from the internal channels.
-I don't have confirmation of the pinout of the stereo audio output connector (labelled "S") so i can't confirm whether the final output uses the otis/esp ordering or the dac ordering.  but probably it is the former, based on hardware recordings i have heard (assuming their stereo was connected and recorded correctly) and based on mame.
+ 
+*left and right here are from the perspective of the otis/esp.
+the DAC expects actual I2S input (unlike the otis/esp which sorta do their own thing)  (and idk how the data offset doesn't break it, but whatever.)
+so it expects I2S left/right meanings, so its output would seem to be backwards from the internal channels.
+I don't have confirmation of the pinout of the stereo audio output connector (labelled "S") so i can't confirm whether the final output uses the otis/esp ordering or the dac ordering.  but probably it is the former, based on hardware recordings i have heard (assuming their stereo was connected and recorded correctly) and based on mame and the SQ-1/SD-1, as well as the sound effect panning in elevactor action.  however, this is contradicted by the connection diagram in many games' manuals, and by the balance control in the sound test of hat trick hero '93.

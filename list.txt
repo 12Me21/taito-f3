@@ -262,6 +262,9 @@ audio wclk: otis.10 | pal6.5
 audio wclk 2: | pal6.15 | dr2.10 esp.18
 audio lrclk: otis.11 | esp.17 dr2.9 dac.2
 
+# note: here left/right are labeled from the perspective of the dac (backwards from the otis/esp)
+# which may not be how they are meant to be connected to the speakers
+
 dac output left: dac.6 | ic53.13
 dac output right: dac.8 | ic53.2
 dac output vref: dac.7 | ic53.3 ic53.12
@@ -273,12 +276,13 @@ left eventually 1: ... | ic53.9
 right eventually 1: ... | ic53.6
 left 2: ic53.8 | ic54.13
 right 2: ic53.7 | ic54.15
-left 3: ic54.14 | c22.1
-right 3: ic54.16 | c21.1
+left 3 (ao2): ic54.14 | c22.1
+right 3 (ao3): ic54.16 | c21.1
 right 4: c21.2 | ic63.7
-right 5a: ic63.11 | 
-right 5b: ic63.12 |
-# eventually yes the left and right channels go to the stereo output left and right connector.  so like.  yeah they stay swapped i guess.. i wonder if the software internally swaps the meaning of left and right
+right 5+: ic63.11 | 
+right 5-: ic63.12 |
+right 6+: s.4
+right 6-: s.2
 
 
 esp halt: | pal8.12 | dr2.7 esp.36
