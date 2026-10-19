@@ -1,0 +1,40 @@
+
+
+
+VFX (the original otis+esp synthesizer) (21 voices)
+↓
+VFX-SD (officially typeset as VFX\sup{SD}) (21 voices)
+↓
+VFX-SDII (i think this is just a software update for the VFX-SD) (21 voices)
+↓
+SD-1 (21 voices)
+↓
+SD-1 32 Voice
+
+SQ-1 (21 voices) (cheapened version of the VFX-SD)
+SQ-R (21 voices)
+↓
+SQ-1 Plus (21 voices)
+SQ-R Plus (21 voices)
+↓
+SQ-1 Plus 32 Voice
+SQ-R Plus 32 Voice
+↓
+SQ-2 (21 voices)
+↓
+SQ-2 32 Voice
+↓
+KS-32 (32 voices)
+
+
+
+these are listed as "samplers" :
+EPS 
+EPS-16
+EPS-16 Plus
+
+
+
+https://www.muzines.co.uk/articles/powerstation/7278
+https://soundprogramming.net/synthesizers/ensoniq/ensoniq-vfx-sd/
+http://studiorepair.com/gallery/Ensoniq/SQ-2/slides/Ensoniq_SQ-2_Main_Board__STUDIOREPAIR_17071001_1707130270.html
