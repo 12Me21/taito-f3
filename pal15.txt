@@ -1,3 +1,5 @@
+### NOTE  this dump is maybe for a different variant of D77-15 (D77-15A?)
+
 pal15
 D77-15
 

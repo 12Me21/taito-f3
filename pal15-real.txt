@@ -1,0 +1,14 @@
+17 (oe) goes high (disabled):
+ if 15 equals 16 (i.e. we are not in program or data addr space)
+ (11 seems not to matter)
+ (13 seems not to matter)
+ (14 seems not to matter)
+ (9 seems not to matter)
+ if 8 is high (AS not asserted)
+ if 7 is high (a23 set)
+ if 6 is high (a22 set)
+ if 5 is high (a21 set) (!) differs from D77-15A dump?
+ (4 seems not to matter)
+
+pin 3 controls output 18 (a19 -> a17)
+pin 4 controls output 19 (a20 -> a18)
