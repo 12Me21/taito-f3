@@ -1,3 +1,4 @@
+
 IC9
 SN74LS08N
 4× AND gate
@@ -24,3 +25,30 @@ cpu.dsack0 && cpu.dsack1 && cpu.as → fdp.2
 gate 3 is used (with one input tied high) to buffer the output fdp.116 into the input fdp.113
 
 gate 4 does the same but for 112 into 117
+
+
+old
+
+1 fcm.138 (cpu.as)
+2 .6
+3 fdp.2
+
+4 fcm.107 (cpu.dsack0)
+5 fcm.108 (cpu.dsack1)
+6 .2
+
+7 GND
+
+8 fdp.113
+9 fdp.116
+10 VCC
+
+11 fdp.117 
+12 fdp.112 (fb ram RAS)
+13 VCC
+
+14 VCC
+
+6 = dsack0 and dsack1
+3 = (dsack0 and dsack1) and as
+
