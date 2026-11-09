@@ -63,3 +63,22 @@ so specifically this range is blocked:
 [???0 1??. .... .... .... ....]
 i am fairly sure the upper 3 bits aren't worth testing, as they are hardcoded to turn off access to program rom.  the upper 2 particularly would cause a bus conflict if disconnected.  but i will check A21 just in case.
 
+5: check if a21 matters here
+- repeat steps of experiment 4
+- disconnect pal15.5 from its net
+- connect pal15.5 to vcc
+- tested (crashed immediately, no graphics init) as expected, roms are disabled
+
+6: check a18 and a17, why not
+- perform the bypasses again, on pal15.3/.18, and pal15.4/.19
+- disconnect pal15.1 and pal15.2 from their nets
+- connect pal15.1 and pal15.2 to vcc
+- tested, expected to work  (worked)
+- reconnect pal15.3 to its net (A19)
+- tested, expected not to work (worked!!)
+- tested again with pal15.1 connected to gnd instead (worked!)
+- tested again with pal15.2 connected to gnd instead (did not boot)
+- tested again with pal15.1/.2 connected to gnd instead (did not boot)
+
+so, the region being blocked is, i believe, if A20=0, A19=1, A18=0.
+[???0 10.. .... .... .... ....]
