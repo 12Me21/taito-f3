@@ -1,3 +1,5 @@
+tests performed on breadboard:
+
 17 (oe) goes high (disabled):
  if 15 equals 16 (i.e. we are not in program or data addr space)
  (11 seems not to matter)
@@ -12,3 +14,52 @@
 
 pin 3 controls output 18 (a19 -> a17)
 pin 4 controls output 19 (a20 -> a18)
+
+
+
+
+tests performed in the f3, running landmakrj: 2026 nov 8
+
+1: checking if the PAL is testing A19 to disable reads:
+- disconnected pal15.3 and pal15.18 from their nets
+- connected those two nets to eachother
+- connected pal15.3 to gnd
+result: WORKED!!!!!!!!
+
+2: checking if these reads are only blocked in one address space:
+- disconnected pal15.3 and pal15.18 from their nets
+- connected those two nets to eachother
+- also connected pal15.3 back to those nets
+- connected pal15.15 (fc1) to gnd
+- connected pal15.16 (fc0) to vcc (putting us in user/supervisor data space)
+result: did not boot (also repeated with 15 and 16 swapped just in case)
+
+3: checking if that address space override causes problems on its own:
+- disconnected pal15.3 and pal15.18 from their nets
+- connected those two nets to eachother
+- connected pal15.3 to gnd
+- connected pal15.15 (fc1) to gnd
+- connected pal15.16 (fc0) to vcc
+result: worked! (also repeated with 15 and 16 swapped just in case)
+
+so, it seems like
+[???? 1??. .... .... .... ....]
+this address range is blocked, in both data and program space
+we should check if the other bits matter though.
+let's check A20 first.
+
+going forward, we will refer to the first 2 steps of experiment 1 as a "bypass"
+
+4: check if it is blocking 2 quarters of the rom, or just one
+- performed the regular bypass on pal15.3 / pal15.18 (A19)
+- also performed a bypass on pal15.4 / pal15.19 (A20)
+- tested to make sure the system boots after changes (booted ok)
+- reconnected pal15.3 to its net
+- tested again (no boot)
+- switched pal15.4 from gnd to vcc
+- tested again (booted!)
+
+so specifically this range is blocked:
+[???0 1??. .... .... .... ....]
+i am fairly sure the upper 3 bits aren't worth testing, as they are hardcoded to turn off access to program rom.  the upper 2 particularly would cause a bus conflict if disconnected.  but i will check A21 just in case.
+
