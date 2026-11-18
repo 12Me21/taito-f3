@@ -82,3 +82,13 @@ i am fairly sure the upper 3 bits aren't worth testing, as they are hardcoded to
 
 so, the region being blocked is, i believe, if A20=0, A19=1, A18=0.
 [???0 10.. .... .... .... ....]
+
+so, a simple way to fix everything should be disconnect pal15.2 from its net, and connect it to vcc instead
+7: test this fix
+- (with everything back to normal) disconnect pal15.2 from its net
+- connect pal15.2 to vcc
+- tested (worked!!)
+- try leaving pal15.2 disconnected
+- tested (worked!)
+
+so, an easy fix is to just bend pin 2 of pal D77-15, so it doesnt go in to the socket!
